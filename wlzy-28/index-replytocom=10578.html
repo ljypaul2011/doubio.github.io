@@ -1,0 +1,725 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>『恢复』免费申请SSL证书 &#8211; AlphaSSL 及 LNMP一键包Nginx配置SSL证书教程 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2196] -->
+<meta name="description"  content="过年了没啥教程写的，放假了我也很懒，最近这两天也有人学习建站想要搞个SSL证书玩玩，但是完全没有建站经验，这些都不懂。 成功做过一遍的人会觉得申请+配置SSL证书很简单，但是完全没接触过的小白就会很迷，所以我就写个教程吧。 目前颁发免费SSL证书我只知道：AlphaSSL、Let's Encrypt" />
+
+<meta name="keywords"  content="https,nginx,ssl" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='一个 反代无需证书 适用于DNS/Hosts的小工具 —— SNI Proxy代理 安装教程' href='../wlzy-27/index.html' />
+<link rel='next' title='Linux 使用 locale 修改系统默认语言为中文语言(即支持中文输入和文件名)' href='../linux-jc3/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="https, Nginx, SSL, 建站资源, 网络资源">
+<meta name="description" content="过年了没啥教程写的，放假了我也很懒，最近这两天也有人学习建站想要搞个SSL证书玩玩，但是完全没有建站经验，这些都不懂。  成功做过一遍的人会觉得申请+配置SSL证书很简单，但是完全没接触过的小白就会很迷，所以我就写个教程吧。    目前颁发免费SSL证书我只知道：AlphaSSL、Let's Encrypt SSL、StartSSL(沃通)  StartSSL(沃通)因为违反了SSL证书的规定，导致2016年10月后新申请的SSL证书都">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1818 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=10578.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">『恢复』免费申请SSL证书 &#8211; AlphaSSL 及 LNMP一键包Nginx配置SSL证书教程</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../jzzy/index.html"> 建站资源</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 7个月前 (01-26)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 5955℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">48评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6" title="申请SSL证书"><span>申请SSL证书</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E7%94%9F%E6%88%90CSR%E6%96%87%E4%BB%B6%E5%92%8CKEY%E5%AF%86%E5%8C%99" title="生成CSR文件和KEY密匙"><span>生成CSR文件和KEY密匙</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6" title="申请SSL证书"><span>申请SSL证书</span></a></li><li class="content-index-level-2"><a href="index.html#%E9%82%AE%E4%BB%B6%E7%A1%AE%E8%AE%A4SSL%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7" title="邮件确认SSL证书申请"><span>邮件确认SSL证书申请</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#Nginx%E9%85%8D%E7%BD%AESSL%E8%AF%81%E4%B9%A6" title="Nginx配置SSL证书"><span>Nginx配置SSL证书</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B%EF%BC%9A" title="配置示例："><span>配置示例：</span></a></li><li class="content-index-level-2"><a href="index.html#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A" title="代码解释"><span>代码解释</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E" title="其他说明"><span>其他说明</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E9%87%8D%E5%90%AFNginx%E6%8A%A5%E9%94%99%20%E6%88%96%20%E9%85%8D%E7%BD%AE%E5%90%8E%20%E7%81%AB%E7%8B%90%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%89%8B%E6%9C%BA%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%81%E4%B9%A6%E6%8A%A5%E9%94%99" title="重启Nginx报错 或 配置后 火狐浏览器/手机浏览器证书报错"><span>重启Nginx报错 或 配置后 火狐浏览器/手机浏览器证书报错</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年8月27日 08:14</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>过年了没啥教程写的，放假了我也很懒，最近这两天也有人学习建站想要搞个SSL证书玩玩，但是完全没有建站经验，这些都不懂。</p>
+<p>成功做过一遍的人会觉得申请+配置SSL证书很简单，但是完全没接触过的小白就会很迷，所以我就写个教程吧。</p>
+<hr />
+<p>目前颁发免费SSL证书我只知道：<strong>AlphaSSL、Let&#8217;s Encrypt SSL、StartSSL(沃通)</strong></p>
+<p><strong>StartSSL(沃通)</strong>因为违反了SSL证书的规定，导致2016年10月后新申请的SSL证书都被浏览器拉黑了，所以不建议使用。</p>
+<p><strong>AlphaSSL</strong>是比较早的一个，支持免费泛域名SSL证书，最多可以签1年。</p>
+<p><strong>Let&#8217;s Encrypt SSL</strong>则是前段时间很火的一个免费SSL证书，最多可以签3个月。</p>
+<p>免费SSL证书各个之间也没什么区别，主要是颁发机构的区别，其他的都没影响，所以我作为一个懒人能签多次时间就签多长时间，所以我选了AlphaSSL。</p>
+<blockquote><p>本教程中申请+配置SSL证书均以<code> toyoo.ml </code>为例，请自行替换为自己的域名，不要傻傻的照着教程写示例域名！</p></blockquote>
+<h2 id="申请SSL证书">申请SSL证书</h2>
+<pre>申请SSL证书前，<strong>请先关闭域名的Whois保护</strong>，避免SSL证书申请时无法扫描到域名注册时填写的域名邮箱，导致无法申请SSL证书！如果不确定，请查询域名Whois信息，看看是否可以查询到你的域名注册邮箱，域名Whois信息查询：<a href="http://whois.chinaz.com/" target="_blank">站长工具</a></pre>
+<p>我们首先在本地 新建三个空文本文件 分别命名为：<code> toyoo.ml.csr、toyoo.ml.key、toyoo.ml.crt </code></p>
+<p>CSR是申请SSL证书需要的文件，KET是对应的证书密匙，CRT是证书文件。</p>
+<h3 id="生成CSR文件和KEY密匙">生成CSR文件和KEY密匙</h3>
+<p>申请SSL证书的第一步就是生成CSR和KEY文件。</p>
+<p>我们打开 <a href="https://csr.chinassl.net/generator-csr.html" target="_blank">CSR文件在线生成工具</a> ，填写 <strong>组织/公司、部门/单位、城市、省份、邮箱和域名</strong>。</p>
+<p>国家、加密方式、哈希签名算法和加密位数都默认就好，不要改。</p>
+<p><strong>邮箱和域名必须填写正确。</strong></p>
+<p>AlphaSSL支持免费泛域名SSL证书，所以域名我们填写为<code> *.toyoo.ml </code></p>
+<pre>泛域名SSL证书指的是，这个SSL证书，你可以用在任何以<code> toyoo.ml </code>为主的一级域名(toyoo.ml)、二级域名(xxx.toyoo.ml)等。</pre>
+<p>填写完毕后，点击 <span style="color: #ff6464;"><strong>生成CSR文件</strong></span> 按钮。</p>
+<p>然后下面就会出现两段代码，分别是 <strong>CSR 和 KEY</strong> 。</p>
+<p>然后把 <strong>CSR和KEY代码</strong> 分别保存到我们一开始新建的空文本文件中：<code> toyoo.ml.csr、toyoo.ml.key </code></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-01.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="769" height="700" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-28-01.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="769" height="700" /></noscript></p>
+<h3 id="申请SSL证书">申请SSL证书</h3>
+<blockquote><p>AlphaSSL 申请页面也更新了，不过不影响，选项按钮还是那几个，就是式样改了，所以我也不重新截图了。</p></blockquote>
+<p>我们打开 <a href="https://www.starrydots.com/assl" target="_blank">AlphaSSL证书申请网站</a> ，然后把上面我们生成的 <strong>CSR代码</strong> 复制到第一个大文本框中。</p>
+<p>然后填写下面的邮箱（名、姓、电话号码是可选的），<strong>除了邮箱必须正确(建议和上面生成CSR的邮箱一致)，其他的随意</strong>。</p>
+<p>然后点击 <span style="color: #ff6464;"><strong>Verify &gt;</strong></span> 按钮提交SSL证书申请信息。</p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-02.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="626" height="562" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-28-02.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="626" height="562" /></noscript></p>
+<p>然后网站会检测 CSR代码 并询问你要申请的域名是否为<code> *.toyoo.ml </code>，检查无错误后，点击 <span style="color: #ff6464;"><b>OK</b></span> 按钮。</p>
+<p>然后SSL证书申请网站会开始查询申请SSL证书 Whios信息中 域名邮箱(注册域名时候写的邮箱)，如果正常情况下，<strong>第一个邮箱就会是你的域名邮箱，点击这个邮箱，AlphaSSL就会向你这个邮箱里发送确认邮件，一般等待1-5分钟就会收到邮件了。</strong></p>
+<p>如果只显示了如下下图后面那几个邮箱，没有显示你的域名注册邮箱，那么说明你的域名可能是 <strong>刚注册 或 没有关闭Whios保护 或 刚关闭Whios保护</strong> 查询有缓存，所以你可能需要关闭Whios保护或者等待12-24小时后，才能继续申请。</p>
+<p>域名Whois信息查询网站：<a href="http://whois.chinaz.com/" target="_blank">站长工具</a>，<strong>如果 注册域名 或者 关闭Whios保护 24小时后依然无法查询到你的域名注册信息，那么请联系域名注册商解决。</strong></p>
+<p><img class="lazy alignnone aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-03.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/50" alt="" width="517" height="192" /><noscript><img class="alignnone aligncenter" src="https://img.mlkxs.com/wlzy-28-03.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/50" alt="" width="517" height="192" /></noscript></p>
+<p style="text-align: center;"><img class="lazy alignnone" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-04.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="570" height="239" /><noscript><img class="alignnone" src="https://img.mlkxs.com/wlzy-28-04.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="570" height="239" /></noscript></p>
+<p><img class="lazy alignnone aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-05.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="890" height="243" /><noscript><img class="alignnone aligncenter" src="https://img.mlkxs.com/wlzy-28-05.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="890" height="243" /></noscript></p>
+<h3 id="邮件确认SSL证书申请">邮件确认SSL证书申请</h3>
+<p>在你的域名注册邮箱中，等待AlphaSSL给你发SSL证书申请确认邮件，邮件内容大概如下图。</p>
+<p><strong>点击红框中的 链接</strong>，会进入到AlphaSSL的确认网站。</p>
+<p>确认SSL证书申请信息正确后点击 <span style="color: #ff6464;"><strong>I APPROVE</strong></span> 按钮，代表同意。</p>
+<p>然后网站就会提示把SSL证书信息发送到你的邮箱了。</p>
+<p>现在重新回到邮箱，等待SSL证书信息邮件。</p>
+<p>收到邮件后，翻到邮件最下面找到你的SSL证书代码：</p>
+<pre class="prettyprint linenums">OUR SSL CERTIFICATE
+--------------------------------------------------
+(Formatted for the majority of web server software including IIS and Apache
+based servers):
+
+-----BEGIN CERTIFICATE-----
+XXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXX
+-----END CERTIFICATE-----
+</pre>
+<p>然后把从<code> -----BEGIN CERTIFICATE----- </code>到<code> -----END CERTIFICATE----- </code>的内容(包括这两行自身)都复制到最开始我们新建的空文本文件中<code> toyoo.ml.crt </code></p>
+<p>现在我们已经有了<code> CSR文件、KEY文件、SSL文件 </code>，但是还不够，还需要SSL证书颁发机构的中级证书文件。</p>
+<p>在SSL证书信息的邮件中，提到了中级证书的获取地址：<a href="https://www.alphassl.com/support/install-root-certificate.html" target="_blank">https://www.alphassl.com/support/install-root-certificate.html</a></p>
+<p>进入后我们找到第一个<strong>SSL中级证书</strong>代码：<strong>SHA-256 &#8211; Orders March 31, 2014 and After</strong></p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10578.html#">点击展开 查看内容</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">-----BEGIN CERTIFICATE-----
+MIIETTCCAzWgAwIBAgILBAAAAAABRE7wNjEwDQYJKoZIhvcNAQELBQAwVzELMAkG
+A1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNVBAsTB1Jv
+b3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xNDAyMjAxMDAw
+MDBaFw0yNDAyMjAxMDAwMDBaMEwxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9i
+YWxTaWduIG52LXNhMSIwIAYDVQQDExlBbHBoYVNTTCBDQSAtIFNIQTI1NiAtIEcy
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2gHs5OxzYPt+j2q3xhfj
+kmQy1KwA2aIPue3ua4qGypJn2XTXXUcCPI9A1p5tFM3D2ik5pw8FCmiiZhoexLKL
+dljlq10dj0CzOYvvHoN9ItDjqQAu7FPPYhmFRChMwCfLew7sEGQAEKQFzKByvkFs
+MVtI5LHsuSPrVU3QfWJKpbSlpFmFxSWRpv6mCZ8GEG2PgQxkQF5zAJrgLmWYVBAA
+cJjI4e00X9icxw3A1iNZRfz+VXqG7pRgIvGu0eZVRvaZxRsIdF+ssGSEj4k4HKGn
+kCFPAm694GFn1PhChw8K98kEbSqpL+9Cpd/do1PbmB6B+Zpye1reTz5/olig4het
+ZwIDAQABo4IBIzCCAR8wDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8C
+AQAwHQYDVR0OBBYEFPXN1TwIUPlqTzq3l9pWg+Zp0mj3MEUGA1UdIAQ+MDwwOgYE
+VR0gADAyMDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy5hbHBoYXNzbC5jb20vcmVw
+b3NpdG9yeS8wMwYDVR0fBCwwKjAooCagJIYiaHR0cDovL2NybC5nbG9iYWxzaWdu
+Lm5ldC9yb290LmNybDA9BggrBgEFBQcBAQQxMC8wLQYIKwYBBQUHMAGGIWh0dHA6
+Ly9vY3NwLmdsb2JhbHNpZ24uY29tL3Jvb3RyMTAfBgNVHSMEGDAWgBRge2YaRQ2X
+yolQL30EzTSo//z9SzANBgkqhkiG9w0BAQsFAAOCAQEAYEBoFkfnFo3bXKFWKsv0
+XJuwHqJL9csCP/gLofKnQtS3TOvjZoDzJUN4LhsXVgdSGMvRqOzm+3M+pGKMgLTS
+xRJzo9P6Aji+Yz2EuJnB8br3n8NA0VgYU8Fi3a8YQn80TsVD1XGwMADH45CuP1eG
+l87qDBKOInDjZqdUfy4oy9RU0LMeYmcI+Sfhy+NmuCQbiWqJRGXy2UzSWByMTsCV
+odTvZy84IOgu/5ZR8LrYPZJwR2UcnnNytGAMXOLRc3bgr07i5TelRS+KIz6HxzDm
+MTh89N1SyvNTBCVXVmaU6Avu5gMUTu79bZRknl7OedSyps9AsUSoPocZXun4IRZZ
+Uw== 
+-----END CERTIFICATE-----
+</pre>
+<p></p></div>
+<p>然后把中级证书代码从<code> -----BEGIN CERTIFICATE----- </code>到<code> -----END CERTIFICATE----- </code>的内容(包括这两行自身)复制到开始我们新建的空文本文件中<code> toyoo.ml.crt </code>我们自己的SSL证书后面。</p>
+<p>也就是我们自己的SSL证书代码的最后一行<code> -----END CERTIFICATE----- </code>后面空出一行后再粘贴上 <strong>中级证书代码</strong>，大概格式如下：</p>
+<pre class="prettyprint linenums">-----BEGIN CERTIFICATE-----
+XXXXXXXXXXXXXXXXXXXXX
+XXXXXXX自己证书XXXXXXXX
+XXXXXXXXXXXXXXXXXXXXX
+-----END CERTIFICATE-----
+
+-----BEGIN CERTIFICATE-----
+XXXXXXXXXXXXXXXXXXXXX
+XXXXXXX中级证书XXXXXXXX
+XXXXXXXXXXXXXXXXXXXXX
+-----END CERTIFICATE-----
+</pre>
+<p>修改并保存SSL证书文件后，我们双击打开<code> toyoo.ml.crt </code>证书文件，就会看到如 下下下下图所示的证书信息。</p>
+<p>如果没问题，那么到这里我们申请免费SSL证书就完成了。接下来是Nginxi配置SSL证书的步骤。</p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-06.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="977" height="538" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-28-06.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="977" height="538" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-07.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="610" height="709" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-28-07.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="610" height="709" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-08.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="600" height="659" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-28-08.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="600" height="659" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-28-09.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="408" height="480" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-28-09.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="408" height="480" /></noscript></p>
+<h2 id="Nginx配置SSL证书">Nginx配置SSL证书</h2>
+<p>因为我一直使用的是 <a href="https://lnmp.org" target="_blank">lnmp.org</a> 的lnmp一键包，所以以这个一键包为例，其他的一键包也差不多，至于面板，肯定都有SSL证书添加的地方。</p>
+<h3 id="配置示例：">配置示例：</h3>
+<p>首先通过SFTP链接你的网站服务器，然后找到<code> /usr/local/nginx/conf/vhost/域名.conf </code>文件并下载到本地(以<code> toyoo.ml.conf </code>为例)。</p>
+<p>然后我们本地打开<code> toyoo.ml.conf </code>文件并修改，下面是<strong>修改后的完整配置文件示例</strong>：</p>
+<pre>注意：只需要看18行以前就行了，后面的不要跟着示例走，以前是什么就是什么，不需要和示例一模一样。</pre>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10578.html#">点击展开 查看内容</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">server
+	{
+		listen 80;
+		listen 443 ssl http2;
+		ssl on;
+		ssl_certificate /root/toyoo.ml.crt;
+		ssl_certificate_key /root/toyoo.ml.key;
+		ssl_session_cache shared:SSL:10m;
+		ssl_session_timeout  10m;
+		add_header Strict-Transport-Security "max-age=31536000";
+
+		server_name toyoo.ml;
+		index index.html index.htm index.php default.html default.htm default.php;
+		root  /home/wwwroot/toyoo.ml;
+
+		if ( $scheme = http ){
+			return 301 https://$server_name$request_uri;
+		}
+<strong># 只需要看前面的代码就行了，后面的不需要和示例一致！！！ #</strong>
+		include none.conf;
+		#error_page   404   /404.html;
+		location ~ [^/]\.php(/|$)
+		{
+			# comment try_files $uri =404; to enable pathinfo
+			try_files $uri =404;
+			fastcgi_pass  unix:/tmp/php-cgi.sock;
+			fastcgi_index index.php;
+			include fastcgi.conf;
+			#include pathinfo.conf;
+		}
+
+		location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
+		{
+			expires      30d;
+		}
+
+		location ~ .*\.(js|css)?$
+		{
+			expires      12h;
+		}
+
+		access_log off;
+	}
+</pre>
+<p></p></div>
+<h3 id="代码解释">代码解释</h3>
+<p>主要是在<code> listen 80; </code>下面添加SSL证书的信息。</p>
+<p>如果你的Nginx是 1.10.x 以后的版本(lnmp 1.3满足)，那么就支持http2了</p>
+<pre class="prettyprint linenums">listen 443 ssl http2;
+# 监听HTTPS端口
+ssl on;
+# 开启SSL
+ssl_certificate /root/toyoo.ml.crt;
+# 指定SSL证书 .crt 位置
+ssl_certificate_key /root/toyoo.ml.key;
+# 指定SSL证书密匙 .key 位置
+ssl_session_cache shared:SSL:10m;
+# 设置SSL缓存大小
+ssl_session_timeout  10m;
+# 设置SSL缓存时间
+add_header Strict-Transport-Security "max-age=31536000";
+# 这个代码的意思是，当访客访问你网站的HTTPS域名后，下次再访问HTTP，浏览器会自动转到HTTPS，而不需要访客先访问网站服务器，然后网站服务器再重定向到HTTPS。31536000是秒，代表一年内有效(如果不清理浏览器缓存)
+</pre>
+<p>这段代码指的是强制所有访问 HTTP域名 的都重定向到HTTPS。</p>
+<p>如果你不需要访客<strong>强制访问 HTTPS</strong> ，那么不需要添加这段代码。</p>
+<pre class="prettyprint linenums">		if ( $scheme = http ){
+			return 301 https://$server_name$request_uri;
+		}
+</pre>
+<p>修改并保存后，上传<code> toyoo.ml.conf </code>到<code> /usr/local/nginx/conf/vhost </code>文件夹并覆盖原文件(注意备份)。</p>
+<p>然后再把<code> toyoo.ml.crt、toyoo.ml.key </code>上传到<code> toyoo.ml.conf </code>文件中指定的地方，比如示例中的<code> /root </code>文件夹下。</p>
+<p>然后SSH链接网址服务器并重启Nginx：</p>
+<pre class="prettyprint linenums">lnmp nginx restart
+</pre>
+<p>如果报错了，那么会提示是哪一行出错，然后查看哪一行存在问题，或者在下面留言问我。</p>
+<p>如果没有报错，那么就尝试打开<code> https://域名/ </code>看一看浏览器地址栏前是否有绿锁了！</p>
+<p>当然，没有也不要急，你能进去 <strong>https</strong> 了，说明SSL配置基本无误，没有绿锁多半是网站内的 <strong>内链和外链</strong> 没有都设置为 <strong>https</strong>，把网站内的所有链接都改为 <strong>https</strong> 的就行了，可以通过<code> F12审查元素 </code>来定位错误的元素。</p>
+<h2 id="其他说明">其他说明</h2>
+<h3 id="重启Nginx报错 或 配置后 火狐浏览器/手机浏览器证书报错">重启Nginx报错 或 配置后 火狐浏览器/手机浏览器证书报错</h3>
+<p>有部分人因为未知原因，按以上教程配置SSL后，重启Nginx报错，或者配置完 火狐浏览器和手机浏览器报错，所以解决方法如下：</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10578.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<p>只要在你自己的证书代码前面再加上一个 GlobalSign的根证书代码 就可以了。</p>
+<pre class="prettyprint linenums">-----BEGIN CERTIFICATE-----
+XXXXXXXXXXXXXXXXXXXXX
+XXXXXXX自己证书XXXXXXXX
+XXXXXXXXXXXXXXXXXXXXX
+-----END CERTIFICATE-----
+
+-----BEGIN CERTIFICATE-----
+XXXXXXXXXXXXXXXXXXXXX
+XXXXXXX中级证书XXXXXXXX
+XXXXXXXXXXXXXXXXXXXXX
+-----END CERTIFICATE-----
+
+-----BEGIN CERTIFICATE-----
+MIIDdTCCAl2gAwIBAgILBAAAAAABFUtaw5QwDQYJKoZIhvcNAQEFBQAwVzELMAkGA1UEBhMCQkUx
+GTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNVBAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkds
+b2JhbFNpZ24gUm9vdCBDQTAeFw05ODA5MDExMjAwMDBaFw0yODAxMjgxMjAwMDBaMFcxCzAJBgNV
+BAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMRAwDgYDVQQLEwdSb290IENBMRswGQYD
+VQQDExJHbG9iYWxTaWduIFJvb3QgQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDa
+DuaZjc6j40+Kfvvxi4Mla+pIH/EqsLmVEQS98GPR4mdmzxzdzxtIK+6NiY6arymAZavpxy0Sy6sc
+THAHoT0KMM0VjU/43dSMUBUc71DuxC73/OlS8pF94G3VNTCOXkNz8kHp1Wrjsok6Vjk4bwY8iGlb
+Kk3Fp1S4bInMm/k8yuX9ifUSPJJ4ltbcdG6TRGHRjcdGsnUOhugZitVtbNV4FpWi6cgKOOvyJBNP
+c1STE4U6G7weNLWLBYy5d4ux2x8gkasJU26Qzns3dLlwR5EiUWMWea6xrkEmCMgZK9FGqkjWZCrX
+gzT/LCrBbBlDSgeF59N89iFo7+ryUp9/k5DPAgMBAAGjQjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNV
+HRMBAf8EBTADAQH/MB0GA1UdDgQWBBRge2YaRQ2XyolQL30EzTSo//z9SzANBgkqhkiG9w0BAQUF
+AAOCAQEA1nPnfE920I2/7LqivjTFKDK1fPxsnCwrvQmeU79rXqoRSLblCKOzyj1hTdNGCbM+w6Dj
+Y1Ub8rrvrTnhQ7k4o+YviiY776BQVvnGCv04zcQLcFGUl5gE38NflNUVyRRBnMRddWQVDf9VMOyG
+j/8N7yy5Y0b2qvzfvGn9LhJIZJrglfCm7ymPAbEVtQwdpf5pLGkkeB6zpxxxYu7KyJesF12KwvhH
+hm4qxFYxldBniYUr+WymXUadDKqC5JlR3XC321Y9YeRq4VzW9v493kHMB65jUr9TU/Qr6cf9tveC
+X4XSQRjbgbMEHMUfpIBvFSDJ3gyICh3WZlXi/EjJKSZp4A==
+-----END CERTIFICATE-----
+</pre>
+<p></p></div>
+<hr />
+<p>教程到这里基本就结束了，有什么错误或者需要补充的可以在下面的评论里留言！</p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">『恢复』免费申请SSL证书 &#8211; AlphaSSL 及 LNMP一键包Nginx配置SSL证书教程</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1818" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">21</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/https/index.html" rel="tag">https</a><a href="../tag/nginx/index.html" rel="tag">Nginx</a><a href="../tag/ssl/index.html" rel="tag">SSL</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../wlzy-27/index.html" rel="prev">一个 反代无需证书 适用于DNS/Hosts的小工具 —— SNI Proxy代理 安装教程</a></span>
+			<span class="article-nav-next"><a href="../linux-jc3/index.html" rel="next">Linux 使用 locale 修改系统默认语言为中文语言(即支持中文输入和文件名)</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../wlzy-3/index.html" title="另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-nginx.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法" />	<br><span class="r_title">另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../wlzy-1/index.html" title="一种非常方便 反向代理(镜像)Google 的 Nginx Google 扩展" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-google.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="一种非常方便 反向代理(镜像)Google 的 Nginx Google 扩展" />	<br><span class="r_title">一种非常方便 反向代理(镜像)Google 的 Nginx Google 扩展</span></a>
+		</li>
+	
+	<li class="related_box"  >
+		<a href="../wlzy-35/index.html" title="『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程" target="_blank">
+		<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-baiduyun.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程" /><br><span class="r_title">『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</span></a>
+		</li>
+	
+	<li class="related_box"  >
+		<a href="../wlzy-34/index.html" title="Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）" target="_blank">
+		<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-04-03.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）" /><br><span class="r_title">Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../wlzy-3/index.html">另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-1/index.html">一种非常方便 反向代理(镜像)Google 的 Nginx Google 扩展</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-35/index.html">『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-34/index.html">Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-33/index.html">锐速(ServerSpeeder/LotServer)配置参数简单说明，合理修改配置 提高加速效果</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../dowsdns-jc2/index.html">Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../brook-jc2/index.html">Brook代理 Windows/Android版客户端简单使用教程</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../brook-jc1/index.html">一个优秀的跨平台 Socks5代理软件 —— Brook 服务端教程</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1818' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='10578' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (48)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-17341"><div class="c-avatar"><div class="c-main" id="div-comment-17341">这里可以继续申请AlphaSSL的证书，https://www.starrydots.com/assl<div class="c-meta"><span class="c-author">Littlematch</span>2017-08-20 13:02 <a class='comment-reply-link' href='index-replytocom=17341.html#respond' onclick='return addComment.moveForm( "div-comment-17341", "17341", "respond", "1818" )' aria-label='回复给Littlematch'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-17650"><div class="c-avatar"><div class="c-main" id="div-comment-17650">csr无效？<div class="c-meta"><span class="c-author">johnpoint</span>2017-08-27 13:27 <a class='comment-reply-link' href='index-replytocom=17650.html#respond' onclick='return addComment.moveForm( "div-comment-17650", "17650", "respond", "1818" )' aria-label='回复给johnpoint'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-17878"><div class="c-avatar"><div class="c-main" id="div-comment-17878">无效+1s<div class="c-meta"><span class="c-author">Kingsley</span>2017-08-31 14:20 <a class='comment-reply-link' href='index-replytocom=17878.html#respond' onclick='return addComment.moveForm( "div-comment-17878", "17878", "respond", "1818" )' aria-label='回复给Kingsley'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-14882"><div class="c-avatar"><div class="c-main" id="div-comment-14882"><img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_biggrin.gif" alt=":grin:" class="wp-smiley" style="height: 1em; max-height: 1em;" /> 成功啦！感谢<div class="c-meta"><span class="c-author">lang</span>2017-06-17 18:15 <a class='comment-reply-link' href='index-replytocom=14882.html#respond' onclick='return addComment.moveForm( "div-comment-14882", "14882", "respond", "1818" )' aria-label='回复给lang'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-13990"><div class="c-avatar"><div class="c-main" id="div-comment-13990">conf文件是这么写的
+<pre>
+server
+	{
+		listen 80;
+		listen 443 ssl http2;
+		ssl on;
+		ssl_certificate /root/1_xxx.ml_bundle.crt;
+		ssl_certificate_key /root/2_xxx.ml.key;
+		ssl_session_cache shared:SSL:10m;
+		ssl_session_timeout  10m;
+		add_header Strict-Transport-Security "max-age=31536000";
+ 
+		server_name xxx.ml;
+		index index.html index.htm index.php default.html default.htm default.php;
+		root  /home/wwwroot/xxx.ml;
+ 
+		if ( $scheme = http ){
+			return 301 https://$server_name$request_uri;
+		}
+                }
+</pre><div class="c-meta"><span class="c-author">2333</span>2017-05-20 17:37 <a class='comment-reply-link' href='index-replytocom=13990.html#respond' onclick='return addComment.moveForm( "div-comment-13990", "13990", "respond", "1818" )' aria-label='回复给2333'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13987"><div class="c-avatar"><div class="c-main" id="div-comment-13987">重启后打开网站提示 
+
+此网站无法提供安全连接
+xxx.ml 使用了不受支持的协议。
+ERR_SSL_VERSION_OR_CIPHER_MISMATCH
+隐藏详细信息
+协议不受支持
+客户端和服务器不支持一般 SSL 协议版本或加密套件。
+
+用的腾讯云的证书，百度云的加速，请问如何解决。。<div class="c-meta"><span class="c-author">2333</span>2017-05-20 16:47 <a class='comment-reply-link' href='index-replytocom=13987.html#respond' onclick='return addComment.moveForm( "div-comment-13987", "13987", "respond", "1818" )' aria-label='回复给2333'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-12732"><div class="c-avatar"><div class="c-main" id="div-comment-12732">ok 搞定了，原来文件名有问题 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_sad.gif" alt=":sad:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author"><a href='https://www.endyyb.xyz/' rel='external nofollow' class='url'>Ty</a></span>2017-04-12 22:44 <a class='comment-reply-link' href='index-replytocom=12732.html#respond' onclick='return addComment.moveForm( "div-comment-12732", "12732", "respond", "1818" )' aria-label='回复给Ty'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-12728"><div class="c-avatar"><div class="c-main" id="div-comment-12728">nginx: [emerg] SSL_CTX_use_PrivateKey_file("/root/endyyb.xyz.key") failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/root/endyyb.xyz.key','r') error:20074002:BIO routines:FILE_CTRL:system lib error:140B0002:SSL routines:SSL_CTX_use_PrivateKey_file:system lib)
+ failed. Use force-quit
+这是什么情况？强制退出了<div class="c-meta"><span class="c-author">Ty</span>2017-04-12 22:02 <a class='comment-reply-link' href='index-replytocom=12728.html#respond' onclick='return addComment.moveForm( "div-comment-12728", "12728", "respond", "1818" )' aria-label='回复给Ty'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-12729"><div class="c-avatar"><div class="c-main" id="div-comment-12729">我只清楚前半段是提示找不到文件，后半段不清楚。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-12 22:07 <a class='comment-reply-link' href='index-replytocom=12729.html#respond' onclick='return addComment.moveForm( "div-comment-12729", "12729", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-12731"><div class="c-avatar"><div class="c-main" id="div-comment-12731">证书没有问题吧<div class="c-meta"><span class="c-author">Ty</span>2017-04-12 22:17 <a class='comment-reply-link' href='index-replytocom=12731.html#respond' onclick='return addComment.moveForm( "div-comment-12731", "12731", "respond", "1818" )' aria-label='回复给Ty'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even depth-3" id="comment-12733"><div class="c-avatar"><div class="c-main" id="div-comment-12733">证书名字写错了，现在没问题了 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_mrgreen.gif" alt=":mrgreen:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author"><a href='https://www.endyyb.xyz/' rel='external nofollow' class='url'>Ty</a></span>2017-04-12 22:45 <a class='comment-reply-link' href='index-replytocom=12733.html#respond' onclick='return addComment.moveForm( "div-comment-12733", "12733", "respond", "1818" )' aria-label='回复给Ty'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-12550"><div class="c-avatar"><div class="c-main" id="div-comment-12550">最后GlobalSign的根证书要加在最下面 你写错了<div class="c-meta"><span class="c-author"><a href='http://www.ecyy.net' rel='external nofollow' class='url'>ecyy.net</a></span>2017-04-07 19:21 <a class='comment-reply-link' href='index-replytocom=12550.html#respond' onclick='return addComment.moveForm( "div-comment-12550", "12550", "respond", "1818" )' aria-label='回复给ecyy.net'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-12412"><div class="c-avatar"><div class="c-main" id="div-comment-12412">一点点小瑕疵 能签多次时间&gt;&gt;多少。
+有的Whois保护不用关闭，例如gandi，会转发到真实邮箱。<div class="c-meta"><span class="c-author">dtv</span>2017-04-04 09:09 <a class='comment-reply-link' href='index-replytocom=12412.html#respond' onclick='return addComment.moveForm( "div-comment-12412", "12412", "respond", "1818" )' aria-label='回复给dtv'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-12424"><div class="c-avatar"><div class="c-main" id="div-comment-12424">每次能签一年，次数没限制，保留好 CSR等文件用于续签。<br />
+Whois无法关闭的，可以去申请个免费的企业邮箱来申请SSL证书，我的 doub.io 就是。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-04 13:36 <a class='comment-reply-link' href='index-replytocom=12424.html#respond' onclick='return addComment.moveForm( "div-comment-12424", "12424", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-12233"><div class="c-avatar"><div class="c-main" id="div-comment-12233">还有一个办法对付whois保护，用域名邮箱。像免费域名不能关闭whois保护的可以自己去疼讯或者网易申请一个免费的域名邮箱，添加一个admin账号就行了，可以不用关闭whois直接用默认的admin@xxx.tld来接邮件。<div class="c-meta"><span class="c-author">Steve-luo</span>2017-03-31 15:00 <a class='comment-reply-link' href='index-replytocom=12233.html#respond' onclick='return addComment.moveForm( "div-comment-12233", "12233", "respond", "1818" )' aria-label='回复给Steve-luo'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-12238"><div class="c-avatar"><div class="c-main" id="div-comment-12238">是的，这样也是可以的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-31 15:32 <a class='comment-reply-link' href='index-replytocom=12238.html#respond' onclick='return addComment.moveForm( "div-comment-12238", "12238", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-12110"><div class="c-avatar"><div class="c-main" id="div-comment-12110">安卓手机浏览器一直会弹确认证书比较烦，有什么办法可以解决的吗<div class="c-meta"><span class="c-author">suan</span>2017-03-27 16:06 <a class='comment-reply-link' href='index-replytocom=12110.html#respond' onclick='return addComment.moveForm( "div-comment-12110", "12110", "respond", "1818" )' aria-label='回复给suan'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-12113"><div class="c-avatar"><div class="c-main" id="div-comment-12113">确认证书？什么浏览器，我的正常啊，我网站就是这个SSL证书。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-27 17:20 <a class='comment-reply-link' href='index-replytocom=12113.html#respond' onclick='return addComment.moveForm( "div-comment-12113", "12113", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-11729"><div class="c-avatar"><div class="c-main" id="div-comment-11729">刚刚发现腾讯云有赛门铁克的一年的dv证书申请 马上就审核通过能下载了<div class="c-meta"><span class="c-author"><a href='https://sindery.me' rel='external nofollow' class='url'>南琴浪</a></span>2017-03-17 22:16 <a class='comment-reply-link' href='index-replytocom=11729.html#respond' onclick='return addComment.moveForm( "div-comment-11729", "11729", "respond", "1818" )' aria-label='回复给南琴浪'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-11731"><div class="c-avatar"><div class="c-main" id="div-comment-11731">免费的SSL证书很多，不过其实都差不多。<br />
+顶多一些看起来比较装逼。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-17 22:31 <a class='comment-reply-link' href='index-replytocom=11731.html#respond' onclick='return addComment.moveForm( "div-comment-11731", "11731", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-11746"><div class="c-avatar"><div class="c-main" id="div-comment-11746">是啊 赛门铁克还是看起来不错滴<div class="c-meta"><span class="c-author"><a href='https://sindery.me' rel='external nofollow' class='url'>南琴浪</a></span>2017-03-18 03:23 <a class='comment-reply-link' href='index-replytocom=11746.html#respond' onclick='return addComment.moveForm( "div-comment-11746", "11746", "respond", "1818" )' aria-label='回复给南琴浪'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11704"><div class="c-avatar"><div class="c-main" id="div-comment-11704">我是直接用openssl做的证书 比较简单。。。<div class="c-meta"><span class="c-author"><a href='http://sindery.me' rel='external nofollow' class='url'>南琴浪</a></span>2017-03-16 22:09 <a class='comment-reply-link' href='index-replytocom=11704.html#respond' onclick='return addComment.moveForm( "div-comment-11704", "11704", "respond", "1818" )' aria-label='回复给南琴浪'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11707"><div class="c-avatar"><div class="c-main" id="div-comment-11707">自签证书，浏览器不认。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-16 23:22 <a class='comment-reply-link' href='index-replytocom=11707.html#respond' onclick='return addComment.moveForm( "div-comment-11707", "11707", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-11727"><div class="c-avatar"><div class="c-main" id="div-comment-11727">意思是不是说我自建的ssl证书是摆设 根本没用。。。<div class="c-meta"><span class="c-author"><a href='https://sindery.me' rel='external nofollow' class='url'>南琴浪</a></span>2017-03-17 21:55 <a class='comment-reply-link' href='index-replytocom=11727.html#respond' onclick='return addComment.moveForm( "div-comment-11727", "11727", "respond", "1818" )' aria-label='回复给南琴浪'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-11730"><div class="c-avatar"><div class="c-main" id="div-comment-11730">是的，自签SSL证书，没有可靠可信任的签证者，浏览器不会认的，一般都是用来做测试的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-17 22:30 <a class='comment-reply-link' href='index-replytocom=11730.html#respond' onclick='return addComment.moveForm( "div-comment-11730", "11730", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-11541"><div class="c-avatar"><div class="c-main" id="div-comment-11541"><img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_sad.gif" alt=":sad:" class="wp-smiley" style="height: 1em; max-height: 1em;" /> 等了半个月了 邮箱还是我以前登记的老邮箱 whois信息保护也关闭了<div class="c-meta"><span class="c-author"><a href='http://govor.win' rel='external nofollow' class='url'>cn</a></span>2017-03-13 12:59 <a class='comment-reply-link' href='index-replytocom=11541.html#respond' onclick='return addComment.moveForm( "div-comment-11541", "11541", "respond", "1818" )' aria-label='回复给cn'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11543"><div class="c-avatar"><div class="c-main" id="div-comment-11543">whois 信息有问题就 联系域名购买商的客服，一般来说 最大48小时，超过48小时还没有变意味着出问题了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-13 13:11 <a class='comment-reply-link' href='index-replytocom=11543.html#respond' onclick='return addComment.moveForm( "div-comment-11543", "11543", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11151"><div class="c-avatar"><div class="c-main" id="div-comment-11151">你好，我现在顶级域名已经能用https访问了，但是二级域名ss.xxx.top这个域名还是不能通过https访问，泛域名使用需要注意哪些细节呢？我顶级域名跟二级域名都解析到同一台服务器了<div class="c-meta"><span class="c-author"><a href='http://meihaohao.top' rel='external nofollow' class='url'>小龙</a></span>2017-03-03 11:37 <a class='comment-reply-link' href='index-replytocom=11151.html#respond' onclick='return addComment.moveForm( "div-comment-11151", "11151", "respond", "1818" )' aria-label='回复给小龙'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11154"><div class="c-avatar"><div class="c-main" id="div-comment-11154">顶级域名(一级域名)和二级域名使用上没什么差别，都是一样的。<br />
+你要告诉我报错是什么，我才能解决，可能你申请的SSL证书不是泛域名的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-03 12:57 <a class='comment-reply-link' href='index-replytocom=11154.html#respond' onclick='return addComment.moveForm( "div-comment-11154", "11154", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-11035"><div class="c-avatar"><div class="c-main" id="div-comment-11035">现在https://域名/确实有绿锁了，但是http的话会进入一个“恭喜您，LNMP一键安装包安装成功！”的页面，怎么解决？<div class="c-meta"><span class="c-author">tulipduke</span>2017-02-27 17:27 <a class='comment-reply-link' href='index-replytocom=11035.html#respond' onclick='return addComment.moveForm( "div-comment-11035", "11035", "respond", "1818" )' aria-label='回复给tulipduke'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11041"><div class="c-avatar"><div class="c-main" id="div-comment-11041">你们问问题都很喜欢直接说：“我XXX出错了，怎么解决？”<br />
+你不能指望你用几秒钟写一句问题，让我用一天的时间去猜测问题的细节来帮你解决问题。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-27 18:06 <a class='comment-reply-link' href='index-replytocom=11041.html#respond' onclick='return addComment.moveForm( "div-comment-11041", "11041", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11034"><div class="c-avatar"><div class="c-main" id="div-comment-11034">看不出来哪里出了错。。。
+Stoping nginx... nginx: [emerg] "include" directive is not allowed here in /usr/local/nginx/conf/vhost/www.hongyunfang.xyz.conf:19
+ failed. Use force-quit
+Starting nginx... nginx (pid 24921 24310) already running.<div class="c-meta"><span class="c-author">tulipduke</span>2017-02-27 17:07 <a class='comment-reply-link' href='index-replytocom=11034.html#respond' onclick='return addComment.moveForm( "div-comment-11034", "11034", "respond", "1818" )' aria-label='回复给tulipduke'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11040"><div class="c-avatar"><div class="c-main" id="div-comment-11040">很明显，都告诉你第几行，那个代码有问题了。<br />
+第19行，include。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-27 18:05 <a class='comment-reply-link' href='index-replytocom=11040.html#respond' onclick='return addComment.moveForm( "div-comment-11040", "11040", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10759"><div class="c-avatar"><div class="c-main" id="div-comment-10759">发现加了globalsign之后重启nginx会报错……<div class="c-meta"><span class="c-author">柳言飞</span>2017-02-17 17:28 <a class='comment-reply-link' href='index-replytocom=10759.html#respond' onclick='return addComment.moveForm( "div-comment-10759", "10759", "respond", "1818" )' aria-label='回复给柳言飞'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10579"><div class="c-avatar"><div class="c-main" id="div-comment-10579">.ml的域名不能显示自己的邮箱，怎么关闭Whios保护啊？<div class="c-meta"><span class="c-author">amazed</span>2017-02-12 20:24 <a class='comment-reply-link' href='index-replytocom=10579.html#respond' onclick='return addComment.moveForm( "div-comment-10579", "10579", "respond", "1818" )' aria-label='回复给amazed'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-10582"><div class="c-avatar"><div class="c-main" id="div-comment-10582">免费域名实际上不是你的，可以理解为借给你解析权，让你免费用一年。只有付费购买才能算你的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-12 22:38 <a class='comment-reply-link' href='index-replytocom=10582.html#respond' onclick='return addComment.moveForm( "div-comment-10582", "10582", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-10583"><div class="c-avatar"><div class="c-main" id="div-comment-10583">就是说免费域名不能关闭whios保护，就不能申请这个了吗？<div class="c-meta"><span class="c-author">amazed</span>2017-02-12 23:43 <a class='comment-reply-link' href='index-replytocom=10583.html#respond' onclick='return addComment.moveForm( "div-comment-10583", "10583", "respond", "1818" )' aria-label='回复给amazed'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-10585"><div class="c-avatar"><div class="c-main" id="div-comment-10585">是的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-13 01:21 <a class='comment-reply-link' href='index-replytocom=10585.html#respond' onclick='return addComment.moveForm( "div-comment-10585", "10585", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10578"><div class="c-avatar"><div class="c-main" id="div-comment-10578">其实还有阿里云的免费赛门铁克dv<div class="c-meta"><span class="c-author"><a href='https://www.guochengjie.site' rel='external nofollow' class='url'>Mk.</a></span>2017-02-12 14:28 <a class='comment-reply-link' href='index-replytocom=10578.html#respond' onclick='return addComment.moveForm( "div-comment-10578", "10578", "respond", "1818" )' aria-label='回复给Mk.'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-10877"><div class="c-avatar"><div class="c-main" id="div-comment-10877">腾讯有免费的亚洲诚信<div class="c-meta"><span class="c-author">千叶</span>2017-02-22 17:26 <a class='comment-reply-link' href='index-replytocom=10877.html#respond' onclick='return addComment.moveForm( "div-comment-10877", "10877", "respond", "1818" )' aria-label='回复给千叶'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10361"><div class="c-avatar"><div class="c-main" id="div-comment-10361">freenom的域名邮箱看不到，要怎么关闭Whios保护<div class="c-meta"><span class="c-author">Fss</span>2017-02-04 15:30 <a class='comment-reply-link' href='index-replytocom=10361.html#respond' onclick='return addComment.moveForm( "div-comment-10361", "10361", "respond", "1818" )' aria-label='回复给Fss'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-10363"><div class="c-avatar"><div class="c-main" id="div-comment-10363">freenom的免费域名实际上不是你的，可以理解为借给你解析权，让你免费用一年。只有付费购买才能算你的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-04 18:17 <a class='comment-reply-link' href='index-replytocom=10363.html#respond' onclick='return addComment.moveForm( "div-comment-10363", "10363", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even depth-2" id="comment-10411"><div class="c-avatar"><div class="c-main" id="div-comment-10411">你FN的Whios不还是Fn的 你以为能变成你的啊，不然就花钱买吧 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_eek.gif" alt=":shock:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author"><a href='http://0rat.com' rel='external nofollow' class='url'>bogie</a></span>2017-02-06 16:53 <a class='comment-reply-link' href='index-replytocom=10411.html#respond' onclick='return addComment.moveForm( "div-comment-10411", "10411", "respond", "1818" )' aria-label='回复给bogie'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10357"><div class="c-avatar"><div class="c-main" id="div-comment-10357">nginx: [emerg] SSL_CTX_use_PrivateKey_file("/data/local/ssl/bigqiu.cn.key") failed (SSL: error:0B080074:x509 certificate routines:X509_check_private_key:key values mismatch)
+nginx: configuration file /etc/nginx/nginx.conf test failed
+
+马蛋，我取更改了一次，域名，就不会重新发我邮件了。咋办<div class="c-meta"><span class="c-author">Fss</span>2017-02-04 14:50 <a class='comment-reply-link' href='index-replytocom=10357.html#respond' onclick='return addComment.moveForm( "div-comment-10357", "10357", "respond", "1818" )' aria-label='回复给Fss'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10364"><div class="c-avatar"><div class="c-main" id="div-comment-10364">什么鬼？你这个说的是你的密匙文件(.key)和证书文件(.crt)不匹配，所以无法使用。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-04 18:18 <a class='comment-reply-link' href='index-replytocom=10364.html#respond' onclick='return addComment.moveForm( "div-comment-10364", "10364", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10349"><div class="c-avatar"><div class="c-main" id="div-comment-10349">现在已经出了Lets Encrypt Support,类似vestacp这种已经可以自动化。 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_razz.gif" alt=":razz:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author"><a href='http://0rat.com' rel='external nofollow' class='url'>bogie</a></span>2017-02-04 11:57 <a class='comment-reply-link' href='index-replytocom=10349.html#respond' onclick='return addComment.moveForm( "div-comment-10349", "10349", "respond", "1818" )' aria-label='回复给bogie'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10155"><div class="c-avatar"><div class="c-main" id="div-comment-10155">这个工具应该更方便https://github.com/Neilpang/acme.sh<div class="c-meta"><span class="c-author">XYenon</span>2017-01-26 20:28 <a class='comment-reply-link' href='index-replytocom=10155.html#respond' onclick='return addComment.moveForm( "div-comment-10155", "10155", "respond", "1818" )' aria-label='回复给XYenon'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-10156"><div class="c-avatar"><div class="c-main" id="div-comment-10156">类似这种自动申请和续时间的SSL证书脚本不少，不过新手的话，虽然用这些更方便，但是更重要的是学习一个使用的过程，当熟悉过程后再使用脚本去简单化 自动化会更好。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-01-26 20:47 <a class='comment-reply-link' href='index-replytocom=10156.html#respond' onclick='return addComment.moveForm( "div-comment-10156", "10156", "respond", "1818" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

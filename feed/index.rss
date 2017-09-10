@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>逗比根据地</title>
+	<atom:link href="https://doub.io/feed/" rel="self" type="application/rss+xml" />
+	<link>https://doub.io</link>
+	<description>- 世界那么逗，我想出去看看</description>
+	<lastBuildDate>Fri, 08 Sep 2017 06:40:28 +0000</lastBuildDate>
+	<language>zh-CN</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=4.2.13</generator>
+	<item>
+		<title>ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP</title>
+		<link>https://doub.io/dbrj-5/</link>
+		<comments>https://doub.io/dbrj-5/#comments</comments>
+		<pubDate>Sun, 03 Sep 2017 10:53:39 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[逗比软件]]></category>
+		<category><![CDATA[Shadowsocks]]></category>
+		<category><![CDATA[ShadowsocksR]]></category>
+		<category><![CDATA[SOCKS5]]></category>
+		<category><![CDATA[SSTAP]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2339</guid>
+		<description><![CDATA[本文最后更新于 2017年9月4日 23:21 可能会因为没有更新而失效。如已失效或需要修正，请留言！很早的时 [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/dbrj-5/feed/</wfw:commentRss>
+		<slash:comments>44</slash:comments>
+		</item>
+		<item>
+		<title>Chrome浏览器关闭 QUIC，避免部分地区运营商UDP QOS对速度的影响</title>
+		<link>https://doub.io/dbkp-2/</link>
+		<comments>https://doub.io/dbkp-2/#comments</comments>
+		<pubDate>Wed, 30 Aug 2017 18:58:01 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[逗比科普]]></category>
+		<category><![CDATA[QUIC]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2319</guid>
+		<description><![CDATA[本文最后更新于 2017年8月31日 13:15 可能会因为没有更新而失效。如已失效或需要修正，请留言！前两天 [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/dbkp-2/feed/</wfw:commentRss>
+		<slash:comments>17</slash:comments>
+		</item>
+		<item>
+		<title>『评测』VPS77 &#8211; 美国CeraNetworks KVM 512MB 600GB/单向 200Mbps 低至25元/月</title>
+		<link>https://doub.io/vpszy-19/</link>
+		<comments>https://doub.io/vpszy-19/#comments</comments>
+		<pubDate>Wed, 30 Aug 2017 12:17:37 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[VPS资源]]></category>
+		<category><![CDATA[CeraNetworks]]></category>
+		<category><![CDATA[KVM]]></category>
+		<category><![CDATA[VPS]]></category>
+		<category><![CDATA[VPS77]]></category>
+		<category><![CDATA[VPS评测]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2312</guid>
+		<description><![CDATA[本文最后更新于 2017年9月7日 13:12 可能会因为没有更新而失效。如已失效或需要修正，请留言！VPS7 [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/vpszy-19/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		</item>
+		<item>
+		<title>『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</title>
+		<link>https://doub.io/ss-jc60/</link>
+		<comments>https://doub.io/ss-jc60/#comments</comments>
+		<pubDate>Wed, 09 Aug 2017 13:56:27 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[Shadowsocks]]></category>
+		<category><![CDATA[Shell脚本]]></category>
+		<category><![CDATA[mudbjson]]></category>
+		<category><![CDATA[ShadowsocksR]]></category>
+		<category><![CDATA[脚本]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2282</guid>
+		<description><![CDATA[本文最后更新于 2017年9月3日 22:18 可能会因为没有更新而失效。如已失效或需要修正，请留言！其实这个 [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/ss-jc60/feed/</wfw:commentRss>
+		<slash:comments>145</slash:comments>
+		</item>
+		<item>
+		<title>『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</title>
+		<link>https://doub.io/ss-jc59/</link>
+		<comments>https://doub.io/ss-jc59/#comments</comments>
+		<pubDate>Sun, 30 Jul 2017 07:34:04 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[Shadowsocks]]></category>
+		<category><![CDATA[PAC]]></category>
+		<category><![CDATA[ShadowsocksR]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2274</guid>
+		<description><![CDATA[本文最后更新于 2017年8月20日 11:06 可能会因为没有更新而失效。如已失效或需要修正，请留言！考虑到 [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/ss-jc59/feed/</wfw:commentRss>
+		<slash:comments>130</slash:comments>
+		</item>
+		<item>
+		<title>『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</title>
+		<link>https://doub.io/wlzy-35/</link>
+		<comments>https://doub.io/wlzy-35/#comments</comments>
+		<pubDate>Mon, 24 Jul 2017 06:17:04 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[网络资源]]></category>
+		<category><![CDATA[逗比软件]]></category>
+		<category><![CDATA[BaiduPCS]]></category>
+		<category><![CDATA[PCS]]></category>
+		<category><![CDATA[百度云]]></category>
+		<category><![CDATA[百度网盘]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2265</guid>
+		<description><![CDATA[本文最后更新于 2017年8月4日 00:20 可能会因为没有更新而失效。如已失效或需要修正，请留言！以前我分 [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/wlzy-35/feed/</wfw:commentRss>
+		<slash:comments>40</slash:comments>
+		</item>
+		<item>
+		<title>『评测』MineCloud 吾云 — 韩国双向KT KVM 512M 600G/单向 300Mbps 42元/月 279元/半年</title>
+		<link>https://doub.io/vpszy-18/</link>
+		<comments>https://doub.io/vpszy-18/#comments</comments>
+		<pubDate>Fri, 14 Jul 2017 14:20:41 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[VPS资源]]></category>
+		<category><![CDATA[KINX机房]]></category>
+		<category><![CDATA[KT]]></category>
+		<category><![CDATA[MineCloud]]></category>
+		<category><![CDATA[VPS优惠]]></category>
+		<category><![CDATA[VPS评测]]></category>
+		<category><![CDATA[吾云]]></category>
+		<category><![CDATA[韩国]]></category>
+		<category><![CDATA[首尔]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2258</guid>
+		<description><![CDATA[本文最后更新于 2017年8月26日 04:20 可能会因为没有更新而失效。如已失效或需要修正，请留言！Min [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/vpszy-18/feed/</wfw:commentRss>
+		<slash:comments>38</slash:comments>
+		</item>
+		<item>
+		<title>支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap</title>
+		<link>https://doub.io/ss-jc58/</link>
+		<comments>https://doub.io/ss-jc58/#comments</comments>
+		<pubDate>Fri, 16 Jun 2017 09:59:57 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[Shadowsocks]]></category>
+		<category><![CDATA[ShadowsocksR]]></category>
+		<category><![CDATA[SSCap]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2249</guid>
+		<description><![CDATA[本文最后更新于 2017年6月16日 18:28 可能会因为没有更新而失效。如已失效或需要修正，请留言！在Sh [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/ss-jc58/feed/</wfw:commentRss>
+		<slash:comments>17</slash:comments>
+		</item>
+		<item>
+		<title>『优惠』MineCloud 吾云 — 香港 KVM 半年优惠269元 + 免费配置升级教程</title>
+		<link>https://doub.io/vpszy-17/</link>
+		<comments>https://doub.io/vpszy-17/#comments</comments>
+		<pubDate>Sun, 11 Jun 2017 12:13:27 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[VPS资源]]></category>
+		<category><![CDATA[KVM]]></category>
+		<category><![CDATA[MineCloud]]></category>
+		<category><![CDATA[VPS]]></category>
+		<category><![CDATA[VPS优惠]]></category>
+		<category><![CDATA[吾云]]></category>
+		<category><![CDATA[香港]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2243</guid>
+		<description><![CDATA[本文最后更新于 2017年8月26日 04:20 可能会因为没有更新而失效。如已失效或需要修正，请留言！Min [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/vpszy-17/feed/</wfw:commentRss>
+		<slash:comments>34</slash:comments>
+		</item>
+		<item>
+		<title>ShadowsocksR 单服务器多用户 mudbjson模式使用教程 支持流量限制</title>
+		<link>https://doub.io/ss-jc57/</link>
+		<comments>https://doub.io/ss-jc57/#comments</comments>
+		<pubDate>Sat, 10 Jun 2017 08:24:37 +0000</pubDate>
+		<dc:creator><![CDATA[Toyo]]></dc:creator>
+				<category><![CDATA[Shadowsocks]]></category>
+		<category><![CDATA[mudbjson]]></category>
+		<category><![CDATA[ShadowsocksR]]></category>
+		<category><![CDATA[多用户]]></category>
+
+		<guid isPermaLink="false">https://doub.io/?p=2240</guid>
+		<description><![CDATA[本文最后更新于 2017年8月23日 11:59 可能会因为没有更新而失效。如已失效或需要修正，请留言！最近好 [&#8230;]]]></description>
+		<wfw:commentRss>https://doub.io/ss-jc57/feed/</wfw:commentRss>
+		<slash:comments>70</slash:comments>
+		</item>
+	</channel>
+</rss>

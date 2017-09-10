@@ -1,0 +1,15 @@
+.content-index{padding-bottom: 5px;border:2px solid #1abc9c;background:#ffffff;line-height:160%;max-width:30%;font-size:12px;position:relative;z-index:1000;}
+.content-index-title{padding: 10px 20px;margin-bottom: 5px;font-size:150%;font-weight:bold;color: #fff;background-color: #1abc9c;text-align: center;text-indent: 0;float: none;}
+.content-index-toctoggle{font-size:9px;margin: 10px;}
+.content-index ul{padding:0;margin:0;list-style:none inside none;font-size:10px;margin: 0 10px;}
+.content-index ul.children{padding-left:1em;list-style:none inside none}
+.content-index li{}
+.content-index li a em{font-size:68%;font-style:normal;font-weight:700;padding-right:5px}
+.content-index li a.hide{display:none}
+.content-index-heading em{font-size:85%;font-style:normal;font-weight:700;margin-right:5px}
+.content-index .content-index-level-1{}
+.content-index .content-index-level-2{}
+.content-index .content-index-level-3{}
+.content-index .content-index-level-4{}
+.content-index .content-index-level-5{}
+.content-index .content-index-level-6{}

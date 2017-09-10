@@ -1,0 +1,556 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>Linux中使用 路由追踪 测试VPS回程路由（回程路由比去程更影响SS速度） | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2181] -->
+<meta name="description"  content="很多人都知道通过网站(ipip.net)或者软件可以路由追踪来测试 IP的路由情况和质量，但是这只是去程路由，大部分人都把注意力放在了去程路由上面，很少人关注和测试 VPS 链接国内的 回程路由。 不管你的VPS是做Shadowsocks还是建站，你关注的应该是 回程&gt" />
+
+<meta name="keywords"  content="besttrace,nali-ipip,traceroute,路由追踪" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='Linux 使用 locale 修改系统默认语言为中文语言(即支持中文输入和文件名)' href='../linux-jc3/index.html' />
+<link rel='next' title='Telegram 简单入门使用教程' href='../telegram-jc1/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="BestTrace, nali-ipip, TraceRoute, 路由追踪, Linux教程">
+<meta name="description" content="很多人都知道通过网站(ipip.net)或者软件可以路由追踪来测试 IP的路由情况和质量，但是这只是去程路由，大部分人都把注意力放在了去程路由上面，很少人关注和测试 VPS 链接国内的 回程路由。  不管你的VPS是做Shadowsocks还是建站，你关注的应该是 回程&gt;去程，因为不管是建站还是Shadowsocks，大部分情况下都是VPS把数据传回给你，速度受回程路由质量等影响，除非你经常用Shadowsocks上传文件或者向网">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1836 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=17009.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">Linux中使用 路由追踪 测试VPS回程路由（回程路由比去程更影响SS速度）</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../linux/index.html"> Linux教程</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 7个月前 (02-03)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 6089℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">27评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6%EF%BC%9A" title="前提条件："><span>前提条件：</span></a></li><li class="content-index-level-1"><a href="index.html#TraceRoute" title="TraceRoute"><span>TraceRoute</span></a></li><li class="content-index-level-1"><a href="index.html#Nali-ipip" title="Nali-ipip"><span>Nali-ipip</span></a></li><li class="content-index-level-1"><a href="index.html#BestTrace" title="BestTrace"><span>BestTrace</span></a></li><li class="content-index-level-1"><a href="index.html#MTR" title="MTR"><span>MTR</span></a></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年5月9日 17:12</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>很多人都知道通过<a href="http://www.ipip.net/traceroute.php" target="_blank">网站(ipip.net)</a>或者<a href="../traceroute-js1/index.html" target="_blank">软件</a>可以路由追踪来测试 IP的路由情况和质量，但是这只是去程路由，大部分人都把注意力放在了去程路由上面，很少人关注和测试 VPS 链接国内的 回程路由。</p>
+<p>不管你的VPS是做Shadowsocks还是建站，你关注的应该是 <strong>回程&gt;去程</strong>，因为不管是建站还是Shadowsocks，大部分情况下都是VPS把数据传回给你，速度受回程路由质量等影响，除非你经常用Shadowsocks上传文件或者向网站里上传文件，否则你应该更关注回程而不是去程。</p>
+<pre class="prettyprint linenums">浏览器访问 谷歌网站
+Shadowsocks客户端 通知 Shadowsocks服务端
+Shadowsocks服务端 获取 谷歌网站数据
+Shadowsocks服务端（VPS）通过上行把 谷歌网站数据 传回给 Shadowsocks客户端
+浏览器显示 收到的 谷歌网站数据
+# 除非你是上传文件，否则大部分情况下，都是VPS把文件传回给你，经过的是回程路由。</pre>
+<p>就算你的去程CN2多么多么叼，回车绕道丢包都GG，当然不代表去程无所谓，而是关注点应该放在回程上。</p>
+<p>当然如果你是Shadowsocks玩游戏，那么去程回程都要考虑。</p>
+<p><strong>测试VPS的去程可以使用在线网页或者本地软件：<a href="http://www.ipip.net/traceroute.php" target="_blank">在线网页(ipip.net)</a>、<a title="推荐一个可以在地图上显示TraceRoute（路由追踪）路径信息的软件 - 逗比根据地" href="../traceroute-js1/index.html" target="_blank">推荐一个可以在地图上显示TraceRoute（路由追踪）路径信息的软件</a></strong></p>
+<h3 id="前提条件：">前提条件：</h3>
+<p>首先你要测试VPS链接你本地的回程路由的话，你需要有外网IP，不过现在大部分运营商都是内网NAT转的伪外网IP，无法Ping和路由追踪。</p>
+<p>当然不是外网IP也不要急，你可以去<a href="http://www.ipip.net/traceroute.php" target="_blank">这里</a>，选择一个和你接近的地区，然后路由追踪任意一个IP，比如<code> 8.8.8.8 </code>，然后你就会在 第一个或第二个IP 中看到这个 路由追踪节点的服务器IP了，你试一下能不能Ping通，如果可以那就可以拿来测试回程路由。</p>
+<h3 id="TraceRoute">TraceRoute</h3>
+<p>Linux有一个基础的路由追踪软件：<strong>traceroute</strong>，下面的另外两个软件依赖这个软件。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=17009.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<p><strong>可以通过包管理器安装：</strong></p>
+<pre class="prettyprint linenums"># CentOS系统：
+yum update &amp;&amp; yum install traceroute -y
+
+# Debian/Ubuntu系统：
+apt-get update &amp;&amp; apt-get install traceroute -y
+</pre>
+<p>然后就可以通过<code> traceroute x.x.x.x </code>来路由追踪了。</p>
+<p>默认是测试3次的，所以有时候会显示很乱，你可以加上<code> -q 1 </code>，比如 <code> traceroute -q 1 x.x.x.x </code>。</p>
+<p>这个参数指的是只测试一次，当然之所以测试3次就为因为可能会丢包等情况，三次可以比较准确。</p>
+<p><strong>使用效果：</strong></p>
+<pre class="prettyprint linenums">root@doub.io:~/# traceroute -q 1 14.215.116.1
+traceroute to 14.215.116.1 (14.215.116.1), 30 hops max, 60 byte packets
+ 1  *
+ 2  192.254.84.149 (192.254.84.149)  1.830 ms
+ 3  te-0-1-0-2.cr1.lax2.us.zenlayer.net (192.254.81.141)  3.740 ms
+ 4  218.30.48.173 (218.30.48.173)  1.374 ms
+ 5  59.43.182.102 (59.43.182.102)  160.245 ms
+ 6  59.43.182.102 (59.43.182.102)  158.658 ms
+ 7  202.97.91.217 (202.97.91.217)  158.070 ms
+ 8  202.97.91.217 (202.97.91.217)  157.866 ms
+ 9  183.61.221.61 (183.61.221.61)  157.841 ms
+10  183.56.128.14 (183.56.128.14)  158.043 ms
+11  183.56.128.14 (183.56.128.14)  158.236 ms
+12  14.215.116.1 (14.215.116.1)  155.918 ms
+</pre>
+<p>当然，这个只会显示简单的路由追踪信息。</p>
+<p>如果你想要在每个路由信息后面加上对应的地址信息，那么你就需要使用其他的路由追踪软件：</p>
+<p><strong>nali-ipip、BestTrace（ipip.net开发）</strong>，这两个使用的都是 ipip.net 的IP地址库。</p>
+<p></p></div>
+<h3 id="Nali-ipip">Nali-ipip</h3>
+<p>这个是基于 nali 原版项目上改进的，把纯真IP库改为了IPIP的IP库，目前国内最准的民用IP库可能就是ipip.net了。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=17009.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<p>这个软件需要调用上面说的基础路由追踪软件：traceroute，所以你需要安装这个。<strong><a href="https://github.com/dzxx36gyy/nali-ipip" target="_blank">Github项目地址</a></strong></p>
+<pre class="prettyprint linenums"># CentOS系统：
+yum update &amp;&amp; yum install -y traceroute git gcc make
+
+# Debian/Ubuntu系统：
+apt-get update &amp;&amp; apt-get install -y traceroute git gcc build-essential make
+</pre>
+<p>下载文件并编译安装：</p>
+<pre class="prettyprint linenums">git clone https://github.com/dzxx36gyy/nali-ipip.git
+cd nali-ipip
+# 进入目录并 执行编译程序，放心很快 几秒就好了。
+./configure &amp;&amp; make &amp;&amp; make install
+</pre>
+<p>然后就可以通过<code> nali-traceroute x.x.x.x </code>来路由追踪了。</p>
+<p>默认是测试3次的，所以有时候会显示很乱，你可以加上<code> -q 1 </code>，比如 <code> nali-traceroute -q 1 x.x.x.x </code>。</p>
+<p>这个参数指的是只测试一次，当然之所以测试3次就为因为可能会丢包等情况，三次可以比较准确。</p>
+<p><strong>使用示例：</strong></p>
+<pre class="prettyprint linenums">root@doub.io:~/# nali-traceroute -q 1 14.215.116.1
+traceroute to 14.215.116.1 [中国 广东 广州] (14.215.116.1 [中国 广东 广州]), 30 hops max, 60 byte packets
+ 1  *
+ 2  te-2-0-4.cr2.lax2.us.zenlayer.net (192.254.84.141 [美国 美国])  1.370 ms
+ 3  te-0-1-0-0.cr1.lax2.us.zenlayer.net (192.254.81.137 [美国 美国])  1.365 ms
+ 4  te-0-3-0-0.cr1.lax2.us.zenlayer.net (192.254.81.5 [美国 美国])  2.790 ms
+ 5  59.43.182.102 [中国 广东 广州] (59.43.182.102 [中国 广东 广州])  152.550 ms
+ 6  *
+ 7  202.97.34.93 [中国 广东 广州] (202.97.34.93 [中国 广东 广州])  152.785 ms
+ 8  202.97.33.201 [中国 广东 广州] (202.97.33.201 [中国 广东 广州])  151.772 ms
+ 9  183.59.12.197 [中国 广东 广州] (183.59.12.197 [中国 广东 广州])  162.344 ms
+10  183.59.12.197 [中国 广东 广州] (183.59.12.197 [中国 广东 广州])  153.908 ms
+11  183.56.128.14 [中国 广东 广州] (183.56.128.14 [中国 广东 广州])  157.017 ms
+12  14.215.116.1 [中国 广东 广州] (14.215.116.1 [中国 广东 广州])  158.869 ms
+</pre>
+<p></p></div>
+<h3 id="BestTrace">BestTrace</h3>
+<p>BestTrace是由 <a href="http://ipip.net" target="_blank">ipip.net</a> 官方（不确定）开发的，同样也需要安装基础路由追踪软件：traceroute，这个软件不需要编译安装，是用Go语言编译好的程序。<a href="http://www.ipip.net/download.html#ip_trace" target="_blank">软件官网</a></p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=17009.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums"># CentOS系统：
+yum update &amp;&amp; yum install traceroute -y
+
+# Debian/Ubuntu系统：
+apt-get update &amp;&amp; apt-get install traceroute -y
+</pre>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Other/besttrace.tar.gz
+# 下载文件，解压 并进入目录 赋予执行权限
+tar -xzf besttrace.tar.gz &amp;&amp; cd besttrace &amp;&amp; chmod +x *
+</pre>
+<p>然后就可以通过<code> ./besttrace x.x.x.x </code>来路由追踪了。</p>
+<p>默认是测试3次的，所以有时候会显示很乱，你可以加上<code> -q 1 </code>，比如 <code> ./besttrace -q 1 x.x.x.x </code>。</p>
+<p>这个参数指的是只测试一次，当然之所以测试3次就为因为可能会丢包等情况，三次可以比较准确。</p>
+<p><strong>使用示例：</strong></p>
+<pre class="prettyprint linenums">root@doub.io:~/bash/besttrace# ./besttrace -q 1 14.215.116.1
+traceroute to 14.215.116.1 (14.215.116.1), 30 hops max, 60 byte packets
+ 1  *
+ 2  192.254.84.153  0.72 ms  AS21859  美国 加利福尼亚州 洛杉矶 zenlayer.com
+ 3  te-0-0-0-2.cr1.lax3.us.zenlayer.net (192.254.81.69)  3.17 ms  AS21859  美国 加利福尼亚州 洛杉矶 zenlayer.com
+ 4  te-0-3-0-0.cr1.lax2.us.zenlayer.net (192.254.81.5)  3.25 ms  AS21859  美国 加利福尼亚州 洛杉矶 zenlayer.com
+ 5  218.30.48.173  1.29 ms  AS4134  美国 加利福尼亚州 洛杉矶 CHINATELECOM
+ 6  59.43.182.102  152.68 ms  *  中国 广东 广州 电信
+ 7  59.43.244.138  182.57 ms  *  中国 广东 广州 电信
+ 8  202.97.91.209  148.06 ms  *  中国 广东 广州 电信
+ 9  202.97.33.229  150.07 ms  AS4134  中国 广东 广州 电信
+10  183.59.13.161  157.65 ms  AS58543  中国 广东 广州 电信
+11  183.56.128.10  155.98 ms  AS58543  中国 广东 广州 电信
+12  14.215.116.1  150.62 ms  AS58543  中国 广东 广州 电信
+</pre>
+<p>相似的路由追踪软件还很多，我也不一一列举了，各软件都有优缺点，自己看着用。</p>
+<p>BestTrace 路由追踪，必须进入文件目录 或 加上文件目录（比如<code> bash /root/besttrace/besttrace x.x.x.x </code>）才能使用。</p>
+<p></p></div>
+<h3 id="MTR">MTR</h3>
+<p>如果你需要监控VPS回程路由 一段时间的实时情况（比如各节点延迟、丢包），那么你可能需要的是 MTR。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=17009.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums"># CentOS系统：
+yum update &amp;&amp; yum install mtr -y
+
+# Debian/Ubuntu系统：
+apt-get update &amp;&amp; apt-get install mtr -y
+</pre>
+<p>然后就可以通过<code> mtr x.x.x.x </code>来路由追踪了。</p>
+<p>不过上面这个命令 是动态显示的，一直持续下去，除非手动终止。</p>
+<p>如果你需要只发送 100个数据包（测试100次），那么你可以这样写：<code> mtr -c 100 --report x.x.x.x </code></p>
+<p>这个命令不会动态显示，只会在发送 100个数据包后，直接显示最终结果。</p>
+<p><strong>使用示例：</strong></p>
+<pre class="prettyprint linenums"> Packets                                         Pings
+ Host                                            Loss%   Snt   Last   Avg  Best  Wrst StDev
+ 1. ???
+ 2. 192.254.84.153                               0.0%    61    1.1   8.8   0.6 164.0  26.1
+ 3. te-0-0-0-2.cr1.lax3.us.zenlayer.net          0.0%    60    4.7   5.9   0.8  97.9  13.4
+ 4. te-0-3-0-0.cr1.lax2.us.zenlayer.net          0.0%    60    1.1   6.4   0.9 125.9  16.4
+ 5. 218.30.48.173                                0.0%    60    1.3   4.0   1.0  88.8  12.2
+ 6. 59.43.182.102                                0.0%    60  152.7 158.2 152.6 256.0  17.3
+ 7. 59.43.244.138                               76.3%    60  144.8 145.7 144.8 155.1   2.7
+ 8. 202.97.91.209                                0.0%    60  146.7 147.9 145.3 169.2   3.3
+ 9. 202.97.33.229                                0.0%    60  149.3 148.8 145.7 158.4   2.3
+10. 183.59.13.161                                0.0%    60  157.3 156.7 153.3 186.8   4.6
+11. 183.56.128.10                                0.0%    60  155.2 158.7 154.3 253.8  14.0
+12. 14.215.116.1                                 1.7%    60  151.0 153.8 147.0 321.0  22.6
+</pre>
+<p></p></div>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">Linux中使用 路由追踪 测试VPS回程路由（回程路由比去程更影响SS速度）</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1836" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">15</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/besttrace/index.html" rel="tag">BestTrace</a><a href="../tag/nali-ipip/index.html" rel="tag">nali-ipip</a><a href="../tag/traceroute/index.html" rel="tag">TraceRoute</a><a href="../tag/%E8%B7%AF%E7%94%B1%E8%BF%BD%E8%B8%AA/index.html" rel="tag">路由追踪</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../linux-jc3/index.html" rel="prev">Linux 使用 locale 修改系统默认语言为中文语言(即支持中文输入和文件名)</a></span>
+			<span class="article-nav-next"><a href="../telegram-jc1/index.html" rel="next">Telegram 简单入门使用教程</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../traceroute-js1/index.html" title="推荐一个可以在地图上显示TraceRoute（路由追踪）路径信息的软件" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-luyouzhuizong.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="推荐一个可以在地图上显示TraceRoute（路由追踪）路径信息的软件" />	<br><span class="r_title">推荐一个可以在地图上显示TraceRoute（路由追踪）路径信息的软件</span></a>
+		</li>
+	
+	<li class="related_box"  >
+		<a href="../linux-jc10/index.html" title="Linux 修改默认SSH端口 22，避免被暴力破解密码" target="_blank">
+		<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-05-03.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Linux 修改默认SSH端口 22，避免被暴力破解密码" /><br><span class="r_title">Linux 修改默认SSH端口 22，避免被暴力破解密码</span></a>
+		</li>
+	
+	<li class="related_box"  >
+		<a href="../linux-jc9/index.html" title="Linux 更换密码登陆方式 为使用 Key密匙安全登陆，避免被暴力破解密码" target="_blank">
+		<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn1.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Linux 更换密码登陆方式 为使用 Key密匙安全登陆，避免被暴力破解密码" /><br><span class="r_title">Linux 更换密码登陆方式 为使用 Key密匙安全登陆，避免被暴力破解密码</span></a>
+		</li>
+	
+	<li class="related_box"  >
+		<a href="../dowsdns-jc2/index.html" title="Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告" target="_blank">
+		<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-dns.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告" /><br><span class="r_title">Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../traceroute-js1/index.html">推荐一个可以在地图上显示TraceRoute（路由追踪）路径信息的软件</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../linux-jc10/index.html">Linux 修改默认SSH端口 22，避免被暴力破解密码</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../linux-jc9/index.html">Linux 更换密码登陆方式 为使用 Key密匙安全登陆，避免被暴力破解密码</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../dowsdns-jc2/index.html">Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../shell-jc2/index.html">『原创』iptables 封禁 BT/PT/SPAM(垃圾邮件)和自定义端口/关键词 一键脚本</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../adbyby-jc2/index.html">『原创』Linux 广告过滤/屏蔽软件 —— ADbyby 一键安装脚本</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../adbyby-jc1/index.html">Linux 服务器安装 ADbyby 使ShadowsocksR等代理 实现过滤/屏蔽广告功能</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../linux-jc8/index.html">『持续更新』Linux 常用命令简单介绍 —— 基础篇</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1836' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='17009' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (27)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-17380"><div class="c-avatar"><div class="c-main" id="div-comment-17380">那么，请教一下大侠。我用nail-ipip查看vps与我的回程延迟，是看最后一个一节的延迟吗？上面的示例：12  14.215.116.1 [中国 广东 广州] (14.215.116.1 [中国 广东 广州])  158.869 ms，呃，还有前面的延迟为什么会有一个比最后一个还高的，不是应随着实际的距离的，延迟也相应增加的吗？<div class="c-meta"><span class="c-author">懵逼脸</span>2017-08-21 12:35 <a class='comment-reply-link' href='index-replytocom=17380.html#respond' onclick='return addComment.moveForm( "div-comment-17380", "17380", "respond", "1836" )' aria-label='回复给懵逼脸'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17383"><div class="c-avatar"><div class="c-main" id="div-comment-17383">我只能说这是正常现象，但是具体为什么 我也无法解释，我不是网络方面大佬。<br />
+但，在咨询大佬后，得出的是，中间的路由并不一定是积极回应你的ICMP数据包。<br />
+路由追踪，服务器A到服务器B，是服务器A发送ICMP数据包到服务器B，然后ICMP数据包每经过一个路由都会记录时间(延迟)并返回一个数据包，但是如果遇到一些比较拥挤的路由点，可能因此会反应时间增加，同理，丢包也是，一些拥挤的路由点或者说QOS严重的，会丢包很高，但是目标服务器B 收到的ICMP数据就没有多少丢包（当然收到的是中间路上丢弃后剩余的ICMP包）。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-21 16:05 <a class='comment-reply-link' href='index-replytocom=17383.html#respond' onclick='return addComment.moveForm( "div-comment-17383", "17383", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-17221"><div class="c-avatar"><div class="c-main" id="div-comment-17221">请教下：对于看视频和浏览网页的人来说，ping值在什么范围里内不会有影响？<div class="c-meta"><span class="c-author">Shadowlyin</span>2017-08-17 14:05 <a class='comment-reply-link' href='index-replytocom=17221.html#respond' onclick='return addComment.moveForm( "div-comment-17221", "17221", "respond", "1836" )' aria-label='回复给Shadowlyin'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17230"><div class="c-avatar"><div class="c-main" id="div-comment-17230">300ms以内吧，反正两百多延迟，也没什么感觉，只要不丢包。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-17 19:41 <a class='comment-reply-link' href='index-replytocom=17230.html#respond' onclick='return addComment.moveForm( "div-comment-17230", "17230", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-17155"><div class="c-avatar"><div class="c-main" id="div-comment-17155">请问下那么延迟是怎么计算的？去程路由的延迟加上回程路由的延迟吗？<div class="c-meta"><span class="c-author">Shadowlyin</span>2017-08-15 20:00 <a class='comment-reply-link' href='index-replytocom=17155.html#respond' onclick='return addComment.moveForm( "div-comment-17155", "17155", "respond", "1836" )' aria-label='回复给Shadowlyin'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17159"><div class="c-avatar"><div class="c-main" id="div-comment-17159">ICMP协议的Ping指的是，电脑A对服务器B发送ICMP协议信息，然后电脑A收到服务器B返回的应答ICMP协议信息这一过程的全部时间。也就是一来回。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-15 23:28 <a class='comment-reply-link' href='index-replytocom=17159.html#respond' onclick='return addComment.moveForm( "div-comment-17159", "17159", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-17172"><div class="c-avatar"><div class="c-main" id="div-comment-17172">那我们平时用工具在电脑上测定的延迟，就是一个来回的延迟？那么为什么还要在服务器上测定呢？<div class="c-meta"><span class="c-author">Shadowlyin</span>2017-08-16 11:06 <a class='comment-reply-link' href='index-replytocom=17172.html#respond' onclick='return addComment.moveForm( "div-comment-17172", "17172", "respond", "1836" )' aria-label='回复给Shadowlyin'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-17175"><div class="c-avatar"><div class="c-main" id="div-comment-17175">我也不清楚，为什么回程去程测试的延迟不一样，我网上查的都说 ICMP的PING测试的是一个来回，总归你依然以回程延迟为主就好了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-16 11:48 <a class='comment-reply-link' href='index-replytocom=17175.html#respond' onclick='return addComment.moveForm( "div-comment-17175", "17175", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-5" id="comment-17177"><div class="c-avatar"><div class="c-main" id="div-comment-17177">好吧，谢谢，我是有买你别人搭建的ssr账号，就没法测回程路由的延迟，我就在想测去程路由的延迟是不是就没有意义了。。。<div class="c-meta"><span class="c-author">Shadowlyin</span>2017-08-16 12:05 <a class='comment-reply-link' href='index-replytocom=17177.html#respond' onclick='return addComment.moveForm( "div-comment-17177", "17177", "respond", "1836" )' aria-label='回复给Shadowlyin'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17363"><div class="c-avatar"><div class="c-main" id="div-comment-17363">经过询问大佬，发现我前面查资料的时候被错误的描述误导了，实际是 icmp ping 测试的只是 客户端A到服务器B 直接的延迟，并不是去程+回程。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-20 20:10 <a class='comment-reply-link' href='index-replytocom=17363.html#respond' onclick='return addComment.moveForm( "div-comment-17363", "17363", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-17675"><div class="c-avatar"><div class="c-main" id="div-comment-17675">好的，谢谢<div class="c-meta"><span class="c-author">Shadowlyin</span>2017-08-27 20:44 <a class='comment-reply-link' href='index-replytocom=17675.html#respond' onclick='return addComment.moveForm( "div-comment-17675", "17675", "respond", "1836" )' aria-label='回复给Shadowlyin'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt depth-3" id="comment-17795"><div class="c-avatar"><div class="c-main" id="div-comment-17795">那么再请教个问题：对于用别人搭建的ssr，这时无法测回程路由，那么测去程路由的参考价值有多大呢？<div class="c-meta"><span class="c-author">Shadowlyin</span>2017-08-30 01:56 <a class='comment-reply-link' href='index-replytocom=17795.html#respond' onclick='return addComment.moveForm( "div-comment-17795", "17795", "respond", "1836" )' aria-label='回复给Shadowlyin'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-17821"><div class="c-avatar"><div class="c-main" id="div-comment-17821">没什么参考价值，如果不是玩游戏或者上传文件，那么去程只要不丢包，延迟不是特别高，那就对平时使用影响不大。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-30 14:48 <a class='comment-reply-link' href='index-replytocom=17821.html#respond' onclick='return addComment.moveForm( "div-comment-17821", "17821", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17007"><div class="c-avatar"><div class="c-main" id="div-comment-17007">然后就可以通过 mtr x.x.x.x 来路由追踪了。大哥x.x.x.x是什么直接复制进去吗还是代表ip啊<div class="c-meta"><span class="c-author">是</span>2017-08-13 18:20 <a class='comment-reply-link' href='index-replytocom=17007.html#respond' onclick='return addComment.moveForm( "div-comment-17007", "17007", "respond", "1836" )' aria-label='回复给是'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-17009"><div class="c-avatar"><div class="c-main" id="div-comment-17009">当然是代表IP了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-13 18:47 <a class='comment-reply-link' href='index-replytocom=17009.html#respond' onclick='return addComment.moveForm( "div-comment-17009", "17009", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-16991"><div class="c-avatar"><div class="c-main" id="div-comment-16991">请问在执行 ./besttrace -q 1时显示   -bash: ./besttrace: cannot execute binary file: Exec format error  是哪里的问题，我是用的root用户，Ubuntu 16.04.2 LTS (GNU/Linux 4.12.6-041206-generic i686)系统，是因为是32位系统的原因吗<div class="c-meta"><span class="c-author">liang</span>2017-08-13 13:20 <a class='comment-reply-link' href='index-replytocom=16991.html#respond' onclick='return addComment.moveForm( "div-comment-16991", "16991", "respond", "1836" )' aria-label='回复给liang'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-16992"><div class="c-avatar"><div class="c-main" id="div-comment-16992">出现这个错误一般都是位数和软件不匹配的问题，这个软件应该不支持32位或者 i686 这个32位的分支。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-13 14:07 <a class='comment-reply-link' href='index-replytocom=16992.html#respond' onclick='return addComment.moveForm( "div-comment-16992", "16992", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-16332"><div class="c-avatar"><div class="c-main" id="div-comment-16332">请问下我用Nali-ipip,在执行“./configure &amp;&amp; make &amp;&amp; make install”时，显示-bash: ./configure: Permission denied，是什么问题，系统Debian 8.8 64bit<div class="c-meta"><span class="c-author">Shadowlyin</span>2017-08-02 12:36 <a class='comment-reply-link' href='index-replytocom=16332.html#respond' onclick='return addComment.moveForm( "div-comment-16332", "16332", "respond", "1836" )' aria-label='回复给Shadowlyin'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-16339"><div class="c-avatar"><div class="c-main" id="div-comment-16339">chmod +x configure 试试，还有你是不是 ROOT 账号？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-02 13:18 <a class='comment-reply-link' href='index-replytocom=16339.html#respond' onclick='return addComment.moveForm( "div-comment-16339", "16339", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-16350"><div class="c-avatar"><div class="c-main" id="div-comment-16350">输入chmod +x configure后可以了，我本来就是Root账号<div class="c-meta"><span class="c-author">Shadowlyin</span>2017-08-02 15:36 <a class='comment-reply-link' href='index-replytocom=16350.html#respond' onclick='return addComment.moveForm( "div-comment-16350", "16350", "respond", "1836" )' aria-label='回复给Shadowlyin'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-11048"><div class="c-avatar"><div class="c-main" id="div-comment-11048">谢谢老大教程，用mtr测了一下，搬瓦工在netspeeder加持下丢包显著减少，晚高峰能用11%减到1%。折腾了一段时间kctpun，又回去netspeeder了 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_eek.gif" alt=":shock:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">linhao</span>2017-02-27 22:11 <a class='comment-reply-link' href='index-replytocom=11048.html#respond' onclick='return addComment.moveForm( "div-comment-11048", "11048", "respond", "1836" )' aria-label='回复给linhao'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10816"><div class="c-avatar"><div class="c-main" id="div-comment-10816">老大，回程路由是否可以测试丢包的情况？这个功能也蛮不错的<div class="c-meta"><span class="c-author">Andy</span>2017-02-20 17:32 <a class='comment-reply-link' href='index-replytocom=10816.html#respond' onclick='return addComment.moveForm( "div-comment-10816", "10816", "respond", "1836" )' aria-label='回复给Andy'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10822"><div class="c-avatar"><div class="c-main" id="div-comment-10822">在最后我添加了MTR的安装和使用方法，你用MTR来测试吧。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-20 19:15 <a class='comment-reply-link' href='index-replytocom=10822.html#respond' onclick='return addComment.moveForm( "div-comment-10822", "10822", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10437"><div class="c-avatar"><div class="c-main" id="div-comment-10437">加上-q 1 这个参数，可以让besttrace和traceroute只测试一次，结果也只显示一次，看着就比较整齐了，默认好像是测三次显示三列看着眼花。<div class="c-meta"><span class="c-author">huanghun</span>2017-02-07 09:37 <a class='comment-reply-link' href='index-replytocom=10437.html#respond' onclick='return addComment.moveForm( "div-comment-10437", "10437", "respond", "1836" )' aria-label='回复给huanghun'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10456"><div class="c-avatar"><div class="c-main" id="div-comment-10456">感谢提醒，已经加入文章中了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-07 23:48 <a class='comment-reply-link' href='index-replytocom=10456.html#respond' onclick='return addComment.moveForm( "div-comment-10456", "10456", "respond", "1836" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10436"><div class="c-avatar"><div class="c-main" id="div-comment-10436">兄弟，直接用mtr，岂不是更好 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">hhzk</span>2017-02-07 09:36 <a class='comment-reply-link' href='index-replytocom=10436.html#respond' onclick='return addComment.moveForm( "div-comment-10436", "10436", "respond", "1836" )' aria-label='回复给hhzk'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10346"><div class="c-avatar"><div class="c-main" id="div-comment-10346">所以 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_eek.gif" alt=":shock:" class="wp-smiley" style="height: 1em; max-height: 1em;" /> 才会有多倍发包这种东西的存在吧<div class="c-meta"><span class="c-author"><a href='http://0rat.com' rel='external nofollow' class='url'>bogie</a></span>2017-02-04 11:50 <a class='comment-reply-link' href='index-replytocom=10346.html#respond' onclick='return addComment.moveForm( "div-comment-10346", "10346", "respond", "1836" )' aria-label='回复给bogie'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

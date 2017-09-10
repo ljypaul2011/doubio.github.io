@@ -1,0 +1,589 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>锐速(ServerSpeeder/LotServer)配置参数简单说明，合理修改配置 提高加速效果 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2191] -->
+<meta name="description"  content="很早就有人想让我写个 锐速的配置参数调整说明之类的教程，但是我对这些也不了解，最近实在没啥教程写，那就研究一下，简单写个文章好了，有错误欢迎指出。 安装锐速 优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版） Linux TCP加速工具 —— LotServer(锐速母公司)" />
+
+<meta name="keywords"  content="lotserver,serverspeeder,锐速" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='ShadowsocksR 推出 新协议“无加密”新玩法 [ auth_chain_a + none ]' href='../ss-jc54/index.html' />
+<link rel='next' title='Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）' href='../wlzy-34/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="lotserver, ServerSpeeder, 锐速, 网络资源">
+<meta name="description" content="很早就有人想让我写个 锐速的配置参数调整说明之类的教程，但是我对这些也不了解，最近实在没啥教程写，那就研究一下，简单写个文章好了，有错误欢迎指出。    安装锐速  	优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版） 	Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本  某种程度上来说，锐速(ServerSpeeder)和LotServer是一样的，相比之下我更推荐后者。  两者安装并不冲突">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-2173 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=14932.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">锐速(ServerSpeeder/LotServer)配置参数简单说明，合理修改配置 提高加速效果</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../wlzy/index.html"> 网络资源</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 4个月前 (05-02)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 2134℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">14评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%E9%94%90%E9%80%9F" title="安装锐速"><span>安装锐速</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" title="配置文件"><span>配置文件</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E" title="参数说明"><span>参数说明</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E7%A4%BA%E4%BE%8B%E9%85%8D%E7%BD%AE" title="示例配置"><span>示例配置</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E%EF%BC%9A" title="其他说明："><span>其他说明：</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8A%A0%E9%80%9F%E6%8E%A5%E5%8F%A3" title="加速接口"><span>加速接口</span></a></li><li class="content-index-level-2"><a href="index.html#TCP%20%E5%8A%A0%E9%80%9F%E5%BC%80%E5%85%B3" title="TCP 加速开关"><span>TCP 加速开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E9%AB%98%E7%BA%A7%E5%8A%A0%E9%80%9F%E5%BC%80%E5%85%B3" title="高级加速开关"><span>高级加速开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E9%AB%98%E7%BA%A7%E5%85%A5%E5%90%91%E5%8A%A0%E9%80%9F%E5%BC%80%E5%85%B3" title="高级入向加速开关"><span>高级入向加速开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8A%A0%E9%80%9F%E6%8E%A5%E5%8F%A3%20%E4%B8%8A%E8%A1%8C%E5%B8%A6%E5%AE%BD" title="加速接口 上行带宽"><span>加速接口 上行带宽</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8A%A0%E9%80%9F%E6%8E%A5%E5%8F%A3%20%E4%B8%8B%E8%A1%8C%E5%B8%A6%E5%AE%BD" title="加速接口 下行带宽"><span>加速接口 下行带宽</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%B5%81%E9%87%8F%E6%95%B4%E5%BD%A2%E5%BC%80%E5%85%B3%EF%BC%8C%E9%85%8D%E5%90%88%E4%B8%8A%E8%A1%8C%E5%92%8C%E4%B8%8B%E8%A1%8C%E5%B8%A6%E5%AE%BD%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF" title="流量整形开关，配合上行和下行带宽设置开启"><span>流量整形开关，配合上行和下行带宽设置开启</span></a></li><li class="content-index-level-2"><a href="index.html#csvmode%20%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%BC%8F%E5%BC%80%E5%85%B3" title="csvmode 拥塞控制模式开关"><span>csvmode 拥塞控制模式开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%B1%80%E5%9F%9F%E7%BD%91%E5%8A%A0%E9%80%9F%E5%BC%80%E5%85%B3" title="局域网加速开关"><span>局域网加速开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%9C%80%E5%A4%A7%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F" title="最大传输模式"><span>最大传输模式</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%9C%80%E5%A4%A7%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E7%94%9F%E6%95%88%E6%97%B6%E9%97%B4" title="最大传输模式生效时间"><span>最大传输模式生效时间</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8A%93%E5%8C%85%E5%8A%9F%E8%83%BD%E5%BC%80%E5%85%B3" title="抓包功能开关"><span>抓包功能开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%B5%81%E9%87%8F%20bypass%20%E5%BC%80%E5%85%B3" title="流量 bypass 开关"><span>流量 bypass 开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%88%9D%E5%A7%8B%20TCP%20%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A3%E8%83%BD%E5%A4%9F%E5%8F%91%E9%80%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E6%95%B0%E9%87%8F" title="初始 TCP 发送窗口能够发送的数据包的数量"><span>初始 TCP 发送窗口能够发送的数据包的数量</span></a></li><li class="content-index-level-2"><a href="index.html#%E4%BB%8E%20LAN%20%E5%88%B0%20WAN%20%E5%8A%A0%E9%80%9F%E5%BC%95%E6%93%8E%E5%9C%A8%E7%BC%93%E5%86%B2%E6%B1%A0%E5%85%85%E6%BB%A1%E5%92%8C%E7%A9%BA%E9%97%B2%E6%97%B6%E5%88%86%E5%88%AB%E8%83%BD%E5%A4%9F%E7%BC%93%E5%AD%98%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E9%98%9F%E5%88%97%E7%9A%84%E9%95%BF%E5%BA%A6%E7%9A%84%E4%B8%8A%E9%99%90" title="从 LAN 到 WAN 加速引擎在缓冲池充满和空闲时分别能够缓存的数据包队列的长度的上限"><span>从 LAN 到 WAN 加速引擎在缓冲池充满和空闲时分别能够缓存的数据包队列的长度的上限</span></a></li><li class="content-index-level-2"><a href="index.html#%E4%BB%8E%20WAN%20%E5%88%B0%20LAN%20%E5%8A%A0%E9%80%9F%E5%BC%95%E6%93%8E%E5%9C%A8%E7%BC%93%E5%86%B2%E6%B1%A0%E5%85%85%E6%BB%A1%E5%92%8C%E7%A9%BA%E9%97%B2%E6%97%B6%E5%88%86%E5%88%AB%E8%83%BD%E5%A4%9F%E7%BC%93%E5%AD%98%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E9%98%9F%E5%88%97%E7%9A%84%E9%95%BF%E5%BA%A6%E7%9A%84%E4%B8%8A%E9%99%90%EF%BC%9B" title="从 WAN 到 LAN 加速引擎在缓冲池充满和空闲时分别能够缓存的数据包队列的长度的上限；"><span>从 WAN 到 LAN 加速引擎在缓冲池充满和空闲时分别能够缓存的数据包队列的长度的上限；</span></a></li><li class="content-index-level-2"><a href="index.html#slab%20%E7%BC%93%E5%AD%98%E7%BC%A9%E5%87%8F%E5%BC%80%E5%85%B3" title="slab 缓存缩减开关"><span>slab 缓存缩减开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E9%87%8D%E4%BC%A0%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4" title="重传等待时间"><span>重传等待时间</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%BD%91%E7%BB%9C%E6%8B%A5%E5%A1%9E%E5%88%A4%E6%96%AD" title="网络拥塞判断"><span>网络拥塞判断</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8F%8C%E8%BE%B9%E7%BC%93%E5%AD%98%E8%AE%BE%E7%BD%AE" title="双边缓存设置"><span>双边缓存设置</span></a></li><li class="content-index-level-2"><a href="index.html#%E4%BB%85%E5%A4%84%E7%90%86TCP%E6%B5%81%E9%87%8F" title="仅处理TCP流量"><span>仅处理TCP流量</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%BC%95%E6%93%8E%E5%85%81%E8%AE%B8%E7%9A%84%E6%9C%80%E5%A4%A7%E7%AA%81%E5%8F%91%E6%97%B6%E9%97%B4" title="引擎允许的最大突发时间"><span>引擎允许的最大突发时间</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%BD%91%E5%8D%A1%E6%8E%A5%E6%94%B6%E7%AB%AF%E5%90%88%E5%B9%B6%E5%BC%80%E5%85%B3" title="网卡接收端合并开关"><span>网卡接收端合并开关</span></a></li><li class="content-index-level-2"><a href="index.html#GSO%20%E5%BC%80%E5%85%B3" title="GSO 开关"><span>GSO 开关</span></a></li><li class="content-index-level-2"><a href="index.html#lanSegment%20%E5%BC%80%E5%85%B3" title="lanSegment 开关"><span>lanSegment 开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%90%AF%E5%8A%A8%E9%94%90%E9%80%9F%E6%97%B6%20%E5%86%99%E5%85%A5%E9%85%8D%E7%BD%AE%E6%89%80%E9%9C%80%E6%97%B6%E9%97%B4" title="启动锐速时 写入配置所需时间"><span>启动锐速时 写入配置所需时间</span></a></li><li class="content-index-level-2"><a href="index.html#%E9%94%90%E9%80%9F%20%E5%90%AF%E5%8A%A8%E7%9A%84%E5%8A%A0%E9%80%9F%E5%BC%95%E6%93%8E(%E5%AF%B9%E5%BA%94CPU%E6%A0%B8%E5%BF%83)%E7%9A%84%E7%9A%84%E4%B8%AA%E6%95%B0" title="锐速 启动的加速引擎(对应CPU核心)的的个数"><span>锐速 启动的加速引擎(对应CPU核心)的的个数</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%99%BD%E5%90%8D%E5%8D%95%E5%BC%80%E5%85%B3" title="白名单开关"><span>白名单开关</span></a></li><li class="content-index-level-2"><a href="index.html#%E9%94%90%E9%80%9F%20%E6%A8%A1%E5%9D%97%E6%96%87%E4%BB%B6%E7%9A%84%E8%B7%AF%E5%BE%84" title="锐速 模块文件的路径"><span>锐速 模块文件的路径</span></a></li><li class="content-index-level-2"><a href="index.html#%E9%94%90%E9%80%9F%20%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6%E7%9A%84%E8%B7%AF%E5%BE%84" title="锐速 授权文件的路径"><span>锐速 授权文件的路径</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年8月8日 19:35</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>很早就有人想让我写个 锐速的配置参数调整说明之类的教程，但是我对这些也不了解，最近实在没啥教程写，那就研究一下，简单写个文章好了，有错误欢迎指出。</p>
+<hr />
+<h2 id="安装锐速">安装锐速</h2>
+<ul>
+<li><a title="优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版） - 逗比根据地" href="../ruisu-jc1/index.html" target="_blank">优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）</a></li>
+<li><strong><a title="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本 - 逗比根据地" href="../wlzy-21/index.html" target="_blank">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</a></strong></li>
+</ul>
+<p>某种程度上来说，锐速(ServerSpeeder)和LotServer是一样的，相比之下我更推荐后者。</p>
+<p>两者安装并不冲突，但是不能同时启动，所以可以两个都安装，然后分别启动来测试区别，虽然我测试没什么区别。</p>
+<h3 id="配置文件">配置文件</h3>
+<pre class="prettyprint linenums"><strong>ServerSpeeder 打开配置文件：</strong>
+vi /serverspeeder/etc/config
+
+<strong>LotServer 打开配置文件：</strong>
+vi /appex/etc/config
+
+# vi 打开配置文件后，按 I键 进入编辑模式(注意左下角)，然后根据以下说明编辑配置文件，最后按 ESC键 退出编辑模式并输入 :wq 保存并退出。
+</pre>
+<h2 id="参数说明">参数说明</h2>
+<p>可以一些人看到上面几十个参数会很方，不要怕，<strong>大部分参数都是不需要改动的，我们主要修改下面这几个参数即可，其他的参数不用管。</strong></p>
+<ol>
+<li><a href="index.html#TCP%20%E5%8A%A0%E9%80%9F%E5%BC%80%E5%85%B3">TCP 加速开关</a></li>
+<li><a href="index.html#%E9%AB%98%E7%BA%A7%E5%8A%A0%E9%80%9F%E5%BC%80%E5%85%B3">高级加速开关</a></li>
+<li><a href="index.html#%E9%AB%98%E7%BA%A7%E5%85%A5%E5%90%91%E5%8A%A0%E9%80%9F%E5%BC%80%E5%85%B3">高级入向加速开关</a></li>
+<li><a href="index.html#%E5%8A%A0%E9%80%9F%E6%8E%A5%E5%8F%A3%20%E4%B8%8A%E8%A1%8C%E5%B8%A6%E5%AE%BD">加速接口 上行带宽</a></li>
+<li><a href="index.html#%E5%8A%A0%E9%80%9F%E6%8E%A5%E5%8F%A3%20%E4%B8%8B%E8%A1%8C%E5%B8%A6%E5%AE%BD">加速接口 下行带宽</a></li>
+<li><a href="index.html#%E6%B5%81%E9%87%8F%E6%95%B4%E5%BD%A2%E5%BC%80%E5%85%B3%EF%BC%8C%E9%85%8D%E5%90%88%E4%B8%8A%E8%A1%8C%E5%92%8C%E4%B8%8B%E8%A1%8C%E5%B8%A6%E5%AE%BD%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF">流量整形开关，配合上行和下行带宽设置开启</a></li>
+<li><a href="index.html#%E6%9C%80%E5%A4%A7%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F">最大传输模式</a></li>
+<li><a href="index.html#%E5%88%9D%E5%A7%8B%20TCP%20%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A3%E8%83%BD%E5%A4%9F%E5%8F%91%E9%80%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E6%95%B0%E9%87%8F">初始 TCP 发送窗口能够发送的数据包的数量</a></li>
+<li><a href="index.html#slab%20%E7%BC%93%E5%AD%98%E7%BC%A9%E5%87%8F%E5%BC%80%E5%85%B3">slab 缓存缩减开关</a></li>
+<li><a href="index.html#%E9%94%90%E9%80%9F%20%E5%90%AF%E5%8A%A8%E7%9A%84%E5%8A%A0%E9%80%9F%E5%BC%95%E6%93%8E(%E5%AF%B9%E5%BA%94CPU%E6%A0%B8%E5%BF%83)%E7%9A%84%E7%9A%84%E4%B8%AA%E6%95%B0">锐速 启动的加速引擎(对应CPU核心)的的个数</a></li>
+</ol>
+<h3 id="示例配置">示例配置</h3>
+<p>如果你实在不想一个个参数去研究，那么直接用下面这个示例模板好了。</p>
+<pre class="prettyprint linenums">acc="1"
+advacc="1"
+advinacc="1"
+wankbps="1000000"
+waninkbps="1000000"
+# 这两个参数代表加速宽带为 1Gbps，再加个 0 就是10Gbps了
+shaperEnable="1"
+maxmode="1"
+initialCwndWan="44"
+# 这个参数请根据回程延迟修改
+</pre>
+<p><code> initialCwndWan </code>参数请根据你与VPS的连接延迟(回程，VPS连接你的延迟)，<strong>比如 110ms，那么 110/2.5=44，即值为 44</strong> ，自己根据延迟调整。</p>
+<hr />
+<pre>注意，当你不清楚某些参数该如何修改的时候，请不要修改，避免降低加速效果等情况。</pre>
+<p><strong>修改配置文件后需要重启锐速才能生效：</strong></p>
+<p><strong>ServerSpeeder：</strong>/serverspeeder/bin/serverSpeeder.sh restart</p>
+<p><strong>LotServer：</strong>/appex/bin/serverSpeeder.sh restart</p>
+<h3 id="其他说明：">其他说明：</h3>
+<p>下面提到的 <strong>有效数据率</strong>指的是，当你的VPS从上行向你发送了100MB大小的文件，你也正常接收到了完整的100MB大小的文件，但是实际流量消耗高于 100MB，假设服务器这次传输上行总共消耗了 120MB流量，那么 <strong>100/12=0.83*100=83%</strong> ，结果是 83%的有效数据率。</p>
+<p>在丢包和开启了最大传输模式的时候，会降低有效数据率（但是最大传输模式会增加加速效果）。</p>
+<hr />
+<h3 id="加速接口">加速接口</h3>
+<pre class="prettyprint linenums">accif="eth*"
+</pre>
+<p>eth* 一般为服务器上对外提供服务的网络接口，例如 eth0, eth1, &#8230; 一般通过<code> ifconfig </code>命令可以看到；</p>
+<p>可以同时设定多个接口作为加速接口(接口之间用空格分开)，如<code> accif="eth0 eth1"</code>；<strong>默认为&#8221;eth0&#8243;。</strong></p>
+<h3 id="TCP 加速开关">TCP 加速开关</h3>
+<pre class="prettyprint linenums">acc="1"
+</pre>
+<p>设为 1 表示开启 TCP 加速功能；设为 0 表示关闭 TCP 加速功能；<strong>默认为 1 。</strong></p>
+<h3 id="高级加速开关">高级加速开关</h3>
+<pre class="prettyprint linenums">advacc="1"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>开启此功能可以得到更好的加速效果，但有可能会造成有效数据率下降；<strong>默认为 1 。</strong></p>
+<h3 id="高级入向加速开关">高级入向加速开关</h3>
+<pre class="prettyprint linenums">advinacc="0"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>开启此功能可以得到更好的流入方向流量加速效果，也就是相对服务器来说的 下行宽带（服务器的入向，就是进来的流量，即下行宽带）。</p>
+<h3 id="加速接口 上行带宽">加速接口 上行带宽</h3>
+<pre class="prettyprint linenums">wankbps="1000000"
+</pre>
+<p>指的是从服务器流出到 Internet 的最大带宽，单位为 Kbps，例如服务器所连接的 Internet 带宽为 1G，则设置为 1000000；<strong>默认为 1000000。</strong></p>
+<h3 id="加速接口 下行带宽">加速接口 下行带宽</h3>
+<pre class="prettyprint linenums">waninkbps="1000000"
+</pre>
+<p>指的是从 Internet 流入服务器的最大带宽，单位为 Kbps，例如服务器所连接的 Internet 带宽为 1G，则设置为 1000000；<strong>默认为 1000000；</strong></p>
+<p><code> wankbps 和 waninkbps </code>的设置一般与实际带宽相同为最理想；如果无法确定实际带宽，一般设置为网卡的最大吞吐能力即可；例如网卡为千兆全双工网卡，则 <code> wankbps 和 waninkbps </code>都设置为 1000000；</p>
+<p>当设置过小时，例如实际带宽有 100Mbps，但<code> wankbps 和 waninkbps </code>设置为 10Mbps，则数据流量会被限制在 10Mbps 以内，此时会降低服务器的吞吐。</p>
+<h3 id="流量整形开关，配合上行和下行带宽设置开启">流量整形开关，配合上行和下行带宽设置开启</h3>
+<pre class="prettyprint linenums">shaperEnable="1"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>开启此功能，会采用<code> wankbps 以及 waninkbps </code>设置的带宽大小运行；关闭此功能，会根据实时传输自动测算带宽大小；<strong>默认为 1 。</strong></p>
+<h3 id="csvmode 拥塞控制模式开关">csvmode 拥塞控制模式开关</h3>
+<pre class="prettyprint linenums">csvmode="0" highcsv="0"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>开启 tcp 加速后，在某些丢包较大的网络中可能会造成有效数据率下降的问题；此时开启拥塞控制模式，可以有效避免该问题；但开启此选项时，可能加速效果也会下降；<strong>默认为 0；</strong></p>
+<p><code> csvmode="1" highcsv="0" </code>时，为普通拥塞控制模式；对拥塞具有一定控制的同时对加速效果的影响较小；</p>
+<p><code> csvmode="1" highcsv="1" </code>时，为高级拥塞控制模式，可以更好的控制拥塞但是相比于普通拥塞控制模式对加速效果的影响较大。</p>
+<h3 id="局域网加速开关">局域网加速开关</h3>
+<pre class="prettyprint linenums">subnetAcc="0"
+</pre>
+<p>设为 1 表示开启；设为 0 表示关闭；</p>
+<p>不开启时对于同一局域网内的连接不会加速；开启后对同一网段的 TCP 连接也进行加速；<strong>默认为 0 。</strong></p>
+<h3 id="最大传输模式">最大传输模式</h3>
+<pre class="prettyprint linenums">maxmode="0"
+</pre>
+<p>设为 1 表示开启；设为 0 表示关闭；</p>
+<p>开启后会进一步提高加速效果，但是可能会降低有效数据率；<strong>默认为 0 。</strong></p>
+<h3 id="最大传输模式生效时间">最大传输模式生效时间</h3>
+<pre class="prettyprint linenums">maxTxEffectiveMS="0"
+</pre>
+<p>用于控制最大传输模式对每一个连接的生效时间；设为 0 表示从连接建立到连接结束，都采用最大传输模式传输；单位为 ms，1000 即 1s ；<strong>默认为 0 。</strong></p>
+<h3 id="抓包功能开关">抓包功能开关</h3>
+<pre class="prettyprint linenums">pcapEnable="0"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>开启此功能后会抓取经过加速引擎处理的数据包，在<code> /serverspeeder/log(或/appex/log) </code>目录下生成抓包文件，此功能会造成大量日志文件，如开启请定期清理日志，避免硬盘爆炸；<strong>默认为 0 。</strong></p>
+<h3 id="流量 bypass 开关">流量 bypass 开关</h3>
+<pre class="prettyprint linenums">bypassOverFlows="1"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>开启此功能后当服务器的连接数超过引擎设定后会对超过的连接的流量 bypass，否则会无法新建连接；<strong>默认为 1 。</strong></p>
+<h3 id="初始 TCP 发送窗口能够发送的数据包的数量">初始 TCP 发送窗口能够发送的数据包的数量</h3>
+<pre class="prettyprint linenums">initialCwndWan="44"
+</pre>
+<p>该值合理设置会获得更好的加速效果，如果设置相对实际需求偏高，但是可能会造成网络的拥塞；</p>
+<p>根据延迟来设定是最好的，假设你与这个VPS延迟(回程延迟)为 110ms，那么除以 2.5，即可得到 44。</p>
+<h3 id="从 LAN 到 WAN 加速引擎在缓冲池充满和空闲时分别能够缓存的数据包队列的长度的上限">从 LAN 到 WAN 加速引擎在缓冲池充满和空闲时分别能够缓存的数据包队列的长度的上限</h3>
+<pre class="prettyprint linenums">l2wQLimit="256 2048"
+</pre>
+<p>该值设置的高会获得更好的加速效果，但是会消耗更多的内存；</p>
+<p>256代表256MB内存，2048代表256MB内存*8 。</p>
+<h3 id="从 WAN 到 LAN 加速引擎在缓冲池充满和空闲时分别能够缓存的数据包队列的长度的上限；">从 WAN 到 LAN 加速引擎在缓冲池充满和空闲时分别能够缓存的数据包队列的长度的上限；</h3>
+<pre class="prettyprint linenums">w2lQLimit="256 2048"
+</pre>
+<p>该值设置的高会获得更好的加速效果，但是会消耗更多的内存。</p>
+<p>256代表256MB内存，2048代表256MB内存*8 。一般<code> l2wQLimit 和 w2lQLimit </code>设置一样即可。</p>
+<h3 id="slab 缓存缩减开关">slab 缓存缩减开关</h3>
+<pre class="prettyprint linenums">shrinkPacket="0"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>当服务器内存消耗很高时可以将该值设定为 1，这样会降低内存的消耗，对低内存的VPS效果不错；<strong>默认为 0 。</strong></p>
+<h3 id="重传等待时间">重传等待时间</h3>
+<pre class="prettyprint linenums">retranWaitListMS="32
+</pre>
+<p>当服务器没有收到 ack 或者丢包产生之后客户端重复 ack 时间达 到 32ms，服务器重传数据；默认为 32ms.</p>
+<h3 id="网络拥塞判断">网络拥塞判断</h3>
+<pre class="prettyprint linenums">halfCwndMinSRtt="500"
+halfCwndLossRateShift="3"
+</pre>
+<p>两个值分别为延时和丢包率，丢包率默认值为 3，即 1/2^3。</p>
+<p>当拥塞产生时，退出第三代 Learning-based TCP 算法，采用类似传统 TCP 的 算法。</p>
+<h3 id="双边缓存设置">双边缓存设置</h3>
+<pre class="prettyprint linenums">#byte cache
+byteCache="0"
+httpComp="1"
+byteCacheMemory="250" #MB
+byteCacheDisk="0" #MB
+diskDev="/dev/sda2"
+</pre>
+<p>当前只有部分版本支持该功能；</p>
+<p>分别是缓存开关，数据压缩开关，内存大小，硬盘大小，指定硬盘位置；</p>
+<h3 id="仅处理TCP流量">仅处理TCP流量</h3>
+<pre class="prettyprint linenums">tcpOnly="1"</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>开启此功能，即只处理 TCP 流量；关闭此功能，即一起处理除 TCP 以外的流量（不会对非 TCP 流量加速），一般用于配置策略对非 TCP 数据丢弃时；<strong>默认为 1 。</strong></p>
+<h3 id="引擎允许的最大突发时间">引擎允许的最大突发时间</h3>
+<pre class="prettyprint linenums">SmBurstMS="15"
+</pre>
+<p>设为 0，则代表关闭；该值越大，数据包发送量越大；<strong>当前推荐默认为 15 。</strong></p>
+<h3 id="网卡接收端合并开关">网卡接收端合并开关</h3>
+<pre class="prettyprint linenums">rsc="0"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>在有些较新的网卡驱动中，带有 RSC 算法的，需要打开该功能；<strong>默认为 0 。</strong></p>
+<h3 id="GSO 开关">GSO 开关</h3>
+<pre class="prettyprint linenums">gso="0"
+</pre>
+<p>设为 1 表示开启，设为 0 表示关闭；</p>
+<p>当网卡需要开启 gso 功能时，开启此功能，锐速 变为支持 gso 的模式；关闭此功能，如果网卡开启 gso，锐速 会关闭网卡的 gso 功能；<strong>默认为 0 。</strong></p>
+<h3 id="lanSegment 开关">lanSegment 开关</h3>
+<pre class="prettyprint linenums">lanSegment=""
+</pre>
+<p>当 锐速 不是 TCP 连接的最终节点并且采用单臂模式部署时，如果 锐速 和服务器之间网络环境很好，不需要加速，将此参数的值设为 Lan 一侧的子网网段 (参数的值为子网网段的十六进制表示加子网掩码，例：ip 为 172.33.0.0/16，lanSegment=&#8221;AC210000/16&#8243;)，则 锐速 和服务器之间不进行加速，可以节省 serverSpeeder 使用的资源并获得更好的加速效果。</p>
+<p>如果不设置此参数，则 锐速 会对所有经过的 TCP 连接进行加速。（注：如果参数转换为十六进制后，第一位数字为 0 时，需要省略，不然无法正常写入配置。例如，参数十六进制值为：0C210000/16，那么 lanSegment=&#8221;C210000/16&#8243;.）</p>
+<h3 id="启动锐速时 写入配置所需时间">启动锐速时 写入配置所需时间</h3>
+<pre class="prettyprint linenums">configTimeout="30"</pre>
+<p>当引擎的数目很多时需要写入配置的时间较长，<strong>默认为 30s 。</strong></p>
+<h3 id="锐速 启动的加速引擎(对应CPU核心)的的个数">锐速 启动的加速引擎(对应CPU核心)的的个数</h3>
+<pre class="prettyprint linenums">engineNum="0"
+</pre>
+<p>在多处理器（核）的系统环境下，启用多个加速引擎可以使网络流量的负载在多个处理器（核）之间做均衡分配，从而帮助优化系统 CPU 资源的利用；</p>
+<p>启用多个加速引擎时，引擎序号从 0 开始，分别为 engine0，engine1，engine2，等等；每个引擎的负载对应交给相同序号的处理器来处理，即 engine0 使用 cpu0，engine1 使用 cpu1 等；engineNum 默认为 0，表示启用的加速引擎个数与系统的处理器个数相同，64bit 架构下，当实际的 engineNum 参数大于 4 时，检查内存：</p>
+<p><strong>当总内存减去 engine 占用内存剩余数小于 2G 时，提示用户一个 warning:</strong></p>
+<pre>LotServer Warning: $CPUNUM engines will be launched according to the config file. Your system's total RAM is $memTotal(KB), which might be insufficient to run all the engines without performance penalty under extreme network conditions.</pre>
+<h3 id="白名单开关">白名单开关</h3>
+<pre class="prettyprint linenums">shortRttMS="10"
+</pre>
+<p>打开后 锐速 将不对 RTT 小于 shortRttMS 的连接加速，节约系统资源，提高性能；</p>
+<p>设置为 0 时表示关闭此功能，锐速 会加速所有的连接；设置为其他值时，例如 10，则表示当第一次建立连接时，锐速 会测量所有的新建连接的 RTT，但是不对其进行加速；如果 RTT 大于 10ms，锐速 会从第二次建立连接开始对其加速，如果 RTT 小于 10ms，锐速 则一直不会对其加速。默认值 10ms.</p>
+<p>重启 锐速 后，原来记录的每个连接的 RTT 会被清除，重新开始记录。</p>
+<p>锐速 使用五元组判断是否为同一连接，五元组包括：源 IP, 目的 IP, 源端口，目的端口和协议。</p>
+<h3 id="锐速 模块文件的路径">锐速 模块文件的路径</h3>
+<pre class="prettyprint linenums">apxexe="/appex/bin/acce-***"
+</pre>
+<h3 id="锐速 授权文件的路径">锐速 授权文件的路径</h3>
+<pre class="prettyprint linenums">apxlic="/appex/etc/apx-***.lic"
+</pre>
+<hr />
+<p><strong>锐速的详细介绍和原理等看这里：<a href="https://github.com/0oVicero0/serverSpeeder_Install/blob/master/lotServer.pdf" target="_blank">https://github.com/0oVicero0/serverSpeeder_Install/blob/master/lotServer.pdf</a></strong></p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">锐速(ServerSpeeder/LotServer)配置参数简单说明，合理修改配置 提高加速效果</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="2173" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">16</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/lotserver/index.html" rel="tag">lotserver</a><a href="../tag/serverspeeder/index.html" rel="tag">ServerSpeeder</a><a href="../tag/%E9%94%90%E9%80%9F/index.html" rel="tag">锐速</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../ss-jc54/index.html" rel="prev">ShadowsocksR 推出 新协议“无加密”新玩法 [ auth_chain_a + none ]</a></span>
+			<span class="article-nav-next"><a href="../wlzy-34/index.html" rel="next">Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../linux-jc6/index.html" title="Debian/Ubuntu 内核降级教程 —— 降低(BBR)为支持锐速的内核版本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-linux-1.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Debian/Ubuntu 内核降级教程 —— 降低(BBR)为支持锐速的内核版本" />	<br><span class="r_title">Debian/Ubuntu 内核降级教程 —— 降低(BBR)为支持锐速的内核版本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../wlzy-21/index.html" title="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-tcp01.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本" />	<br><span class="r_title">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../wlzy-15/index.html" title="比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-tcp01.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程" />	<br><span class="r_title">比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ruisu-jc1/index.html" title="优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn1.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）" />	<br><span class="r_title">优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../linux-jc6/index.html">Debian/Ubuntu 内核降级教程 —— 降低(BBR)为支持锐速的内核版本</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-21/index.html">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-15/index.html">比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程</a></li><li><i class="fa fa-minus"></i><a href="../ruisu-jc1/index.html">优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-35/index.html">『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-34/index.html">Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../dowsdns-jc2/index.html">Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../brook-jc2/index.html">Brook代理 Windows/Android版客户端简单使用教程</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='2173' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='14932' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (14)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-17105"><div class="c-avatar"><div class="c-main" id="div-comment-17105">initialCwndWan这个vps回程延时怎么测？<div class="c-meta"><span class="c-author">壮士请留步</span>2017-08-15 09:47 <a class='comment-reply-link' href='index-replytocom=17105.html#respond' onclick='return addComment.moveForm( "div-comment-17105", "17105", "respond", "2173" )' aria-label='回复给壮士请留步'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17107"><div class="c-avatar"><div class="c-main" id="div-comment-17107">VPS上面 ping你的IP（前提是公网IP），否则你只能找个国内与你相近的公网IP。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-15 10:20 <a class='comment-reply-link' href='index-replytocom=17107.html#respond' onclick='return addComment.moveForm( "div-comment-17107", "17107", "respond", "2173" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-17115"><div class="c-avatar"><div class="c-main" id="div-comment-17115">经测试ping180，除以2.5大概70左右，发现initialCwndWan改成了70还没有原来44的速度快<div class="c-meta"><span class="c-author">壮士请留步</span>2017-08-15 10:36 <a class='comment-reply-link' href='index-replytocom=17115.html#respond' onclick='return addComment.moveForm( "div-comment-17115", "17115", "respond", "2173" )' aria-label='回复给壮士请留步'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-17122"><div class="c-avatar"><div class="c-main" id="div-comment-17122">那就改回去吧，没说一定速度快，一般默认就行。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-15 11:04 <a class='comment-reply-link' href='index-replytocom=17122.html#respond' onclick='return addComment.moveForm( "div-comment-17122", "17122", "respond", "2173" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-14927"><div class="c-avatar"><div class="c-main" id="div-comment-14927">大神， 想知道 锐速， kcptun, bbr 等 各种加速有什么区别，哪种效果比较好？<div class="c-meta"><span class="c-author">long</span>2017-06-18 20:41 <a class='comment-reply-link' href='index-replytocom=14927.html#respond' onclick='return addComment.moveForm( "div-comment-14927", "14927", "respond", "2173" )' aria-label='回复给long'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-14932"><div class="c-avatar"><div class="c-main" id="div-comment-14932">锐速、LotServer、BBR都属于TCP拥塞控制，只加速TCP，都是单边加速（只服务器安装）。作用相当于交警和红绿灯，原始TCP拥塞控制相当于一个没有交警和红绿灯的十字路口，车辆少没影响，车辆多的时候都乱插道、乱抢道，导致有限的道路中堵车拥塞，而锐速、LotServer、BBR就交警和红绿灯，就是合理的分配车流量，让同样的道路流量使用更合理，最大化利用车流量。具体哪个效果更换，自行测试，因人而异<br />
+而KCPTUN同样也只加速TCP，是双边加速（服务器和本地设备都要安装软件），但是它是把TCP流量转成KCP协议并封装通过UDP协议方式发送，而UDP这玩意有不可靠的传输缺点，特别是国内国外的运营商对UDP都有不同程度的限速或丢包，再加上KCPTUN明面/隐藏参数众多，如果不会调整，那么会浪费3-6倍甚至更多的宽带，比如你下载100M文件，服务器实际消耗300-600M宽带，你本地SSR客户端只接收了100M流量，剩下的都因为配置不合理或运营商对UDP丢包导致消耗浪费了的宽带。正因为KCPTUN相对 锐速、LotServer、BBR 加速效果不一定高，但是一定要更暴力（无论是浪费流量还是占用宽带还是IDC厌恶性等），所以我不做推荐并且也不再更新相关教程。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-06-19 09:04 <a class='comment-reply-link' href='index-replytocom=14932.html#respond' onclick='return addComment.moveForm( "div-comment-14932", "14932", "respond", "2173" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment byuser comment-author-minamisindery even thread-even depth-1" id="comment-13424"><div class="c-avatar"><div class="c-main" id="div-comment-13424">这里面的配置基本只有最大模式那两个设置有点效果 其它的改不改一个样<div class="c-meta"><span class="c-author"><a href='https://www.nanqinlang.com/' rel='external nofollow' class='url'>南琴浪</a></span>2017-05-03 23:21 <a class='comment-reply-link' href='index-replytocom=13424.html#respond' onclick='return addComment.moveForm( "div-comment-13424", "13424", "respond", "2173" )' aria-label='回复给南琴浪'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-14000"><div class="c-avatar"><div class="c-main" id="div-comment-14000">至少我修改了initialCwndWan值可以吊打bbr了<div class="c-meta"><span class="c-author">kurokitomoko</span>2017-05-21 09:13 <a class='comment-reply-link' href='index-replytocom=14000.html#respond' onclick='return addComment.moveForm( "div-comment-14000", "14000", "respond", "2173" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-13372"><div class="c-avatar"><div class="c-main" id="div-comment-13372">请问Toyo 锐速对ipv6有效吗<div class="c-meta"><span class="c-author">小逗比</span>2017-05-02 22:01 <a class='comment-reply-link' href='index-replytocom=13372.html#respond' onclick='return addComment.moveForm( "div-comment-13372", "13372", "respond", "2173" )' aria-label='回复给小逗比'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-13377"><div class="c-avatar"><div class="c-main" id="div-comment-13377">不清楚，没有ipv6 没测试过。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-02 23:04 <a class='comment-reply-link' href='index-replytocom=13377.html#respond' onclick='return addComment.moveForm( "div-comment-13377", "13377", "respond", "2173" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even depth-2" id="comment-13391"><div class="c-avatar"><div class="c-main" id="div-comment-13391">对ipv6没用，只对ipv4有用。
+官方回应过，找不到在哪里看到过的了。<div class="c-meta"><span class="c-author">charli</span>2017-05-03 08:38 <a class='comment-reply-link' href='index-replytocom=13391.html#respond' onclick='return addComment.moveForm( "div-comment-13391", "13391", "respond", "2173" )' aria-label='回复给charli'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13363"><div class="c-avatar"><div class="c-main" id="div-comment-13363">如果大家能把自己的参数组合贴出来分享参考下 也很好啊<div class="c-meta"><span class="c-author">K</span>2017-05-02 16:18 <a class='comment-reply-link' href='index-replytocom=13363.html#respond' onclick='return addComment.moveForm( "div-comment-13363", "13363", "respond", "2173" )' aria-label='回复给K'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-13355"><div class="c-avatar"><div class="c-main" id="div-comment-13355">是否两者都不支持OpenVZ？ <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">so8610</span>2017-05-02 14:35 <a class='comment-reply-link' href='index-replytocom=13355.html#respond' onclick='return addComment.moveForm( "div-comment-13355", "13355", "respond", "2173" )' aria-label='回复给so8610'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-13357"><div class="c-avatar"><div class="c-main" id="div-comment-13357">是。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-02 14:47 <a class='comment-reply-link' href='index-replytocom=13357.html#respond' onclick='return addComment.moveForm( "div-comment-13357", "13357", "respond", "2173" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

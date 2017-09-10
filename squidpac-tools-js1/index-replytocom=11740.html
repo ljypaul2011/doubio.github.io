@@ -1,0 +1,458 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>『原创』一个快捷方便且实用性高的PAC管理器 —— SquidPAC Tools | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2182] -->
+<meta name="description"  content="听说了 某叶香蕉 用 开源的squid技术 去吹自主原创开发黑科技啥的！叫什么Sq**dPress，现在还搞了个什么技术培训，永久六七百，就去捞钱，什么VIP“终身”几百元的，我也是醉了。还说什么独创的Squid技术，远超shadowsocks、vpn等等。 我记得他当初用 开源的GoAgent" />
+
+<meta name="keywords"  content="pac,squidpac tools,原创软件" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='『优惠』AlphaRacks再次延续低价VPS，＄3.99/＄5.99/＄8/＄12' href='../vpszy-2/index.html' />
+<link rel='next' title='SS-Panel V2 MailGun修改为SMTP发信方式教程' href='../ss-jc22/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="PAC, SquidPAC Tools, 原创软件, 网络资源, 逗比软件">
+<meta name="description" content="听说了 某叶香蕉 用 开源的squid技术 去吹自主原创开发黑科技啥的！叫什么Sq**dPress，现在还搞了个什么技术培训，永久六七百，就去捞钱，什么VIP“终身”几百元的，我也是醉了。还说什么独创的Squid技术，远超shadowsocks、vpn等等。  我记得他当初用 开源的GoAgent 写了个付费软件，结果因为在海外社交网站发布侮辱dang的言论，被抓了几个月。放出来后拿着正火的 开源Shadowsocks源码，写了个软件，">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1145 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li class="current-post-ancestor"><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=11740.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">『原创』一个快捷方便且实用性高的PAC管理器 —— SquidPAC Tools</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../wlzy/index.html"> 网络资源</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 2年前 (2016-02-26)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 23106℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">65评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D" title="软件介绍"><span>软件介绍</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%AC%EF%BC%9A1.1.8" title="当前版本：1.1.8"><span>当前版本：1.1.8</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%EF%BC%9A" title="主要功能："><span>主要功能：</span></a></li><li class="content-index-level-1"><a href="index.html#%E6%88%AA%E5%9B%BE%E5%B1%95%E7%A4%BA" title="截图展示"><span>截图展示</span></a></li><li class="content-index-level-1"><a href="index.html#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95" title="使用方法"><span>使用方法</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#PAC%E6%A8%A1%E5%BC%8F" title="PAC模式"><span>PAC模式</span></a></li><li class="content-index-level-2"><a href="index.html#%E8%87%AA%E5%AE%9A%E4%B9%89PAC%E6%A8%A1%E5%BC%8F" title="自定义PAC模式"><span>自定义PAC模式</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%85%A8%E5%B1%80%E6%A8%A1%E5%BC%8F" title="全局模式"><span>全局模式</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%99%BA%E8%83%BD%E6%A8%A1%E5%BC%8F" title="智能模式"><span>智能模式</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%9B%B4%E6%96%B0%E5%86%85%E5%AE%B9" title="更新内容"><span>更新内容</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E7%89%88%E6%9C%AC1.1.8%20%E6%97%A5%E6%9C%9F2016%E5%B9%B411%E6%9C%8822%E6%97%A5" title="版本1.1.8 日期2016年11月22日"><span>版本1.1.8 日期2016年11月22日</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%89%88%E6%9C%AC1.1.7%20%E6%97%A5%E6%9C%9F2016%E5%B9%B43%E6%9C%8820%E6%97%A5" title="版本1.1.7 日期2016年3月20日"><span>版本1.1.7 日期2016年3月20日</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%89%88%E6%9C%AC1.1.5%20%E6%97%A5%E6%9C%9F2016%E5%B9%B43%E6%9C%889%E6%97%A5" title="版本1.1.5 日期2016年3月9日"><span>版本1.1.5 日期2016年3月9日</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%89%88%E6%9C%AC1.1.4%20%E6%97%A5%E6%9C%9F2016%E5%B9%B43%E6%9C%888%E6%97%A5" title="版本1.1.4 日期2016年3月8日"><span>版本1.1.4 日期2016年3月8日</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%89%88%E6%9C%AC1.1.3%20%E6%97%A5%E6%9C%9F2016%E5%B9%B43%E6%9C%887%E6%97%A5" title="版本1.1.3 日期2016年3月7日"><span>版本1.1.3 日期2016年3月7日</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%89%88%E6%9C%AC1.1.2%20%E6%97%A5%E6%9C%9F2016%E5%B9%B43%E6%9C%885%E6%97%A5" title="版本1.1.2 日期2016年3月5日"><span>版本1.1.2 日期2016年3月5日</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80" title="下载地址"><span>下载地址</span></a></li><li class="content-index-level-1"><a href="index.html#PAC%E5%92%8C%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8" title="PAC和代理服务器"><span>PAC和代理服务器</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E8%87%AA%E5%BB%BA%EF%BC%9A" title="自建："><span>自建：</span></a></li><li class="content-index-level-2"><a href="index.html#%E7%BD%91%E4%B8%8A%E6%94%B6%E9%9B%86%EF%BC%9A" title="网上收集："><span>网上收集：</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" title="注意事项"><span>注意事项</span></a></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2016年11月22日 13:00</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>听说了 <span style="text-decoration: line-through;">某叶香蕉 </span>用 开源的squid技术 去吹自主原创开发黑科技啥的！叫什么Sq**dPress，现在还搞了个什么技术培训，永久六七百，就去捞钱，什么VIP“终身”几百元的，我也是醉了。还说什么独创的Squid技术，远超shadowsocks、vpn等等。</p>
+<p>我记得他当初用 开源的GoAgent 写了个付费软件，结果因为在海外社交网站发布侮辱dang的言论，被抓了几个月。放出来后拿着正火的 开源Shadowsocks源码，写了个软件，先免费宣传，然后搞公众号关注送Shadowsocks账号啥的，然后就开始卖了也是几百块/年，随后不到两个月就又失踪了，再出现就是Sq**dPress了，我即使打码你们也应该知道是什么软件。：）</p>
+<p>实在是太不要脸了，于是我就也写了PAC管理器——SquidPAC Tools（就为打他脸）。</p>
+<hr />
+<h2 id="软件介绍">软件介绍</h2>
+<p>SquidPAC Tools是一个管理PAC的软件，分为PAC模式和自定义PAC模式。</p>
+<p>在PAC模式中，可以自由添加管理PAC网址或者PAC脚本内容；带有PAC离线功能，可以将PAC离线到本地直接调用，可以加快判断时间；</p>
+<p>在自定义PAC模式中，可以自由添加管理代理服务器，然后在一个单独的PAC中自由替换代理服务器（PAC是由代理服务器+网址组成的，当你访问其中一个网址的时候，会走代理服务器）。</p>
+<h3 id="当前版本：1.1.8"><span style="color: #ff6464;">当前版本：1.1.8</span></h3>
+<h2 id="主要功能：">主要功能：</h2>
+<ol>
+<li>系统代理设置</li>
+<li>离线本地PAC</li>
+<li>多服务器切换</li>
+<li>支持HTTP代理</li>
+<li>支持智能和全局模式</li>
+<li>PAC模式和自定义模式</li>
+</ol>
+<h2 id="截图展示">截图展示</h2>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/squidpac-tools-js1-11.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/230/dy/10" alt="" width="451" height="305" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/squidpac-tools-js1-11.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/230/dy/10" alt="" width="451" height="305" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/squidpac-tools-js1-12.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/10/dy/10" alt="" width="375" height="287" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/squidpac-tools-js1-12.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/10/dy/10" alt="" width="375" height="287" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/squidpac-tools-js1-10.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/10/dy/200" alt="" width="233" height="398" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/squidpac-tools-js1-10.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/10/dy/200" alt="" width="233" height="398" /></noscript></p>
+<h2 id="使用方法">使用方法</h2>
+<p><strong><span style="color: #339966;">使用方法很简单，默认带有我自建的服务器，打开软件后直接点托盘菜单的<code>启动代理</code>！就可以科学上网了！</span></strong></p>
+<p>使用方法上比较接近shadowsocks的使用方法，所以使用过SS的应该很容易上手的。</p>
+<p><strong>右键托盘图标显示主要操作菜单。双击托盘图标会根据当前的模式打开对应的编辑窗口。（部分Win10会出现兼容性问题无法显示菜单，请按 <code>Alt+~</code> 键呼出！如果不需要可以在其他选项卡中关闭！）</strong></p>
+<h3 id="PAC模式">PAC模式</h3>
+<p>右键托盘图标，点击<strong>编辑PAC服务器</strong>，然后<strong>添加</strong>按钮，如果你要添加的是一个PAC网址，就点<strong>[是]</strong>，如果是PAC脚本内容，就点<strong>[否]</strong>，然后输入PAC网址或者PAC脚本内容<strong>（记得点应用才会生效）</strong>。然后右键托盘图标并点击你添加的PAC服务器，再点击<strong>启动代理</strong>便可以使用PAC了！并且可以自由切换代理。</p>
+<h3 id="自定义PAC模式">自定义PAC模式</h3>
+<p>右键托盘图标，点击<strong>自定义模式</strong>，然后点击<strong>编辑自定义</strong>，添加代理服务器<strong>（记得点应用才会生效）</strong>，然后右键托盘图标并点击你添加的代理服务器，再点击<strong>启动代理</strong>便可以使用PAC了！并且可以自由切换代理。</p>
+<p>自定义PAC模式就是，你只要有HTTP代理服务器，你就可以用PAC的功能。因为单独使用代理服务器是全局的，而PAC则会根据文件里的网址来判断是不是需要用代理服务器，PAC是由代理服务器+网址组成的，这个模式就是替换一个单独的PAC里的代理服务器。</p>
+<h3 id="全局模式">全局模式</h3>
+<p>全局模式只能在自定义PAC模式下使用，如果要PAC模式使用全局模式，请打开PAC模式服务器编辑窗口，然后选中你要使用的全局PAC后点 <span style="color: #ff6600;"><strong>提取</strong></span> 或者点 <strong><span style="color: #ff6600;">全部提取</span></strong>，这时候在自定义PAC模式的列表里就可以找到 这个/全部 的代理服务器了（因为如果直接读取在线/离线PAC中的代理服务器，效率太低，所以只能这样子干）。</p>
+<h3 id="智能模式">智能模式</h3>
+<p>智能模式也就是默认的模式，也就是走PAC代理。</p>
+<h2 id="更新内容">更新内容</h2>
+<h3 id="版本1.1.8 日期2016年11月22日"><span style="color: #ff6464;">版本1.1.8 日期2016年11月22日</span></h3>
+<ol>
+<li>修复检测更新功能。</li>
+<li>删除默认PAC和代理服务器。<br />
+Tip：因为更换域名，所以检测更新失效了，而默认的PAC和代理服务器，我也不在维护了。</li>
+</ol>
+<h3 id="版本1.1.7 日期2016年3月20日">版本1.1.7 日期2016年3月20日</h3>
+<ol>
+<li>新增记录关闭时当前模式，下次启动会自动切换。</li>
+<li>修复第一次添加PAC服务器无法编辑的BUG。</li>
+</ol>
+<h3 id="版本1.1.5 日期2016年3月9日">版本1.1.5 日期2016年3月9日</h3>
+<ol>
+<li>锁定默认服务器，自动检测默认服务器更新。</li>
+<li>优化默认服务器获取。</li>
+<li>优化检测更新功能。</li>
+</ol>
+<h3 id="版本1.1.4 日期2016年3月8日">版本1.1.4 日期2016年3月8日</h3>
+<ol>
+<li>增加编辑默认PAC功能（可以自己编辑PAC添加你想要的网址了，改完记得点[重载 默认PAC]按钮）。</li>
+<li>修复模式切换时托盘提示信息显示不正确BUG。</li>
+<li>修复切换代理服务器（智能模式）/重载默认PAC时不能立即生效的BUG。</li>
+<li>优化路由器和ADSL判断逻辑。</li>
+<li>优化检测更新功能。</li>
+</ol>
+<h3 id="版本1.1.3 日期2016年3月7日">版本1.1.3 日期2016年3月7日</h3>
+<ol>
+<li>1.优化检测更新逻辑。</li>
+<li>2.优化默认账号获取逻辑。<br />
+（https://doub.io/pac/dou-bi.com.pac用不了的请换成http://doubi.date/pac/dou-bi.com.pac）</li>
+</ol>
+<h3 id="版本1.1.2 日期2016年3月5日">版本1.1.2 日期2016年3月5日</h3>
+<ol>
+<li>优化默认账号获取逻辑（默认账号已换！请去发布文章中查看）。</li>
+<li>新增托盘图标状态（开启和关闭两个图标）。</li>
+</ol>
+<h2 id="下载地址">下载地址</h2>
+<p><a class="dl" title="" href="http://pan.baidu.com/s/1ZvMrG" target="_blank" rel="nofollow" data-original-title=""><i class="fa fa-cloud-download"></i>百度网盘</a><a class="dl" title="" href="https://softs.fun/?dir=%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/other" target="_blank" rel="nofollow" data-original-title=""><i class="fa fa-cloud-download"></i>逗比 · 云</a></p>
+<h2 id="PAC和代理服务器"><span style="color: #ff6600;">PAC和代理服务器</span></h2>
+<h3 id="自建：">自建：</h3>
+<p><del><strong>http://doubi.date/pac/dou-bi.com.pac</strong></del></p>
+<p><del><strong>pac01.doubi.date:25</strong></del></p>
+<p>自建PAC已经取消维护了。</p>
+<p>自建PAC教程：<a title="一种便捷的全自动代理方式——PAC代理" href="../pac-jc1/index.html" target="_blank">一种便捷的全自动代理方式——PAC代理</a></p>
+<pre>这两个已经添加到软件默认PAC/代理服务器中了。<span style="color: #ff6600;"><strong>如果软件默认PAC失效了，就来本页面看看是不是有更新！</strong></span></pre>
+<h3 id="网上收集：">网上收集：</h3>
+<p>https://pac.mcplay.cn/jp.pac</p>
+<p>http://pac.itzmx.com/abc.pac</p>
+<p>http://p.hxapn.com/h.pac</p>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>软件仅支持win系统，对于Linux和Mac用户说声抱歉。</li>
+<li>win7如无法使用请用管理员模式启动。</li>
+<li>软件由易语言编写，所以一些杀毒软件可能报毒，我再次保证，我原创的软件绝对没有病毒。</li>
+</ul>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">『原创』一个快捷方便且实用性高的PAC管理器 —— SquidPAC Tools</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1145" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">60</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/pac/index.html" rel="tag">PAC</a><a href="../tag/squidpac-tools/index.html" rel="tag">SquidPAC Tools</a><a href="../tag/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/index.html" rel="tag">原创软件</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../vpszy-2/index.html" rel="prev">『优惠』AlphaRacks再次延续低价VPS，＄3.99/＄5.99/＄8/＄12</a></span>
+			<span class="article-nav-next"><a href="../ss-jc22/index.html" rel="next">SS-Panel V2 MailGun修改为SMTP发信方式教程</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../ss-jc59/index.html" title="『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-0.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC" />	<br><span class="r_title">『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../pipesocks-jc3/index.html" title="DaoCloud免费部署 PipeSocks 国内中转Pipe/Pump" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-pipesocks.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="DaoCloud免费部署 PipeSocks 国内中转Pipe/Pump" />	<br><span class="r_title">DaoCloud免费部署 PipeSocks 国内中转Pipe/Pump</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc43/index.html" title="Shadowsocks手动 添加和编辑 PAC中的网址规则" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-pac.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Shadowsocks手动 添加和编辑 PAC中的网址规则" />	<br><span class="r_title">Shadowsocks手动 添加和编辑 PAC中的网址规则</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc37/index.html" title="『原创』KCPTun 客户端教程 + 自写KcpTun Tools辅助工具" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-kcptun.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』KCPTun 客户端教程 + 自写KcpTun Tools辅助工具" />	<br><span class="r_title">『原创』KCPTun 客户端教程 + 自写KcpTun Tools辅助工具</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../ss-jc59/index.html">『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</a></li><li><i class="fa fa-minus"></i><a href="../pipesocks-jc3/index.html">DaoCloud免费部署 PipeSocks 国内中转Pipe/Pump</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc43/index.html">Shadowsocks手动 添加和编辑 PAC中的网址规则</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc37/index.html">『原创』KCPTun 客户端教程 + 自写KcpTun Tools辅助工具</a></li><li><i class="fa fa-minus"></i><a href="../http-jc2/index.html">一键搭建HTTP代理服务器的小工具 ——Tiny Proxy (附在线PAC制作方法)</a></li><li><i class="fa fa-minus"></i><a href="../pingip/index.html">『原创』逗比超级Ping — 支持Shadowsocks、Goagent、Host、路由追踪</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../dbrj-5/index.html">ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-35/index.html">『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1145' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='11740' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (65)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-11740"><div class="c-avatar"><div class="c-main" id="div-comment-11740">没怎么看懂 这个pac和ssr客户端的pac区别在哪啊 这篇帖子的pac讲的好绕<div class="c-meta"><span class="c-author"><a href='https://sindery.me' rel='external nofollow' class='url'>南琴浪</a></span>2017-03-18 00:09 <a class='comment-reply-link' href='index-replytocom=11740.html#respond' onclick='return addComment.moveForm( "div-comment-11740", "11740", "respond", "1145" )' aria-label='回复给南琴浪'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-11741"><div class="c-avatar"><div class="c-main" id="div-comment-11741">你首先要理解什么是PAC，等你理解了，你就明白 这个软件的PAC管理器与SSR客户端里面的PAC的区别了，我讲我也讲不明白。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-18 00:15 <a class='comment-reply-link' href='index-replytocom=11741.html#respond' onclick='return addComment.moveForm( "div-comment-11741", "11741", "respond", "1145" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-9011"><div class="c-avatar"><div class="c-main" id="div-comment-9011">分享一个PAC地址给没有玩过PAC的朋友尝尝鲜： http://dwz.cn/us-pac<div class="c-meta"><span class="c-author">人间有爱</span>2016-12-06 23:12 <a class='comment-reply-link' href='index-replytocom=9011.html#respond' onclick='return addComment.moveForm( "div-comment-9011", "9011", "respond", "1145" )' aria-label='回复给人间有爱'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-8855"><div class="c-avatar"><div class="c-main" id="div-comment-8855">1.1.8版，编辑PAC服务器，保存后失败。OS:WINDOWS SERVER 2016<div class="c-meta"><span class="c-author">II</span>2016-11-30 11:07 <a class='comment-reply-link' href='index-replytocom=8855.html#respond' onclick='return addComment.moveForm( "div-comment-8855", "8855", "respond", "1145" )' aria-label='回复给II'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-8338"><div class="c-avatar"><div class="c-main" id="div-comment-8338">用不了<div class="c-meta"><span class="c-author">zjh</span>2016-10-16 14:18 <a class='comment-reply-link' href='index-replytocom=8338.html#respond' onclick='return addComment.moveForm( "div-comment-8338", "8338", "respond", "1145" )' aria-label='回复给zjh'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-7938"><div class="c-avatar"><div class="c-main" id="div-comment-7938">喵喵喵 真赞<div class="c-meta"><span class="c-author">桃夭</span>2016-08-28 18:24 <a class='comment-reply-link' href='index-replytocom=7938.html#respond' onclick='return addComment.moveForm( "div-comment-7938", "7938", "respond", "1145" )' aria-label='回复给桃夭'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-7934"><div class="c-avatar"><div class="c-main" id="div-comment-7934">已挂。。<div class="c-meta"><span class="c-author">hzzwxf</span>2016-08-28 15:37 <a class='comment-reply-link' href='index-replytocom=7934.html#respond' onclick='return addComment.moveForm( "div-comment-7934", "7934", "respond", "1145" )' aria-label='回复给hzzwxf'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+		<a class="prev page-numbers" href="comment-page-1/index-replytocom=11740.html#comments">«</a>
+<a class='page-numbers' href='comment-page-1/index-replytocom=11740.html#comments'>1</a>
+<span class='page-numbers current'>2</span>	</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

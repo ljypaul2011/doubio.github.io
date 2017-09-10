@@ -1,0 +1,954 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>『原创』CentOS/Debian/Ubuntu ShadowsocksR 单/多端口 一键管理脚本 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2192] -->
+<meta name="description"  content="最近经常有小白找我让我把他们安装ShadowsocksR服务端，一开始都是手动安装的，后来嫌麻烦，就打算用脚本，但是网上基本上只是安装一下就没了，只能算一键安装脚本，并不足够方便和适合懒人和小白，于是自己写了一个一键管理脚本，一键安装和一键管理的区别！ 更多的Shadowsocks安装教程/一键脚本请" />
+
+<meta name="keywords"  content="shadowsocksr,脚本" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='Shadowsocks Python/Go/Libev/R 一键安装脚本（四合一）' href='../ss-jc44/index.html' />
+<link rel='next' title='『优惠』黑色星期五 部分VPS商家 促销合集' href='../vpszy-7/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="ShadowsocksR, 脚本, Shadowsocks, Shell脚本">
+<meta name="description" content="最近经常有小白找我让我把他们安装ShadowsocksR服务端，一开始都是手动安装的，后来嫌麻烦，就打算用脚本，但是网上基本上只是安装一下就没了，只能算一键安装脚本，并不足够方便和适合懒人和小白，于是自己写了一个一键管理脚本，一键安装和一键管理的区别！     更多的Shadowsocks安装教程/一键脚本请看这里：Shadowsocks指导篇 本脚本的 二维码图片 功能，会调用我自建的 二维码API来生成二维码图片( http://d">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1677 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li class="current-menu-ancestor current-menu-parent"><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li class="current-menu-item"><a target="_blank" href="index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=18274.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">『原创』CentOS/Debian/Ubuntu ShadowsocksR 单/多端口 一键管理脚本</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../ss/index.html"> Shadowsocks</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 10个月前 (11-25)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 106489℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">770评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82" title="系统要求"><span>系统要求</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E8%84%9A%E6%9C%AC%E7%89%88%E6%9C%AC" title="脚本版本"><span>脚本版本</span></a></li><li class="content-index-level-2"><a href="index.html#%E8%84%9A%E6%9C%AC%E7%89%B9%E7%82%B9%EF%BC%9A" title="脚本特点："><span>脚本特点：</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4" title="安装步骤"><span>安装步骤</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" title="使用说明"><span>使用说明</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE" title="文件位置"><span>文件位置</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E" title="其他说明"><span>其他说明</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#ShadowsocksR%E7%9B%AE%E5%89%8D%E6%94%AF%E6%8C%81%E7%9A%84%E5%8D%8F%E8%AE%AE%E5%92%8C%E6%B7%B7%E6%B7%86%EF%BC%9A" title="ShadowsocksR目前支持的协议和混淆："><span>ShadowsocksR目前支持的协议和混淆：</span></a></li><li class="content-index-level-2"><a href="index.html#%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91/%E8%85%BE%E8%AE%AF%E4%BA%91%E7%AD%89%E5%AD%98%E7%9D%80%E5%AE%89%E5%85%A8%E7%BB%84%E6%88%96%E8%A7%84%E5%88%99%E7%BB%84%E4%B8%80%E7%B1%BB%E5%A4%96%E9%83%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%9A%84%E8%AF%B7%E6%B3%A8%E6%84%8F" title="使用阿里云/腾讯云等存着安全组或规则组一类外部防火墙的请注意"><span>使用阿里云/腾讯云等存着安全组或规则组一类外部防火墙的请注意</span></a></li><li class="content-index-level-2"><a href="index.html#ShadowsocksR%20%E7%AB%AF%E5%8F%A3%E9%99%90%E9%80%9F%E4%B8%AD%20%E5%8D%95%E7%BA%BF%E7%A8%8B%E9%99%90%E9%80%9F%20%E5%92%8C%20%E7%AB%AF%E5%8F%A3%E6%80%BB%E9%99%90%E9%80%9F%20%E7%9A%84%E5%8C%BA%E5%88%AB" title="ShadowsocksR 端口限速中 单线程限速 和 端口总限速 的区别"><span>ShadowsocksR 端口限速中 单线程限速 和 端口总限速 的区别</span></a></li><li class="content-index-level-2"><a href="index.html#%E8%A7%A3%E5%86%B3%20%E5%8F%AF%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%89%88%E5%8D%8F%E8%AE%AE%EF%BC%8C%E4%BD%86%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8ShadowsocksR%E5%8D%8F%E8%AE%AE%20%E7%9A%84%E9%97%AE%E9%A2%98" title="解决 可使用原版协议，但无法使用ShadowsocksR协议 的问题"><span>解决 可使用原版协议，但无法使用ShadowsocksR协议 的问题</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BA%20Media%20change:%20please%20insert%20the%20disc%20labeled%E2%80%98Debian%20GNU/Linux%207.0.0%20Wheezy%20%E2%80%94%20Official%20amd64%20CD%20%E7%AD%89%E4%BF%A1%E6%81%AF%E6%98%AF%20apt%E6%BA%90%20%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9B%B4%E6%8D%A2%20apt%E6%BA%90" title="提示 Media change: please insert the disc labeled‘Debian GNU/Linux 7.0.0 Wheezy — Official amd64 CD 等信息是 apt源 的问题，更换 apt源"><span>提示 Media change: please insert the disc labeled‘Debian GNU/Linux 7.0.0 Wheezy — Official amd64 CD 等信息是 apt源 的问题，更换 apt源</span></a><ul class="children"><li class="content-index-level-3"><a href="index.html#%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%8D%A2%EF%BC%88%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%AE%8C%E6%AF%95%E5%B0%B1%E4%B8%8D%E8%A6%81%E9%87%8D%E5%A4%8D%E6%89%A7%E8%A1%8C%E8%BF%99%E4%B8%AA%E4%BA%86%EF%BC%89" title="手动更换（上面的命令执行完毕就不要重复执行这个了）"><span>手动更换（上面的命令执行完毕就不要重复执行这个了）</span></a></li></ul></li><li class="content-index-level-2"><a href="index.html#ShadowsocksR%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%EF%BC%8C%E6%97%A5%E5%BF%97%E6%8F%90%E7%A4%BA%EF%BC%9AException:%20libsodium%20not%20found%20%E7%9A%84%E9%94%99%E8%AF%AF" title="ShadowsocksR启动失败，日志提示：Exception: libsodium not found 的错误"><span>ShadowsocksR启动失败，日志提示：Exception: libsodium not found 的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BAwget:%C2%A0unknown%20host%20%E2%80%9Csofts.fun%E2%80%9D%20%E4%B9%8B%E7%B1%BB%E7%9A%84%E9%94%99%E8%AF%AF" title="提示wget: unknown host &#8220;softs.fun&#8221; 之类的错误"><span>提示wget: unknown host &#8220;softs.fun&#8221; 之类的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BA%20wget:%20command%20not%20found%20%E7%9A%84%E9%94%99%E8%AF%AF" title="提示 wget: command not found 的错误"><span>提示 wget: command not found 的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8D%87%E7%BA%A7%E8%84%9A%E6%9C%AC" title="升级脚本"><span>升级脚本</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%AE%9A%E6%97%B6%E9%87%8D%E5%90%AF" title="定时重启"><span>定时重启</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97" title="更新日志"><span>更新日志</span></a><ul class="children"><li class="content-index-level-2"><a class="hide" onclick="return false;" href="index.html#" title=""><span></span></a><ul class="children"><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8831%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.30" title="2017年08月31日，版本 v2.0.30"><span>2017年08月31日，版本 v2.0.30</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8824%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.29" title="2017年08月24日，版本 v2.0.29"><span>2017年08月24日，版本 v2.0.29</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8812%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.28" title="2017年08月12日，版本 v2.0.28"><span>2017年08月12日，版本 v2.0.28</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8811%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.27" title="2017年08月11日，版本 v2.0.27"><span>2017年08月11日，版本 v2.0.27</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.26" title="2017年08月10日，版本 v2.0.26"><span>2017年08月10日，版本 v2.0.26</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8808%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.25" title="2017年08月08日，版本 v2.0.25"><span>2017年08月08日，版本 v2.0.25</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8807%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.24" title="2017年08月07日，版本 v2.0.24"><span>2017年08月07日，版本 v2.0.24</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8804%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.23" title="2017年08月04日，版本 v2.0.23"><span>2017年08月04日，版本 v2.0.23</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B407%E6%9C%8828%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.22" title="2017年07月28日，版本 v2.0.22"><span>2017年07月28日，版本 v2.0.22</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B407%E6%9C%8828%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.21" title="2017年07月28日，版本 v2.0.21"><span>2017年07月28日，版本 v2.0.21</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B407%E6%9C%8826%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.20" title="2017年07月26日，版本 v2.0.20"><span>2017年07月26日，版本 v2.0.20</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B407%E6%9C%8826%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.19" title="2017年07月26日，版本 v2.0.19"><span>2017年07月26日，版本 v2.0.19</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B406%E6%9C%8816%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.18" title="2017年06月16日，版本 v2.0.18"><span>2017年06月16日，版本 v2.0.18</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B405%E6%9C%8801%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.17" title="2017年05月01日，版本 v2.0.17"><span>2017年05月01日，版本 v2.0.17</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8830%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.16" title="2017年04月30日，版本 v2.0.16"><span>2017年04月30日，版本 v2.0.16</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8829%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.15" title="2017年04月29日，版本 v2.0.15"><span>2017年04月29日，版本 v2.0.15</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8828%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.14" title="2017年04月28日，版本 v2.0.14"><span>2017年04月28日，版本 v2.0.14</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8827%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.13" title="2017年04月27日，版本 v2.0.13"><span>2017年04月27日，版本 v2.0.13</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8826%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.12" title="2017年04月26日，版本 v2.0.12"><span>2017年04月26日，版本 v2.0.12</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8826%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.11" title="2017年04月26日，版本 v2.0.11"><span>2017年04月26日，版本 v2.0.11</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8822%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.10" title="2017年04月22日，版本 v2.0.10"><span>2017年04月22日，版本 v2.0.10</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8822%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.9" title="2017年04月22日，版本 v2.0.9"><span>2017年04月22日，版本 v2.0.9</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8822%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.8" title="2017年04月22日，版本 v2.0.8"><span>2017年04月22日，版本 v2.0.8</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8819%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.7" title="2017年04月19日，版本 v2.0.7"><span>2017年04月19日，版本 v2.0.7</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8819%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.6" title="2017年04月19日，版本 v2.0.6"><span>2017年04月19日，版本 v2.0.6</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8816%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.5" title="2017年04月16日，版本 v2.0.5"><span>2017年04月16日，版本 v2.0.5</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B404%E6%9C%8815%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.4" title="2017年04月15日，版本 v2.0.4"><span>2017年04月15日，版本 v2.0.4</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B403%E6%9C%8824%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.3" title="2017年03月24日，版本 v2.0.3"><span>2017年03月24日，版本 v2.0.3</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B403%E6%9C%8824%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.2" title="2017年03月24日，版本 v2.0.2"><span>2017年03月24日，版本 v2.0.2</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B403%E6%9C%8817%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.1" title="2017年03月17日，版本 v2.0.1"><span>2017年03月17日，版本 v2.0.1</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B403%E6%9C%8817%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v2.0.0" title="2017年03月17日，版本 v2.0.0"><span>2017年03月17日，版本 v2.0.0</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B403%E6%9C%8808%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.9" title="2017年03月08日，版本 v1.2.9"><span>2017年03月08日，版本 v1.2.9</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B403%E6%9C%8801%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.8" title="2017年03月01日，版本 v1.2.8"><span>2017年03月01日，版本 v1.2.8</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8822%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.7" title="2017年02月22日，版本 v1.2.7"><span>2017年02月22日，版本 v1.2.7</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8819%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.6" title="2017年02月19日，版本 v1.2.6"><span>2017年02月19日，版本 v1.2.6</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8815%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.5" title="2017年02月15日，版本 v1.2.5"><span>2017年02月15日，版本 v1.2.5</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8814%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.4" title="2017年02月14日，版本 v1.2.4"><span>2017年02月14日，版本 v1.2.4</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8814%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.3" title="2017年02月14日，版本 v1.2.3"><span>2017年02月14日，版本 v1.2.3</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.2" title="2017年02月10日，版本 v1.2.2"><span>2017年02月10日，版本 v1.2.2</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.1" title="2017年02月10日，版本 v1.2.1"><span>2017年02月10日，版本 v1.2.1</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8803%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.2.0" title="2017年02月03日，版本 v1.2.0"><span>2017年02月03日，版本 v1.2.0</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8802%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.9" title="2017年02月02日，版本 v1.1.9"><span>2017年02月02日，版本 v1.1.9</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B402%E6%9C%8801%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.8" title="2017年02月01日，版本 v1.1.8"><span>2017年02月01日，版本 v1.1.8</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B401%E6%9C%8831%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.7" title="2017年01月31日，版本 v1.1.7"><span>2017年01月31日，版本 v1.1.7</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B401%E6%9C%8817%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.6" title="2017年01月17日，版本 v1.1.6"><span>2017年01月17日，版本 v1.1.6</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B401%E6%9C%8814%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.5" title="2017年01月14日，版本 v1.1.5"><span>2017年01月14日，版本 v1.1.5</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B401%E6%9C%8812%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.4" title="2017年01月12日，版本 v1.1.4"><span>2017年01月12日，版本 v1.1.4</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B401%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.3" title="2017年01月10日，版本 v1.1.3"><span>2017年01月10日，版本 v1.1.3</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B401%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.2" title="2017年01月10日，版本 v1.1.2"><span>2017年01月10日，版本 v1.1.2</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B401%E6%9C%8808%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.1" title="2017年01月08日，版本 v1.1.1"><span>2017年01月08日，版本 v1.1.1</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B412%E6%9C%8830%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.1.0" title="2016年12月30日，版本 v1.1.0"><span>2016年12月30日，版本 v1.1.0</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B412%E6%9C%8828%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.9" title="2016年12月28日，版本 v1.0.9"><span>2016年12月28日，版本 v1.0.9</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B412%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.8" title="2016年12月10日，版本 v1.0.8"><span>2016年12月10日，版本 v1.0.8</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B412%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.7" title="2016年12月10日，版本 v1.0.7"><span>2016年12月10日，版本 v1.0.7</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B412%E6%9C%8803%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.6" title="2016年12月03日，版本 v1.0.6"><span>2016年12月03日，版本 v1.0.6</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B412%E6%9C%8801%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.5" title="2016年12月01日，版本 v1.0.5"><span>2016年12月01日，版本 v1.0.5</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B411%E6%9C%8830%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.5" title="2016年11月30日，版本 v1.0.5"><span>2016年11月30日，版本 v1.0.5</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B411%E6%9C%8829%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.4" title="2016年11月29日，版本 v1.0.4"><span>2016年11月29日，版本 v1.0.4</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B411%E6%9C%8828%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.3" title="2016年11月28日，版本 v1.0.3"><span>2016年11月28日，版本 v1.0.3</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B411%E6%9C%8827%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.3" title="2016年11月27日，版本 v1.0.3"><span>2016年11月27日，版本 v1.0.3</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B411%E6%9C%8826%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.2" title="2016年11月26日，版本 v1.0.2"><span>2016年11月26日，版本 v1.0.2</span></a></li><li class="content-index-level-3"><a href="index.html#2016%E5%B9%B411%E6%9C%8825%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.0" title="2016年11月25日，版本 v1.0.0"><span>2016年11月25日，版本 v1.0.0</span></a></li></ul></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年8月31日 22:51</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>最近经常有小白找我让我把他们安装ShadowsocksR服务端，一开始都是手动安装的，后来嫌麻烦，就打算用脚本，但是网上基本上只是安装一下就没了，只能算<strong>一键安装脚本</strong>，并不足够方便和适合懒人和小白，于是自己写了一个<strong>一键管理脚本，一键安装和一键管理的区别！<br />
+</strong></p>
+<hr />
+<p><strong>更多的Shadowsocks安装教程/一键脚本请看这里：<a title="" href="../ss-jc26/index.html#2.2.2%E3%80%81%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1" target="_blank" data-original-title="">Shadowsocks指导篇</a></strong></p>
+<blockquote><p>本脚本的 二维码图片 功能，会调用我自建的 二维码API来生成二维码图片( http://doub.pw/qr/qr.php?text=xxx )，生成二维码是使用的JS代码，由浏览器端运行生成，我的二维码API绝不会记录任何调用日志！<strong>请确定你信任我和我的脚本，否则请不要用我的脚本。</strong></p>
+<p><strong>不信任我，为什么进我网站？看我教程？用我脚本？不要在这里暴漏自己的智障！</strong></p></blockquote>
+<h2 id="系统要求">系统要求</h2>
+<p><strong>CentOS 6+ / Debian 6+ / Ubuntu 14.04 +</strong></p>
+<p>推荐 <strong>Debian 7 x64</strong>，这个是我一直使用的系统，我的脚本在这个系统上面出错率最低。并且最容易安装锐速（锐速不支持OpenVZ）</p>
+<p>CentOS根据大家的要求，加入了CentOS 6和7的支持，CentOS 7 自带防火墙问题(firewalld)自行解决，其他版本没有做测试。</p>
+<h3 id="脚本版本">脚本版本</h3>
+<p><strong>Ver:</strong> 2.0.30</p>
+<blockquote><p>本脚本与另一个SSR脚本 <a href="../ss-jc60/index.html" target="_blank">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a> 的区别是什么？</p>
+<p><strong>ssrmu.sh</strong> 脚本是单服务器<strong>多用户</strong>脚本，使用的是 SSR服务端的<strong>MudbJSON模式</strong>，可以给每个用户(端口)设置不同的加密方式/协议/混淆/限制速度/设备数限制/可用总流量等功能。即实现<strong>单服务器多用户流量管理</strong>等功能。</p>
+<p>而 <strong>ssr.sh</strong> 则是单服务器<strong>单用户</strong>脚本，使用的是 SSR服务端的<strong>单用户配置方式</strong>，即使实现了多端口，但是还算不算多用户，不支持每个用户(端口)不同的加密方式/协议/混淆等，并且无法管理流量使用。</p>
+<p><strong>如何选择这两个脚本？</strong></p>
+<p>根据你的需求选择，比如你仅仅是 一个或两个人使用，并且不需要流量管理功能，那么选择 <strong>ssr.sh</strong> 好了。而如果很多人使用，并且都需要限制流量来管理，那你适合使用 <strong>ssrmu.sh</strong> ，所以自己看着选，多试试<strong>（两个脚本不能共存）</strong>！</p></blockquote>
+<h3 id="脚本特点：">脚本特点：</h3>
+<p>目前网上的各个ShadowsocksR脚本基本都是只有 安装/卸载 等基础功能，对于小白来说还是不够简单方便，要修改账号配置还要手动修改文件，所以那些ShadowsocksR脚本只能称得上<strong>一键安装脚本</strong>。既然没有我满意的ShadowsocksR一键管理脚本，那么我就自己造喽，于是特意学了Shell，然后写出来了这个Shadowsocks<strong>R一键管理脚本</strong>！</p>
+<ol>
+<li>支持 限制 端口限速</li>
+<li>支持 限制 端口设备数</li>
+<li>支持 显示 当前连接IP</li>
+<li>支持 显示 SS/SSR连接+二维码</li>
+<li>支持 切换管理 单/多端口</li>
+<li>支持 一键安装 BBR</li>
+<li>支持 一键安装 锐速</li>
+<li>支持 一键安装 LotServer</li>
+<li>支持 一键封禁 垃圾邮件(SMAP)/BT/PT</li>
+</ol>
+<h2 id="安装步骤">安装步骤</h2>
+<p><span style="color: #ff6464;"><strong>简单的来说，如果你什么都不懂，那么你直接一路回车就可以了！</strong></span></p>
+<p>本脚本需要Linux root账户权限才能正常安装运行，所以<strong>如果不是 root账号，请先切换为root，如果是 root账号，那么请跳过！</strong></p>
+<pre class="prettyprint linenums">sudo su
+</pre>
+<p>输入上面代码回车后会提示你输入当前用户的密码，输入并回车后，没有报错就继续下面的步骤安装ShadowsocksR。</p>
+<hr />
+<p><strong>v2.0.0 版本以后的脚本，请先卸载旧脚本ShadowsocksR服务端，再重新安装！</strong></p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Bash/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh</pre>
+<p><strong>备用下载地址（上面的链接无法下载，就用这个）：</strong></p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh
+</pre>
+<p>下载运行后会提示你输入数字来选择要做什么。</p>
+<p>输入<span style="color: #ff6464;"><strong> 1</strong></span> ，就会开始安装ShadowsocksR服务端，并且会提示你输入Shadowsocks的 <strong>端口/密码/加密方式/ 协议/混淆（混淆和协议是通过输入数字选择的）</strong> 等参数。</p>
+<p><strong>如果安装过程中报错，请看 <a href="index.html#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">常见问题解决方法</a>。</strong></p>
+<p>如果协议是origin，那么混淆也必须是plain !</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">请输入要设置的ShadowsocksR账号 端口
+(默认: 2333):
+
+——————————————————————————————
+ 端口 : 2333
+——————————————————————————————
+
+请输入要设置的ShadowsocksR账号 密码
+(默认: doub.io):
+
+——————————————————————————————
+ 密码 : doub.io
+——————————————————————————————
+
+请选择要设置的ShadowsocksR账号 加密方式
+  1. none
+ [注意] 如果使用 auth_chain_a 协议，请加密方式选择 none，混淆随意(建议 plain)
+ 
+  2. rc4
+  3. rc4-md5
+  4. rc4-md5-6
+ 
+  5. aes-128-ctr
+  6. aes-192-ctr
+  7. aes-256-ctr
+ 
+  8. aes-128-cfb
+  9. aes-192-cfb
+ 10. aes-256-cfb
+ 
+ 11. aes-128-cfb8
+ 12. aes-192-cfb8
+ 13. aes-256-cfb8
+ 
+ 14. salsa20
+ 15. chacha20
+ 16. chacha20-ietf
+注意：salsa20/chacha20-*系列加密方式，需要额外安装依赖 libsodium ，否则会无法启动ShadowsocksR !
+
+(默认: 5. aes-128-ctr):
+
+——————————————————————————————
+ 加密 : aes-128-ctr
+——————————————————————————————
+
+请选择要设置的ShadowsocksR账号 协议插件
+ 1. origin
+ 2. auth_sha1_v4
+ 3. auth_aes128_md5
+ 4. auth_aes128_sha1
+ 5. auth_chain_a
+ [注意] 如果使用 auth_chain_a 协议，请加密方式选择 none，混淆随意(建议 plain)
+
+(默认: 2. auth_sha1_v4):
+
+——————————————————————————————
+ 协议 : auth_sha1_v4
+——————————————————————————————
+
+是否设置 协议插件兼容原版(_compatible)？[Y/n]
+
+请选择要设置的ShadowsocksR账号 混淆插件
+ 1. plain
+ 2. http_simple
+ 3. http_post
+ 4. random_head
+ 5. tls1.2_ticket_auth
+ [注意] 如果使用 ShadowsocksR 加速游戏，请选择 混淆兼容原版或 plain 混淆，然后客户端选择 plain，否则会增加延迟 !
+(默认: 5. tls1.2_ticket_auth):
+
+——————————————————————————————
+ 混淆 : tls1.2_ticket_auth
+——————————————————————————————
+
+是否设置 混淆插件兼容原版(_compatible)？[Y/n]
+请输入要设置的ShadowsocksR账号 欲限制的设备数 ( auth_* 系列协议 不兼容原版才有效 )
+[注意] 设备数限制：每个端口同一时间能链接的客户端数量(多端口模式，每个端口都是独立计算)，建议最少 2个。
+(默认: 无限):5
+——————————————————————————————
+ 链接设备数 : 5 
+——————————————————————————————
+
+请输入要设置的每个端口 单线程 限速上限(单位：KB/S)
+[注意] 单线程限速：每个端口 单线程的限速上限，多线程即无效。
+(默认: 无限):666
+
+——————————————————————————————
+ 单端口单线程 : 666 KB/S 
+——————————————————————————————
+
+请输入要设置的每个端口 总速度 限速上限(单位：KB/S)
+[注意] 端口总限速：每个端口 总速度 限速上限，单个端口整体限速。
+(默认: 无限):2333
+
+——————————————————————————————
+ 单端口总限速 : 2333 KB/S 
+——————————————————————————————
+</pre>
+<p>同时最后也会提示是否设置 混淆 兼容原版（也就是使用原版SS也能链接），不懂 <strong>直接回车</strong> 或 <strong>输入 y</strong> 。（协议不在兼容原版）</p>
+<pre><span style="color: #ff6464;"><strong>注意：关于限制设备数数</strong></span>，这个<strong>协议必须是非原版并且不兼容原版才有效</strong>，也就是必须SSR客户端使用协议的情况下，才有效！</pre>
+<p>不输入一路回车就是 <strong>默认参数：</strong></p>
+<pre class="prettyprint linenums">端口 : 2333
+密码 : doub.io
+加密 : aes-128-ctr
+协议 : auth_sha1_v4_compatible
+混淆 : tls1.2_ticket_auth_compatible
+设备数限制: 0(无限)
+单线程限速: 0 KB/S (不限速)
+端口总限速: 0 KB/S (不限速)
+</pre>
+<p>最后会提示让你确认是否输入正确，如果没问题那就<strong>按任意键继续安装</strong>，如果输入错误，那么就使用 <strong>Ctrl + C</strong> 退出脚本。</p>
+<pre class="prettyprint linenums">——————————————————————————————
+ 请检查Shadowsocks账号配置是否有误 !
+
+ 端口     : 2333
+ 密码     : doub.io
+ 加密     : aes-128-ctr
+ 协议     : auth_sha1_v4_compatible
+ 混淆     : tls1.2_ticket_auth_compatible
+ 设备数限制: 5
+ 单线程限速: 666 KB/S 
+ 端口总限速: 2333 KB/S
+——————————————————————————————
+
+请按任意键继续，如有配置错误请使用 Ctrl+C 退出。
+</pre>
+<p>如果安装过程没有出错，那么最后就会提示：</p>
+<pre class="prettyprint linenums">############################################################
+ ShadowsocksR账号 配置信息：
+
+ I P     : xxx.xxx.xxx.xxx
+ 端口     : 2333 
+ 密码     : doub.io
+ 加密     : aes-128-ctr
+ 协议     : auth_sha1_v4_compatible
+ 混淆     : tls1.2_ticket_auth_compatible 
+ 设备数限制: 5
+ 单线程限速: 666 KB/S 
+ 端口总限速: 2333 KB/S 
+
+ SS链接: ss://xxxxxxxxxxxxx
+ SS二维码: http://pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url=ss://xxxxxxxxxxxxx
+ SSR链接: ssr://xxxxxxxxxxxxx
+ SSR二维码: http://pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url=ssr://xxxxxxxxxxxxx
+
+ 提示: 
+ 在浏览器中，打开二维码链接，就可以看到二维码图片。
+ 协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。
+
+############################################################
+</pre>
+<p><strong>SS/SSR链接</strong>（格式： ss://XXXXXXX ，很长），可以从剪辑版导入Shadowsocks客户端，不懂的话看下面二维码。</p>
+<p><strong>SS/SSR二维码</strong>，复制后面的链接在浏览器打开，就会显示一个二维码的图片，可以用Shadowsocks客户端扫描二维码来添加。<br />
+</p></div>
+<h3 id="使用说明">使用说明</h3>
+<p>运行脚本，</p>
+<pre class="prettyprint linenums">bash ssr.sh</pre>
+<p>输入对应的数字来执行相应的命令。</p>
+<pre class="prettyprint linenums">  请输入一个数字来选择菜单选项
+
+ 1. 安装 ShadowsocksR
+ 2. 更新 ShadowsocksR
+ 3. 卸载 ShadowsocksR
+ 4. 安装 libsodium(chacha20)
+————————————
+ 5. 查看 账号信息
+ 6. 显示 连接信息
+ 7. 设置 用户配置
+ 8. 手动 修改配置
+ 9. 切换 端口模式
+————————————
+ 10. 启动 ShadowsocksR
+ 11. 停止 ShadowsocksR
+ 12. 重启 ShadowsocksR
+ 13. 查看 ShadowsocksR 日志
+————————————
+ 14. 其他功能
+ 15. 升级脚本
+ 
+ 当前状态: 已安装 并 已启动
+ 当前模式: 单端口
+
+请输入数字(1-15)：
+</pre>
+<blockquote><p>当你为 <strong>单端口模式</strong>时，使用 <strong>7. 设置 用户配置</strong> 是 修改 单端口账号配置。</p>
+<p>当你为 <strong>多端口模式</strong>时，使用 <strong>7. 设置 用户配置</strong> 是 添加/删除/修改 多端口账号配置。</p></blockquote>
+<h3 id="文件位置">文件位置</h3>
+<p><strong>安装目录：</strong>/usr/local/shadowsocksr</p>
+<p><strong>配置文件：</strong>/etc/shadowsocksr/user-config.json</p>
+<h2 id="其他说明">其他说明</h2>
+<p>ShadowsocksR 安装后，自动设置为 系统服务，所以支持使用服务来启动/停止等操作，同时支持开机启动。</p>
+<ol>
+<li><strong>启动 ShadowsocksR：</strong>service ssr start</li>
+<li><strong>停止 ShadowsocksR：</strong>service ssr stop</li>
+<li><strong>重启 ShadowsocksR：</strong>service ssr restart</li>
+<li><strong>查看 ShadowsocksR状态：</strong>service ssr status</li>
+</ol>
+<p>ShadowsocksR 默认支持UDP转发，服务端无需任何设置。</p>
+<p>本脚本已经集成了 安装/卸载 锐速(ServerSpeeder)开心版，但是是否支持请查看 <a href="https://www.91yun.co/wp-content/plugins/91yun-serverspeeder/systemlist.html" target="_blank">Linux支持内核列表</a> 。（锐速不支持OpenVZ）</p>
+<p><strong>v2.0.0 以前的旧版本下载地址：</strong></p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Bash/ssr_old.sh &amp;&amp; chmod +x ssr_old.sh &amp;&amp; bash ssr_old.sh</pre>
+<p><strong>备用下载地址（上面的链接无法下载，就用这个）：</strong></p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr_old.sh &amp;&amp; chmod +x ssr_old.sh &amp;&amp; bash ssr_old.sh</pre>
+<p></p></div>
+<h3 id="ShadowsocksR目前支持的协议和混淆：">ShadowsocksR目前支持的协议和混淆：</h3>
+<p><strong>协议（Protocol）：</strong>origin，auth_sha1_v4，<strong>auth_aes128_md5，auth_aes128_sha1，auth_chain_a，auth_chain_b</strong></p>
+<p><strong>混淆（Obfs）：</strong>plain，http_simple，http_post，random_head，<strong>tls1.2_ticket_auth，tls1.2_ticket_fastauth<span style="color: #ff6600;">(需06/04日以后的服务端版本)</span></strong></p>
+<p>origin 和 plain 是原版，加粗的是推荐使用的。</p>
+<blockquote><p>如果你想要使用 <strong>tls1.2_ticket_fastauth</strong> 混淆插件，那么服务端选择 <strong>tls1.2_ticket_auth</strong>，客户端选择 <strong>tls1.2_ticket_fastauth</strong> 即可。</p>
+<p>如果服务端 设置混淆参数为：<strong>tls1.2_ticket_auth_compatible (兼容原版)</strong></p>
+<p>那么客户端 可使用的混淆为：<strong>plain / tls1.2_ticket_auth / tls1.2_ticket_fastauth</strong></p>
+<p><strong> tls1.2_ticket_auth</strong> 与 <strong>tls1.2_ticket_fastauth</strong> 的区别为，后者不会等待服务器回应，所以不会增加延迟。适合于，因为混淆插件增加延迟的原因不得不选择原版混淆 <strong>plain</strong>，但是又因为QOS等因素而处于延迟与干扰/限速等之间抉择的时候，可以选择 <strong>tls1.2_ticket_fastauth</strong> 客户端混淆插件！</p></blockquote>
+<h3 id="使用阿里云/腾讯云等存着安全组或规则组一类外部防火墙的请注意">使用阿里云/腾讯云等存着安全组或规则组一类外部防火墙的请注意</h3>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<p>因为阿里云/腾讯云的服务器还有一个外部的防火墙也就是叫 安全组或规则组。</p>
+<p>一般来说默认是只开放<strong> 22(SSH)端口</strong>，所以一些人在搭建ShadowsocksR服务端后，会出现无法访问的情况，ShadowsocksR客户端的统计窗口显示超时。</p>
+<p>同时ShadowsocksR服务端<strong>开启详细日志模式(其他功能中)</strong>后，ShadowsocksR客户端访问ShadowsocksR账号<strong>无日志输出</strong>。</p>
+<p></p></div>
+<h3 id="ShadowsocksR 端口限速中 单线程限速 和 端口总限速 的区别">ShadowsocksR 端口限速中 单线程限速 和 端口总限速 的区别</h3>
+<pre>注意：如果要使用脚本中的这个功能，需要重新下载脚本，并重装安装 2月15日 以后的ShadowsocksR服务端才行。</pre>
+<p>请查看这个文章：<a title="ShadowsocksR服务端 限制设备连接数 和 限制端口速度 的方法" href="../ss-jc47/index.html" target="_blank">ShadowsocksR服务端 限制设备连接数 和 限制端口速度 的方法</a></p>
+<h3 id="解决 可使用原版协议，但无法使用ShadowsocksR协议 的问题">解决 可使用原版协议，但无法使用ShadowsocksR协议 的问题</h3>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<p>如果发现Shadowsocks原版协议/混淆可以使用，而ShadowsocksR的协议/混淆无法使用，那么多半是 VPS时区问题</p>
+<p>这个命令，我的ShadowsocksR脚本在安装的时候已经执行了，如果你发现没有执行，那你可以手动执行。</p>
+<p>我们可以通过下面这个命令，把VPS的时区调整为北京时区，这样就避免了ShadowsocksR 协议/混淆 因为时差太大造成的无法验证。</p>
+<pre class="prettyprint linenums">cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</pre>
+<p>注意，部分VPS会提示你是否覆盖文件，输入<code> y </code>然后回车。</p>
+<p>如果你遇到，crontab设定的定时任务不按更换时区后的VPS时间执行，那么请看下面：</p>
+<p>crontab设定的定时任务不按VPS的时间执行，那是因为你更换VPS时区后还需要重启crontab。</p>
+<p><strong>CentOS 系统：</strong></p>
+<pre class="prettyprint linenums">service crond restart
+</pre>
+<p><strong>Debian/Ubuntu 系统：</strong></p>
+<pre class="prettyprint linenums">service cron restart
+</pre>
+<p></p></div>
+<h3 id="提示 Media change: please insert the disc labeled‘Debian GNU/Linux 7.0.0 Wheezy — Official amd64 CD 等信息是 apt源 的问题，更换 apt源">提示 Media change: please insert the disc labeled‘Debian GNU/Linux 7.0.0 Wheezy — Official amd64 CD 等信息是 apt源 的问题，更换 apt源</h3>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看解决办法</a></p><div class="toggle-box" style="display: none;"><p></p>
+<p>我发现有一些人的VPS的 apt源有问题，导致安装失败，所以我这里写上如何更换 apt源。</p>
+<p><strong>本步骤仅适合 Debian 系统，Ubuntu系统自行搜索 apt源。</strong></p>
+<p>下面的手动改的方法一些人可能嫌麻烦，所以你们可以这样字更换apt源。</p>
+<p>依次输入就可以更换apt源了，下面的代码是以 us美国 为例，你可以自己去<a href="https://softs.fun/?dir=Bash/sources/" target="_blank">这里选一个近一些合适</a>的，然后替换下面代码中<strong> us.sources.list 的 us</strong> 。</p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate -P /etc/apt https://softs.fun/Bash/sources/us.sources.list
+rm -rf /etc/apt/sources.list
+cp /etc/apt/us.sources.list /etc/apt/sources.list
+</pre>
+<h4 id="手动更换（上面的命令执行完毕就不要重复执行这个了）">手动更换（上面的命令执行完毕就不要重复执行这个了）</h4>
+<p>打开你的apt源文件，</p>
+<pre class="prettyprint linenums">vi /etc/apt/sources.list
+</pre>
+<p>然后按<code> I 键 </code>进入编辑模式，如果你没有安装vim，也无法通过 <strong>apt-get install vim -y</strong> 安装，那么你就只能通过SFTP下载这个文件本地编辑了。</p>
+<p>把下面的内容复制过去，注意下面示例是美国的apt源，想要其他地区的apt源，请看：<a href="http://www.debian.org/mirror/list" target="_blank">Debian全球镜像站</a>（替换下面的 <strong>ftp.us.debian.org</strong> 中的 <strong>us</strong> ）</p>
+<pre class="prettyprint linenums">deb http://ftp.us.debian.org/debian/ jessie main
+deb-src http://ftp.us.debian.org/debian/ jessie main
+
+deb http://security.debian.org/ jessie/updates main contrib
+deb-src http://security.debian.org/ jessie/updates main contrib
+
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib
+deb-src http://ftp.us.debian.org/debian/ jessie-updates main contrib
+</pre>
+<p>修改完毕之后，按<code> ESC 键 </code>退出编辑模式，然后输入<code> :wq </code>保存并退出，然后再试一试<code> apt-get update </code>是否正常。<br />
+</p></div>
+<h3 id="ShadowsocksR启动失败，日志提示：Exception: libsodium not found 的错误">ShadowsocksR启动失败，日志提示：Exception: libsodium not found 的错误</h3>
+<p>这是你使用了 chacha20 系列加密方式，但是却没有安装 libsodium支持库，导致ShadowsocksR无法启动，运行脚本选择选项 4 安装 libsodium支持库即可，如果安装失败，请选择其他的加密方式，对速度影响不大。</p>
+<h3 id="提示wget: unknown host &#8220;softs.fun&#8221; 之类的错误">提示wget: unknown host &#8220;softs.fun&#8221; 之类的错误</h3>
+<p>这是无法解析我的域名，多半是DNS的问题，请更换DNS为谷歌DNS。<br />
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">echo "nameserver 8.8.8.8
+nameserver 8.8.4.4" &gt; /etc/resolv.conf
+# 两行一起复制一直执行</pre>
+<p></p></div></p>
+<h3 id="提示 wget: command not found 的错误">提示 wget: command not found 的错误</h3>
+<p>这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。<br />
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p><br />
+<strong>CentOS系统:</strong></p>
+<pre class="prettyprint linenums">yum install -y wget</pre>
+<p><strong>Debian/Ubuntu系统:</strong></p>
+<pre class="prettyprint linenums">apt-get install -y wget</pre>
+<p></p></div></p>
+<h3 id="升级脚本">升级脚本</h3>
+<p>升级脚本只需要重新下载脚本文件就可以了，会自动覆盖原文件。</p>
+<h3 id="定时重启">定时重启</h3>
+<p>一些人可能需要定时重启ShadowsocksR服务端来保证稳定性等，所以这里用 crontab 定时。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">crontab -e
+# 首先打开定时设置，然后会出现文本编辑，按 I键 进入编辑模式，根据需求添加下下面的代码到 这个文本编辑框内！！
+------------
+# 如果提示命令不存在，那么安装crontab：
+# CentOS系统：
+yum update
+yum install -y crond
+# Debian/Ubuntu系统：
+apt-get update
+apt-get install -y cron
+</pre>
+<p>安装并打开 crontab 后，我们根据需求添加下面的代码，添加后我们按<code> ESC键 </code>退出编辑模式，然后输入<code> :wq </code>保存并退出。</p>
+<pre class="prettyprint linenums"># 添加定时重启任务
+# 是添加到 crontab -e 文本编辑框内，而不是让你执行！
+# 下面代码前面的 * * * * * 分别对应：分钟 小时 日 月 星期
+
+10 2 * * * /etc/init.d/ssr restart
+# 这个代表 每天2点10分重启一次 ShadowsocksR
+
+10 2 */2 * * /etc/init.d/ssr restart
+# 这个代表 每隔2天的2点10分重启一次 ShadowsocksR
+
+10 */4 * * * /etc/init.d/ssr restart
+# 这个代表 每隔4小时的第10分重启一次 ShadowsocksR
+</pre>
+<p></p></div>
+<hr />
+<p>本脚本只是本人的第一个Shell脚本学习练手作品，在逻辑结构上问题不少，大家遇到什么BUG请积极反馈！</p>
+<h2 id="更新日志">更新日志</h2>
+<h4 id="2017年08月31日，版本 v2.0.30">2017年08月31日，版本 v2.0.30</h4>
+<p><strong>1.修复</strong> 显示链接信息 功能，不同端口 链接IP显示重复的问题(例如链接 8080端口的IP同样显示在 80端口下)</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=18274.html#">点击展开 查看更多更新日志</a></p><div class="toggle-box" style="display: none;"><p></p>
+<h4 id="2017年08月24日，版本 v2.0.29">2017年08月24日，版本 v2.0.29</h4>
+<p><strong>1.新增</strong> 几个外网IP获取源，避免一些服务器获取外网IP失败。</p>
+<h4 id="2017年08月12日，版本 v2.0.28">2017年08月12日，版本 v2.0.28</h4>
+<p><strong>1.修复</strong> 封禁/解封 BT/PT/SPAM功能运行后没有正常删除脚本的问题。</p>
+<h4 id="2017年08月11日，版本 v2.0.27">2017年08月11日，版本 v2.0.27</h4>
+<p><strong>1.取消</strong> 安装ShadowsocksR过程中修改DNS为谷歌DNS的步骤（个别服务器会导致未知问题）。</p>
+<h4 id="2017年08月10日，版本 v2.0.26">2017年08月10日，版本 v2.0.26</h4>
+<p><strong>1.修复</strong> BBR文件位置问题。</p>
+<h4 id="2017年08月08日，版本 v2.0.25">2017年08月08日，版本 v2.0.25</h4>
+<p><strong>1.修复</strong> 显示 链接信息 功能 CentOS7系统不可用的问题（缺少 netstat）。</p>
+<h4 id="2017年08月07日，版本 v2.0.24">2017年08月07日，版本 v2.0.24</h4>
+<p><strong>1.新增</strong> 显示 链接信息 选项可以选择 IP+IP归属地 的输出格式。</p>
+<h4 id="2017年08月04日，版本 v2.0.23">2017年08月04日，版本 v2.0.23</h4>
+<p><strong>1.更新</strong> 脚本内 逗比云地址（旧域名被墙，更换新域名）。</p>
+<h4 id="2017年07月28日，版本 v2.0.22">2017年07月28日，版本 v2.0.22</h4>
+<p><strong>1.新增</strong> 协议插件：auth_chain_b （刚才v2.0.21版本更新完了才看到这个）。</p>
+<h4 id="2017年07月28日，版本 v2.0.21">2017年07月28日，版本 v2.0.21</h4>
+<p><strong>1.更换</strong>ShadowsocksR项目 Github源（<a href="https://github.com/ToyoDAdoubi/shadowsocksr" target="_blank">Fork</a>）。</p>
+<h4 id="2017年07月26日，版本 v2.0.20">2017年07月26日，版本 v2.0.20</h4>
+<p><strong>1.修复</strong> CentOS7 无法显示链接信息(IP链接信息)的问题。</p>
+<p><strong>2.新增</strong> Git 安装是否成功判断。</p>
+<h4 id="2017年07月26日，版本 v2.0.19">2017年07月26日，版本 v2.0.19</h4>
+<p><strong>1.新增</strong> ROOT账号（或权限）检测功能，避免因为没有ROOT权限而安装失败。</p>
+<h4 id="2017年06月16日，版本 v2.0.18">2017年06月16日，版本 v2.0.18</h4>
+<p><strong>1. 更新</strong> 应ShadowsocksR客户端要求，规范化SS/SSR链接生成格式</p>
+<h4 id="2017年05月01日，版本 v2.0.17">2017年05月01日，版本 v2.0.17</h4>
+<p><strong>1.修复</strong> 部分客户端无法识别 SS/SSR连接和二维码的问题</p>
+<h4 id="2017年04月30日，版本 v2.0.16">2017年04月30日，版本 v2.0.16</h4>
+<p><strong>1.修复</strong> 多端口模式下，修改用户配置中选择用户时，因端口重复导致报错的问题（如用户1端口是 80 用户2端口是 8080）</p>
+<p><strong>2.修复</strong> 部分系统删除多端口用户报错的问题（报错内容如 [ x +x ]）</p>
+<h4 id="2017年04月29日，版本 v2.0.15">2017年04月29日，版本 v2.0.15</h4>
+<p><strong>1.修复</strong> 部分系统无法识别 单/多 端口模式的问题</p>
+<h4 id="2017年04月28日，版本 v2.0.14">2017年04月28日，版本 v2.0.14</h4>
+<p><strong>1.新增</strong> 新协议 auth_chain_a，建议加密方式为 none，混淆插件为 plain。</p>
+<p><strong>—— 新协议目前仅支持 Windows PC C# 客户端，服务端也请更新！</strong></p>
+<p><strong>2.修复</strong> 升级脚本BUG。</p>
+<h4 id="2017年04月27日，版本 v2.0.13">2017年04月27日，版本 v2.0.13</h4>
+<p><strong>1.修改</strong> 升级脚本功能，先尝试从逗比云获取最新版本号并更新脚本，其次才是Github，避免被Github的缓存坑。</p>
+<h4 id="2017年04月26日，版本 v2.0.12">2017年04月26日，版本 v2.0.12</h4>
+<p><strong>1.新增</strong> none 等加密方式（以前因为很多加密方式没人用，所以只把常用的加密方式加入进去了，这次全都给加上了）</p>
+<h4 id="2017年04月26日，版本 v2.0.11">2017年04月26日，版本 v2.0.11</h4>
+<p><strong>1.新增</strong> LotServer 配置选项。</p>
+<p><strong>2.更新</strong> 锐速安装脚本下载地址。</p>
+<p><strong>3.修改</strong> 锐速/BBR配置选项到菜单子选项 [其他功能] 中。</p>
+<h4 id="2017年04月22日，版本 v2.0.10">2017年04月22日，版本 v2.0.10</h4>
+<p><strong>1.修复</strong> 多端口模式下，显示链接信息功能，无法正确显示IP的BUG。</p>
+<h4 id="2017年04月22日，版本 v2.0.9">2017年04月22日，版本 v2.0.9</h4>
+<p><strong>1.修复</strong> 各种BUG。</p>
+<h4 id="2017年04月22日，版本 v2.0.8">2017年04月22日，版本 v2.0.8</h4>
+<p><strong>1.新增</strong> 脚本升级功能（可以在脚本内检测脚本的最新版本并升级了）</p>
+<p><strong>2.新增</strong> 修改日志输出模式功能，可以修改日志输出为详细默认（详细的连接日志+错误日志）</p>
+<p><strong>3.修复</strong> 部分系统无法正常启动ShadowsocksR的问题</p>
+<h4 id="2017年04月19日，版本 v2.0.7">2017年04月19日，版本 v2.0.7</h4>
+<p><strong>1.修复</strong> 一键解封 BT、PT、SPAM功能的BUG</p>
+<h4 id="2017年04月19日，版本 v2.0.6">2017年04月19日，版本 v2.0.6</h4>
+<p><strong>1.更新</strong> 一键封禁 BT、PT、SPAM功能中的脚本</p>
+<p>—— 我重新了封BT&#8230;的脚本，所以这里也需要改一改。</p>
+<h4 id="2017年04月16日，版本 v2.0.5">2017年04月16日，版本 v2.0.5</h4>
+<p><strong>1.修复</strong> 显示连接信息中的 IP总数显示错误</p>
+<p><strong>2.修改</strong> 显示连接信息中的 IP 分隔符为 &#8221; | &#8220;（原为空格）</p>
+<h4 id="2017年04月15日，版本 v2.0.4">2017年04月15日，版本 v2.0.4</h4>
+<p><strong>1.新增</strong> 一键解封 BT/PT/SPAM功能</p>
+<h4 id="2017年03月24日，版本 v2.0.3">2017年03月24日，版本 v2.0.3</h4>
+<p><strong>1.新增</strong> 自动检测 Libsodiumr最新版本功能（Chacha20等加密方式依赖）</p>
+<p>—— 正好Libsodiumr更新到了 1.0.12，我干脆就把自动检测版本功能加上好了，以后就不用在管这个了。</p>
+<p><strong>2.优化</strong> 安装ShadowsocksR过程中提示的信息。</p>
+<h4 id="2017年03月24日，版本 v2.0.2">2017年03月24日，版本 v2.0.2</h4>
+<p><strong>1.修复</strong> 修改配置时，因包含空格而导致修改无效的问题。</p>
+<p><strong>2.更换</strong> ShadowsocksR服务脚本下载地址为 Github。</p>
+<p><strong>3.优化</strong> 安装ShadowsocksR时，ShadowsocksR已存在的提示文本。</p>
+<h4 id="2017年03月17日，版本 v2.0.1">2017年03月17日，版本 v2.0.1</h4>
+<p><strong>1.修复</strong> 多端口模式下，混淆参数多一个 中括号的BUG。</p>
+<p><strong>2.修复</strong> 一些判断错误BUG。</p>
+<h4 id="2017年03月17日，版本 v2.0.0">2017年03月17日，版本 v2.0.0</h4>
+<p><strong>1.重写</strong> ShadowsocksR脚本。</p>
+<p><strong>2.完善</strong> 诸多细节。</p>
+<p><strong>3.降低</strong> 出错几率。</p>
+<p><strong>4.减少</strong> 安装速度。</p>
+<p><strong>5.增加</strong> 系统服务，可以使用 service ssr start | stop | restart | status 来控制。</p>
+<p><strong>6.取消</strong> 多语言功能，有需要的人我会保留 旧版本脚本的下载链接。</p>
+<p><strong>7.取消</strong> 定时重启功能。</p>
+<p><strong> —— 因为这个脚本是我当初学习 Shell后写的第一个脚本，所以逻辑什么的非常乱，一点都不简洁，这两天没事就重写/重构了脚本，在功能上和旧版本差别不大，主要是 一些细节处理的更好更完美了，更多的差别请升级脚本~</strong></p>
+<h4 id="2017年03月08日，版本 v1.2.9">2017年03月08日，版本 v1.2.9</h4>
+<p><strong>1.修复</strong> 脚本输入字符后，使用退格键(删除键)会显示 ^H 而不正确删除字符的问题。</p>
+<p>—— 其实这个在03/04的时候就已经修复更新了，不过当时并没有算成新版本，这次更新顺带写出来。</p>
+<p><strong>2.更换</strong> 二维码链接为自建二维码图片生成API。</p>
+<h4 id="2017年03月01日，版本 v1.2.8">2017年03月01日，版本 v1.2.8</h4>
+<p><strong>1.优化</strong> 开机启动功能</p>
+<h4 id="2017年02月22日，版本 v1.2.7">2017年02月22日，版本 v1.2.7</h4>
+<p><strong>1.修复</strong> 显示用户配置，多端口模式下 SSR链接+二维码 错误问题</p>
+<p><strong>2.修复</strong> 因为上个版本的中英文切换导致的文字错误问题</p>
+<h4 id="2017年02月19日，版本 v1.2.6">2017年02月19日，版本 v1.2.6</h4>
+<p><strong>1.新增</strong> 菜单 脚本 中文/英语 语言切换选项。</p>
+<p>—— 有部分国外友人表示看不懂中文，所以就把脚本做成了可以中英文切换的了，虽然是谷歌翻译- -。</p>
+<h4 id="2017年02月15日，版本 v1.2.5">2017年02月15日，版本 v1.2.5</h4>
+<p><strong>1.新增</strong> 设置 ShadowsocksR 端口限速功能（单位 KB/S）。</p>
+<p>—— 2月15日更新的ShadowsocksR服务端已经支持端口限速了，分端口单线程限速 和 端口总限速，<a href="index.html#ShadowsocksR%20%E7%AB%AF%E5%8F%A3%E9%99%90%E9%80%9F%E4%B8%AD%20%E5%8D%95%E7%BA%BF%E7%A8%8B%E9%99%90%E9%80%9F%20%E5%92%8C%20%E7%AB%AF%E5%8F%A3%E6%80%BB%E9%99%90%E9%80%9F%20%E7%9A%84%E5%8C%BA%E5%88%AB">区别看这里</a>。</p>
+<pre><strong>注意：如果要使用这个功能，需要重新下载ShadowsocksR脚本，并重装ShadowsocksR服务端！</strong></pre>
+<p><strong>2.修正</strong> 连接IP数的文字错误，应该是 设备数限制，而不是IP数限制。</p>
+<h4 id="2017年02月14日，版本 v1.2.4">2017年02月14日，版本 v1.2.4</h4>
+<p><strong>1.修复</strong> 部分系统无法启动ShadowsocksR的nohup BUG。</p>
+<p><strong>2.修复</strong> 卸载锐速 提示没有安装的 BUG。</p>
+<h4 id="2017年02月14日，版本 v1.2.3">2017年02月14日，版本 v1.2.3</h4>
+<p><strong>1.移除</strong> OTA(verify_sha1)、auth_sha1以及auth_sha1_v2协议。</p>
+<p>—— 新版ShadowsocksR客户端和服务端都已移除OTA(verify_sha1)、auth_sha1以及auth_sha1_v2协议。</p>
+<p><strong>2.修复</strong> CentOS系统 安装libsodium（chacha20）支持库失败 问题。</p>
+<p><strong>3.修复</strong> 查看ShadowsocksR日志 无法正常显示问题。</p>
+<h4 id="2017年02月10日，版本 v1.2.2">2017年02月10日，版本 v1.2.2</h4>
+<p><strong>1.新增</strong> 菜单选项 设置 ShadowsocksR 连接数限制。</p>
+<p>—— 不需要去修改用户配置，直接通过菜单的这个选项就可以修改 IP连接数限制。</p>
+<p><strong>2.优化</strong> CentOS系统不再显示 BBR安装选项。</p>
+<p>—— 因为我的BBR安装脚本不支持CentOS，所以就在CentOS系统不显示好了。</p>
+<p><strong>3.修复</strong> 多端口模式下，依然能 修改单端口用户配置 的BUG。</p>
+<h4 id="2017年02月10日，版本 v1.2.1">2017年02月10日，版本 v1.2.1</h4>
+<p><strong>1.新增</strong> 加密方式 aes-128-ctr 选项。</p>
+<p>—— 目前最新ShadowsocksR服务端默认加密方式都改为 aes-128-ctr 了，根据作者介绍，这个加密方式是 aes-* 系列加密方式中速度最快的。</p>
+<p><strong>2.新增</strong> 菜单显示当前模式。</p>
+<p>—— 可以显示当前是 单端口模式还是多端口模式 ，总归还是有点用的。</p>
+<p><strong>3.调整</strong> 一些不影响使用的小问题。</p>
+<h4 id="2017年02月03日，版本 v1.2.0">2017年02月03日，版本 v1.2.0</h4>
+<p><strong>1.新增</strong> 设置ShadowsocksR定时重启 选项（目前只支持设置一个定时重启任务）</p>
+<p>—— 自动添加到 crontab 中，脚本里包含了 crontab 的格式示例，不懂的建议查一查。</p>
+<h4 id="2017年02月02日，版本 v1.1.9">2017年02月02日，版本 v1.1.9</h4>
+<p><strong>1.新增</strong> 安装 BBR 选项（其实就是把我写的另一个BBR一键脚本加了进去）</p>
+<p>—— 只支持 Debian / Ubuntu 系统更换内核，OpenVZ虚拟化技术的VPS不支持更换内核。</p>
+<p>还有，关闭BBR和查看BBR状态，请使用<code> bash bbr.sh stop </code>/<code> bash bbr.sh status </code></p>
+<h4 id="2017年02月01日，版本 v1.1.8">2017年02月01日，版本 v1.1.8</h4>
+<p><strong>1.修复</strong> 部分 Debian/Ubuntu系统 无法开机启动的BUG。（CentOS的好像还是有问题，不是很熟悉）</p>
+<p><strong>2.修复</strong> JSON解析器 JQ 部分VPS编译安装失败的BUG。</p>
+<p><strong>3.修复</strong> 若干BUG。</p>
+<h4 id="2017年01月31日，版本 v1.1.7">2017年01月31日，版本 v1.1.7</h4>
+<p><strong>1.新增</strong> 查看 ShadowsocksR 日志功能。</p>
+<p>—— 应逗比们的要求，加上了查看日志的功能，因为启动方式改变了，更新脚本后需要重启ShadowsocksR才能生成日志。</p>
+<p><strong>2.更新</strong> ShadowsocksR启动方式(所以才支持日志)</p>
+<pre><strong>注意：</strong>如果后面没有BUG，那么这个更新就是这个脚本的最后一次更新了，我能想到的简单的功能都已经加上去了，基本上不会再添加新功能了。</pre>
+<h4 id="2017年01月17日，版本 v1.1.6">2017年01月17日，版本 v1.1.6</h4>
+<p><strong>1.新增</strong> 菜单中显示当前状态</p>
+<p>—— 直接在菜单中显示当前<strong>是否安装ShadowsocksR服务端，是否在运行信息</strong>。</p>
+<p><strong>2.优化</strong> 脚本依赖 jq JSON解析器全部改为编译安装。</p>
+<p>—— 这样可以保持 jq的版本一致，避免一些apt源比较老，安装的版本不一致导致BUG。</p>
+<p><strong>3.修复</strong> CentOS 6 系统中删除多端口用户配置相反的BUG。</p>
+<p>—— 我脚本的重要依赖 jq JSON解析器在Debian/Ubuntu和CentOS系统中解析结果竟然是相反的，一直没注意到，修复了这个问题。</p>
+<h4 id="2017年01月14日，版本 v1.1.5">2017年01月14日，版本 v1.1.5</h4>
+<p><strong>1.新增</strong> 显示 单/多端口 链接信息 功能。</p>
+<p>—— 可以显示出 当前正在连接某端口的 <strong>用户IP</strong> 和 <strong>各端口总IP数</strong> 等信息。</p>
+<p><strong>2.新增</strong> 显示 单/多端口 账号信息 时，显示出当前ShadowsocksR的运行状态。</p>
+<p>—— 免得有的人没有意识到ShadowsocksR根本没在运行，然后死活连不上。</p>
+<p><strong>3.优化</strong> 显示SS/SSR连接和二维码 判断逻辑。</p>
+<p>—— 比如协议和混淆都不是原版也不兼容原版，那么就不再显示 SS链接和二维码，智能判断当前协议和混淆的设置来确定显示SS连接/二维码还是显示SSR连接/二维码，还是都显示。</p>
+<h4 id="2017年01月12日，版本 v1.1.4">2017年01月12日，版本 v1.1.4</h4>
+<p><strong>1.新增</strong> 协议<code> verify_sha1、auth_sha1_v2、auth_sha1_v4 </code>兼容原版设置。</p>
+<p>—— 目前ShadowsocksR的协议中，只有<code> verify_sha1、auth_sha1_v2、auth_sha1_v4 </code>依然可以兼容原版，以后的协议都不在兼容。</p>
+<p><strong>2.取消</strong> 安装ShadowsocksR时安装 Libsodium(chacha20加密方式依赖) ，需要的用户可以随后在菜单里选择 <strong>2</strong> 安装。</p>
+<p><strong>3.修复</strong> SS/SSR链接 和 SS/SSR 二维码链接 换行问题，现在复制出来就是一行了(Xshell 测试通过)。</p>
+<p><strong>4.修复</strong> 漏掉 混淆原版参数&#8221;plain&#8221; 的逗比问题。</p>
+<h4 id="2017年01月10日，版本 v1.1.3">2017年01月10日，版本 v1.1.3</h4>
+<p><strong>1.新增</strong> 加密方式从手动输入改成了选择数字</p>
+<p><strong>2.新增</strong> 设置连接数限制功能，当然这个需要设置协议才行，并且协议不能兼容原版，虽然现在协议已经不可以兼容原版了。</p>
+<p>—— 连接数针对的是 IP，比如设置 1，有一个客户端IP在连接这个端口，那么其他的客户端IP都无法链接。</p>
+<p><strong>3.修复</strong> iptables防火墙规则BUG。</p>
+<h4 id="2017年01月10日，版本 v1.1.2">2017年01月10日，版本 v1.1.2</h4>
+<p><strong>1.新增</strong> 多端口管理功能。</p>
+<p>—— 可以 添加/修改/删除 多端口用户。</p>
+<p><strong>2.新增</strong> 单端口/多端口切换功能。</p>
+<h4 id="2017年01月08日，版本 v1.1.1">2017年01月08日，版本 v1.1.1</h4>
+<p><strong>1.新增</strong> CentOS 6 / 7系统支持，只在这个系统做了测试，CentOS 7请自行解决自带的firewalld防火墙问题。</p>
+<p><strong>2.新增</strong> 封禁 BT/PT/垃圾邮件(SPAM) 功能，其实就把<a href="../wlzy-14/index.html" target="_blank">这个文章</a>里的脚本加进去了。</p>
+<p><strong>3.修复</strong> 修改配置信息 但是显示错误的BUG。</p>
+<h4 id="2016年12月30日，版本 v1.1.0">2016年12月30日，版本 v1.1.0</h4>
+<p><strong>1.修改</strong> 取消ShadowsocksR 协议兼容原版设置（混淆依然支持）</p>
+<p>—— 因为ShadowsocksR最新版本取消了ShadowsocksR协议兼容原版设置，所以我的也取消了。具体影响<a href="../ss-jc35/index.html#ShadowsocksR%20%E6%9C%80%E6%96%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%85%BC%E5%AE%B9%E5%8E%9F%E7%89%88%EF%BC%88%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%89%88SS%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%89%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%BD%B1%E5%93%8D%EF%BC%9F" target="_blank">看着个</a>。</p>
+<p><strong>2.修复</strong> 各种BUG。</p>
+<h4 id="2016年12月28日，版本 v1.0.9">2016年12月28日，版本 v1.0.9</h4>
+<p><strong>1.新增</strong> 修改VPS时区为北京时区，避免 协议/混淆 因为时差而无法使用。</p>
+<p><strong>2.修复</strong> 安装失败等问题。</p>
+<p><strong>3.修改</strong> ShadowsocksR安装目录。</p>
+<p>—— ShadowsocksR的Github位置和目录文件名改变了，所以脚本里面很多东西都改了，并且借着这次机会，更改了ShadowsocksR的安装位置为:<code> /etc/shadowsocksr </code>。同时以前安装的ShadowsocksR全部失效。</p>
+<pre><strong>建议：先用旧脚本卸载ShadowsocksR，然后再用新脚本安装ShadowsocksR！</strong></pre>
+<h4 id="2016年12月10日，版本 v1.0.8">2016年12月10日，版本 v1.0.8</h4>
+<p><strong>1.修复</strong> git克隆Shadowsocks文件夹后卡住的BUG。</p>
+<p><strong>2.修复</strong> git克隆Shadowsocks文件夹提示SSL证书无法验证的BUG。</p>
+<h4 id="2016年12月10日，版本 v1.0.7">2016年12月10日，版本 v1.0.7</h4>
+<p><strong>1.修复</strong> 检测系统的BUG。</p>
+<h4 id="2016年12月03日，版本 v1.0.6">2016年12月03日，版本 v1.0.6</h4>
+<p><strong>1.修复</strong> 选择 6. auth_aes128_sha1 但是 显示的是 auth_sha1_v4 的BUG。</p>
+<p><strong>2.修复</strong> 检测 外网IP错误 的BUG。</p>
+<p><strong>3.新增</strong> 查看ShadowsocksR运行状态 功能。</p>
+<h4 id="2016年12月01日，版本 v1.0.5">2016年12月01日，版本 v1.0.5</h4>
+<p><strong>1.修复</strong> 一个 成功下载但是提示ShadowsocksR下载失败 的BUG。你们重新下载新的脚本覆盖旧的脚本执行就行了。记得卸载旧的安装文件。</p>
+<h4 id="2016年11月30日，版本 v1.0.5">2016年11月30日，版本 v1.0.5</h4>
+<p><strong>1.新增</strong> 修改用户配置时，设置混淆和协议 可以通过输入数字选择。</p>
+<p><strong>2.新增</strong> 显示用户配置是，显示SSR链接和SSR二维码，这个相比原来的SS是加上了混淆和协议的参数。</p>
+<p><strong>3.修复</strong> 一些小BUG</p>
+<h4 id="2016年11月29日，版本 v1.0.4">2016年11月29日，版本 v1.0.4</h4>
+<p><strong>1.修复</strong> 无法获取 VPS外网IP 的问题。</p>
+<h4 id="2016年11月28日，版本 v1.0.3">2016年11月28日，版本 v1.0.3</h4>
+<p><strong>1.新增</strong> 中文提示脚本。</p>
+<h4 id="2016年11月27日，版本 v1.0.3">2016年11月27日，版本 v1.0.3</h4>
+<p><strong>1.新增</strong> 锐速安装后加入开机启动 功能。</p>
+<h4 id="2016年11月26日，版本 v1.0.2">2016年11月26日，版本 v1.0.2</h4>
+<p><strong>1.新增</strong> 修改 <strong>协议和混淆</strong> 的功能（选项 4 ）。</p>
+<p><strong>2.新增</strong> 显示账号信息中 <strong>SS链接和二维码链接</strong>。</p>
+<h4 id="2016年11月25日，版本 v1.0.0">2016年11月25日，版本 v1.0.0</h4>
+<p><strong>1.推出</strong> 正式版本。</p>
+<p><strong>第二版补充，版本 v1.0.1</strong></p>
+<p>鉴于一些人可能会一开始安装ShadowsocksR会跳过 libsodium 的安装，所以又单独加上了安装 libsodium 的选项。</p>
+<p><strong>新增</strong> 安装 libsodium（chacha20加密方式） 的选项。</p>
+<p><strong>新增</strong> 查看锐速状态、停止锐速、重启锐速 的选项。<br />
+</p></div>
+<hr />
+<p><strong>更多的Shadowsocks安装教程/一键脚本请看这里：<a title="" href="../ss-jc26/index.html#2.2.2%E3%80%81%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1" target="_blank" data-original-title="">Shadowsocks指导篇</a></strong></p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">『原创』CentOS/Debian/Ubuntu ShadowsocksR 单/多端口 一键管理脚本</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1677" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">132</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/shadowsocksr/index.html" rel="tag">ShadowsocksR</a><a href="../tag/%E8%84%9A%E6%9C%AC/index.html" rel="tag">脚本</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../ss-jc44/index.html" rel="prev">Shadowsocks Python/Go/Libev/R 一键安装脚本（四合一）</a></span>
+			<span class="article-nav-next"><a href="../vpszy-7/index.html" rel="next">『优惠』黑色星期五 部分VPS商家 促销合集</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../dbrj-5/index.html" title="ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP" />	<br><span class="r_title">ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc60/index.html" title="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" />	<br><span class="r_title">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc59/index.html" title="『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-0.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC" />	<br><span class="r_title">『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc58/index.html" title="支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-04-05.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap" />	<br><span class="r_title">支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../dbrj-5/index.html">ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc60/index.html">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc59/index.html">『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc58/index.html">支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc57/index.html">ShadowsocksR 单服务器多用户 mudbjson模式使用教程 支持流量限制</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-7/index.html">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc5/index.html">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc56/index.html">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1677' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='18274' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (770)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-18268"><div class="c-avatar"><div class="c-main" id="div-comment-18268">Cannot retrieve metalink for repository: epel/x86_64. Please verify its path and try again
+[错误] 依赖 Git 安装失败，多半是软件包源的问题，请检查 !<div class="c-meta"><span class="c-author">yeah</span>2017-09-06 23:07  (2天前)<a class='comment-reply-link' href='index-replytocom=18268.html#respond' onclick='return addComment.moveForm( "div-comment-18268", "18268", "respond", "1677" )' aria-label='回复给yeah'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-18272"><div class="c-avatar"><div class="c-main" id="div-comment-18272">如提示所言，软件包源的问题，看你的提示似乎是CentOS，我无法给予帮助，建议更换Debian 7 x64系统。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-09-06 23:42  (2天前)<a class='comment-reply-link' href='index-replytocom=18272.html#respond' onclick='return addComment.moveForm( "div-comment-18272", "18272", "respond", "1677" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-18274"><div class="c-avatar"><div class="c-main" id="div-comment-18274">好的。我去试试 用的centos<div class="c-meta"><span class="c-author">yeah</span>2017-09-06 23:47  (2天前)<a class='comment-reply-link' href='index-replytocom=18274.html#respond' onclick='return addComment.moveForm( "div-comment-18274", "18274", "respond", "1677" )' aria-label='回复给yeah'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt depth-3" id="comment-18277"><div class="c-avatar"><div class="c-main" id="div-comment-18277">谢谢，已成功。<div class="c-meta"><span class="c-author">yeah</span>2017-09-07 00:01  (2天前)<a class='comment-reply-link' href='index-replytocom=18277.html#respond' onclick='return addComment.moveForm( "div-comment-18277", "18277", "respond", "1677" )' aria-label='回复给yeah'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-17978"><div class="c-avatar"><div class="c-main" id="div-comment-17978">安装到中途，会提示 plese insert disc 之类的提示语句，然后我就不知道这怎么办了。大概是说输入驱动盘之类的意思吧。toyo 可以重新装个系统试一下，应该是系统有新的改动吧。我用的是debian7 X86-x64.
+刚刚改用ubuntu14,好像没出提示语句了，已经成功。应该就是debian的情况<div class="c-meta"><span class="c-author">fei</span>2017-09-02 11:08  (6天前)<a class='comment-reply-link' href='index-replytocom=17978.html#respond' onclick='return addComment.moveForm( "div-comment-17978", "17978", "respond", "1677" )' aria-label='回复给fei'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17983"><div class="c-avatar"><div class="c-main" id="div-comment-17983">文章下面有相关问题解决方法。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-09-02 12:08  (6天前)<a class='comment-reply-link' href='index-replytocom=17983.html#respond' onclick='return addComment.moveForm( "div-comment-17983", "17983", "respond", "1677" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-17929"><div class="c-avatar"><div class="c-main" id="div-comment-17929">你的教程让我受益匪浅，非常感谢！冒昧请教同一vps下多IP的设置方法，感恩<div class="c-meta"><span class="c-author">aron</span>2017-09-01 13:15 <a class='comment-reply-link' href='index-replytocom=17929.html#respond' onclick='return addComment.moveForm( "div-comment-17929", "17929", "respond", "1677" )' aria-label='回复给aron'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17658"><div class="c-avatar"><div class="c-main" id="div-comment-17658">全部脚本都不行了么？刚买了vultr 准备用你的脚本...要哭啦<div class="c-meta"><span class="c-author">will</span>2017-08-27 14:36 <a class='comment-reply-link' href='index-replytocom=17658.html#respond' onclick='return addComment.moveForm( "div-comment-17658", "17658", "respond", "1677" )' aria-label='回复给will'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-17664"><div class="c-avatar"><div class="c-main" id="div-comment-17664">怎么了？现在的人问问题都不说问题具体情况吗？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-27 15:16 <a class='comment-reply-link' href='index-replytocom=17664.html#respond' onclick='return addComment.moveForm( "div-comment-17664", "17664", "respond", "1677" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+		<a class="prev page-numbers" href="comment-page-10/index-replytocom=18274.html#comments">«</a>
+<a class='page-numbers' href='comment-page-1/index-replytocom=18274.html#comments'>1</a>
+<span class="page-numbers dots">&hellip;</span>
+<a class='page-numbers' href='comment-page-9/index-replytocom=18274.html#comments'>9</a>
+<a class='page-numbers' href='comment-page-10/index-replytocom=18274.html#comments'>10</a>
+<span class='page-numbers current'>11</span>	</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

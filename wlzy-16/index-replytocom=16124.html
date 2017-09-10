@@ -1,0 +1,852 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>『原创』Debian/Ubuntu TCP拥塞控制技术 ——TCP-BBR 一键安装脚本 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2186] -->
+<meta name="description"  content="这几天很火的BBR，我研究了一下，写了一个一键脚本，适合新手使用。 手动安装方法：比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程 注意：TCP" />
+
+<meta name="keywords"  content="tcp-bbr,vps,脚本" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程' href='../wlzy-15/index.html' />
+<link rel='next' title='Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本' href='../wlzy-21/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="TCP-BBR, VPS, 脚本, Shell脚本, 网络资源">
+<meta name="description" content="这几天很火的BBR，我研究了一下，写了一个一键脚本，适合新手使用。    手动安装方法：比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程  注意：TCP-BBR和锐速一样，不支持Openvz，查看本教程之前，请先确定你的VPS的虚拟化技术！ 注意：本教程涉及到VPS更换内核，所以如果步骤错误，或者VPS不兼容最新的内核，会导致无法开机等错误，请勿用于生产环境！！！！ BBR 简单介绍 BBR 是一个由谷歌社区开发的">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1731 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=16124.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">『原创』Debian/Ubuntu TCP拥塞控制技术 ——TCP-BBR 一键安装脚本</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../shell/index.html"> Shell脚本</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 9个月前 (12-09)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 34618℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">130评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82" title="系统要求"><span>系统要求</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4" title="安装步骤"><span>安装步骤</span></a></li><li class="content-index-level-1"><a href="index.html#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95" title="使用方法"><span>使用方法</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E" title="其他说明"><span>其他说明</span></a></li><li class="content-index-level-1"><a href="index.html#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97" title="更新日志"><span>更新日志</span></a></li><li class="content-index-level-1"><a class="hide" onclick="return false;" href="index.html#" title=""><span></span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#BBR%20%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D" title="BBR 简单介绍"><span>BBR 简单介绍</span></a></li><li class="content-index-level-2"><a href="index.html#%E8%84%9A%E6%9C%AC%E7%89%88%E6%9C%AC" title="脚本版本"><span>脚本版本</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8D%87%E7%BA%A7BBR" title="升级BBR"><span>升级BBR</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8D%B8%E8%BD%BDBBR" title="卸载BBR"><span>卸载BBR</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%9B%B4%E6%8D%A2%E5%86%85%E6%A0%B8%E5%90%8E%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%20%E7%9A%84%E9%97%AE%E9%A2%98" title="更换内核后重启服务器无法启动 的问题"><span>更换内核后重启服务器无法启动 的问题</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BA%20wget:%C2%A0unknown%20host%20%E2%80%9Csofts.fun%E2%80%9D%20%E4%B9%8B%E7%B1%BB%E7%9A%84%E9%94%99%E8%AF%AF" title="提示 wget: unknown host “softs.fun” 之类的错误"><span>提示 wget: unknown host “softs.fun” 之类的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BA%20wget:%20command%20not%20found%20%E7%9A%84%E9%94%99%E8%AF%AF" title="提示 wget: command not found 的错误"><span>提示 wget: command not found 的错误</span></a></li><li class="content-index-level-2"><a class="hide" onclick="return false;" href="index.html#" title=""><span></span></a><ul class="children"><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B409%E6%9C%8806%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.17" title="2017年09月06日，版本 v1.0.17"><span>2017年09月06日，版本 v1.0.17</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8805%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.15" title="2017年08月05日，版本 v1.0.15"><span>2017年08月05日，版本 v1.0.15</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B408%E6%9C%8804%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.14" title="2017年08月04日，版本 v1.0.14"><span>2017年08月04日，版本 v1.0.14</span></a></li><li class="content-index-level-3"><a href="index.html#2017%E5%B9%B407%E6%9C%8826%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.13" title="2017年07月26日，版本 v1.0.13"><span>2017年07月26日，版本 v1.0.13</span></a></li></ul></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B407%E6%9C%8821%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.12" title="2017年07月21日，版本 v1.0.12"><span>2017年07月21日，版本 v1.0.12</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B405%E6%9C%8807%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.11" title="2017年05月07日，版本 v1.0.11"><span>2017年05月07日，版本 v1.0.11</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B404%E6%9C%8825%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.10" title="2017年04月25日，版本 v1.0.10"><span>2017年04月25日，版本 v1.0.10</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B402%E6%9C%8827%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.9" title="2017年02月27日，版本 v1.0.9"><span>2017年02月27日，版本 v1.0.9</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B401%E6%9C%8827%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.8" title="2017年01月27日，版本 v1.0.8"><span>2017年01月27日，版本 v1.0.8</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B401%E6%9C%8821%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.7" title="2017年01月21日，版本 v1.0.7"><span>2017年01月21日，版本 v1.0.7</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B401%E6%9C%8816%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.6" title="2017年01月16日，版本 v1.0.6"><span>2017年01月16日，版本 v1.0.6</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B401%E6%9C%8812%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.5" title="2017年01月12日，版本 v1.0.5"><span>2017年01月12日，版本 v1.0.5</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B401%E6%9C%8812%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.4" title="2017年01月12日，版本 v1.0.4"><span>2017年01月12日，版本 v1.0.4</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B401%E6%9C%8809%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.3" title="2017年01月09日，版本 v1.0.3"><span>2017年01月09日，版本 v1.0.3</span></a></li><li class="content-index-level-2"><a href="index.html#2016%E5%B9%B412%E6%9C%8812%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.2" title="2016年12月12日，版本 v1.0.2"><span>2016年12月12日，版本 v1.0.2</span></a></li><li class="content-index-level-2"><a href="index.html#2016%E5%B9%B412%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.1" title="2016年12月10日，版本 v1.0.1"><span>2016年12月10日，版本 v1.0.1</span></a></li><li class="content-index-level-2"><a href="index.html#2016%E5%B9%B412%E6%9C%8810%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.0" title="2016年12月10日，版本 v1.0.0"><span>2016年12月10日，版本 v1.0.0</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年9月6日 00:18</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>这几天很火的BBR，我研究了一下，写了一个一键脚本，适合新手使用。</p>
+<hr />
+<p><strong>手动安装方法：</strong><a title="比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程" href="../wlzy-15/index.html" target="_blank">比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程</a></p>
+<p><span style="color: #ff6464; font-size: 22px;"><strong>注意：TCP-BBR和锐速一样，不支持Openvz，查看本教程之前，请先确定你的VPS的虚拟化技术！</strong></span></p>
+<pre><strong><span style="color: #339966;">注意：本教程涉及到VPS更换内核，所以如果步骤错误，或者VPS不兼容最新的内核，会导致无法开机等错误，请勿用于生产环境！！！！</span></strong></pre>
+<h3 id="BBR 简单介绍">BBR 简单介绍</h3>
+<p>BBR 是一个由谷歌社区开发的 TCP拥塞控制技术，目前处于开发初期，但是前景很棒，大家可以持续关注，同时BBR是集成与Linux最新版本的内核中的。</p>
+<p>具体什么是TCP拥塞控制技术，详细的我也不懂，我就用通俗一点的话解释一下，不一定准确，看一看理解一下就好了。</p>
+<blockquote><p>原始的TCP流量传输，已经不能适应现在的互联网了，我们把 <strong>TCP流量比喻成 公路上的汽车流量，而TCP传输隧道就是 公路</strong>，那么：</p>
+<p>在原始的TCP流量传输中，一条十字路口公路，很多车流量，但是却<strong>没有红绿灯和交警，导致大家左挤右挤的堵车了</strong>，这就是没有合理的管理导致的。</p>
+<p><strong>而BBR和锐速等TCP流量控制技术，就是红绿灯+交警</strong>，他们就是在无人管理的十字路口，去合理指挥分配车流量，然后最大化的利用车流量，保证路面畅通。</p></blockquote>
+<p>大概就是这样解释了，有什么错误请指出。</p>
+<p><strong>BBR官方项目地址：</strong><a href="https://github.com/google/bbr" target="_blank">https://github.com/google/bbr</a></p>
+<h2 id="系统要求">系统要求</h2>
+<p><strong>Debian / Ubuntu 14.04 +</strong></p>
+<p><strong>CentOS用户请使用这个脚本：<a title="CentOS/Debian/Ubuntu系统 TCP-BBR 一键安装脚本" href="../wlzy-22/index.html" target="_blank">CentOS/Debian/Ubuntu系统 TCP-BBR 一键安装脚本</a></strong></p>
+<p>本脚本只在 Debian 7 / Debian 8 / Ubuntu 14.04 / Ubuntu 16.04 (均 x64位) 这几个系统中测试过脚本可以正常运行(Vultr)！</p>
+<p>强烈推荐 <strong>Debian 7 x64</strong>，这个是我一直使用的系统，我的脚本在这个系统上面出错率最低。</p>
+<p>至于为什么不支持 CentOS 等系统，主要是我不怎么用其他的系统，就不做支持了。</p>
+<h3 id="脚本版本">脚本版本</h3>
+<p><strong>Ver:</strong> 1.0.17</p>
+<blockquote><p><strong>脚本已知BUG，</strong>当遇到内核版本为 X.XX 格式的时候(例如 4.12这样)，会因为下载站上面的文件名(4.12)和安装后的内核版本(4.12.0)不同，而导致提示内核不是最新版本啥的，不用管这个，无视即可，不影响使用。</p></blockquote>
+<h2 id="安装步骤">安装步骤</h2>
+<p><strong>更换内核需要ROOT权限</strong>，所以如果你是普通用户 的话，需要ROOT账号权限，<strong>如果你是ROOT账号，那就忽略这个步骤</strong>：</p>
+<pre class="prettyprint linenums">sudo su
+</pre>
+<hr />
+<p>输入并回车后，会提示让你输入当前账号的密码，输入并回车后就可以继续下面的步骤了。</p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Bash/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; bash bbr.sh
+</pre>
+<p><strong>备用下载地址（上面的链接无法下载，就用这个）：</strong></p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; bash bbr.sh
+</pre>
+<p>下载并运行脚本后，会自动检测并开始安装，<strong>首先会提示你输入要下载的内核版本，可以安装自定义版本的内核，也可以直接回车安装最新版本的内核</strong>（<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/" target="_blank">内核版本获取</a>）！</p>
+<pre class="prettyprint linenums">请输入 要下载安装的Linux内核版本(BBR) [ 格式: x.xx.xx ，例如: 4.10.12 ]
+ [注意]内核版本列表请去这里获取：[ http://kernel.ubuntu.com/~kernel-ppa/mainline/ ]
+(默认回车，自动获取最新版本):4.10.10
+</pre>
+<p><strong>注意：在Debian系统中</strong>，删除旧内核时，会提示你是否终止删除内核的行为（如下图），这个需要你选择<code> &lt;No&gt; </code>(键盘方向键 选择，回车键 确认)。</p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-15-07.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="814" height="289" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-15-07.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="814" height="289" /></noscript></p>
+<p>如果没有出错，内核更换完毕后，会提示是否立即重启VPS，直接回车或者输入<code> Y </code>。</p>
+<pre class="prettyprint linenums">需要重启VPS后，才能开启BBR，是否现在重启 ? [Y/n] : <strong>y</strong>
+<strong>[注意]  重启VPS后，请重新运行脚本查看BBR是否加载成功 bash bbr.sh status</strong>
+
+[信息]  VPS 重启中...
+</pre>
+<p>等待十几秒，VPS启动后，重新通过SSH连接VPS，进入<code> bbr.sh </code>脚本的目录，<span style="color: #ff6464;"><strong>然后执行下面这个命令查看BBR是否加载成功。</strong></span></p>
+<pre class="prettyprint linenums">bash bbr.sh status
+</pre>
+<p>然后就会自动开启BBR。</p>
+<p><strong>如果重启VPS后，无法连接，说明内核安装或与系统存在兼容性问题，无法正常启动，代表你的VPS当前系统无法使用BBR，请更换其他系统！</strong></p>
+<h2 id="使用方法">使用方法</h2>
+<pre class="prettyprint linenums"># 启动BBR
+bash bbr.sh start
+
+# 关闭BBR
+bash bbr.sh stop
+
+# 查看BBR状态
+bash bbr.sh status</pre>
+<pre>注意：关闭BBR，需要重启VPS，所以脚本会提醒是否立即重启VPS。</pre>
+<h3 id="升级BBR">升级BBR</h3>
+<pre class="prettyprint linenums">bash bbr.sh
+# 重新执行脚本会检测最新内核和当前内核，对比版本</pre>
+<p><strong>因为BBR只是内核中的一段功能代码，所以内核更新不一定是BBR更新</strong>，就像Win10中IE的位置一样，Win10更新不代表是为了更新IE，所以是否要更新内核要看BBR官方源码有没有更新了。</p>
+<p><strong>BBR官方项目地址：</strong><a href="https://github.com/google/bbr" target="_blank">https://github.com/google/bbr</a></p>
+<p>注意<strong>BBR源码最后更新时间</strong>，如果比你的内核新，那么你可以更新内核，反之无需更新。</p>
+<h3 id="卸载BBR">卸载BBR</h3>
+<p>BBR集成于内核中，所以卸载BBR=更换内核，教程：</p>
+<p><a title="Debian更换内核教程 —— 4.10.x(BBR) 降低内核版本为 支持锐速的内核" href="../linux-jc6/index.html" target="_blank">Debian/Ubuntu 内核降级教程 —— 降低(BBR)为支持锐速的内核版本</a></p>
+<h2 id="其他说明">其他说明</h2>
+<pre><strong>注意：TCP-BBR必须是 2016-12-05 21:00 更新的 4.9.0-rc8 内核及以后的版本 才能开启，而锐速并不支持这个最新的内核版本，所以TCP-BBR和锐速是不可能共存的。</strong></pre>
+<p><strong>裸SS / 锐速+SS / BBR+SS简单速度对比，仅供参考，<a href="../wlzy-15/index.html#%E8%A3%B8%20SS/%E9%94%90%E9%80%9F+SS/BBR+SS%20%E9%80%9F%E5%BA%A6%E5%AF%B9%E6%AF%94" target="_blank">看这里</a>。</strong></p>
+<h3 id="更换内核后重启服务器无法启动 的问题">更换内核后重启服务器无法启动 的问题</h3>
+<p>如果重启VPS后，无法连接，说明内核安装有问题 或 内核与系统存在兼容性问题，无法正常启动。</p>
+<p>这代表你的VPS当前系统不支持最新的内核版本，无法开启BBR，请更换其他系统尝试！</p>
+<h3 id="提示 wget: unknown host “softs.fun” 之类的错误">提示 wget: unknown host “softs.fun” 之类的错误</h3>
+<p>这是无法解析我的域名，多半是DNS的问题，请更换DNS为谷歌DNS。</p>
+<pre class="prettyprint linenums">echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf
+echo "nameserver 8.8.4.4" &gt;&gt; /etc/resolv.conf
+</pre>
+<h3 id="提示 wget: command not found 的错误">提示 wget: command not found 的错误</h3>
+<p>这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。</p>
+<pre class="prettyprint linenums"># Debian/Ubuntu 系统:
+apt-get install -y wget
+</pre>
+<h2 id="更新日志">更新日志</h2>
+<h4 id="2017年09月06日，版本 v1.0.17">2017年09月06日，版本 v1.0.17</h4>
+<p><strong>1.修复</strong> 在内核版本为 X.XX.0 的时候，检测BBR更新会提示更新的问题（很早就有的BUG，一直忘记修复，这是因为内核仓库版本号为 4.13 而安装后内核版本为 4.13.0 导致不一致，所以才会不停循环提示更新）。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=16124.html#">点击展开 查看更多更新日志</a></p><div class="toggle-box" style="display: none;"><p></p>
+<h4 id="2017年08月05日，版本 v1.0.15">2017年08月05日，版本 v1.0.15</h4>
+<p><strong>1.新增</strong> i686系统支持（32位 i386分支）。</p>
+<h4 id="2017年08月04日，版本 v1.0.14">2017年08月04日，版本 v1.0.14</h4>
+<p><strong>1.恢复</strong> 启动BBR功能，考虑到部分情况下还是需要启动BBR功能的，我又给恢复了（bash bbr.sh start）。</p>
+<h4 id="2017年07月26日，版本 v1.0.13">2017年07月26日，版本 v1.0.13</h4>
+<p><strong>1.新增</strong> ROOT账号（或权限）检测功能，避免因为没有ROOT权限而安装失败。</p>
+<h3 id="2017年07月21日，版本 v1.0.12">2017年07月21日，版本 v1.0.12</h3>
+<p><strong>1.更新</strong> 再新新更换内核安装BBR并重启后，无需再运行脚本（bash bbr.sh start）。</p>
+<h3 id="2017年05月07日，版本 v1.0.11">2017年05月07日，版本 v1.0.11</h3>
+<p><strong>1.新增</strong> 支持内核 4.11.x 后的版本</p>
+<p>—— 已知BUG：获取的版本号是 4.11 ，而安装后本地查到的版本号是 4.11.0 会无法匹配，提示不是最新版本，无视就好。</p>
+<h3 id="2017年04月25日，版本 v1.0.10">2017年04月25日，版本 v1.0.10</h3>
+<p><strong>1.新增</strong> 安装内核时 可安装自定义内核版本（可升级/降级）</p>
+<h3 id="2017年02月27日，版本 v1.0.9">2017年02月27日，版本 v1.0.9</h3>
+<p><strong>1.新增</strong> 支持内核 4.1x.x 后的版本</p>
+<h3 id="2017年01月27日，版本 v1.0.8">2017年01月27日，版本 v1.0.8</h3>
+<p><strong>1.新增</strong> 自动检测最新内核版本功能</p>
+<p>—— 不需要每次内核一更新，脚本也要更新了，自动检测代码来自泰迪的BBR脚本：<a href="https://teddysun.com/489.html" target="_blank">https://teddysun.com/489.html</a></p>
+<h3 id="2017年01月21日，版本 v1.0.7">2017年01月21日，版本 v1.0.7</h3>
+<p>1.<strong>更新</strong> 内核文件为 4.9.5 (2017/01/20更新)</p>
+<h3 id="2017年01月16日，版本 v1.0.6">2017年01月16日，版本 v1.0.6</h3>
+<p>1.<strong>更新</strong> 内核文件为 4.9.4 (2017/01/15更新)</p>
+<h3 id="2017年01月12日，版本 v1.0.5">2017年01月12日，版本 v1.0.5</h3>
+<p>1.<strong>更新</strong> 内核文件为 4.9.3 (2017/01/12更新)</p>
+<h3 id="2017年01月12日，版本 v1.0.4">2017年01月12日，版本 v1.0.4</h3>
+<p><strong>1.增加</strong> 检测VPS虚拟化技术功能。</p>
+<p>—— OpenVZ不支持 更换内核安装BBR，文章前面那么大字，依然很多人看不到！所以加入检测功能，发现是OpenVZ就终止。</p>
+<h3 id="2017年01月09日，版本 v1.0.3">2017年01月09日，版本 v1.0.3</h3>
+<p><strong>1.更新</strong> 内核文件为 4.9.2 (2017/01/09更新，为了稳定，rc测试版的不在使用，只使用 不带rc的稳定版)</p>
+<h3 id="2016年12月12日，版本 v1.0.2">2016年12月12日，版本 v1.0.2</h3>
+<p><strong>1.增加</strong> 升级内核功能。</p>
+<p>——重新执行<code> bash bbr.sh </code>即会检测是否已经安装了最新的内核，如果不是最新的，就会自动开始升级。目前最新的是 4.9 正式版(上个版本是4.9 rc8测试版)</p>
+<h3 id="2016年12月10日，版本 v1.0.1">2016年12月10日，版本 v1.0.1</h3>
+<p><strong>1.增加</strong> 内核删除失败后，可以重新尝试删除的功能。</p>
+<p>——重新执行<code> bash bbr.sh </code>即会检测是否已经安装了最新的内核，和是否删除了多余的内核，如果存在就继续删除。</p>
+<p><strong>2.增加</strong> 启动BBR前先检测是否已经添加启动代码到<code> /etc/sysctl.conf </code>文件中，如果已经添加，就先删除。</p>
+<h3 id="2016年12月10日，版本 v1.0.0">2016年12月10日，版本 v1.0.0</h3>
+<p><strong>1.推出</strong> 正式版本。<br />
+</p></div>
+<hr />
+<p>如果有什么BUG，请联系我或者在下面评论留言！</p>
+<p>允许转载，但是请注明源链接，谢谢！</p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">『原创』Debian/Ubuntu TCP拥塞控制技术 ——TCP-BBR 一键安装脚本</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1731" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">40</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/tcp-bbr/index.html" rel="tag">TCP-BBR</a><a href="../tag/vps/index.html" rel="tag">VPS</a><a href="../tag/%E8%84%9A%E6%9C%AC/index.html" rel="tag">脚本</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../wlzy-15/index.html" rel="prev">比锐速还强的 TCP拥塞控制技术 —— TCP-BBR 测试及开启教程</a></span>
+			<span class="article-nav-next"><a href="../wlzy-21/index.html" rel="next">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../vpszy-19/index.html" title="『评测』VPS77 &#8211; 美国CeraNetworks KVM 512MB 600GB/单向 200Mbps 低至25元/月" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-04-09.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『评测』VPS77 &#8211; 美国CeraNetworks KVM 512MB 600GB/单向 200Mbps 低至25元/月" />	<br><span class="r_title">『评测』VPS77 &#8211; 美国CeraNetworks KVM 512MB 600GB/单向 200Mbps 低至25元/月</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc60/index.html" title="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" />	<br><span class="r_title">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpszy-17/index.html" title="『优惠』MineCloud 吾云 — 香港 KVM 半年优惠269元 + 免费配置升级教程" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-minecloud-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『优惠』MineCloud 吾云 — 香港 KVM 半年优惠269元 + 免费配置升级教程" />	<br><span class="r_title">『优惠』MineCloud 吾云 — 香港 KVM 半年优惠269元 + 免费配置升级教程</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpnzy-7/index.html" title="『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本" />	<br><span class="r_title">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../vpszy-19/index.html">『评测』VPS77 &#8211; 美国CeraNetworks KVM 512MB 600GB/单向 200Mbps 低至25元/月</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc60/index.html">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a></li><li><i class="fa fa-minus"></i><a href="../vpszy-17/index.html">『优惠』MineCloud 吾云 — 香港 KVM 半年优惠269元 + 免费配置升级教程</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-7/index.html">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../vpszy-16/index.html">『评测』Tzhost — 洛杉矶Psychz OpenVZ 128M 256G/单向 1Gbps 10元/月</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc5/index.html">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../vpszy-13/index.html">『震惊』MineCloud 吾云 — 俄罗斯KHB KVM 1GB 14G/SSD 1TB/单向 2Gbps 41元/月</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc56/index.html">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1731' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='16124' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (130)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-18016"><div class="c-avatar"><div class="c-main" id="div-comment-18016">Found linux image: /boot/vmlinuz-4.12.10-041210-generic
+Found initrd image: /boot/initrd.img-4.12.10-041210-generic
+Found linux image: /boot/vmlinuz-3.2.0-4-amd64
+Found initrd image: /boot/initrd.img-3.2.0-4-amd64
+Segmentation fault
+
+Message from syslogd@localhost at Sep  3 06:12:08 ...
+ kernel:[  218.692815] general protection fault: 0000 [#1] SMP
+
+Message from syslogd@localhost at Sep  3 06:12:08 ...
+ kernel:[  218.696014] Stack:
+
+Message from syslogd@localhost at Sep  3 06:12:08 ...
+ kernel:[  218.696014] Call Trace:
+
+Message from syslogd@localhost at Sep  3 06:12:08 ...
+ kernel:[  218.696014] Code: 83 c4 18 5b 5d 41 5c 41 5d 41 5e 41 5f c3 49 8b 7f 10 e8 67 51 04 00 eb d9 48 8b 47 10 48 8b 50 28 48 85 d2 75 05 48 83 c0 30 c3  e2 55 48 89 d5 53 48 89 f3 41 52 48 8b 7f 68 e8 d9 ff ff ff
+
+每次安装到这里就putty就断线，再次连接安装就报内核错误，请问是什么原因呢？当前内核最新版本为 : 4.12.10<div class="c-meta"><span class="c-author">小白</span>2017-09-03 10:16  (5天前)<a class='comment-reply-link' href='index-replytocom=18016.html#respond' onclick='return addComment.moveForm( "div-comment-18016", "18016", "respond", "1731" )' aria-label='回复给小白'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-18017"><div class="c-avatar"><div class="c-main" id="div-comment-18017">你的系统不支持更换内核，尝试更换其他系统，或者资讯IDC客服。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-09-03 10:23  (5天前)<a class='comment-reply-link' href='index-replytocom=18017.html#respond' onclick='return addComment.moveForm( "div-comment-18017", "18017", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-18018"><div class="c-avatar"><div class="c-main" id="div-comment-18018">更换成Ubuntu 14.04 x64后安装成功，谢谢！<div class="c-meta"><span class="c-author">小白</span>2017-09-03 10:41  (5天前)<a class='comment-reply-link' href='index-replytocom=18018.html#respond' onclick='return addComment.moveForm( "div-comment-18018", "18018", "respond", "1731" )' aria-label='回复给小白'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17163"><div class="c-avatar"><div class="c-main" id="div-comment-17163">安装第一步就是
+<pre class="prettyprint linenums" >
+ /boot/vmlinuz-4.12.6-041206-generic
+Generating grub.cfg ...
+Found linux image: /boot/vmlinuz-4.12.6-041206-generic
+Found initrd image: /boot/initrd.img-4.12.6-041206-generic
+Found linux image: /boot/vmlinuz-3.2.0-4-amd64
+Found initrd image: /boot/initrd.img-3.2.0-4-amd64
+Segmentation fault
+
+Message from syslogd@localhost at Aug 15 08:07:55 ...
+ kernel:[  158.822899] general protection fault: 0000 [#1] SMP
+
+Message from syslogd@localhost at Aug 15 08:07:55 ...
+ kernel:[  158.824017] Stack:
+
+Message from syslogd@localhost at Aug 15 08:07:55 ...
+ kernel:[  158.824017] Call Trace:
+
+Message from syslogd@localhost at Aug 15 08:07:55 ...
+ kernel:[  158.824017] Code: 83 c4 18 5b 5d 41 5c 41 5d 41 5e 41 5f c3 49 8b 7f 10 e8 67 51 04 00 eb d9 48 8b 47 10 48 8b 50 28 48 85 d2 75 05 48 83 c0 30 c3  e2 55 48 89 d5 53 48 89 f3 41 52 48 8b 7f 68 e8 d9 ff ff ff
+</pre>
+用的你推荐的系统，重装几遍系统一样问题，只能装锐速。始终装不了bbr<div class="c-meta"><span class="c-author">永远的问题</span>2017-08-16 00:30 <a class='comment-reply-link' href='index-replytocom=17163.html#respond' onclick='return addComment.moveForm( "div-comment-17163", "17163", "respond", "1731" )' aria-label='回复给永远的问题'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-17164"><div class="c-avatar"><div class="c-main" id="div-comment-17164">应该是系统不支持或者其他方面有限制。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-16 00:38 <a class='comment-reply-link' href='index-replytocom=17164.html#respond' onclick='return addComment.moveForm( "div-comment-17164", "17164", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-16981"><div class="c-avatar"><div class="c-main" id="div-comment-16981">Linodes的VPS好像用不了这个一键脚本啊，一直提示[错误] 检测到 BBR 已开启但未正常启动，请检查 !<div class="c-meta"><span class="c-author">兔姬菌</span>2017-08-13 10:16 <a class='comment-reply-link' href='index-replytocom=16981.html#respond' onclick='return addComment.moveForm( "div-comment-16981", "16981", "respond", "1731" )' aria-label='回复给兔姬菌'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-16984"><div class="c-avatar"><div class="c-main" id="div-comment-16984">Linode 更换内核似乎需要在后台调整什么才行。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-13 10:50 <a class='comment-reply-link' href='index-replytocom=16984.html#respond' onclick='return addComment.moveForm( "div-comment-16984", "16984", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt depth-2" id="comment-17212"><div class="c-avatar"><div class="c-main" id="div-comment-17212">进Linode管理页面按edit 看到内核选GRUB 2 保存后reboot下，再执行bash bbr.sh status。亲测 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_mrgreen.gif" alt=":mrgreen:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">orzsix</span>2017-08-17 00:09 <a class='comment-reply-link' href='index-replytocom=17212.html#respond' onclick='return addComment.moveForm( "div-comment-17212", "17212", "respond", "1731" )' aria-label='回复给orzsix'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16488"><div class="c-avatar"><div class="c-main" id="div-comment-16488">ubuntu  16.04 64bits 重启后不能连接ssh，试过好几次都是这样的，望大神看看是什么问题<div class="c-meta"><span class="c-author">linux小白</span>2017-08-04 17:22 <a class='comment-reply-link' href='index-replytocom=16488.html#respond' onclick='return addComment.moveForm( "div-comment-16488", "16488", "respond", "1731" )' aria-label='回复给linux小白'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16489"><div class="c-avatar"><div class="c-main" id="div-comment-16489">谷歌GCE或亚马逊AWS的服务器？打开脚本，注释第651行的<code> Set_iptables </code>（前面加上 # 号），只知道这两家的服务器可能因为我基本里设置防火墙的原因而无法开机启动，暂无解决方法，只能注释掉代码，缺点是 无法保存防火墙规则。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-04 17:30 <a class='comment-reply-link' href='index-replytocom=16489.html#respond' onclick='return addComment.moveForm( "div-comment-16489", "16489", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-16494"><div class="c-avatar"><div class="c-main" id="div-comment-16494">不是，我用的是seedbox，法国op盒子，刚刚也试了下，装的ubuntu 14.04的系统，还是一样的问题，不知道是不是个例，前面都没有啥问题，就是重启之后就不能通过ssh连接vps了 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_confused.gif" alt=":???:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">linux小白</span>2017-08-04 18:24 <a class='comment-reply-link' href='index-replytocom=16494.html#respond' onclick='return addComment.moveForm( "div-comment-16494", "16494", "respond", "1731" )' aria-label='回复给linux小白'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt depth-3" id="comment-16499"><div class="c-avatar"><div class="c-main" id="div-comment-16499">是不是安装的过程中改了登录ssh的端口？ <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">linux小白</span>2017-08-04 19:50 <a class='comment-reply-link' href='index-replytocom=16499.html#respond' onclick='return addComment.moveForm( "div-comment-16499", "16499", "respond", "1731" )' aria-label='回复给linux小白'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-16506"><div class="c-avatar"><div class="c-main" id="div-comment-16506">尴尬，我回复错评论了，你这个更换支持BBR的内核后重启，然后无法开机的，多半是因为未知原因不兼容等问题导致内核无法启动，这种问题还是重装换个系统吧。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-04 22:06 <a class='comment-reply-link' href='index-replytocom=16506.html#respond' onclick='return addComment.moveForm( "div-comment-16506", "16506", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-5" id="comment-16527"><div class="c-avatar"><div class="c-main" id="div-comment-16527">ubuntu 14/16两个版本都不能开机，好忧伤啊，也不知道什么问题 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_confused.gif" alt=":???:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">linux小白</span>2017-08-05 13:26 <a class='comment-reply-link' href='index-replytocom=16527.html#respond' onclick='return addComment.moveForm( "div-comment-16527", "16527", "respond", "1731" )' aria-label='回复给linux小白'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even depth-5" id="comment-16529"><div class="c-avatar"><div class="c-main" id="div-comment-16529">换debian7就可以安装并且可以开机 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_biggrin.gif" alt=":grin:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">linux小白</span>2017-08-05 14:37 <a class='comment-reply-link' href='index-replytocom=16529.html#respond' onclick='return addComment.moveForm( "div-comment-16529", "16529", "respond", "1731" )' aria-label='回复给linux小白'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-16471"><div class="c-avatar"><div class="c-main" id="div-comment-16471">debian8 x64mini，脚本执行过程提示Segmentation faul，卡住。ctrl+c跳过，居然也能安装成功。<div class="c-meta"><span class="c-author">cie</span>2017-08-04 14:16 <a class='comment-reply-link' href='index-replytocom=16471.html#respond' onclick='return addComment.moveForm( "div-comment-16471", "16471", "respond", "1731" )' aria-label='回复给cie'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16115"><div class="c-avatar"><div class="c-main" id="div-comment-16115">:1
+<pre class="prettyprint linenums" >
+请输入 要下载安装的Linux内核版本(BBR) [ 格式: x.xx.xx ，例如: 4.10.12 ]
+[注意] 内核版本列表请去这里获取：[ http://kernel.ubuntu.com/~kernel-ppa/mainline/ ]
+(默认回车，自动获取最新版本):
+[信息] 检测内核最新版本中...
+[信息] 当前内核最新版本为 : 4.12.4
+
+[信息] 检测到 当前内核版本 已是最新版本，无需继续安装 !
+[信息] 检测到内核数量异常，存在多余内核，开始删除...
+[信息] 检测到 2 个其余内核，开始卸载...
+[信息] 开始卸载 linux-image-3.2.0-4-amd64 内核...
+E: dpkg was interrupted, you must manually run 'dpkg --configure -a' to correct the problem.
+[信息] 卸载 linux-image-3.2.0-4-amd64 内核卸载完成，继续...
+[信息] 开始卸载 linux-image-3.2.0-4-amd64
+linux-image-amd64 内核...
+E: dpkg was interrupted, you must manually run 'dpkg --configure -a' to correct the problem.
+[信息] 卸载 linux-image-3.2.0-4-amd64
+linux-image-amd64 内核卸载完成，继续...
+[错误] 内核卸载异常，请检查 !
+</pre><div class="c-meta"><span class="c-author">xuudue</span>2017-07-30 08:55 <a class='comment-reply-link' href='index-replytocom=16115.html#respond' onclick='return addComment.moveForm( "div-comment-16115", "16115", "respond", "1731" )' aria-label='回复给xuudue'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16124"><div class="c-avatar"><div class="c-main" id="div-comment-16124">估计你在卸载默认内核linux-image-3.2.0-4-amd64时，出现什么问题导致卸载中断，执行<code> dpkg –configure -a </code>后再尝试，同时查看系统内核是否有 卸载linux-image-3.2.0-4-amd64内核的命令在运行，如果有 kill -9 PID结束掉。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-30 13:30 <a class='comment-reply-link' href='index-replytocom=16124.html#respond' onclick='return addComment.moveForm( "div-comment-16124", "16124", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-16100"><div class="c-avatar"><div class="c-main" id="div-comment-16100"><pre class="prettyprint linenums" >
+[信息] 检测内核最新版本中...
+[信息] 当前内核最新版本为 : 4.12.4
+
+[信息] 检测到 当前内核版本 不支持开启BBR，开始安装...
+
+........
+
+root@debian:~# bash bbr.sh status
+[信息] 检测内核最新版本中...
+[信息] 当前内核最新版本为 : 4.12.4
+[信息] 检测到 内核版本 已满足要求，继续...
+[信息] 检测到 BBR 已开启 !
+[信息] 检测到 BBR 已开启并已正常启动 !
+</pre>
+--------------------------------------------------------------<br />
+4.12.4 提示不支持，继续安装后还是能正常开启。。。<div class="c-meta"><span class="c-author">doubi</span>2017-07-29 22:10 <a class='comment-reply-link' href='index-replytocom=16100.html#respond' onclick='return addComment.moveForm( "div-comment-16100", "16100", "respond", "1731" )' aria-label='回复给doubi'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16110"><div class="c-avatar"><div class="c-main" id="div-comment-16110">什么系统？具体什么操作步骤才会触发这个BUG？我测试了几次没见到这个问题。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-30 00:34 <a class='comment-reply-link' href='index-replytocom=16110.html#respond' onclick='return addComment.moveForm( "div-comment-16110", "16110", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16064"><div class="c-avatar"><div class="c-main" id="div-comment-16064">4.12.4显示不支持，需要更换内核吗<div class="c-meta"><span class="c-author">iluje</span>2017-07-29 00:55 <a class='comment-reply-link' href='index-replytocom=16064.html#respond' onclick='return addComment.moveForm( "div-comment-16064", "16064", "respond", "1731" )' aria-label='回复给iluje'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16070"><div class="c-avatar"><div class="c-main" id="div-comment-16070">什么意思，请出示详细信息。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-29 01:09 <a class='comment-reply-link' href='index-replytocom=16070.html#respond' onclick='return addComment.moveForm( "div-comment-16070", "16070", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-15609"><div class="c-avatar"><div class="c-main" id="div-comment-15609">最新內核4.12.2會卡機!!!!!!<div class="c-meta"><span class="c-author">Ken</span>2017-07-18 21:15 <a class='comment-reply-link' href='index-replytocom=15609.html#respond' onclick='return addComment.moveForm( "div-comment-15609", "15609", "respond", "1731" )' aria-label='回复给Ken'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-15617"><div class="c-avatar"><div class="c-main" id="div-comment-15617">并不会，今天我还给6个小鸡装了BBR，都是最新的4.12.2，都正常 Ubuntu14.04 Debian8 。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-19 00:46 <a class='comment-reply-link' href='index-replytocom=15617.html#respond' onclick='return addComment.moveForm( "div-comment-15617", "15617", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-15643"><div class="c-avatar"><div class="c-main" id="div-comment-15643">我Debian 7 x64,裝在虛擬機上,內核4.12.2會卡死,換4.9的就沒事了<div class="c-meta"><span class="c-author">Ken</span>2017-07-19 21:04 <a class='comment-reply-link' href='index-replytocom=15643.html#respond' onclick='return addComment.moveForm( "div-comment-15643", "15643", "respond", "1731" )' aria-label='回复给Ken'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-15664"><div class="c-avatar"><div class="c-main" id="div-comment-15664">虚拟机？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-20 00:25 <a class='comment-reply-link' href='index-replytocom=15664.html#respond' onclick='return addComment.moveForm( "div-comment-15664", "15664", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-5" id="comment-15796"><div class="c-avatar"><div class="c-main" id="div-comment-15796">簡單說就是虛擬技術是VM-Ware<div class="c-meta"><span class="c-author">Ken</span>2017-07-23 19:37 <a class='comment-reply-link' href='index-replytocom=15796.html#respond' onclick='return addComment.moveForm( "div-comment-15796", "15796", "respond", "1731" )' aria-label='回复给Ken'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15564"><div class="c-avatar"><div class="c-main" id="div-comment-15564">首先，感谢博主的贡献！在博主的博客中试了2个方案，不知何故，一直有问题，博主也迅速给了回复。无奈本人完全小白搞不定，只得又换方案，这个一试OK.分享给后面的XDJM: Linode，Ubuntu 14, 64位，安装博主的“CentOS/Debian/Ubuntu ShadowsocksR 单/多端口 一键管理脚本”； 安装后检查 BBR状态，最后两行提示，一条说启动正常，另一条说启动错误；但加速不受影响；VPS重启后，也正常； 再次谢谢博主<div class="c-meta"><span class="c-author">Chur</span>2017-07-17 11:27 <a class='comment-reply-link' href='index-replytocom=15564.html#respond' onclick='return addComment.moveForm( "div-comment-15564", "15564", "respond", "1731" )' aria-label='回复给Chur'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-15041"><div class="c-avatar"><div class="c-main" id="div-comment-15041">检测到 BBR 已开启但未正常启动，请检查 !<div class="c-meta"><span class="c-author">clover</span>2017-06-23 15:43 <a class='comment-reply-link' href='index-replytocom=15041.html#respond' onclick='return addComment.moveForm( "div-comment-15041", "15041", "respond", "1731" )' aria-label='回复给clover'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-14573"><div class="c-avatar"><div class="c-main" id="div-comment-14573">debian7 64，装过脚本正常，后来手工搞过XanMod的内核，今天内核更新，继续用本站脚本，发觉报错了：
+<pre class="prettyprint linenums" >
+4.9.31:
+请输入 要下载安装的Linux内核版本(BBR) [ 格式: x.xx.xx ，例如: 4.10.12 ]
+[注意] 内核版本列表请去这里获取：[ http://kernel.ubuntu.com/~kernel-ppa/mainline/ ]
+(默认回车，自动获取最新版本):4.9.31
+
+[信息] 检测到 当前内核版本 不是最新版本，升级(或降级)内核...
+--2017-06-07 20:51:32--  http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.9.31/
+Resolving kernel.ubuntu.com (kernel.ubuntu.com)... 91.189.94.216
+Connecting to kernel.ubuntu.com (kernel.ubuntu.com)|91.189.94.216|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: `linux-image-4.9.31-amd64.deb'
+
+    [                                                                ] 3,591       --.-K/s   in 0s
+
+2017-06-07 20:51:33 (45.0 MB/s) - `linux-image-4.9.31-amd64.deb' saved [3591]
+
+[信息] 内核文件下载成功，开始安装内核...
+dpkg-deb: error: `linux-image-4.9.31-amd64.deb' is not a debian format archive
+dpkg: error processing linux-image-4.9.31-amd64.deb (--install):
+ subprocess dpkg-deb --control returned error exit status 2
+Errors were encountered while processing:
+ linux-image-4.9.31-amd64.deb
+[错误] 检测到 内核版本 安装失败，请检查 !
+
+
+
+4.11.4:
+Resolving softs.fun (softs.fun)... 69.12.67.44
+Connecting to softs.fun (softs.fun)|69.12.67.44|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8564 (8.4K) [application/octet-stream]
+Server file no newer than local file `bbr.sh' -- not retrieving.
+
+请输入 要下载安装的Linux内核版本(BBR) [ 格式: x.xx.xx ，例如: 4.10.12 ]
+[注意] 内核版本列表请去这里获取：[ http://kernel.ubuntu.com/~kernel-ppa/mainline/ ]
+(默认回车，自动获取最新版本):
+[信息] 检测内核最新版本中...
+[信息] 当前内核最新版本为 : 4.11.4
+
+[信息] 检测到 当前内核版本 不是最新版本，升级(或降级)内核...
+--2017-06-07 20:52:26--  http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.11.4/
+Resolving kernel.ubuntu.com (kernel.ubuntu.com)... 91.189.94.216
+Connecting to kernel.ubuntu.com (kernel.ubuntu.com)|91.189.94.216|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: `linux-image-4.11.4-amd64.deb'
+
+    [                                                                ] 3,483       --.-K/s   in 0.001s
+
+2017-06-07 20:52:26 (2.43 MB/s) - `linux-image-4.11.4-amd64.deb' saved [3483]
+
+[信息] 内核文件下载成功，开始安装内核...
+dpkg-deb: error: `linux-image-4.11.4-amd64.deb' is not a debian format archive
+dpkg: error processing linux-image-4.11.4-amd64.deb (--install):
+ subprocess dpkg-deb --control returned error exit status 2
+Errors were encountered while processing:
+ linux-image-4.11.4-amd64.deb
+[错误] 检测到 内核版本 安装失败，请检查 !
+</pre>
+请问是提示的error: `linux-image-4.11.4-amd64.deb' is not a debian format archive的问题，还是因为我手工搞过的影响呢？<div class="c-meta"><span class="c-author">Me2</span>2017-06-07 20:57 <a class='comment-reply-link' href='index-replytocom=14573.html#respond' onclick='return addComment.moveForm( "div-comment-14573", "14573", "respond", "1731" )' aria-label='回复给Me2'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-2" id="comment-14606"><div class="c-avatar"><div class="c-main" id="div-comment-14606">等不及，先折腾了Debian8 64，用了 jessie-backports源的Debian 4.9.25-1~bpo8+1来跑，没用最新的了。<div class="c-meta"><span class="c-author">Me2</span>2017-06-08 01:22 <a class='comment-reply-link' href='index-replytocom=14606.html#respond' onclick='return addComment.moveForm( "div-comment-14606", "14606", "respond", "1731" )' aria-label='回复给Me2'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13909"><div class="c-avatar"><div class="c-main" id="div-comment-13909"><pre class="prettyprint linenums" >Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libuuid-perl linux-base
+Use 'apt-get autoremove' to remove them.
+The following packages will be REMOVED:
+  linux-image-3.2.0-4-amd64*
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+After this operation, 106 MB disk space will be freed.
+(Reading database ... 47773 files and directories currently installed.)
+Removing linux-image-3.2.0-4-amd64 ...
+Aborting removal of running kernel image.
+dpkg: error processing linux-image-3.2.0-4-amd64 (--purge):
+ subprocess installed pre-removal script returned error exit status 1
+Errors were encountered while processing:
+ linux-image-3.2.0-4-amd64
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+[信息] 卸载 linux-image-3.2.0-4-amd64 内核卸载完成，继续...
+[错误] 内核卸载异常，请检查 !
+root@R:~# dpkg -l|grep linux-image                          
+pi  linux-image-3.2.0-4-amd64           3.2.88-1                          amd64        
+ii  linux-image-4.11.1-041101-generic   4.11.1-041101.201705140931        amd64
+root@R:~# virt-what
+kvm
+</pre>
+这个旧内核删除怎么失败了呢？<div class="c-meta"><span class="c-author">siam</span>2017-05-18 10:19 <a class='comment-reply-link' href='index-replytocom=13909.html#respond' onclick='return addComment.moveForm( "div-comment-13909", "13909", "respond", "1731" )' aria-label='回复给siam'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13912"><div class="c-avatar"><div class="c-main" id="div-comment-13912">尝试手动卸载试试：
+<pre class="prettyprint linenums" >
+apt-get purge linux-image-3.2.0-4-amd64
+</pre><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-18 11:44 <a class='comment-reply-link' href='index-replytocom=13912.html#respond' onclick='return addComment.moveForm( "div-comment-13912", "13912", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-13925"><div class="c-avatar"><div class="c-main" id="div-comment-13925"><pre class="prettyprint linenums" >
+root@R:~# apt-get purge linux-image-3.2.0-4-amd64
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libuuid-perl linux-base
+Use 'apt-get autoremove' to remove them.
+The following packages will be REMOVED:
+  linux-image-3.2.0-4-amd64*
+0 upgraded, 0 newly installed, 1 to remove and 50 not upgraded.
+After this operation, 106 MB disk space will be freed.
+Do you want to continue [Y/n]? y
+(Reading database ... 41610 files and directories currently installed.)
+Removing linux-image-3.2.0-4-amd64 ...
+Aborting removal of running kernel image.
+dpkg: error processing linux-image-3.2.0-4-amd64 (--purge):
+ subprocess installed pre-removal script returned error exit status 1
+Errors were encountered while processing:
+ linux-image-3.2.0-4-amd64
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</pre>
+还是不能卸载喔<div class="c-meta"><span class="c-author">siam</span>2017-05-18 14:48 <a class='comment-reply-link' href='index-replytocom=13925.html#respond' onclick='return addComment.moveForm( "div-comment-13925", "13925", "respond", "1731" )' aria-label='回复给siam'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-13932"><div class="c-avatar"><div class="c-main" id="div-comment-13932">那就不清楚了，只能确定不是脚本问题，而是系统问题了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-18 17:09 <a class='comment-reply-link' href='index-replytocom=13932.html#respond' onclick='return addComment.moveForm( "div-comment-13932", "13932", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13523"><div class="c-avatar"><div class="c-main" id="div-comment-13523">现在内核已经到4.11了，希望可以更新一下脚本。<div class="c-meta"><span class="c-author">Sun</span>2017-05-07 16:33 <a class='comment-reply-link' href='index-replytocom=13523.html#respond' onclick='return addComment.moveForm( "div-comment-13523", "13523", "respond", "1731" )' aria-label='回复给Sun'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13528"><div class="c-avatar"><div class="c-main" id="div-comment-13528">已经更新了脚本 v1.0.11 ，不过目前已知BUG是，获取的版本号是 4.11 ，而安装后本地查到的版本号是 4.11.0 会无法匹配，提示不是最新版本，无视就好。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-07 17:16 <a class='comment-reply-link' href='index-replytocom=13528.html#respond' onclick='return addComment.moveForm( "div-comment-13528", "13528", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-12144"><div class="c-avatar"><div class="c-main" id="div-comment-12144">居然不支持i686哭QMQ<div class="c-meta"><span class="c-author"><a href='http://scarletk.net' rel='external nofollow' class='url'>scarletk</a></span>2017-03-28 18:20 <a class='comment-reply-link' href='index-replytocom=12144.html#respond' onclick='return addComment.moveForm( "div-comment-12144", "12144", "respond", "1731" )' aria-label='回复给scarletk'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-12024"><div class="c-avatar"><div class="c-main" id="div-comment-12024">写了一篇关于BBR算法原理的分析 https://www.nanqinlang.com/cwnd-control
+上午写到现在 头好晕 我要去睡觉了。。。<div class="c-meta"><span class="c-author"><a href='https://www.nanqinlang.com' rel='external nofollow' class='url'>南琴浪</a></span>2017-03-25 13:19 <a class='comment-reply-link' href='index-replytocom=12024.html#respond' onclick='return addComment.moveForm( "div-comment-12024", "12024", "respond", "1731" )' aria-label='回复给南琴浪'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-11919"><div class="c-avatar"><div class="c-main" id="div-comment-11919">非常感谢偷油的一键脚本，有一事请教！
+我才申请的google一年的vps，最基础的debian版本，能否直接用这个脚本？
+非常感谢！<div class="c-meta"><span class="c-author">meisqq</span>2017-03-23 07:43 <a class='comment-reply-link' href='index-replytocom=11919.html#respond' onclick='return addComment.moveForm( "div-comment-11919", "11919", "respond", "1731" )' aria-label='回复给meisqq'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11924"><div class="c-avatar"><div class="c-main" id="div-comment-11924">可以，不过需要第一步去 先切换为 root用户，否则会各种权限不足，安装失败。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-23 12:14 <a class='comment-reply-link' href='index-replytocom=11924.html#respond' onclick='return addComment.moveForm( "div-comment-11924", "11924", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-11930"><div class="c-avatar"><div class="c-main" id="div-comment-11930">非常感谢，已经搞定！
+不过有个问题，只要重启VPS，就要重新启动SSSERVER。
+有没有自启动的脚本？
+看了几个教程，运行命令 sudo vim /etc/rc.local 编辑自启动配置文件。加入代码
+怎么加？在哪里加？ 加完了之后怎么退出？按键盘没有反应
+我是小白，不好意思！<div class="c-meta"><span class="c-author">meisqq</span>2017-03-23 12:38 <a class='comment-reply-link' href='index-replytocom=11930.html#respond' onclick='return addComment.moveForm( "div-comment-11930", "11930", "respond", "1731" )' aria-label='回复给meisqq'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-11937"><div class="c-avatar"><div class="c-main" id="div-comment-11937">debian/ubuntu则是加到 exit 0 代码前面就行，centos则是最后就行。VIM使用教程：<a href="../linux-jc1/index.html" target="_blank" rel="nofollow">https://doub.io/linux-jc1/</a><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-23 15:22 <a class='comment-reply-link' href='index-replytocom=11937.html#respond' onclick='return addComment.moveForm( "div-comment-11937", "11937", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11156"><div class="c-avatar"><div class="c-main" id="div-comment-11156">不知道是什么原因，vultr安装使用都很顺利，但是换成linode之后，使用ubuntu和debian都是安装内核成功，最后一步提示：检测到 BBR 已开启但未正常启动，请检查 !<div class="c-meta"><span class="c-author">Akring</span>2017-03-03 13:42 <a class='comment-reply-link' href='index-replytocom=11156.html#respond' onclick='return addComment.moveForm( "div-comment-11156", "11156", "respond", "1731" )' aria-label='回复给Akring'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11167"><div class="c-avatar"><div class="c-main" id="div-comment-11167">linode，我记得是可以后台直接更换4.9.x内核的，反正需要在后台调整什么才行。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-03 19:58 <a class='comment-reply-link' href='index-replytocom=11167.html#respond' onclick='return addComment.moveForm( "div-comment-11167", "11167", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-11148"><div class="c-avatar"><div class="c-main" id="div-comment-11148">安装运行之后提示 “检测到BBR已开启，但未正常启动，请检查！”，请问这个要怎么破呀？<div class="c-meta"><span class="c-author">julian</span>2017-03-03 09:55 <a class='comment-reply-link' href='index-replytocom=11148.html#respond' onclick='return addComment.moveForm( "div-comment-11148", "11148", "respond", "1731" )' aria-label='回复给julian'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11152"><div class="c-avatar"><div class="c-main" id="div-comment-11152">这个说明你更换内核后，开启了BBR，但是BBR没有运行或无法运行。<br />
+尝试手动开启：<a href="../wlzy-15/index.html" target="_blank" rel="nofollow">https://doub.io/wlzy-15/</a><br />
+如果还不行，那么说明系统和内核不兼容。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-03 12:55 <a class='comment-reply-link' href='index-replytocom=11152.html#respond' onclick='return addComment.moveForm( "div-comment-11152", "11152", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11014"><div class="c-avatar"><div class="c-main" id="div-comment-11014">用秋水的脚本最新内核是4.10，用你的脚本检测最新还是4.9啊<div class="c-meta"><span class="c-author">jaz</span>2017-02-26 23:12 <a class='comment-reply-link' href='index-replytocom=11014.html#respond' onclick='return addComment.moveForm( "div-comment-11014", "11014", "respond", "1731" )' aria-label='回复给jaz'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11024"><div class="c-avatar"><div class="c-main" id="div-comment-11024">已经更新脚本支持 4.1x.x，之所以只检测到 4.9，是因为当时 4.10还是测试版，所以只检测到 4.9版本。这几天没看，没留意到 4.10正式版出来了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-27 10:35 <a class='comment-reply-link' href='index-replytocom=11024.html#respond' onclick='return addComment.moveForm( "div-comment-11024", "11024", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10812"><div class="c-avatar"><div class="c-main" id="div-comment-10812">Info: TCP BBR has been successfully installed. nothing to do...
+
+站长，我的vps抽风之后我重启，然后查看bbr显示这样，是已经启动的意思么，vps重启之后ss和bbr需要不需要重新启动呢？<div class="c-meta"><span class="c-author">大人看的片叫大片</span>2017-02-20 15:46 <a class='comment-reply-link' href='index-replytocom=10812.html#respond' onclick='return addComment.moveForm( "div-comment-10812", "10812", "respond", "1731" )' aria-label='回复给大人看的片叫大片'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10813"><div class="c-avatar"><div class="c-main" id="div-comment-10813">你用的不是我的脚本。<br />
+这句话的意思是BBR正常开启。<br />
+BBR是集成于内核的，VPS启动时，会随内核一起启动，只要开启后就不用管了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-20 17:04 <a class='comment-reply-link' href='index-replytocom=10813.html#respond' onclick='return addComment.moveForm( "div-comment-10813", "10813", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10771"><div class="c-avatar"><div class="c-main" id="div-comment-10771">据说openvz可以上bbr了<div class="c-meta"><span class="c-author">ku ro ki to m ko</span>2017-02-17 23:12 <a class='comment-reply-link' href='index-replytocom=10771.html#respond' onclick='return addComment.moveForm( "div-comment-10771", "10771", "respond", "1731" )' aria-label='回复给ku ro ki to m ko'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10772"><div class="c-avatar"><div class="c-main" id="div-comment-10772">一、步骤麻烦，错误率很高。<br />
+二、既然是卖OpenVZ的IDC，那就不喜欢让你在OpenVZ的VPS上面安装这个，大部分IDC发现后会封VPS的。<br />
+三、我手里OpneVZ的机器很少，早就不买这种低价超售鸡了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-18 01:22 <a class='comment-reply-link' href='index-replytocom=10772.html#respond' onclick='return addComment.moveForm( "div-comment-10772", "10772", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-10793"><div class="c-avatar"><div class="c-main" id="div-comment-10793">可以，反正我对openvz无感<div class="c-meta"><span class="c-author">kurokitomoko</span>2017-02-18 18:56 <a class='comment-reply-link' href='index-replytocom=10793.html#respond' onclick='return addComment.moveForm( "div-comment-10793", "10793", "respond", "1731" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10554"><div class="c-avatar"><div class="c-main" id="div-comment-10554">[信息]  检测内核最新版本中...
+ [信息]  当前内核最新版本为 : 4.9.9
+ [信息]  检测到 内核版本 已满足要求，继续...
+sysctl: cannot stat /proc/sys/net/ipv4/tcp_available_congestion_control: No such file or directory
+sysctl: cannot stat /proc/sys/net/core/default_qdisc: No such file or directory
+sysctl: cannot stat /proc/sys/net/ipv4/tcp_congestion_control: No such file or directory
+sysctl: cannot stat /proc/sys/net/ipv4/tcp_available_congestion_control: No such file or directory
+ [错误]  BBR 启动失败，请检查 !
+------------------------------------------------------------
+博主，求解，是什么问题<div class="c-meta"><span class="c-author">whythatme</span>2017-02-11 13:49 <a class='comment-reply-link' href='index-replytocom=10554.html#respond' onclick='return addComment.moveForm( "div-comment-10554", "10554", "respond", "1731" )' aria-label='回复给whythatme'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-10556"><div class="c-avatar"><div class="c-main" id="div-comment-10556">你是，更换内核并重启后，输入<code> bash bbr.sh start </code>后提示的这个？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-11 14:11 <a class='comment-reply-link' href='index-replytocom=10556.html#respond' onclick='return addComment.moveForm( "div-comment-10556", "10556", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-10557"><div class="c-avatar"><div class="c-main" id="div-comment-10557">是的，输入这个start命令后，就报错了<div class="c-meta"><span class="c-author">doubiNIHAO</span>2017-02-11 14:12 <a class='comment-reply-link' href='index-replytocom=10557.html#respond' onclick='return addComment.moveForm( "div-comment-10557", "10557", "respond", "1731" )' aria-label='回复给doubiNIHAO'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-10558"><div class="c-avatar"><div class="c-main" id="div-comment-10558"><pre class="prettyprint linenums" >
+dpkg -l|grep linux-image | awk '{print $2}'
+# 看一下当前内核是否有 4.9.9，如果有就手动开启试试，看看有没有报错
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
+# 如果还是报错，那可能还是内核安装有问题或者兼容性问题了，那我就不清楚了，建议重装其他系统测试。
+</pre><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-11 15:11 <a class='comment-reply-link' href='index-replytocom=10558.html#respond' onclick='return addComment.moveForm( "div-comment-10558", "10558", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-5" id="comment-10559"><div class="c-avatar"><div class="c-main" id="div-comment-10559">有4.9.9，但是【sysctl -p】后报错：sysctl: cannot stat /proc/sys/net/core/default_qdisc: No such file or directory
+sysctl: cannot stat /proc/sys/net/ipv4/tcp_congestion_control: No such file or directory
+sysctl: cannot stat /proc/sys/net/core/default_qdisc: No such file or directory
+sysctl: cannot stat /proc/sys/net/ipv4/tcp_congestion_control: No such file or director
+----------------------------------------------
+看来要换系统了，谢啦<div class="c-meta"><span class="c-author">doubiNIHAO</span>2017-02-11 15:17 <a class='comment-reply-link' href='index-replytocom=10559.html#respond' onclick='return addComment.moveForm( "div-comment-10559", "10559", "respond", "1731" )' aria-label='回复给doubiNIHAO'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt depth-5" id="comment-10561"><div class="c-avatar"><div class="c-main" id="div-comment-10561">真心搞不定，各种问题都有，希望博主可以写个樱花使用TCP BBR的教程，安装了SSR，但是加速不会添加，内核升级也搞不定，现在速度超级慢超级慢。<div class="c-meta"><span class="c-author">doubiNIHAO</span>2017-02-11 16:33 <a class='comment-reply-link' href='index-replytocom=10561.html#respond' onclick='return addComment.moveForm( "div-comment-10561", "10561", "respond", "1731" )' aria-label='回复给doubiNIHAO'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-6" id="comment-10563"><div class="c-avatar"><div class="c-main" id="div-comment-10563">樱花Docker？算了，Docker是有诸多限制的，特别是樱花免费的Docker。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-11 17:31 <a class='comment-reply-link' href='index-replytocom=10563.html#respond' onclick='return addComment.moveForm( "div-comment-10563", "10563", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-7" id="comment-10564"><div class="c-avatar"><div class="c-main" id="div-comment-10564">但是我看到有人说成功了，只是我怎么弄都不行，樱花应该是可以开启BBR的，推上还有人TCP也成功了，只是藏着不肯说，博主有空不妨试试啊<div class="c-meta"><span class="c-author">doubiNIHAO</span>2017-02-11 17:44 <a class='comment-reply-link' href='index-replytocom=10564.html#respond' onclick='return addComment.moveForm( "div-comment-10564", "10564", "respond", "1731" )' aria-label='回复给doubiNIHAO'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-8" id="comment-10566"><div class="c-avatar"><div class="c-main" id="div-comment-10566">樱花Docker没劲，太烦，懒得玩。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-11 17:57 <a class='comment-reply-link' href='index-replytocom=10566.html#respond' onclick='return addComment.moveForm( "div-comment-10566", "10566", "respond", "1731" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt depth-7" id="comment-10567"><div class="c-avatar"><div class="c-main" id="div-comment-10567">不过他们都在说，最近docker很火啊，博主也该尝尝鲜啦，樱花拿来练手很不错<div class="c-meta"><span class="c-author">doubiNIHAO</span>2017-02-11 17:59 <a class='comment-reply-link' href='index-replytocom=10567.html#respond' onclick='return addComment.moveForm( "div-comment-10567", "10567", "respond", "1731" )' aria-label='回复给doubiNIHAO'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+		<a class="prev page-numbers" href="comment-page-1/index-replytocom=16124.html#comments">«</a>
+<a class='page-numbers' href='comment-page-1/index-replytocom=16124.html#comments'>1</a>
+<span class='page-numbers current'>2</span>	</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

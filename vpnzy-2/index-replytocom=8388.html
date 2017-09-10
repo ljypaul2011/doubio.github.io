@@ -1,0 +1,607 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>CentOS/Debian/Ubuntu全系统 L2TP/IPSec一键安装脚本 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2182] -->
+<meta name="description"  content="其他VPN教程： CentOS全系列 PPTPD VPN一键安装脚本 Centos/Debian一键安装PPTP/L2TP脚本教程 CentOS/Debian/Ubuntu一键安装IPSEC/IKEV2 VPN脚本 本脚本适用环境： 系统支持：CentOS6+，Debian7+，Ubuntu12" />
+
+<meta name="keywords"  content="ipsec,l2tp,vpn,脚本" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='使用 CloudXNS 接管 Freenom 的免费域名解析，加快国内生效速度！' href='../dbwz-4/index.html' />
+<link rel='next' title='锐速取消免费后的另一个Linux TCP加速软件——云语（Flash TCP）' href='../flash-tcp-jc1/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="IPsec, L2tp, VPN, 脚本, Shell脚本, VPN资源">
+<meta name="description" content="其他VPN教程：  	CentOS全系列 PPTPD VPN一键安装脚本 	Centos/Debian一键安装PPTP/L2TP脚本教程 	CentOS/Debian/Ubuntu一键安装IPSEC/IKEV2 VPN脚本  本脚本适用环境： 系统支持：CentOS6+，Debian7+，Ubuntu12+  内存要求：≥128M  更新日期：2016 年 09 月 12 日 关于本脚本： 名词解释如下  L2TP（Layer 2 Tu">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1276 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=8388.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">CentOS/Debian/Ubuntu全系统 L2TP/IPSec一键安装脚本</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../shell/index.html"> Shell脚本</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 1年前 (2016-05-10)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 7922℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">26评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E6%9C%AC%E8%84%9A%E6%9C%AC%E9%80%82%E7%94%A8%E7%8E%AF%E5%A2%83%EF%BC%9A" title="本脚本适用环境："><span>本脚本适用环境：</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%EF%BC%9A" title="写在前面："><span>写在前面：</span></a></li><li class="content-index-level-1"><a href="index.html#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%9A" title="使用方法："><span>使用方法：</span></a></li><li class="content-index-level-1"><a href="index.html#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97" title="更新日志"><span>更新日志</span></a></li><li class="content-index-level-1"><a class="hide" onclick="return false;" href="index.html#" title=""><span></span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E5%85%B6%E4%BB%96VPN%E6%95%99%E7%A8%8B%EF%BC%9A" title="其他VPN教程："><span>其他VPN教程：</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%85%B3%E4%BA%8E%E6%9C%AC%E8%84%9A%E6%9C%AC%EF%BC%9A" title="关于本脚本："><span>关于本脚本：</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%A3%80%E6%9F%A5PPP/TUN%E7%8E%AF%E5%A2%83" title="检查PPP/TUN环境"><span>检查PPP/TUN环境</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%85%B6%E4%BB%96%E4%BA%8B%E9%A1%B9%EF%BC%9A" title="其他事项："><span>其他事项：</span></a></li><li class="content-index-level-2"><a href="index.html#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%9A" title="使用命令："><span>使用命令：</span></a></li><li class="content-index-level-2"><a href="index.html#2016%20%E5%B9%B4%2004%20%E6%9C%88%2018%20%E6%97%A5%E6%9B%B4%E6%96%B0" title="2016 年 04 月 18 日更新"><span>2016 年 04 月 18 日更新</span></a></li><li class="content-index-level-2"><a href="index.html#2016%20%E5%B9%B4%2004%20%E6%9C%88%2019%20%E6%97%A5%E6%9B%B4%E6%96%B0" title="2016 年 04 月 19 日更新"><span>2016 年 04 月 19 日更新</span></a></li><li class="content-index-level-2"><a href="index.html#2016%20%E5%B9%B4%2004%20%E6%9C%88%2022%20%E6%97%A5%E6%9B%B4%E6%96%B0" title="2016 年 04 月 22 日更新"><span>2016 年 04 月 22 日更新</span></a></li><li class="content-index-level-2"><a href="index.html#2016%20%E5%B9%B4%2004%20%E6%9C%88%2025%20%E6%97%A5%E6%9B%B4%E6%96%B0" title="2016 年 04 月 25 日更新"><span>2016 年 04 月 25 日更新</span></a></li><li class="content-index-level-2"><a href="index.html#2016%20%E5%B9%B4%2006%20%E6%9C%88%2010%20%E6%97%A5%E6%9B%B4%E6%96%B0" title="2016 年 06 月 10 日更新"><span>2016 年 06 月 10 日更新</span></a></li><li class="content-index-level-2"><a href="index.html#2016%20%E5%B9%B4%2008%20%E6%9C%88%2005%20%E6%97%A5%E6%9B%B4%E6%96%B0" title="2016 年 08 月 05 日更新"><span>2016 年 08 月 05 日更新</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%85%B6%E4%BB%96VPN%E6%95%99%E7%A8%8B%EF%BC%9A" title="其他VPN教程："><span>其他VPN教程：</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年1月28日 01:06</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><h3 id="其他VPN教程：">其他VPN教程：</h3>
+<ul>
+<li><a title="CentOS全系列 PPTPD VPN一键安装脚本 - 逗比根据地" href="../vpnzy-4/index.html" target="_blank">CentOS全系列 PPTPD VPN一键安装脚本</a></li>
+<li><a title="Centos/Debian一键安装PPTP/L2TP脚本教程 - 逗比根据地" href="../bwg-vpnjc1/index.html" target="_blank">Centos/Debian一键安装PPTP/L2TP脚本教程</a></li>
+<li><a title="CentOS/Ubuntu一键安装IPSEC/IKEV2 VPN脚本 - 逗比根据地" href="../vpnzy-3/index.html" target="_blank">CentOS/Debian/Ubuntu一键安装IPSEC/IKEV2 VPN脚本</a></li>
+</ul>
+<h2 id="本脚本适用环境："><strong>本脚本适用环境：</strong></h2>
+<p>系统支持：CentOS6+，Debian7+，Ubuntu12+</p>
+<p>内存要求：<span style="color: #ff0000;"><strong>≥128M</strong></span></p>
+<p>更新日期：<span style="color: #ff0000;"><strong>2016 年 09 月 12 日</strong></span></p>
+<h3 id="关于本脚本："><strong>关于本脚本：</strong></h3>
+<p>名词解释如下</p>
+<p>L2TP（Layer 2 Tunneling Protocol）</p>
+<p>IPSec（Internet Protocol Security）</p>
+<p>IKEv2 (Internet Key Exchange v2)</p>
+<p>能实现 IPsec 的目前总体上有 openswan，libreswan，strongswan 这3种。</p>
+<p>libreswan 是基于 openswan 的 fork，所以现在各个发行版基本已经看不到 openswan 的身影了。当然也有使用 strongswan 的。</p>
+<p>之所以要更新 L2TP 一键安装脚本，是因为随着各个 Linux 发行版不断推陈出新，原有的脚本已经不适应现在的需求。</p>
+<p>本脚本通过编译安装最新版 libreswan 来实现 IPSec（CentOS7 下则是全部 yum 安装），yum 或 apt-get 来安装 xl2tpd，再根据各个发行版的使用方法不同，部署防火墙规则。</p>
+<h2 id="写在前面："><strong>写在前面：</strong></h2>
+<pre>本教程涉及SSH操作，如果你不会你需要看一下这篇文章：<a title="Linux SSH链接工具 Putty 新手详细使用教程" href="../linux-jc2/index.html" target="_blank">Linux SSH链接工具 Putty 新手详细使用教程</a></pre>
+<p>基于 OpenVZ 虚拟化技术的 VPS 需要开启TUN/TAP才能正常使用，购买 VPS 时请先咨询服务商是否支持开启 TUN/TAP。</p>
+<p><strong>纠正：OpenVZ 虚拟的 VPS 需要系统内核支持 IPSec 才行。也就是说，母服务器的内核如果不支持的话那就没办法，只能换 VPS。<br />
+</strong></p>
+<p><strong>因此，一般不建议在 OpenVZ 的 VPS 上安装本脚本。脚本如果检测到该 VPS 为 OpenVZ 架构，会出现警告提醒。</strong></p>
+<p>如何检测是否支持TUN模块？</p>
+<h3 id="检查PPP/TUN环境">检查PPP/TUN环境</h3>
+<p>首先要检查VPS的是否能安装pptpd，TUN和PPP是否开启。</p>
+<pre class="prettyprint linenums">cat /dev/net/tun
+</pre>
+<p>返回的必须是:</p>
+<pre class="prettyprint linenums">cat: /dev/net/tun: File descriptor in bad state
+</pre>
+<p>运行:</p>
+<pre class="prettyprint linenums">cat /dev/ppp
+</pre>
+<p>返回的必须是:</p>
+<pre class="prettyprint linenums">cat: /dev/ppp: No such device or address
+</pre>
+<p>如果返回内容<strong>不是</strong>下图的结果的话，<strong>请与VPS提供商联系更改网络权限。</strong></p>
+<p>当然，脚本在安装时也会执行检查，如果不适用于安装，脚本会予以提示。</p>
+<p><img class="lazy alignnone" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/pptp.png" alt="" width="517" height="108" /><noscript><img class="alignnone" src="https://img.mlkxs.com/pptp.png" alt="" width="517" height="108" /></noscript></p>
+<h2 id="使用方法：">使用方法：</h2>
+<p>root用户登录后，运行以下命令：</p>
+<pre class="prettyprint linenums">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/across/master/l2tp.sh
+chmod +x l2tp.sh
+./l2tp.sh
+</pre>
+<p>执行后，会有如下交互界面</p>
+<p><img class="lazy alignnone" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/vpnzy-2-01.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="524" height="647" /><noscript><img class="alignnone" src="https://img.mlkxs.com/vpnzy-2-01.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="524" height="647" /></noscript></p>
+<pre class="prettyprint linenums">Please input IP-Range:
+(Default Range: 192.168.18):
+#输入本地IP段范围（本地电脑连接到VPS后给分配的一个本地IP地址），直接回车意味着输入默认值192.168.18
+
+Please input PSK:
+(Default PSK: teddysun.com):
+#PSK意为预共享密钥，即指定一个密钥将来在连接时需要用到，直接回车意味着输入默认值teddysun.com
+
+Please input Username:
+(Default Username: teddysun):
+#Username意为用户名，即第一个默认用户。直接回车意味着输入默认值teddysun
+
+Please input teddysun’s password:
+(Default Password: Q4SKhu2EXQ):
+#输入用户的密码，默认会随机生成一个10位包含大小写字母和数字的密码，当然你也可以指定密码。
+
+ServerIP:your_server_main_IP
+#显示你的 VPS 的主 IP（如果是多 IP 的 VPS 也只显示一个）
+
+Server Local IP:192.168.18.1
+#显示你的 VPS 的本地 IP（默认即可）
+
+Client Remote IP Range:192.168.18.2-192.168.18.254
+#显示 IP 段范围
+
+PSK:teddysun.com
+#显示 PSK
+
+Press any key to start…or Press Ctrl+c to cancel
+#按下任意按键继续，如果想取消安装，请按Ctrl+c键
+</pre>
+<p>安装完成后，脚本会执行 ipsec verify 命令并提示如下：</p>
+<pre class="prettyprint linenums">If there are no [FAILED] above, then you can connect to your
+L2TP VPN Server with the default Username/Password is below:
+
+ServerIP:your_server_IP
+PSK:your PSK
+Username:your usename
+Password:your password
+
+If you want to add users, please modify
+/etc/ppp/chap-secrets and add it.
+Welcome to visit https://teddysun.com/448.html
+Enjoy it!
+</pre>
+<p><img class="lazy alignnone" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/vpnzy-2-03.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="644" height="482" /><noscript><img class="alignnone" src="https://img.mlkxs.com/vpnzy-2-03.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="644" height="482" /></noscript></p>
+<p>如果你要想增加用户，有以下命令可以操作用户：</p>
+<pre class="prettyprint linenums">l2tp -a 新增用户
+l2tp -d 删除用户
+l2tp -l 列出所有用户
+l2tp -m 修改用户密码
+l2tp -h 列出帮助信息
+</pre>
+<h3 id="其他事项：">其他事项：</h3>
+<ol>
+<li>脚本在安装完成后，已自动启动进程，并加入了开机自启动。</li>
+<li>脚本会改写 iptables 或 firewalld 的规则。</li>
+<li>脚本安装时，会即时将安装日志写到 /root/l2tp.log 文件里，如果你安装失败，可以通过此文件来寻找错误信息。</li>
+</ol>
+<h3 id="使用命令：">使用命令：</h3>
+<pre class="prettyprint linenums">ipsec status （查看 IPSec 运行状态）
+ipsec verify （查看 IPSec 检查结果）
+/etc/init.d/ipsec start|stop|restart|status （CentOS6 下使用）
+/etc/init.d/xl2tpd start|stop|restart|status （CentOS6 下使用）
+systemctl start|stop|restart|status ipsec （CentOS7 下使用）
+systemctl start|stop|restart|status xl2tpd （CentOS7 下使用）
+service ipsec start|stop|restart|status （Debian/Ubuntu 下使用）
+service xl2tpd start|stop|restart （Debian/Ubuntu 下使用）
+</pre>
+<h2 id="更新日志"><strong>更新日志</strong></h2>
+<h3 id="2016 年 04 月 18 日更新"><span style="color: #ff0000;">2016 年 04 月 18 日更新</span></h3>
+<p>目前在 Debian 7 上测试的结果，因为 libnss3 和 libnspr4 的版本过低而导致编译 libreswan 失败。临时解决办法是 dpkg 安装 libnss3_3.17.2 和 libnspr4_4.10.7 的 deb 包后重试</p>
+<p>参考链接：<a href="https://libreswan.org/wiki/3.14_on_Debian_Wheezy" target="_blank">https://libreswan.org/wiki/3.14_on_Debian_Wheezy</a></p>
+<h3 id="2016 年 04 月 19 日更新">2016 年 04 月 19 日更新</h3>
+<p>修复了在 Debian 7 下因为 libnss3 和 libnspr4 的版本过低而导致编译 libreswan 失败的问题。</p>
+<h3 id="2016 年 04 月 22 日更新">2016 年 04 月 22 日更新</h3>
+<p>修复了在 Ubuntu 16.04 下因为默认缺少 python 命令而导致 ipsec verify 等命令不能用的问题。</p>
+<h3 id="2016 年 04 月 25 日更新">2016 年 04 月 25 日更新</h3>
+<p>在 <span style="color: #ff0000;"><strong>Vultr 的 Debian 7 </strong></span>的系统模板下安装时，软件包 libcurl4-nss-dev 会出现依赖错误。如下：</p>
+<pre class="prettyprint linenums">The following packages have unmet dependencies:
+libcurl4-nss-dev : Depends: libldap2-dev but it is not going to be installed
+Depends: librtmp-dev but it is not going to be installed
+</pre>
+<p>而 libldap2-dev 和 librtmp-dev 又依赖了其他几种软件包。总之最后的依赖关系如下：</p>
+<pre class="prettyprint linenums">libldap2-dev : Depends: libldap-2.4-2 (= 2.4.31-2+deb7u1) but 2.4.31+really2.4.40+dfsg-1+deb8u1~bpo70+1 is to be installed
+librtmp-dev : Depends: libgnutls-dev but it is not going to be installed
+libgnutls-dev : Depends: libp11-kit-dev (&gt;= 0.4) but it is not going to be installed
+libp11-kit-dev : Depends: libp11-kit0 (= 0.12-3) but 0.20.7-1~bpo70+1 is to be installed
+</pre>
+<p>那么解决办法就是把最底层的依赖包 libp11-kit0 先卸载掉，然后再安装 libcurl4-nss-dev 即可。</p>
+<pre class="prettyprint linenums">apt-get -y remove libp11-kit0
+apt-get -y --no-install-recommends install libcurl4-nss-dev
+</pre>
+<p>然后再运行脚本安装即可。</p>
+<h3 id="2016 年 06 月 10 日更新">2016 年 06 月 10 日更新</h3>
+<p>脚本在安装完成后，新增了几个命令，用于操作用户</p>
+<pre class="prettyprint linenums">l2tp -a 新增用户
+l2tp -d 删除用户
+l2tp -l 列出所有用户
+l2tp -h 列出帮助信息
+</pre>
+<h3 id="2016 年 08 月 05 日更新">2016 年 08 月 05 日更新</h3>
+<p>升级 libreswan 到版本 3.18。</p>
+<p><strong>2016 年 09 月 12 日更新</strong></p>
+<p>修正了在 CentOS 6 下 libevent2 依赖的问题；</p>
+<p>新增了一个<strong> -m</strong> 选项，用以修改现有用户的密码。</p>
+<hr />
+<h3 id="其他VPN教程：">其他VPN教程：</h3>
+<ul>
+<li><a title="CentOS全系列 PPTPD VPN一键安装脚本 - 逗比根据地" href="../vpnzy-4/index.html" target="_blank">CentOS全系列 PPTPD VPN一键安装脚本</a></li>
+<li><a title="Centos/Debian一键安装PPTP/L2TP脚本教程 - 逗比根据地" href="../bwg-vpnjc1/index.html" target="_blank">Centos/Debian一键安装PPTP/L2TP脚本教程</a></li>
+<li><a title="CentOS/Ubuntu一键安装IPSEC/IKEV2 VPN脚本 - 逗比根据地" href="../vpnzy-3/index.html" target="_blank">CentOS/Debian/Ubuntu一键安装IPSEC/IKEV2 VPN脚本</a></li>
+</ul>
+<p>本文章转载自秋水逸冰：<a href="https://teddysun.com/448.html" target="_blank">https://teddysun.com/448.html</a></p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">CentOS/Debian/Ubuntu全系统 L2TP/IPSec一键安装脚本</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1276" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">16</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/ipsec/index.html" rel="tag">IPsec</a><a href="../tag/l2tp/index.html" rel="tag">L2tp</a><a href="../tag/vpn/index.html" rel="tag">VPN</a><a href="../tag/%E8%84%9A%E6%9C%AC/index.html" rel="tag">脚本</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../dbwz-4/index.html" rel="prev">使用 CloudXNS 接管 Freenom 的免费域名解析，加快国内生效速度！</a></span>
+			<span class="article-nav-next"><a href="../flash-tcp-jc1/index.html" rel="next">锐速取消免费后的另一个Linux TCP加速软件——云语（Flash TCP）</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../ss-jc60/index.html" title="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" />	<br><span class="r_title">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpnzy-7/index.html" title="『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本" />	<br><span class="r_title">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpnzy-6/index.html" title="使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端" />	<br><span class="r_title">使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpnzy-5/index.html" title="Cisco AnyConnect VPN Windows/Android 平台客户端使用教程" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Cisco AnyConnect VPN Windows/Android 平台客户端使用教程" />	<br><span class="r_title">Cisco AnyConnect VPN Windows/Android 平台客户端使用教程</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../ss-jc60/index.html">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-7/index.html">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-6/index.html">使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-5/index.html">Cisco AnyConnect VPN Windows/Android 平台客户端使用教程</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc5/index.html">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc56/index.html">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc4/index.html">『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc3/index.html">『原创』多服务器 云探针、云监控 —— ServerStatus 一键管理脚本</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1276' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='8388' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (26)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-17276"><div class="c-avatar"><div class="c-main" id="div-comment-17276">在国外玩pt，想让pt种子流量通过VPS代理（TOS允许），试了ssh通道和建VPN结果都是不可连接 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_sad.gif" alt=":sad:" class="wp-smiley" style="height: 1em; max-height: 1em;" /> 
+怎么把VPS上的端口转发给位于内网的电脑呢？<div class="c-meta"><span class="c-author"><a href='http://qing9.ml' rel='external nofollow' class='url'>qing</a></span>2017-08-18 17:58 <a class='comment-reply-link' href='index-replytocom=17276.html#respond' onclick='return addComment.moveForm( "div-comment-17276", "17276", "respond", "1276" )' aria-label='回复给qing'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17305"><div class="c-avatar"><div class="c-main" id="div-comment-17305">PT软件支持SOCKS5 代理吗？如果支持那么服务器搭建SSR，然后本地使用SSR链接服务器，然后 PT软件配置 SOCKS5代理 127.0.0.1 即可。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-19 10:20 <a class='comment-reply-link' href='index-replytocom=17305.html#respond' onclick='return addComment.moveForm( "div-comment-17305", "17305", "respond", "1276" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-17243"><div class="c-avatar"><div class="c-main" id="div-comment-17243">你好， 我试了下这个在浙江电信，移动还是可以用的，能不能出个一键管理脚本？<div class="c-meta"><span class="c-author">壮士请留步</span>2017-08-18 09:08 <a class='comment-reply-link' href='index-replytocom=17243.html#respond' onclick='return addComment.moveForm( "div-comment-17243", "17243", "respond", "1276" )' aria-label='回复给壮士请留步'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17248"><div class="c-avatar"><div class="c-main" id="div-comment-17248">在我这里 L2TP/IPSec 去年底还是今年初就已经完全封锁了，连都连不上。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-18 11:02 <a class='comment-reply-link' href='index-replytocom=17248.html#respond' onclick='return addComment.moveForm( "div-comment-17248", "17248", "respond", "1276" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-17263"><div class="c-avatar"><div class="c-main" id="div-comment-17263">没有啊  。我L2TP/IPSec昨天刚弄好，上网还可以的，ikev2/ipsec也是一样。但是都有个问题，就是浏览器打开网页比较快，但是下载东西比较慢，为啥？ 下载GitHub就10k左右<div class="c-meta"><span class="c-author">壮士请留步</span>2017-08-18 12:07 <a class='comment-reply-link' href='index-replytocom=17263.html#respond' onclick='return addComment.moveForm( "div-comment-17263", "17263", "respond", "1276" )' aria-label='回复给壮士请留步'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-17266"><div class="c-avatar"><div class="c-main" id="div-comment-17266">这些协议封锁都是分地区分运营商的，不同地区封锁情况不一样，一些地区PPTP稳得一笔，但是在我这里，除了 Cisco AnyConnect VPN 以外，全部都无法连接。下载东西慢，我也不清楚，对这些VPN来说我只会搭建，不会修问题。。。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-18 12:31 <a class='comment-reply-link' href='index-replytocom=17266.html#respond' onclick='return addComment.moveForm( "div-comment-17266", "17266", "respond", "1276" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-14615"><div class="c-avatar"><div class="c-main" id="div-comment-14615">编译报错
+compilation terminated.
+make[3]: *** [alg_info.o] Error 1
+make[3]: Leaving directory `/root/l2tp/libreswan-3.20/OBJ.linux.x86_64/lib/libswan'
+make[2]: *** [local-base] Error 2
+make[2]: Leaving directory `/root/l2tp/libreswan-3.20/lib/libswan'
+make[1]: *** [recursive-all] Error 2
+make[1]: Leaving directory `/root/l2tp/libreswan-3.20/lib'
+make: *** [recursive-all] Error 2
+libreswan-3.20 install failed.<div class="c-meta"><span class="c-author">genji</span>2017-06-08 12:25 <a class='comment-reply-link' href='index-replytocom=14615.html#respond' onclick='return addComment.moveForm( "div-comment-14615", "14615", "respond", "1276" )' aria-label='回复给genji'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-14056"><div class="c-avatar"><div class="c-main" id="div-comment-14056">报错（centos 7）
+[root@iZ0xi134fdtzoplmaknekpZ ~]# systemctl status xl2tpd
+● xl2tpd.service - Level 2 Tunnel Protocol Daemon (L2TP)
+   Loaded: loaded (/usr/lib/systemd/system/xl2tpd.service; enabled; vendor preset: disabled)
+   Active: failed (Result: start-limit) since Tue 2017-05-23 17:18:58 CST; 11min ago
+  Process: 10578 ExecStart=/usr/sbin/xl2tpd -D (code=exited, status=1/FAILURE)
+  Process: 10576 ExecStartPre=/sbin/modprobe -q l2tp_ppp (code=exited, status=0/SUCCESS)
+ Main PID: 10578 (code=exited, status=1/FAILURE)
+
+May 23 17:18:58 iZ0xi134fdtzoplmaknekpZ systemd[1]: xl2tpd.service: main pr...
+May 23 17:18:58 iZ0xi134fdtzoplmaknekpZ systemd[1]: Unit xl2tpd.service ent...
+May 23 17:18:58 iZ0xi134fdtzoplmaknekpZ systemd[1]: xl2tpd.service failed.
+May 23 17:18:58 iZ0xi134fdtzoplmaknekpZ systemd[1]: xl2tpd.service holdoff ...
+May 23 17:18:58 iZ0xi134fdtzoplmaknekpZ systemd[1]: start request repeated ...
+May 23 17:18:58 iZ0xi134fdtzoplmaknekpZ systemd[1]: Failed to start Level 2...
+May 23 17:18:58 iZ0xi134fdtzoplmaknekpZ systemd[1]: Unit xl2tpd.service ent...
+May 23 17:18:58 iZ0xi134fdtzoplmaknekpZ systemd[1]: xl2tpd.service failed.
+Hint: Some lines were ellipsized, use -l to show in full.<div class="c-meta"><span class="c-author">dot.piu</span>2017-05-23 17:32 <a class='comment-reply-link' href='index-replytocom=14056.html#respond' onclick='return addComment.moveForm( "div-comment-14056", "14056", "respond", "1276" )' aria-label='回复给dot.piu'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-12152"><div class="c-avatar"><div class="c-main" id="div-comment-12152">/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/libnss3.so: undefined reference to `PR_GetEnvSecure'
+collect2: error: ld returned 1 exit status
+make[3]: *** [pluto] Error 1
+make[3]: Leaving directory `/root/l2tp/libreswan-3.19/OBJ.linux.x86_64/programs/pluto'
+make[2]: *** [local-base] Error 2
+make[2]: Leaving directory `/root/l2tp/libreswan-3.19/programs/pluto'
+make[1]: *** [recursive-all] Error 2
+make[1]: Leaving directory `/root/l2tp/libreswan-3.19/programs'
+make: *** [recursive-all] Error 2
+libreswan-3.19 install failed.
+
+
+这个报错是常见问题里最后说的：
+“因为 libnss3 和 libnspr4 的版本过低而导致编译 libreswan 失败。临时解决办法是 dpkg 安装 libnss3_3.17.2 和 libnspr4_4.10.7 的 deb 包后重试 参考链接：https://libreswan.org/wiki/3.14_on_Debian_Wheezy”  打开的连接全屏都是指令看不懂的，还是说其他原因？能简单说下吗？<div class="c-meta"><span class="c-author">ogr1432</span>2017-03-28 21:32 <a class='comment-reply-link' href='index-replytocom=12152.html#respond' onclick='return addComment.moveForm( "div-comment-12152", "12152", "respond", "1276" )' aria-label='回复给ogr1432'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-12154"><div class="c-avatar"><div class="c-main" id="div-comment-12154">这个脚本是我转载的，我当初测试是没有遇到问题的，作者也说过 L2TP本身安装会出现很多问题，所以建议你去作者文章中留言 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_smile.gif" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-28 22:06 <a class='comment-reply-link' href='index-replytocom=12154.html#respond' onclick='return addComment.moveForm( "div-comment-12154", "12154", "respond", "1276" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10845"><div class="c-avatar"><div class="c-main" id="div-comment-10845">我用国外的vps建可以正常使用，用香港的vps创建pptp也可以正常使用，但是用香港的vps创建l2tp就不能正常翻墙了，不知道怎么回事，翻墙翻不过去<div class="c-meta"><span class="c-author">gary</span>2017-02-21 15:14 <a class='comment-reply-link' href='index-replytocom=10845.html#respond' onclick='return addComment.moveForm( "div-comment-10845", "10845", "respond", "1276" )' aria-label='回复给gary'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-10886"><div class="c-avatar"><div class="c-main" id="div-comment-10886">我也是同样的情况，香港和新加坡的VPS装好L2TP可以正常使用，国内网站也正常，但是无法翻墙。<div class="c-meta"><span class="c-author">Jeff</span>2017-02-23 08:58 <a class='comment-reply-link' href='index-replytocom=10886.html#respond' onclick='return addComment.moveForm( "div-comment-10886", "10886", "respond", "1276" )' aria-label='回复给Jeff'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-9839"><div class="c-avatar"><div class="c-main" id="div-comment-9839">請教怎麼卸載已經安裝的 L2TP？<div class="c-meta"><span class="c-author"><a href='http://maolog.com' rel='external nofollow' class='url'>茂先森</a></span>2017-01-11 20:38 <a class='comment-reply-link' href='index-replytocom=9839.html#respond' onclick='return addComment.moveForm( "div-comment-9839", "9839", "respond", "1276" )' aria-label='回复给茂先森'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9312"><div class="c-avatar"><div class="c-main" id="div-comment-9312">按照教程设置成功后，一直连接不上，提示服务器未响应是为什么呢？<div class="c-meta"><span class="c-author">黯然火</span>2016-12-23 14:19 <a class='comment-reply-link' href='index-replytocom=9312.html#respond' onclick='return addComment.moveForm( "div-comment-9312", "9312", "respond", "1276" )' aria-label='回复给黯然火'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-8987"><div class="c-avatar"><div class="c-main" id="div-comment-8987">怎么修改IPSEC的端口号？？<div class="c-meta"><span class="c-author">hkfix</span>2016-12-05 15:30 <a class='comment-reply-link' href='index-replytocom=8987.html#respond' onclick='return addComment.moveForm( "div-comment-8987", "8987", "respond", "1276" )' aria-label='回复给hkfix'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-8921"><div class="c-avatar"><div class="c-main" id="div-comment-8921">我一切按照教程
+为什么我L2TP连接一直卡在正在连接<div class="c-meta"><span class="c-author">jihuang</span>2016-12-03 16:20 <a class='comment-reply-link' href='index-replytocom=8921.html#respond' onclick='return addComment.moveForm( "div-comment-8921", "8921", "respond", "1276" )' aria-label='回复给jihuang'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-8679"><div class="c-avatar"><div class="c-main" id="div-comment-8679">这个在windows mobile 10 怎么连接不上呢，提示错误789<div class="c-meta"><span class="c-author">chk970222</span>2016-11-19 10:50 <a class='comment-reply-link' href='index-replytocom=8679.html#respond' onclick='return addComment.moveForm( "div-comment-8679", "8679", "respond", "1276" )' aria-label='回复给chk970222'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-8387"><div class="c-avatar"><div class="c-main" id="div-comment-8387">如何让vpn和 Linux控制面板共存啊，比如有一个叫Vesta的面板很好用，但是再安装的话就不能用VPN了，很尴尬，逗比大人如何解决<div class="c-meta"><span class="c-author">iaxiao</span>2016-10-21 17:52 <a class='comment-reply-link' href='index-replytocom=8387.html#respond' onclick='return addComment.moveForm( "div-comment-8387", "8387", "respond", "1276" )' aria-label='回复给iaxiao'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-8388"><div class="c-avatar"><div class="c-main" id="div-comment-8388">面板和VPN功能方面应该是没有冲突的。估计是面板安装完后，自动写入防火墙规则（除关键端口都封闭），导致VPN无法连接。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-10-21 18:53 <a class='comment-reply-link' href='index-replytocom=8388.html#respond' onclick='return addComment.moveForm( "div-comment-8388", "8388", "respond", "1276" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-8389"><div class="c-avatar"><div class="c-main" id="div-comment-8389">那怎么整，在面板的防火墙规则里面添加vpn的端口？ 话说L2tp和 PPTP 加上IKEV2的端口都是多少呢，我现在测试一下<div class="c-meta"><span class="c-author">iaxiao</span>2016-10-21 19:01 <a class='comment-reply-link' href='index-replytocom=8389.html#respond' onclick='return addComment.moveForm( "div-comment-8389", "8389", "respond", "1276" )' aria-label='回复给iaxiao'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-8393"><div class="c-avatar"><div class="c-main" id="div-comment-8393">TCP: 1723、UDP:500、UDP:4500、UDP:1701这几个端口打开。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-10-21 22:29 <a class='comment-reply-link' href='index-replytocom=8393.html#respond' onclick='return addComment.moveForm( "div-comment-8393", "8393", "respond", "1276" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt depth-3" id="comment-8390"><div class="c-avatar"><div class="c-main" id="div-comment-8390">https://www.vestacp.net/index.html 这个面板<div class="c-meta"><span class="c-author">iaxiao</span>2016-10-21 19:05 <a class='comment-reply-link' href='index-replytocom=8390.html#respond' onclick='return addComment.moveForm( "div-comment-8390", "8390", "respond", "1276" )' aria-label='回复给iaxiao'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-8211"><div class="c-avatar"><div class="c-main" id="div-comment-8211">ubuntu升级系统16后，Failed to start ipsec.service: Unit ipsec.service not found.无法使用，有什么解决方法？<div class="c-meta"><span class="c-author">cheri</span>2016-09-21 15:32 <a class='comment-reply-link' href='index-replytocom=8211.html#respond' onclick='return addComment.moveForm( "div-comment-8211", "8211", "respond", "1276" )' aria-label='回复给cheri'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-6675"><div class="c-avatar"><div class="c-main" id="div-comment-6675">这个是否兼容所有设备，比windows、osx、ios、andriod<div class="c-meta"><span class="c-author"><a href='http://phenfun.com' rel='external nofollow' class='url'>phenfun</a></span>2016-05-19 11:01 <a class='comment-reply-link' href='index-replytocom=6675.html#respond' onclick='return addComment.moveForm( "div-comment-6675", "6675", "respond", "1276" )' aria-label='回复给phenfun'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-6677"><div class="c-avatar"><div class="c-main" id="div-comment-6677">L2TP/IPSec各主流系统默认都支持，自带。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-05-19 12:06 <a class='comment-reply-link' href='index-replytocom=6677.html#respond' onclick='return addComment.moveForm( "div-comment-6677", "6677", "respond", "1276" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-6651"><div class="c-avatar"><div class="c-main" id="div-comment-6651">搬瓦工的不能上l2tp 是不是       有两项  失败<div class="c-meta"><span class="c-author"><a href='http://www.cctv.com' rel='external nofollow' class='url'>restart</a></span>2016-05-16 18:20 <a class='comment-reply-link' href='index-replytocom=6651.html#respond' onclick='return addComment.moveForm( "div-comment-6651", "6651", "respond", "1276" )' aria-label='回复给restart'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

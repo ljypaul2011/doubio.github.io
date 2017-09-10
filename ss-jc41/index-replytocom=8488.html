@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>『视频』ShadowsocksR 服务端安装+客户端使用 新手小白视频教程 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2179] -->
+<meta name="description"  content="最近这段时间，经常在群里会遇到 完全没接触过这方面的小白或者说没打算仔细学习，只是想单纯的搭建一个自己的Shadowsocks用用而已新手。 对于这些新手，因为从没接触过VPS、Linux、Shadowsocks，所以一开始很蒙逼，教程很简单，但是他们并不理解。 所以我就干脆做一个" />
+
+<meta name="keywords"  content="shadowsocksr,新手教程,视频教程" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='『优惠』Vultr最新优惠活动，冲多少送多少，最高送100美元！' href='../vpszy-6/index.html' />
+<link rel='next' title='『原创』SimpleHTTPServer 快速搭建HTTP Web服务 + 一键脚本' href='../wlzy-8/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="ShadowsocksR, 新手教程, 视频教程, Shadowsocks, 网络资源">
+<meta name="description" content="最近这段时间，经常在群里会遇到 完全没接触过这方面的小白或者说没打算仔细学习，只是想单纯的搭建一个自己的Shadowsocks用用而已新手。  对于这些新手，因为从没接触过VPS、Linux、Shadowsocks，所以一开始很蒙逼，教程很简单，但是他们并不理解。  所以我就干脆做一个 ShadowsocksR服务端安装+客户端使用 的新手视频教程。    因为我做视频经验不多，想到哪做到哪一遍过，视频中 安装步骤可能就几分钟，但是我愣">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1604 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=8488.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">『视频』ShadowsocksR 服务端安装+客户端使用 新手小白视频教程</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../ss/index.html"> Shadowsocks</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 10个月前 (10-30)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 23076℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">45评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E8%A7%86%E9%A2%91%E9%93%BE%E6%8E%A5" title="视频链接"><span>视频链接</span></a></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年8月22日 16:15</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>最近这段时间，经常在群里会遇到 完全没接触过这方面的小白或者说没打算仔细学习，只是想单纯的搭建一个自己的Shadowsocks用用而已新手。</p>
+<p>对于这些新手，因为从没接触过VPS、Linux、Shadowsocks，所以一开始很蒙逼，教程很简单，但是他们并不理解。</p>
+<p>所以我就干脆做一个 ShadowsocksR服务端安装+客户端使用 的新手视频教程。</p>
+<hr />
+<p>因为我做视频经验不多，想到哪做到哪一遍过，视频中 安装步骤可能就几分钟，但是我愣是打字啰嗦了十分钟，大家凑活着看吧~</p>
+<p>点击下面的链接，可以直接在线观看，如果逗比云网络炸了或者想要本地观看的，请右键链接另存为本地文件。</p>
+<h3 id="视频链接">视频链接</h3>
+<p><a class="dl" title="" href="https://softs.fun/?dir=Video" target="_blank" rel="nofollow" data-original-title=""><i class="fa fa-cloud-download"></i>逗比 · 云</a></p>
+<p><a class="dl" title="" href="http://pan.baidu.com/s/1gfrJ2RT" target="_blank" rel="nofollow" data-original-title=""><i class="fa fa-cloud-download"></i>百度 · 云</a> 提取密码：3ngd</p>
+<blockquote><p>我这个教程并不是帮助你理解ShadowsocksR什么的，而是纯粹的用最简步骤演示一遍全过程，然后你们跟着我一步步的复制粘贴代码（前面锐速的可以忽略），我做什么你们做什么就行了。</p>
+<p>遇到好几个，我做什么，他们就不做什么，我不做什么，他们就做什么，完全不跟着我的步骤走，心累。。。</p></blockquote>
+<p>本视频教程，仅是给从没接触过这方面的新手观看的，教程很简单无技术含量，请“大神”勿喷。</p>
+<p>当然，如果你还是不会，或者不想研究，你可以找我免费代安装（如果我不忙的话）。</p>
+<hr />
+<p>本视频教程涉及了以下几个文章教程，建议配合食用！</p>
+<ul>
+<li><a title="" href="../ss-jc10/index.html" target="_blank" data-original-title="Shadowsocks的小白使用教程">Shadowsocks的小白使用教程</a></li>
+<li><a title="" href="../ss-jc11/index.html" target="_blank" data-original-title="ShadowsocksR 服务端安装教程">ShadowsocksR 服务端单用户安装教程</a></li>
+<li><a title="" href="../linux-jc1/index.html" target="_blank" data-original-title="Linux中VIM编辑器的真 · 简单使用教程">Linux中VIM编辑器的真 · 简单使用教程</a></li>
+<li><a title="" href="../linux-jc2/index.html" target="_blank" data-original-title="Linux SSH链接工具 Putty 新手详细使用教程 - 逗比根据地">Linux SSH链接工具 Putty 新手详细使用教程</a></li>
+<li><a title="" href="../ruisu-jc1/index.html" target="_blank" data-original-title="优秀的免费VPS加速方案——锐速">优秀的VPS TCP加速方案——锐速（开心版）</a></li>
+<li><strong><a title="" href="../ss-jc35/index.html" target="_blank" data-original-title="关于Shadowsocks的小白常见问题 总结篇">关于Shadowsocks的小白常见问题 总结篇</a></strong></li>
+</ul>
+<p>视频教程中，忘记提到一条新手很容易被坑的一个问题。</p>
+<blockquote><p><strong>Linux在输入密码（ROOT密码）的时候，不会显示字符的，你看不到你输入的内容。</strong></p>
+<p>有的人Root密码比较复杂或者怕输错，可以复制密码然后直接在Putty窗口上<strong>鼠标右键粘贴</strong>！</p>
+<pre>注意：Putty右键没有win一样的菜单，右键之后直接就粘贴文本了！</pre>
+</blockquote>
+<p>还有视频里面，关于 混淆(obfs)和协议(protocol) 两个说反了，不过这并不重要，大家无视无视~</p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">『视频』ShadowsocksR 服务端安装+客户端使用 新手小白视频教程</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1604" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">57</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/shadowsocksr/index.html" rel="tag">ShadowsocksR</a><a href="../tag/%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B/index.html" rel="tag">新手教程</a><a href="../tag/%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B/index.html" rel="tag">视频教程</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../vpszy-6/index.html" rel="prev">『优惠』Vultr最新优惠活动，冲多少送多少，最高送100美元！</a></span>
+			<span class="article-nav-next"><a href="../wlzy-8/index.html" rel="next">『原创』SimpleHTTPServer 快速搭建HTTP Web服务 + 一键脚本</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../dbrj-5/index.html" title="ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP" />	<br><span class="r_title">ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc60/index.html" title="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" />	<br><span class="r_title">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc59/index.html" title="『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-0.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC" />	<br><span class="r_title">『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc58/index.html" title="支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-04-05.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap" />	<br><span class="r_title">支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../dbrj-5/index.html">ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc60/index.html">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc59/index.html">『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc58/index.html">支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc57/index.html">ShadowsocksR 单服务器多用户 mudbjson模式使用教程 支持流量限制</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc5/index.html">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc56/index.html">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc55/index.html">使用ShadowsocksR Python客户端 快速验证SSR账号是否可用</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1604' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='8488' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (45)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-17420"><div class="c-avatar"><div class="c-main" id="div-comment-17420">站长 百度云失效了 有空可以再补一个么 谢谢！<div class="c-meta"><span class="c-author">oxo</span>2017-08-22 14:40 <a class='comment-reply-link' href='index-replytocom=17420.html#respond' onclick='return addComment.moveForm( "div-comment-17420", "17420", "respond", "1604" )' aria-label='回复给oxo'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17424"><div class="c-avatar"><div class="c-main" id="div-comment-17424">修复了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-22 16:15 <a class='comment-reply-link' href='index-replytocom=17424.html#respond' onclick='return addComment.moveForm( "div-comment-17424", "17424", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-17655"><div class="c-avatar"><div class="c-main" id="div-comment-17655">万分感谢！<div class="c-meta"><span class="c-author">oxo</span>2017-08-27 13:54 <a class='comment-reply-link' href='index-replytocom=17655.html#respond' onclick='return addComment.moveForm( "div-comment-17655", "17655", "respond", "1604" )' aria-label='回复给oxo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17095"><div class="c-avatar"><div class="c-main" id="div-comment-17095">逗比云怎么都打不开？百度云又失效 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_cry.gif" alt=":cry:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">ssrr</span>2017-08-15 01:40 <a class='comment-reply-link' href='index-replytocom=17095.html#respond' onclick='return addComment.moveForm( "div-comment-17095", "17095", "respond", "1604" )' aria-label='回复给ssrr'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-17068"><div class="c-avatar"><div class="c-main" id="div-comment-17068">为什么我用putty 一直都是access denied<div class="c-meta"><span class="c-author">xcv</span>2017-08-14 19:07 <a class='comment-reply-link' href='index-replytocom=17068.html#respond' onclick='return addComment.moveForm( "div-comment-17068", "17068", "respond", "1604" )' aria-label='回复给xcv'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17069"><div class="c-avatar"><div class="c-main" id="div-comment-17069">如果你IP和端口信息没有填写错误，那么你就要检查服务器情况了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-14 19:23 <a class='comment-reply-link' href='index-replytocom=17069.html#respond' onclick='return addComment.moveForm( "div-comment-17069", "17069", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-18107"><div class="c-avatar"><div class="c-main" id="div-comment-18107">服务器？？？我也遇到相同问题！求解答!!谢谢<div class="c-meta"><span class="c-author">SKY</span>2017-09-04 14:12  (4天前)<a class='comment-reply-link' href='index-replytocom=18107.html#respond' onclick='return addComment.moveForm( "div-comment-18107", "18107", "respond", "1604" )' aria-label='回复给SKY'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-18115"><div class="c-avatar"><div class="c-main" id="div-comment-18115">VPS没开机，VPS没网络，VPS内部的SSH端口防火墙没开放（或者外部防火墙没开放，看IDC），SSH端口填错，SSH IP填错。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-09-04 15:00  (4天前)<a class='comment-reply-link' href='index-replytocom=18115.html#respond' onclick='return addComment.moveForm( "div-comment-18115", "18115", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16786"><div class="c-avatar"><div class="c-main" id="div-comment-16786">视频链接失效了<div class="c-meta"><span class="c-author">llhbj</span>2017-08-10 12:21 <a class='comment-reply-link' href='index-replytocom=16786.html#respond' onclick='return addComment.moveForm( "div-comment-16786", "16786", "respond", "1604" )' aria-label='回复给llhbj'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16788"><div class="c-avatar"><div class="c-main" id="div-comment-16788">逗比云链接正常。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-10 12:29 <a class='comment-reply-link' href='index-replytocom=16788.html#respond' onclick='return addComment.moveForm( "div-comment-16788", "16788", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-15640"><div class="c-avatar"><div class="c-main" id="div-comment-15640">百度盘的文件被删了……<div class="c-meta"><span class="c-author">meow</span>2017-07-19 17:34 <a class='comment-reply-link' href='index-replytocom=15640.html#respond' onclick='return addComment.moveForm( "div-comment-15640", "15640", "respond", "1604" )' aria-label='回复给meow'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15217"><div class="c-avatar"><div class="c-main" id="div-comment-15217">所有vps登录都需要下载插件吗？下载时需要关闭代理，但关闭代理又无法下载怎么办？<div class="c-meta"><span class="c-author">world</span>2017-07-01 18:14 <a class='comment-reply-link' href='index-replytocom=15217.html#respond' onclick='return addComment.moveForm( "div-comment-15217", "15217", "respond", "1604" )' aria-label='回复给world'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-15223"><div class="c-avatar"><div class="c-main" id="div-comment-15223">VPS登陆？下载插件？你在说什么？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-02 00:44 <a class='comment-reply-link' href='index-replytocom=15223.html#respond' onclick='return addComment.moveForm( "div-comment-15223", "15223", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-14701"><div class="c-avatar"><div class="c-main" id="div-comment-14701">请教一下站长，在VPS上同时部署SS和SSR会导致冲突吗？（我已经部署了SS）<div class="c-meta"><span class="c-author">Frost</span>2017-06-11 15:41 <a class='comment-reply-link' href='index-replytocom=14701.html#respond' onclick='return addComment.moveForm( "div-comment-14701", "14701", "respond", "1604" )' aria-label='回复给Frost'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-14706"><div class="c-avatar"><div class="c-main" id="div-comment-14706">为何要部署SS/SSR两个服务端？端口需要分开，Shadowsocks Python版和ShadowsocksR不兼容，会冲突。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-06-11 20:13 <a class='comment-reply-link' href='index-replytocom=14706.html#respond' onclick='return addComment.moveForm( "div-comment-14706", "14706", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10275"><div class="c-avatar"><div class="c-main" id="div-comment-10275">感谢逗逼<div class="c-meta"><span class="c-author">午后</span>2017-02-01 21:12 <a class='comment-reply-link' href='index-replytocom=10275.html#respond' onclick='return addComment.moveForm( "div-comment-10275", "10275", "respond", "1604" )' aria-label='回复给午后'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10190"><div class="c-avatar"><div class="c-main" id="div-comment-10190">站主，我是小白，这是不是用vps获取ssr账号？<div class="c-meta"><span class="c-author">zzz</span>2017-01-29 19:31 <a class='comment-reply-link' href='index-replytocom=10190.html#respond' onclick='return addComment.moveForm( "div-comment-10190", "10190", "respond", "1604" )' aria-label='回复给zzz'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-10191"><div class="c-avatar"><div class="c-main" id="div-comment-10191">VPS上面搭建Shadowsocks服务端，Shadowsocks账号当然也是在VPS上面查看。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-01-29 20:40 <a class='comment-reply-link' href='index-replytocom=10191.html#respond' onclick='return addComment.moveForm( "div-comment-10191", "10191", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-9851"><div class="c-avatar"><div class="c-main" id="div-comment-9851">小白请教：搬瓦工上面怎么比较容易安装SSR而不是一键安装SS？<div class="c-meta"><span class="c-author">ceshioo</span>2017-01-12 11:53 <a class='comment-reply-link' href='index-replytocom=9851.html#respond' onclick='return addComment.moveForm( "div-comment-9851", "9851", "respond", "1604" )' aria-label='回复给ceshioo'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-9568"><div class="c-avatar"><div class="c-main" id="div-comment-9568">老大麻烦我想自己搞个SS，麻烦能教学下吗？小白一枚<div class="c-meta"><span class="c-author">小晓</span>2017-01-03 17:10 <a class='comment-reply-link' href='index-replytocom=9568.html#respond' onclick='return addComment.moveForm( "div-comment-9568", "9568", "respond", "1604" )' aria-label='回复给小晓'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-9324"><div class="c-avatar"><div class="c-main" id="div-comment-9324">我什么我跟着你都步骤走，到配置文件的时候我仍然打开是空的，自己编辑后无法保存，我根本就没有SS的配置文件，：wq提示错误 无法保存。<div class="c-meta"><span class="c-author">kezhu</span>2016-12-23 20:44 <a class='comment-reply-link' href='index-replytocom=9324.html#respond' onclick='return addComment.moveForm( "div-comment-9324", "9324", "respond", "1604" )' aria-label='回复给kezhu'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-9325"><div class="c-avatar"><div class="c-main" id="div-comment-9325">提供信息太少，看不出具体问题。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-12-23 20:54 <a class='comment-reply-link' href='index-replytocom=9325.html#respond' onclick='return addComment.moveForm( "div-comment-9325", "9325", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-9326"><div class="c-avatar"><div class="c-main" id="div-comment-9326">进入子目录：cd shadowsocks/shadowsocks
+通过...复制...假如你的Shadowsocks目录是 /root/shadowsocks/
+cp /root/shadowsocks/config.json /root/shadowsocks/user-config.json
+打开并修改配置文件...vi /root/shadowsocks/user-config.json
+以上步骤我我复制代码粘贴，打开配置文件并不像描述那样有内容，我打开什么都没有，编辑后也无法保存，因为没有这个文件，：WQ失败，只能：q! 我不知道为什么，我一直想安装成功一次，不希望安装一键版本！<div class="c-meta"><span class="c-author">kezhu</span>2016-12-23 21:33 <a class='comment-reply-link' href='index-replytocom=9326.html#respond' onclick='return addComment.moveForm( "div-comment-9326", "9326", "respond", "1604" )' aria-label='回复给kezhu'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-9329"><div class="c-avatar"><div class="c-main" id="div-comment-9329">无法打开文件进行写入，你先通过<code> ls -a </code>查看当前文件夹内的所有文件，看一看<code> user-config.json </code>文件是否存在，你这个错误似乎是文件被占用或者没有权限操作造成的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-12-23 21:53 <a class='comment-reply-link' href='index-replytocom=9329.html#respond' onclick='return addComment.moveForm( "div-comment-9329", "9329", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-8760"><div class="c-avatar"><div class="c-main" id="div-comment-8760">请教，买了便宜vps试手，已经一键部署好了SSR，但不知道什么原因电脑端的SSR是不能正常用的，反而用旧版本的SS（不设置混淆模式）就可以上网；最奇怪的是，iphone上的shadowsocks用混淆的方式能上。<div class="c-meta"><span class="c-author">啫喱</span>2016-11-24 17:47 <a class='comment-reply-link' href='index-replytocom=8760.html#respond' onclick='return addComment.moveForm( "div-comment-8760", "8760", "respond", "1604" )' aria-label='回复给啫喱'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-8762"><div class="c-avatar"><div class="c-main" id="div-comment-8762">ShadowsocksR客户端不设置混淆也不能上？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-11-24 18:46 <a class='comment-reply-link' href='index-replytocom=8762.html#respond' onclick='return addComment.moveForm( "div-comment-8762", "8762", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-8766"><div class="c-avatar"><div class="c-main" id="div-comment-8766">原来是犯了很低端的错误，选错了ASE-256CTR加密方式，iphone的ShadowSocks客户端好像没有CTR的加密，只有CFB所以没选错<div class="c-meta"><span class="c-author">啫喱</span>2016-11-24 19:39 <a class='comment-reply-link' href='index-replytocom=8766.html#respond' onclick='return addComment.moveForm( "div-comment-8766", "8766", "respond", "1604" )' aria-label='回复给啫喱'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-8659"><div class="c-avatar"><div class="c-main" id="div-comment-8659">提个白痴问题，SSR和SS有何区别……？<div class="c-meta"><span class="c-author">小路呗</span>2016-11-16 16:04 <a class='comment-reply-link' href='index-replytocom=8659.html#respond' onclick='return addComment.moveForm( "div-comment-8659", "8659", "respond", "1604" )' aria-label='回复给小路呗'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-8660"><div class="c-avatar"><div class="c-main" id="div-comment-8660"><a href="../ss-jc35/index.html" target="_blank" rel="nofollow">关于Shadowsocks的小白常见问题 总结篇</a>，我网站都有这方面的科普，只是你们都不看。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-11-16 16:16 <a class='comment-reply-link' href='index-replytocom=8660.html#respond' onclick='return addComment.moveForm( "div-comment-8660", "8660", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-8658"><div class="c-avatar"><div class="c-main" id="div-comment-8658">赵大的魔改前端可以对接这个ssr后端吗<div class="c-meta"><span class="c-author">Daly</span>2016-11-16 15:01 <a class='comment-reply-link' href='index-replytocom=8658.html#respond' onclick='return addComment.moveForm( "div-comment-8658", "8658", "respond", "1604" )' aria-label='回复给Daly'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-8661"><div class="c-avatar"><div class="c-main" id="div-comment-8661">我这个视频是，单用户版的ShadowsocksR服务端，你需要多用户版的，而且具体对接情况要看你的前端要求。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-11-16 16:17 <a class='comment-reply-link' href='index-replytocom=8661.html#respond' onclick='return addComment.moveForm( "div-comment-8661", "8661", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-8522"><div class="c-avatar"><div class="c-main" id="div-comment-8522">博主，请问如果想在Mac OS下面进行搭建的话，会有那些不一样的地方吗？ 因为Mac OS下面没法运行exe程序把。<div class="c-meta"><span class="c-author">Hanchor</span>2016-11-03 12:20 <a class='comment-reply-link' href='index-replytocom=8522.html#respond' onclick='return addComment.moveForm( "div-comment-8522", "8522", "respond", "1604" )' aria-label='回复给Hanchor'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-8523"><div class="c-avatar"><div class="c-main" id="div-comment-8523">MAC用MAC版的Shadowsocks或者ShadowsocksR客户端，至于链接SSH的软件，你需要找一个MAC版本的，这我不是很了解MAC。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-11-03 13:17 <a class='comment-reply-link' href='index-replytocom=8523.html#respond' onclick='return addComment.moveForm( "div-comment-8523", "8523", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-8555"><div class="c-avatar"><div class="c-main" id="div-comment-8555">好的！ 谢谢！<div class="c-meta"><span class="c-author">Hanchor</span>2016-11-06 13:02 <a class='comment-reply-link' href='index-replytocom=8555.html#respond' onclick='return addComment.moveForm( "div-comment-8555", "8555", "respond", "1604" )' aria-label='回复给Hanchor'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-8506"><div class="c-avatar"><div class="c-main" id="div-comment-8506">博主真是个耐心的人，写了这么多详细的教程。<div class="c-meta"><span class="c-author">足球狗</span>2016-11-01 13:55 <a class='comment-reply-link' href='index-replytocom=8506.html#respond' onclick='return addComment.moveForm( "div-comment-8506", "8506", "respond", "1604" )' aria-label='回复给足球狗'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-8493"><div class="c-avatar"><div class="c-main" id="div-comment-8493">我说呢，怎么下到一半就提示任务出错，怎么刷都没用。 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">caliban</span>2016-10-30 17:31 <a class='comment-reply-link' href='index-replytocom=8493.html#respond' onclick='return addComment.moveForm( "div-comment-8493", "8493", "respond", "1604" )' aria-label='回复给caliban'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-8486"><div class="c-avatar"><div class="c-main" id="div-comment-8486">话说，SSR作者在推特上早已经宣布停止更新并推荐大家使用SS了。
+https://twitter.com/breakwa11/status/771241107564826624<div class="c-meta"><span class="c-author">caliban</span>2016-10-30 14:04 <a class='comment-reply-link' href='index-replytocom=8486.html#respond' onclick='return addComment.moveForm( "div-comment-8486", "8486", "respond", "1604" )' aria-label='回复给caliban'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-8487"><div class="c-avatar"><div class="c-main" id="div-comment-8487">年轻，不知道那是明面上给国家看的吗？服务端依然在github上面更新，安卓的ssr也在github，ssr客户端则在zeronet上面更新。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-10-30 15:04 <a class='comment-reply-link' href='index-replytocom=8487.html#respond' onclick='return addComment.moveForm( "div-comment-8487", "8487", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-8489"><div class="c-avatar"><div class="c-main" id="div-comment-8489">感谢回复。其实最新的我这里也一直在同步获取，不过看到声明还是有点搞不清楚状况，有你这老司机发话，咱就放心多了。 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_biggrin.gif" alt=":grin:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">caliban</span>2016-10-30 15:37 <a class='comment-reply-link' href='index-replytocom=8489.html#respond' onclick='return addComment.moveForm( "div-comment-8489", "8489", "respond", "1604" )' aria-label='回复给caliban'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt depth-3" id="comment-8490"><div class="c-avatar"><div class="c-main" id="div-comment-8490">大神，出个zeronet教程吧，全是英文看的头疼。上去半天了，还没完全搞清楚用法……虽然能看H图了……但还没找到SSR…… <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_eek.gif" alt=":shock:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">caliban</span>2016-10-30 15:59 <a class='comment-reply-link' href='index-replytocom=8490.html#respond' onclick='return addComment.moveForm( "div-comment-8490", "8490", "respond", "1604" )' aria-label='回复给caliban'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-8491"><div class="c-avatar"><div class="c-main" id="div-comment-8491">zeronet，我也只是定时上去看看ShadowsocksR更新，平时也不玩。<a href="http://127.0.0.1:43110/shadowsocksr.bit" target="_blank" rel="nofollow">ShadowsocksR-ZeroNet</a><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-10-30 16:11 <a class='comment-reply-link' href='index-replytocom=8491.html#respond' onclick='return addComment.moveForm( "div-comment-8491", "8491", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-5" id="comment-8492"><div class="c-avatar"><div class="c-main" id="div-comment-8492">非常感谢！终于有点找到组织的感觉了…… <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_cry.gif" alt=":cry:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">caliban</span>2016-10-30 16:34 <a class='comment-reply-link' href='index-replytocom=8492.html#respond' onclick='return addComment.moveForm( "div-comment-8492", "8492", "respond", "1604" )' aria-label='回复给caliban'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-8485"><div class="c-avatar"><div class="c-main" id="div-comment-8485">评测一下这个？
+http://www.chinagfw.org/2016/10/v2ray.html<div class="c-meta"><span class="c-author">caliban</span>2016-10-30 13:58 <a class='comment-reply-link' href='index-replytocom=8485.html#respond' onclick='return addComment.moveForm( "div-comment-8485", "8485", "respond", "1604" )' aria-label='回复给caliban'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-8488"><div class="c-avatar"><div class="c-main" id="div-comment-8488">年初就知道了，但是不适合新手，配置文件新手肯定一脸懵逼。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-10-30 15:05 <a class='comment-reply-link' href='index-replytocom=8488.html#respond' onclick='return addComment.moveForm( "div-comment-8488", "8488", "respond", "1604" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-8514"><div class="c-avatar"><div class="c-main" id="div-comment-8514">我觉得博主可以写一篇。大家弄得懂最好，搞不好也没关系。当然，如果博主有空的话。<div class="c-meta"><span class="c-author">Thomas</span>2016-11-02 16:49 <a class='comment-reply-link' href='index-replytocom=8514.html#respond' onclick='return addComment.moveForm( "div-comment-8514", "8514", "respond", "1604" )' aria-label='回复给Thomas'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

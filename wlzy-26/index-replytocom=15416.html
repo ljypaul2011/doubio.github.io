@@ -1,0 +1,492 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>一个搭建 本地DNS 以科学上网的小工具 —— dowsDNS | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2173] -->
+<meta name="description"  content="今天无聊，就在Github上面乱逛，然后就莫名其妙的发现了这个软件，看了一下这个软件的第一个Releases是15天前(今天14日)，也就说刚做出来的工具，测试了一下可以Google、Youtube看视频，不过速度似乎不是很稳定。但是是免费的，大家可以研究研究。 简单的原理可能就是：使用公共的SNI代理服务器，然" />
+
+<meta name="keywords"  content="dns,dowsdns" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='Linux中利用 iptables string模块 屏蔽泛域名(匹配字符串)' href='../wlzy-25/index.html' />
+<link rel='next' title='一个 反代无需证书 适用于DNS/Hosts的小工具 —— SNI Proxy代理 安装教程' href='../wlzy-27/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="DNS, dowsDNS, 网络资源">
+<meta name="description" content="今天无聊，就在Github上面乱逛，然后就莫名其妙的发现了这个软件，看了一下这个软件的第一个Releases是15天前(今天14日)，也就说刚做出来的工具，测试了一下可以Google、Youtube看视频，不过速度似乎不是很稳定。但是是免费的，大家可以研究研究。  简单的原理可能就是：使用公共的SNI代理服务器，然后做一个本地自动的hosts泛域名解析的样子，不懂python也看不懂代码- -。  Github项目地址：https://">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1791 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=15416.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">一个搭建 本地DNS 以科学上网的小工具 —— dowsDNS</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../wlzy/index.html"> 网络资源</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 8个月前 (01-14)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 10903℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">19评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B" title="安装教程"><span>安装教程</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E9%A6%96%E5%85%88%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6%EF%BC%9A" title="首先下载软件："><span>首先下载软件：</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9DNS" title="手动修改DNS"><span>手动修改DNS</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E6%8C%89%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%9B%BE%E7%89%87%E6%AD%A5%E9%AA%A4%E6%89%A7%E8%A1%8C%EF%BC%9A" title="按下面的图片步骤执行："><span>按下面的图片步骤执行：</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%88%B7%E6%96%B0DNS%E7%BC%93%E5%AD%98%EF%BC%9A" title="刷新DNS缓存："><span>刷新DNS缓存：</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E9%80%9F%E5%BA%A6%E6%B5%8B%E8%AF%95" title="速度测试"><span>速度测试</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E5%85%B6%E4%BB%96%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E5%B9%B6%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E7%9A%84%20DNS%EF%BC%9A" title="其他可以直接使用并科学上网的 DNS："><span>其他可以直接使用并科学上网的 DNS：</span></a><ul class="children"><li class="content-index-level-3"><a href="index.html#Xsico%20DNS" title="Xsico DNS"><span>Xsico DNS</span></a></li><li class="content-index-level-3"><a href="index.html#Mogu%20DNS" title="Mogu DNS"><span>Mogu DNS</span></a></li><li class="content-index-level-3"><a href="index.html#Pure%20DNS" title="Pure DNS"><span>Pure DNS</span></a></li></ul></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年4月23日 14:08</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>今天无聊，就在Github上面乱逛，然后就莫名其妙的发现了这个软件，看了一下这个软件的第一个Releases是15天前(今天14日)，也就说刚做出来的工具，测试了一下可以Google、Youtube看视频，不过速度似乎不是很稳定。但是是免费的，大家可以研究研究。</p>
+<p>简单的原理可能就是：使用公共的SNI代理服务器，然后做一个本地自动的hosts泛域名解析的样子，不懂python也看不懂代码- -。</p>
+<p><strong>Github项目地址：</strong><a href="https://github.com/dowsnature/dowsDNS/" target="_blank">https://github.com/dowsnature/dowsDNS/</a></p>
+<p><strong>Linux搭建DNS服务教程：<a title="Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告" href="../dowsdns-jc2/index.html" target="_blank">Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告</a></strong></p>
+<p>&nbsp;</p>
+<pre>注意：DNS和Hosts这两种科学上网方式，都必须使用<code> https </code>，比如访问谷歌：<code> https://www.google.com </code>，使用<code> http </code>明文传输会被墙拦截。</pre>
+<h2 id="安装教程">安装教程</h2>
+<h3 id="首先下载软件：">首先下载软件：</h3>
+<p><a href="https://github.com/dowsnature/dowsDNS/releases" target="_blank">Github &#8211; Releases</a> / <a href="https://softs.fun/?dir=%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/PC/dowsDNS" target="_blank">逗比云</a></p>
+<p>然后解压到任意文件夹中，进入解压后的文件夹，我们找到这几个文件：</p>
+<pre class="prettyprint linenums"># V0.22版本
+<strong>bin</strong>
+├──── dns.exe # 手动启动程序
+<strong>conf</strong>
+├──── config.json # 配置文件
+├──── data.json
+Window.bat # 自动启动脚本
+run.py # python启动程序
+</pre>
+<p>默认我们是不用管配置文件的，直接打开<code> Windows.bat </code>，然后会出现下面这个CMD提示，<strong>需要管理员权限运行脚本</strong>，否则无法修改DNS服务器为<code> 127.0.0.1 </code>，如果修改失败，你就需要按下面的步骤<strong>手动修改DNS</strong>。</p>
+<pre class="prettyprint linenums">========================
+需要管理员权限运行此脚本
+========================
+当前可用操作有：
+1 运行本地DNS服务器
+2 恢复动态DNS(恢复网络)
+3 更新记录文件并运行本地DNS服务器
+4 退出
+请选择后回车：
+<strong>1</strong>
+.
+正在设置本地DNS代理，请稍等...
+网络 = "本地连接"
+DNS = 127.0.0.1
+.
+本地代理已设置！
+若无法使用,请手动修改系统的DNS为:127.0.0.1(默认情况)
+==========Config===========
+Local_dns_server: 127.0.0.1
+Local_dns_port: 53
+Remote_dns_server: 114.114.114.114
+Remote_dns_port: 53
+===========Config==========
+Trying start bind local IP and port ...
+Bind successfully! Running ...
+</pre>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-26-01.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="663" height="432" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-26-01.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="663" height="432" /></noscript></p>
+<h2 id="手动修改DNS">手动修改DNS</h2>
+<p>你需要设置一下你电脑的DNS为<code> 127.0.0.1 </code>。</p>
+<h3 id="按下面的图片步骤执行：">按下面的图片步骤执行：</h3>
+<ol>
+<li>打开网络和共享中心</li>
+<li>点击 <strong>本地连接</strong></li>
+<li>点击 <strong>属性</strong> 按钮</li>
+<li>选择 <strong>Internet 协议版本 4 (TCP/IPv4)</strong> 并点击 <strong>属性</strong> 按钮</li>
+<li>选择 <strong>使用下面的DNS服务器地址</strong></li>
+<li>然后填写 <strong>首选DNS服务器</strong> 为<code> 127.0.0.1 </code>，备用的可以留空。</li>
+<li>然后点击 <strong>确定</strong> 按钮，一路确定。</li>
+</ol>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-26-07.png" alt="" width="189" height="77" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-26-07.png" alt="" width="189" height="77" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-26-08.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="751" height="282" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-26-08.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="751" height="282" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-26-06.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="377" height="426" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-26-06.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="377" height="426" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-26-05.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="361" height="433" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-26-05.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="361" height="433" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-26-04.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/200" alt="" width="401" height="423" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-26-04.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/200" alt="" width="401" height="423" /></noscript></p>
+<p>然后尝试打开 <a href="https://www.google.com" target="_blank">https://www.google.com</a>、<a href="https://www.youtube.com" target="_blank">https://www.youtube.com</a></p>
+<pre>注意：打开谷歌和youtube类网站都需要是 https 的才行，否则 http 会被墙解包 明文被发现然后 阻断。</pre>
+<p>如果不能打开，请清理浏览器缓存和刷新DNS缓存。</p>
+<h3 id="刷新DNS缓存：">刷新DNS缓存：</h3>
+<p>开始 —— 运行 —— 输入<code> cmd </code>并回车 —— 显示CMD的窗口，输入<code> ipconfig /flushdns </code>并回车，就是刷新DNS缓存了。</p>
+<p>如果你需要局域网内其他设备也使用这个软件，那么你需要在CMD中输入<code> ipconfig </code>然后就会显示下图。</p>
+<p>找到你的 IPv4地址，比如我的<code> 192.168.0.101 </code></p>
+<p>然后打开<code> config.json </code>配置文件，我们可以看到如下内容：</p>
+<pre class="prettyprint linenums">{
+	"Remote_dns_server" : "114.114.114.114",
+	"Remote_dns_port":53,
+	"Rpz_json_path":"./data/rpz.json",
+	"Local_dns_server" : "127.0.0.1",
+	"Local_dns_port" :  53
+}
+</pre>
+<p>我们需要把<code> 127.0.0.1 </code>改成你的电脑内网IP<code> 192.168.0.101 </code>。</p>
+<pre class="prettyprint linenums">"Local_dns_server" : "192.168.0.101",
+</pre>
+<p>然后在重新根据上面的步骤，把本地DNS服务器改为<code> 192.168.0.101 </code>。</p>
+<p>然后其他的设备也都设置DNS为<code> 192.168.0.101 </code>。</p>
+<p>如果是安卓手机使用的话设置地方是：<strong>设置 — WIFI — 长按 当前连接的WIFI —— 静态IP —— 然后填写DNS(也有叫域名的，都一样)。</strong></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-26-03.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="640" height="312" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-26-03.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="640" height="312" /></noscript></p>
+<h2 id="速度测试">速度测试</h2>
+<p>我是联通 50Mbps 环境，ping了一下，发现是泰国的 SNI代理，速度还不错，就是有点不稳定，速度快的时候可以看1080P，慢的就只能720P。</p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-26-02.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="413" height="226" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-26-02.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/100" alt="" width="413" height="226" /></noscript></p>
+<h3 id="其他可以直接使用并科学上网的 DNS：">其他可以直接使用并科学上网的 DNS：</h3>
+<p>以下几个DNS服务器，可以直接使用，不需要做其他设置，就能科学上网和屏蔽广告了。</p>
+<pre>注意：DNS和Hosts这两种科学上网方式，都必须使用<code> https </code>，比如访问谷歌：<code> https://www.google.com </code>，使用<code> http </code>明文传输会被墙拦截。</pre>
+<h4 id="Xsico DNS">Xsico DNS</h4>
+<p><strong><a href="http://dns.xsico.cn/" target="_blank">官方网站</a></strong> – 科学上网</p>
+<p><strong>Public Dns：</strong>115.159.157.26</p>
+<p><strong>Scholar Dns：</strong>115.159.158.38</p>
+<h4 id="Mogu DNS">Mogu DNS</h4>
+<p><strong><a href="http://mogudns.net/" target="_blank">官方网站</a></strong> – 科学上网+广告过滤</p>
+<p><strong>北方推荐：</strong>122.114.245.45</p>
+<p><strong>南方推荐：</strong>115.159.96.69</p>
+<h4 id="Pure DNS">Pure DNS</h4>
+<p><strong><a href="http://puredns.cn/" target="_blank">官方网站</a></strong> – 科学上网+广告过滤</p>
+<p><strong>北方推荐：</strong>123.207.137.88</p>
+<p><strong>南方推荐：</strong>115.159.220.214</p>
+<p><strong>如果不可用，请查看：<a href="../pckxsw/index.html#DNS" target="_blank">电脑科学上网 &#8211; DNS</a></strong></p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">一个搭建 本地DNS 以科学上网的小工具 —— dowsDNS</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1791" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">36</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/dns/index.html" rel="tag">DNS</a><a href="../tag/dowsdns/index.html" rel="tag">dowsDNS</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../wlzy-25/index.html" rel="prev">Linux中利用 iptables string模块 屏蔽泛域名(匹配字符串)</a></span>
+			<span class="article-nav-next"><a href="../wlzy-27/index.html" rel="next">一个 反代无需证书 适用于DNS/Hosts的小工具 —— SNI Proxy代理 安装教程</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../wlzy-34/index.html" title="Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-04-03.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）" />	<br><span class="r_title">Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../dowsdns-jc3/index.html" title="『原创』快速自建DNS服务器以 科学上网+屏蔽广告 —— dowsDNS 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-dns.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』快速自建DNS服务器以 科学上网+屏蔽广告 —— dowsDNS 一键脚本" />	<br><span class="r_title">『原创』快速自建DNS服务器以 科学上网+屏蔽广告 —— dowsDNS 一键脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../dowsdns-jc2/index.html" title="Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-dns.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告" />	<br><span class="r_title">Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc53/index.html" title="ShadowsocksR服务端 如何自定义/修改 DNS服务器" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-dns-1.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="ShadowsocksR服务端 如何自定义/修改 DNS服务器" />	<br><span class="r_title">ShadowsocksR服务端 如何自定义/修改 DNS服务器</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../wlzy-34/index.html">Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）</a></li><li><i class="fa fa-minus"></i><a href="../dowsdns-jc3/index.html">『原创』快速自建DNS服务器以 科学上网+屏蔽广告 —— dowsDNS 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../dowsdns-jc2/index.html">Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc53/index.html">ShadowsocksR服务端 如何自定义/修改 DNS服务器</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-32/index.html">Linux 自建DNS 并使用SNI Proxy实现科学上网 —— DNSmasq配置教程</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-27/index.html">一个 反代无需证书 适用于DNS/Hosts的小工具 —— SNI Proxy代理 安装教程</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-35/index.html">『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-33/index.html">锐速(ServerSpeeder/LotServer)配置参数简单说明，合理修改配置 提高加速效果</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1791' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='15416' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (19)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-15416"><div class="c-avatar"><div class="c-main" id="div-comment-15416">Win版不能自定义泛域名解析吗？配合自己搭建的SNI？<div class="c-meta"><span class="c-author">Boombox</span>2017-07-12 00:25 <a class='comment-reply-link' href='index-replytocom=15416.html#respond' onclick='return addComment.moveForm( "div-comment-15416", "15416", "respond", "1791" )' aria-label='回复给Boombox'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-15421"><div class="c-avatar"><div class="c-main" id="div-comment-15421">这个WIN版本版本低，作者没有更新 新的WIN版，只能去Github下载新版并安装Python来运行Python版。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-12 15:51 <a class='comment-reply-link' href='index-replytocom=15421.html#respond' onclick='return addComment.moveForm( "div-comment-15421", "15421", "respond", "1791" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-15384"><div class="c-avatar"><div class="c-main" id="div-comment-15384">现在好像全都失效了 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">Fzc</span>2017-07-09 13:55 <a class='comment-reply-link' href='index-replytocom=15384.html#respond' onclick='return addComment.moveForm( "div-comment-15384", "15384", "respond", "1791" )' aria-label='回复给Fzc'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-14002"><div class="c-avatar"><div class="c-main" id="div-comment-14002">能否移植到openwrt<div class="c-meta"><span class="c-author">jarod</span>2017-05-21 11:59 <a class='comment-reply-link' href='index-replytocom=14002.html#respond' onclick='return addComment.moveForm( "div-comment-14002", "14002", "respond", "1791" )' aria-label='回复给jarod'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-14006"><div class="c-avatar"><div class="c-main" id="div-comment-14006">这个你要问作者了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-21 12:34 <a class='comment-reply-link' href='index-replytocom=14006.html#respond' onclick='return addComment.moveForm( "div-comment-14006", "14006", "respond", "1791" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13150"><div class="c-avatar"><div class="c-main" id="div-comment-13150">sniproxy + dnsmasq 就可以了，只能自己玩玩，不能公开。前几年的 OpenerDNS 做成公共的，结果和谐掉了<div class="c-meta"><span class="c-author">reruin</span>2017-04-26 14:03 <a class='comment-reply-link' href='index-replytocom=13150.html#respond' onclick='return addComment.moveForm( "div-comment-13150", "13150", "respond", "1791" )' aria-label='回复给reruin'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10863"><div class="c-avatar"><div class="c-main" id="div-comment-10863">SNI要被玩坏的节奏。。。<div class="c-meta"><span class="c-author">test</span>2017-02-22 12:27 <a class='comment-reply-link' href='index-replytocom=10863.html#respond' onclick='return addComment.moveForm( "div-comment-10863", "10863", "respond", "1791" )' aria-label='回复给test'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10477"><div class="c-avatar"><div class="c-main" id="div-comment-10477">用这些免费的DNS安全不？<div class="c-meta"><span class="c-author">deeper</span>2017-02-09 10:21 <a class='comment-reply-link' href='index-replytocom=10477.html#respond' onclick='return addComment.moveForm( "div-comment-10477", "10477", "respond", "1791" )' aria-label='回复给deeper'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10482"><div class="c-avatar"><div class="c-main" id="div-comment-10482">安全是相对的，不要用这些DNS访问敏感网站就行了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-09 13:48 <a class='comment-reply-link' href='index-replytocom=10482.html#respond' onclick='return addComment.moveForm( "div-comment-10482", "10482", "respond", "1791" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10148"><div class="c-avatar"><div class="c-main" id="div-comment-10148">0.0大神厉害，又多一种新姿势<div class="c-meta"><span class="c-author"><a href='http://eqweqwe' rel='external nofollow' class='url'>wqeqweqw</a></span>2017-01-26 15:22 <a class='comment-reply-link' href='index-replytocom=10148.html#respond' onclick='return addComment.moveForm( "div-comment-10148", "10148", "respond", "1791" )' aria-label='回复给wqeqweqw'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10120"><div class="c-avatar"><div class="c-main" id="div-comment-10120">大神厉害，又多一种新姿势<div class="c-meta"><span class="c-author">gxpgc</span>2017-01-24 09:18 <a class='comment-reply-link' href='index-replytocom=10120.html#respond' onclick='return addComment.moveForm( "div-comment-10120", "10120", "respond", "1791" )' aria-label='回复给gxpgc'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-9998"><div class="c-avatar"><div class="c-main" id="div-comment-9998">很有意思 打算看看代码 安卓可能可以使用Qpython运行<div class="c-meta"><span class="c-author">lenny</span>2017-01-18 18:44 <a class='comment-reply-link' href='index-replytocom=9998.html#respond' onclick='return addComment.moveForm( "div-comment-9998", "9998", "respond", "1791" )' aria-label='回复给lenny'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-2" id="comment-10005"><div class="c-avatar"><div class="c-main" id="div-comment-10005">安卓没试过，但是监听53端口需要root权限<div class="c-meta"><span class="c-author">dowsnature</span>2017-01-18 23:19 <a class='comment-reply-link' href='index-replytocom=10005.html#respond' onclick='return addComment.moveForm( "div-comment-10005", "10005", "respond", "1791" )' aria-label='回复给dowsnature'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9991"><div class="c-avatar"><div class="c-main" id="div-comment-9991">看起来不错的样子<div class="c-meta"><span class="c-author"><a href='https://blog.ipatrick.cn' rel='external nofollow' class='url'>雨落无声</a></span>2017-01-18 11:15 <a class='comment-reply-link' href='index-replytocom=9991.html#respond' onclick='return addComment.moveForm( "div-comment-9991", "9991", "respond", "1791" )' aria-label='回复给雨落无声'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-9972"><div class="c-avatar"><div class="c-main" id="div-comment-9972">Python做的？那只要有Python环境就可以运行了，跨平台的<div class="c-meta"><span class="c-author">M</span>2017-01-17 06:58 <a class='comment-reply-link' href='index-replytocom=9972.html#respond' onclick='return addComment.moveForm( "div-comment-9972", "9972", "respond", "1791" )' aria-label='回复给M'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9933"><div class="c-avatar"><div class="c-main" id="div-comment-9933">其实最好用sudo python run.py ，因为exe的更新是比较慢的，比如，最新版本可以自定义sni地址，而exe版本没有。另外说下，这个dns本来就可以过滤广告的，data.conf 里可以配置多个hosts源，进行更新<div class="c-meta"><span class="c-author">dowsnature</span>2017-01-15 19:35 <a class='comment-reply-link' href='index-replytocom=9933.html#respond' onclick='return addComment.moveForm( "div-comment-9933", "9933", "respond", "1791" )' aria-label='回复给dowsnature'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-9935"><div class="c-avatar"><div class="c-main" id="div-comment-9935">一些人本地并没有安装Python环境，这个是比较蛋疼的。虽然很简单。<br />
+其他的高端玩法并没有多研究，等这个软件更新稳定下来后，我会“深入”的研究一下更多玩法。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-01-15 20:21 <a class='comment-reply-link' href='index-replytocom=9935.html#respond' onclick='return addComment.moveForm( "div-comment-9935", "9935", "respond", "1791" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-10040"><div class="c-avatar"><div class="c-main" id="div-comment-10040">话说怎么填写SNI代理？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-01-20 09:23 <a class='comment-reply-link' href='index-replytocom=10040.html#respond' onclick='return addComment.moveForm( "div-comment-10040", "10040", "respond", "1791" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-9928"><div class="c-avatar"><div class="c-main" id="div-comment-9928">厉害了，又多了一个可以折腾的东西了<div class="c-meta"><span class="c-author">娜乌茜卡</span>2017-01-15 11:04 <a class='comment-reply-link' href='index-replytocom=9928.html#respond' onclick='return addComment.moveForm( "div-comment-9928", "9928", "respond", "1791" )' aria-label='回复给娜乌茜卡'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>
