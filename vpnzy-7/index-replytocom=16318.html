@@ -1,0 +1,646 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2184] -->
+<meta name="description"  content="日常，日常。 手动搭建教程：使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端 客户端使用教程：Cisco AnyConnect VPN Windows/Android 平台客户端使用教程 注意：如果服务器同时安装了" />
+
+<meta name="keywords"  content="anyconnect,ocserv,shell,vpn,脚本" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端' href='../vpnzy-6/index.html' />
+<link rel='next' title='ShadowsocksR 单服务器多用户 mudbjson模式使用教程 支持流量限制' href='../ss-jc57/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="AnyConnect, Ocserv, shell, VPN, 脚本, Shell脚本, VPN资源">
+<meta name="description" content="日常，日常。  手动搭建教程：使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端  客户端使用教程：Cisco AnyConnect VPN Windows/Android 平台客户端使用教程 注意：如果服务器同时安装了 锐速(ServerSpeed/LotServer)，那么可能会导致 AnyConnect 连接上后无网络或者速度异常(慢)，这时候请关闭锐速，BBR加速无影响。 系统要求 Debian 7+ /">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-2228 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=16318.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../shell/index.html"> Shell脚本</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 3个月前 (05-29)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 5696℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">105评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82" title="系统要求"><span>系统要求</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E8%84%9A%E6%9C%AC%E7%89%88%E6%9C%AC" title="脚本版本"><span>脚本版本</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4" title="安装步骤"><span>安装步骤</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E6%A3%80%E6%9F%A5PPP/TUN%E7%8E%AF%E5%A2%83" title="检查PPP/TUN环境"><span>检查PPP/TUN环境</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" title="使用说明"><span>使用说明</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C" title="其他操作"><span>其他操作</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E" title="其他说明"><span>其他说明</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E8%BF%90%E8%A1%8C%E4%BC%98%E5%8C%96%E8%AF%B4%E6%98%8E" title="运行优化说明"><span>运行优化说明</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BAwget:%C2%A0unknown%20host%20%E2%80%9Csofts.fun%E2%80%9D%20%E4%B9%8B%E7%B1%BB%E7%9A%84%E9%94%99%E8%AF%AF" title="提示wget: unknown host “softs.fun” 之类的错误"><span>提示wget: unknown host “softs.fun” 之类的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BA%20wget:%20command%20not%20found%20%E7%9A%84%E9%94%99%E8%AF%AF" title="提示 wget: command not found 的错误"><span>提示 wget: command not found 的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8D%87%E7%BA%A7%E8%84%9A%E6%9C%AC" title="升级脚本"><span>升级脚本</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97" title="更新日志"><span>更新日志</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B408%E6%9C%8802%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.3" title="2017年08月02日，版本 v1.0.3"><span>2017年08月02日，版本 v1.0.3</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B406%E6%9C%8804%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.2" title="2017年06月04日，版本 v1.0.2"><span>2017年06月04日，版本 v1.0.2</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B406%E6%9C%8802%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.1" title="2017年06月02日，版本 v1.0.1"><span>2017年06月02日，版本 v1.0.1</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B405%E6%9C%8829%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.0" title="2017年05月29日，版本 v1.0.0"><span>2017年05月29日，版本 v1.0.0</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年8月2日 11:34</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>日常，日常。</p>
+<p><strong>手动搭建教程：<a title="使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端" href="../vpnzy-6/index.html" target="_blank">使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端</a></strong></p>
+<p><strong>客户端使用教程：<a title="Cisco AnyConnect VPN Windows/Android 平台客户端使用教程" href="../vpnzy-5/index.html" target="_blank">Cisco AnyConnect VPN Windows/Android 平台客户端使用教程</a></strong></p>
+<blockquote><p><strong>注意：</strong>如果服务器同时安装了 <strong>锐速(ServerSpeed/LotServer)</strong>，那么可能会导致 AnyConnect 连接上后<strong>无网络或者速度异常(慢)</strong>，这时候请关闭锐速，<strong>BBR加速无影响</strong>。</p></blockquote>
+<h2 id="系统要求">系统要求</h2>
+<p>Debian 7+ / Ubuntu 14.04 +</p>
+<p>推荐 Debian 7 x64，这个是我一直使用的系统，我的脚本在这个系统上面出错率最低。</p>
+<p><strong>此脚本不支持CentOS！</strong></p>
+<h3 id="脚本版本">脚本版本</h3>
+<p><strong>Ver:</strong> 1.0.3</p>
+<h2 id="安装步骤">安装步骤</h2>
+<h3 id="检查PPP/TUN环境">检查PPP/TUN环境</h3>
+<p>首先要检查VPS的TUN是否开启(OpenVZ虚拟化的服务器很可能默认关闭)。</p>
+<pre class="prettyprint linenums">cat /dev/net/tun
+# 返回的必须是：
+cat: /dev/net/tun: File descriptor in bad state
+</pre>
+<p>如果返回内容不是指定的结果，请与VPS提供商联系开启TUN权限（一般控制面板有开关）。</p>
+<hr />
+<p>执行下面的代码下载并运行脚本。</p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Bash/ocserv.sh &amp;&amp; chmod +x ocserv.sh &amp;&amp; bash ocserv.sh
+
+# 如果上面这个脚本无法下载，尝试使用备用下载：
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ocserv.sh &amp;&amp; chmod +x ocserv.sh &amp;&amp; bash ocserv.sh
+</pre>
+<p>下载并运行脚本后会出现脚本操作菜单，选择并输入<code> 1 </code>就会开始安装。</p>
+<p>首先安装服务端，安装过程中会提示你<strong>添加第一个VPN账号（用户名和密码）以及TCP/UDP端口</strong>：</p>
+<pre class="prettyprint linenums">...
+[信息] 开始设置账号配置...
+请输入 要添加的VPN账号 用户名
+(默认: admin):doubi
+
+	用户名 : doubi
+
+请输入 要添加的VPN账号 密码
+(默认: doub.io):doubi233
+
+	密码 : doubi233
+
+请输入VPN服务端的TCP端口
+(默认: 443):443
+
+	TCP端口 : 443
+
+请输入VPN服务端的UDP端口
+(默认: 443):
+
+	TCP端口 : 443
+
+[信息] 开始设置 iptables防火墙...
+...
+</pre>
+<h2 id="使用说明">使用说明</h2>
+<p>进入下载脚本的目录并运行脚本：</p>
+<pre class="prettyprint linenums">./ocserv.sh
+</pre>
+<p>运行脚本后选择你要执行的选项即可。</p>
+<pre class="prettyprint linenums">ocserv 一键安装管理脚本 [vx.x.x]
+-- Toyo | doub.io/vpnzy-7 --
+
+0. 升级脚本
+————————————
+1. 安装 ocserv
+2. 卸载 ocserv
+————————————
+3. 启动 ocserv
+4. 停止 ocserv
+5. 重启 ocserv
+————————————
+6. 设置 账号配置
+7. 查看 配置信息
+8. 修改 配置文件
+9. 查看 日志信息
+————————————
+
+当前状态: 已安装 并 已启动
+
+请输入数字 [0-9]:
+</pre>
+<h3 id="其他操作">其他操作</h3>
+<pre class="prettyprint linenums">service ocserv start
+# 启动 ocserv
+service ocserv stop
+# 停止 ocserv
+service ocserv restart
+# 重启 ocserv
+service ocserv status
+# 查看 ocserv 运行状态
+service ocserv log
+# 查看 ocserv 运行日志
+service ocserv test
+# 测试 ocserv 配置文件是否正确
+</pre>
+<p><strong>配置文件：</strong>/etc/ocserv/ocserv.conf</p>
+<p><strong>账号配置文件：</strong>/etc/ocserv/ocpasswd</p>
+<p><strong>日志文件：</strong>/tmp/ocserv.log</p>
+<p><strong>如果你想要修改配置文件，请看参数解释：<a href="../vpnzy-6/index.html#%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A" target="_blank">https://doub.io/vpnzy-6/#配置参数解释</a></strong></p>
+<h2 id="其他说明">其他说明</h2>
+<blockquote><p><strong>注意：</strong>如果服务器同时安装了 <strong>锐速(ServerSpeed/LotServer)</strong>，那么可能会导致 AnyConnect 连接上后<strong>无网络或者速度异常(慢)</strong>，这时候请关闭锐速，<strong>BBR加速无影响</strong>。</p></blockquote>
+<h3 id="运行优化说明">运行优化说明</h3>
+<p>建议在运行 ocserv前，执行一下这个命令，作用是提高系统的文件符同时打开数量，对于TCP连接过多的时候系统默认的 1024 就会成为速度瓶颈。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=16318.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">ulimit -n 51200
+</pre>
+<p>这个命令只有临时有效，重启后失效，如果想要永久有效，请执行：</p>
+<pre class="prettyprint linenums">echo "* soft nofile 51200
+* hard nofile 51200" &gt;&gt; /etc/security/limits.conf
+</pre>
+<p>然后最后再执行一下<code> ulimit -n 51200 </code>即可。</p>
+<p></p></div>
+<h3 id="提示wget: unknown host “softs.fun” 之类的错误">提示wget: unknown host “softs.fun” 之类的错误</h3>
+<p>这是无法解析我的域名，多半是DNS的问题，请更换DNS为谷歌DNS(以下两行一起复制 一起执行)。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=16318.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">echo -e "nameserver 8.8.8.8
+nameserver 8.8.4.4" &gt; /etc/resolv.conf
+</pre>
+<p></p></div>
+<h3 id="提示 wget: command not found 的错误">提示 wget: command not found 的错误</h3>
+<p>这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=16318.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums"># CentOS系统:
+yum install -y wget
+
+# Debian/Ubuntu系统:
+apt-get install -y wget
+</pre>
+<p></p></div>
+<h3 id="升级脚本">升级脚本</h3>
+<p>升级脚本只需要运行脚本，然后选择并输入 0 回车即可，会自动检测最新版本并下载，当然重新下载脚本文件也可以，会自动覆盖原文件。</p>
+<h2 id="更新日志">更新日志</h2>
+<h3 id="2017年08月02日，版本 v1.0.3">2017年08月02日，版本 v1.0.3</h3>
+<p><strong>1. 新增</strong> 在安装出错的情况下，会自动启动卸载程序。</p>
+<h3 id="2017年06月04日，版本 v1.0.2">2017年06月04日，版本 v1.0.2</h3>
+<p><strong>1. 修复</strong> 重启服务器后，ipv4防火墙转发未打开的问题。</p>
+<h3 id="2017年06月02日，版本 v1.0.1">2017年06月02日，版本 v1.0.1</h3>
+<p><strong>1. 修复</strong> 通过脚本修改配置文件中TCP/UDP端口后，没有保存防火墙设置的问题</p>
+<h3 id="2017年05月29日，版本 v1.0.0">2017年05月29日，版本 v1.0.0</h3>
+<p><strong>1. 推出</strong> 正式版。</p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="2228" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">63</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/anyconnect/index.html" rel="tag">AnyConnect</a><a href="../tag/ocserv/index.html" rel="tag">Ocserv</a><a href="../tag/shell/index.html" rel="tag">shell</a><a href="../tag/vpn/index.html" rel="tag">VPN</a><a href="../tag/%E8%84%9A%E6%9C%AC/index.html" rel="tag">脚本</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../vpnzy-6/index.html" rel="prev">使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端</a></span>
+			<span class="article-nav-next"><a href="../ss-jc57/index.html" rel="next">ShadowsocksR 单服务器多用户 mudbjson模式使用教程 支持流量限制</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../ss-jc60/index.html" title="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" />	<br><span class="r_title">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpnzy-6/index.html" title="使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端" />	<br><span class="r_title">使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpnzy-5/index.html" title="Cisco AnyConnect VPN Windows/Android 平台客户端使用教程" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Cisco AnyConnect VPN Windows/Android 平台客户端使用教程" />	<br><span class="r_title">Cisco AnyConnect VPN Windows/Android 平台客户端使用教程</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../shell-jc5/index.html" title="『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本" />	<br><span class="r_title">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../ss-jc60/index.html">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-6/index.html">使用Ocserv 手动搭建 Cisco AnyConnect VPN服务端</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-5/index.html">Cisco AnyConnect VPN Windows/Android 平台客户端使用教程</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc5/index.html">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc56/index.html">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc4/index.html">『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc3/index.html">『原创』多服务器 云探针、云监控 —— ServerStatus 一键管理脚本</a></li><li><i class="fa fa-minus"></i><a href="../dowsdns-jc3/index.html">『原创』快速自建DNS服务器以 科学上网+屏蔽广告 —— dowsDNS 一键脚本</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='2228' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='16318' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (105)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-18078"><div class="c-avatar"><div class="c-main" id="div-comment-18078">[信息] 开始设置 iptables防火墙...
+net.ipv4.neigh.default.base_reachable_time_ms = 600000
+net.ipv4.neigh.default.mcast_solicit = 20
+net.ipv4.neigh.default.retrans_time_ms = 250
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
+net.ipv4.ip_forward = 1
+net.ipv4.ip_forward = 1
+net.ipv4.ip_forward = 1
+ocserv.sh: line 454: ifconfig: command not found
+[错误] ifconfig 未安装 !<div class="c-meta"><span class="c-author">mercurial</span>2017-09-04 08:49  (4天前)<a class='comment-reply-link' href='index-replytocom=18078.html#respond' onclick='return addComment.moveForm( "div-comment-18078", "18078", "respond", "2228" )' aria-label='回复给mercurial'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-18088"><div class="c-avatar"><div class="c-main" id="div-comment-18088">CentOS7? ，你这是缺少 ifconfig ，如果不是Centos7，那么应该是高版本的其他系统吧，你需要自己安装这个工具。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-09-04 10:12  (4天前)<a class='comment-reply-link' href='index-replytocom=18088.html#respond' onclick='return addComment.moveForm( "div-comment-18088", "18088", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-18101"><div class="c-avatar"><div class="c-main" id="div-comment-18101">Ubuntu，搬瓦工。。<div class="c-meta"><span class="c-author">mercurial</span>2017-09-04 12:46  (4天前)<a class='comment-reply-link' href='index-replytocom=18101.html#respond' onclick='return addComment.moveForm( "div-comment-18101", "18101", "respond", "2228" )' aria-label='回复给mercurial'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt depth-3" id="comment-18102"><div class="c-avatar"><div class="c-main" id="div-comment-18102">不好意思，看错了，我是搬瓦工 debian<div class="c-meta"><span class="c-author">mercurial</span>2017-09-04 12:53  (4天前)<a class='comment-reply-link' href='index-replytocom=18102.html#respond' onclick='return addComment.moveForm( "div-comment-18102", "18102", "respond", "2228" )' aria-label='回复给mercurial'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-18114"><div class="c-avatar"><div class="c-main" id="div-comment-18114">你搬瓦工VPS上面输入命令<code> /sbin/ifconfig </code>看看有什么提示，是文件不存在，还是正常显示？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-09-04 14:58  (4天前)<a class='comment-reply-link' href='index-replytocom=18114.html#respond' onclick='return addComment.moveForm( "div-comment-18114", "18114", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-5" id="comment-18145"><div class="c-avatar"><div class="c-main" id="div-comment-18145">root@debian:~# /sbin/ifconfig
+-bash: /sbin/ifconfig: No such file or directory
+。。。提示这个<div class="c-meta"><span class="c-author">mercurial</span>2017-09-04 22:21  (4天前)<a class='comment-reply-link' href='index-replytocom=18145.html#respond' onclick='return addComment.moveForm( "div-comment-18145", "18145", "respond", "2228" )' aria-label='回复给mercurial'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-6" id="comment-18146"><div class="c-avatar"><div class="c-main" id="div-comment-18146">怕是没有安装，虽然这不科学，试试：
+<pre class="prettyprint linenums" >
+apt-get install net-tools -y
+</pre><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-09-04 23:18  (4天前)<a class='comment-reply-link' href='index-replytocom=18146.html#respond' onclick='return addComment.moveForm( "div-comment-18146", "18146", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17865"><div class="c-avatar"><div class="c-main" id="div-comment-17865">在Google Cloud Ubuntu 16.04出现的问题是脚本在生成证书那边失败，在Linode 新加坡机房搭建成功了，但连接上以后不久就断开，显示
+10:04:06    The secure gateway has rejected the connection attempt.  A new connection attempt to the same or another secure gateway is needed, which requires re-authentication.
+这是很尴尬的事情<div class="c-meta"><span class="c-author">1</span>2017-08-31 10:33 <a class='comment-reply-link' href='index-replytocom=17865.html#respond' onclick='return addComment.moveForm( "div-comment-17865", "17865", "respond", "2228" )' aria-label='回复给1'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-17866"><div class="c-avatar"><div class="c-main" id="div-comment-17866">一般来说使用中 链接突然断开，怕是被墙干扰了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-31 10:36 <a class='comment-reply-link' href='index-replytocom=17866.html#respond' onclick='return addComment.moveForm( "div-comment-17866", "17866", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-17284"><div class="c-avatar"><div class="c-main" id="div-comment-17284">[信息] 开始设置 iptables防火墙...
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
+net.ipv4.ip_forward = 1
+[信息] 开始添加 iptables防火墙规则...
+[信息] 开始保存 iptables防火墙规则...
+[信息] 所有步骤 安装完毕，开始启动...
+[错误] ocserv 没有安装，请检查 !<div class="c-meta"><span class="c-author">ccimmer</span>2017-08-18 20:52 <a class='comment-reply-link' href='index-replytocom=17284.html#respond' onclick='return addComment.moveForm( "div-comment-17284", "17284", "respond", "2228" )' aria-label='回复给ccimmer'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-17306"><div class="c-avatar"><div class="c-main" id="div-comment-17306">ocserv -V ，运行这个有提示 ocserv版本号吗，还是提示命令不存在，什么系统？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-19 10:23 <a class='comment-reply-link' href='index-replytocom=17306.html#respond' onclick='return addComment.moveForm( "div-comment-17306", "17306", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-16920"><div class="c-avatar"><div class="c-main" id="div-comment-16920">为啥不加ipv6配置。。<div class="c-meta"><span class="c-author"><a href='https://blog.ahokitsune.org' rel='external nofollow' class='url'>玉狐</a></span>2017-08-12 10:57 <a class='comment-reply-link' href='index-replytocom=16920.html#respond' onclick='return addComment.moveForm( "div-comment-16920", "16920", "respond", "2228" )' aria-label='回复给玉狐'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-16921"><div class="c-avatar"><div class="c-main" id="div-comment-16921">因为没用过ipv6，无法测试效果。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-12 11:06 <a class='comment-reply-link' href='index-replytocom=16921.html#respond' onclick='return addComment.moveForm( "div-comment-16921", "16921", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-16685"><div class="c-avatar"><div class="c-main" id="div-comment-16685">你好，我也搭好了服务端，但是通过这个VPN访问任何SSL加密的网站都会卡在建立TLS握手这一步，未加密的网站就没有问题。<div class="c-meta"><span class="c-author">KCP</span>2017-08-09 08:32 <a class='comment-reply-link' href='index-replytocom=16685.html#respond' onclick='return addComment.moveForm( "div-comment-16685", "16685", "respond", "2228" )' aria-label='回复给KCP'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16502"><div class="c-avatar"><div class="c-main" id="div-comment-16502">你好，我按教程搭好了服务端（Ubuntu 16.04）后，手机(ios 10.3.3)端显示anyConnect连接成功却不能正常谷歌，客户端日志正常「已连接到ip XXX.X.X.X」, 在服务端打印的日志如下：
+
+ocserv[24520]: main[wxf729]: 116.30.223.219:51297 new user session
+ocserv[24520]: main[wxf729]: 116.30.223.219:51297 user logged in
+ocserv[28082]: worker[wxf729]: 116.30.223.219 suggesting DPD of 1800 secs
+ocserv[24522]: sec-mod: initiating session for user 'wxf729' (session: FLcRtz)
+ocserv[28082]: worker[wxf729]: 116.30.223.219 configured link MTU is 1500
+ocserv[28082]: worker[wxf729]: 116.30.223.219 peer's link MTU is 1500
+ocserv[28082]: worker[wxf729]: 116.30.223.219 sending IPv4 192.168.1.121
+ocserv[28082]: worker[wxf729]: 116.30.223.219 adding DNS 8.8.8.8
+ocserv[28082]: worker[wxf729]: 116.30.223.219 adding DNS 8.8.4.4
+ocserv[28082]: worker[wxf729]: 116.30.223.219 DTLS ciphersuite: AES128-SHA
+ocserv[28082]: worker[wxf729]: 116.30.223.219 DTLS data MTU 1406
+ocserv[28082]: worker[wxf729]: 116.30.223.219 Link MTU is 1500 bytes
+ocserv[28082]: worker[wxf729]: 116.30.223.219 setting up DTLS-0.9 connection
+ocserv[24520]: main: 116.30.223.219:51294 user disconnected (reason: unspecified, rx: 0, tx: 0)<div class="c-meta"><span class="c-author">岚风</span>2017-08-04 21:01 <a class='comment-reply-link' href='index-replytocom=16502.html#respond' onclick='return addComment.moveForm( "div-comment-16502", "16502", "respond", "2228" )' aria-label='回复给岚风'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16508"><div class="c-avatar"><div class="c-main" id="div-comment-16508">然而服务端日志并没有什么异常，其他平台或者设备是否正常？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-04 22:14 <a class='comment-reply-link' href='index-replytocom=16508.html#respond' onclick='return addComment.moveForm( "div-comment-16508", "16508", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-16510"><div class="c-avatar"><div class="c-main" id="div-comment-16510">我想试的，只是逗比云的上的Mac端镜像不知道为什么下不下来，每次都是下到一半就卡住了。。刚又试了一下iOS端，先是显示连接成功，然后一下又断开，之后日志就一直是「连接正在断开，请稍后」<div class="c-meta"><span class="c-author">岚风</span>2017-08-05 01:12 <a class='comment-reply-link' href='index-replytocom=16510.html#respond' onclick='return addComment.moveForm( "div-comment-16510", "16510", "respond", "2228" )' aria-label='回复给岚风'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt depth-3" id="comment-16511"><div class="c-avatar"><div class="c-main" id="div-comment-16511">下载成功了，试了下Mac端也一样，连上几秒钟后就自动断开了，我怀疑这个连接上是不是也是个假象<div class="c-meta"><span class="c-author">岚风</span>2017-08-05 01:39 <a class='comment-reply-link' href='index-replytocom=16511.html#respond' onclick='return addComment.moveForm( "div-comment-16511", "16511", "respond", "2228" )' aria-label='回复给岚风'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-16520"><div class="c-avatar"><div class="c-main" id="div-comment-16520">或许是被当地运营商或墙干扰了，毕竟部分地区依然是会封锁/干扰这个VPN协议的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-05 11:03 <a class='comment-reply-link' href='index-replytocom=16520.html#respond' onclick='return addComment.moveForm( "div-comment-16520", "16520", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-5" id="comment-16567"><div class="c-avatar"><div class="c-main" id="div-comment-16567">好吧，谢谢。还是用SS（R）靠谱些<div class="c-meta"><span class="c-author">岚风</span>2017-08-06 01:45 <a class='comment-reply-link' href='index-replytocom=16567.html#respond' onclick='return addComment.moveForm( "div-comment-16567", "16567", "respond", "2228" )' aria-label='回复给岚风'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-16487"><div class="c-avatar"><div class="c-main" id="div-comment-16487">请教一下分流的pac要怎么写呢<div class="c-meta"><span class="c-author">biubiubiu</span>2017-08-04 17:13 <a class='comment-reply-link' href='index-replytocom=16487.html#respond' onclick='return addComment.moveForm( "div-comment-16487", "16487", "respond", "2228" )' aria-label='回复给biubiubiu'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16491"><div class="c-avatar"><div class="c-main" id="div-comment-16491">不清楚，路由表我也不会写。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-04 17:32 <a class='comment-reply-link' href='index-replytocom=16491.html#respond' onclick='return addComment.moveForm( "div-comment-16491", "16491", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16356"><div class="c-avatar"><div class="c-main" id="div-comment-16356">我搬瓦工的vps已用你的一键shadowsocks脚本，现在是锐速+ssr。请问还能同时安装这个VPN吗？2者同时使用<div class="c-meta"><span class="c-author">壮士请留步</span>2017-08-02 17:21 <a class='comment-reply-link' href='index-replytocom=16356.html#respond' onclick='return addComment.moveForm( "div-comment-16356", "16356", "respond", "2228" )' aria-label='回复给壮士请留步'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16357"><div class="c-avatar"><div class="c-main" id="div-comment-16357">VPN和SSR不冲突，但是这个VPN和锐速冲突。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-02 17:42 <a class='comment-reply-link' href='index-replytocom=16357.html#respond' onclick='return addComment.moveForm( "div-comment-16357", "16357", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-16359"><div class="c-avatar"><div class="c-main" id="div-comment-16359">我看了下介绍说是有锐速的情况下可能会连接不上。 我先试验下，如果成功了再报个好消息<div class="c-meta"><span class="c-author">壮士请留步</span>2017-08-02 17:50 <a class='comment-reply-link' href='index-replytocom=16359.html#respond' onclick='return addComment.moveForm( "div-comment-16359", "16359", "respond", "2228" )' aria-label='回复给壮士请留步'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-16318"><div class="c-avatar"><div class="c-main" id="div-comment-16318">ocserv.sh: line 100: certtool: command not found
+[错误] 生成SSL证书密匙文件失败(ca-key.pem) !
+ocserv.sh: line 102: certtool: command not found
+[错误] 生成SSL证书文件失败(ca-cert.pem) !
+ocserv.sh: line 118: certtool: command not found
+[错误] 生成SSL证书密匙文件失败(server-key.pem) !
+ocserv.sh: line 120: certtool: command not found
+[错误] 生成SSL证书文件失败(server-cert.pem) !
+mv: cannot stat `ca-cert.pem': No such file or directory
+mv: cannot stat `ca-key.pem': No such file or directory
+mv: cannot stat `server-cert.pem': No such file or directory
+mv: cannot stat `server-key.pem': No such file or directory
+不知道这是什么情况呀 问一下怎么卸载脚本 重新安装<div class="c-meta"><span class="c-author">frank</span>2017-08-02 00:31 <a class='comment-reply-link' href='index-replytocom=16318.html#respond' onclick='return addComment.moveForm( "div-comment-16318", "16318", "respond", "2228" )' aria-label='回复给frank'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-16328"><div class="c-avatar"><div class="c-main" id="div-comment-16328">系统缺少软件：certtool 。运行脚本，2. 卸载。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-02 11:24 <a class='comment-reply-link' href='index-replytocom=16328.html#respond' onclick='return addComment.moveForm( "div-comment-16328", "16328", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-16331"><div class="c-avatar"><div class="c-main" id="div-comment-16331">不好意思 可以请教一下怎么安装certtool嘛<div class="c-meta"><span class="c-author">frank</span>2017-08-02 12:23 <a class='comment-reply-link' href='index-replytocom=16331.html#respond' onclick='return addComment.moveForm( "div-comment-16331", "16331", "respond", "2228" )' aria-label='回复给frank'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-16340"><div class="c-avatar"><div class="c-main" id="div-comment-16340">脚本在一开始安装依赖的时候，就会安装 certtool (包含于gnutls-bin包中)，你可能是安装失败了。
+<pre class="prettyprint linenums" >
+apt-get install -y gnutls-bin
+</pre><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-02 13:21 <a class='comment-reply-link' href='index-replytocom=16340.html#respond' onclick='return addComment.moveForm( "div-comment-16340", "16340", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15497"><div class="c-avatar"><div class="c-main" id="div-comment-15497">大佬知道是什么鬼么    
+The secure gateway has rejected the connection attempt.  A new connection attempt to the same or another secure gateway is needed, which requires re-authentication.
+连上秒断<div class="c-meta"><span class="c-author">ll</span>2017-07-15 10:10 <a class='comment-reply-link' href='index-replytocom=15497.html#respond' onclick='return addComment.moveForm( "div-comment-15497", "15497", "respond", "2228" )' aria-label='回复给ll'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-2" id="comment-15831"><div class="c-avatar"><div class="c-main" id="div-comment-15831">同样遇到这样的问题，目前木有解决方案？？？/<div class="c-meta"><span class="c-author">嘎嘎嘎</span>2017-07-24 13:11 <a class='comment-reply-link' href='index-replytocom=15831.html#respond' onclick='return addComment.moveForm( "div-comment-15831", "15831", "respond", "2228" )' aria-label='回复给嘎嘎嘎'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-15415"><div class="c-avatar"><div class="c-main" id="div-comment-15415">逗比大佬我当年让你写这个教程你打死都不写来着😂<div class="c-meta"><span class="c-author">心灵炼金师</span>2017-07-11 23:20 <a class='comment-reply-link' href='index-replytocom=15415.html#respond' onclick='return addComment.moveForm( "div-comment-15415", "15415", "respond", "2228" )' aria-label='回复给心灵炼金师'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-15341"><div class="c-avatar"><div class="c-main" id="div-comment-15341">好了我自己把你脚本里的源换了。。。为什么非得在脚本里加美国源呢。。<div class="c-meta"><span class="c-author"><a href='https://dearjohn.cn' rel='external nofollow' class='url'>John</a></span>2017-07-07 21:13 <a class='comment-reply-link' href='index-replytocom=15341.html#respond' onclick='return addComment.moveForm( "div-comment-15341", "15341", "respond", "2228" )' aria-label='回复给John'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-15347"><div class="c-avatar"><div class="c-main" id="div-comment-15347">不，那只是为了更换为目前Debian的稳定源 jessie（仅限Debian系统，CentOS/Ubuntu不会更换） ，保证安装依赖不出错，而脚本并没有加入判断当前服务器位置的功能，只是统一更换为美国的镜像源。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-08 00:29 <a class='comment-reply-link' href='index-replytocom=15347.html#respond' onclick='return addComment.moveForm( "div-comment-15347", "15347", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-15340"><div class="c-avatar"><div class="c-main" id="div-comment-15340">我切换了阿里云的源也没用，用你的脚本还是走ftp.us.debian.org这个，只有几kb的速度，腾讯云主机<div class="c-meta"><span class="c-author"><a href='https://dearjohn.cn' rel='external nofollow' class='url'>John</a></span>2017-07-07 19:51 <a class='comment-reply-link' href='index-replytocom=15340.html#respond' onclick='return addComment.moveForm( "div-comment-15340", "15340", "respond", "2228" )' aria-label='回复给John'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15339"><div class="c-avatar"><div class="c-main" id="div-comment-15339">mkdir: cannot create directory '/etc/ocserv': Permission denied
+--2017-07-07 18:58:56--  https://raw.githubusercontent.com/ToyoDAdoubi/doubi/mas                          ter/other/ocserv.conf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.72.13                          3
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.72.1                          33|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1659 (1.6K) [text/plain]
+/etc/ocserv: Permission denied/etc/ocserv/ocserv.conf: No such file or directory
+
+Cannot write to '/etc/ocserv/ocserv.conf' (Success).
+[错误] ocserv 配置文件下载失败 !
+这个怎么解决，ubuntu<div class="c-meta"><span class="c-author"><a href='https://dearjohn.cn' rel='external nofollow' class='url'>John</a></span>2017-07-07 19:00 <a class='comment-reply-link' href='index-replytocom=15339.html#respond' onclick='return addComment.moveForm( "div-comment-15339", "15339", "respond", "2228" )' aria-label='回复给John'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-15353"><div class="c-avatar"><div class="c-main" id="div-comment-15353"><pre class="prettyprint linenums" >
+mkdir: cannot create directory ‘/etc/ocserv': Permission denied
+新建文件夹没有权限，请检查是否有权限或者是否是ROOT用户，如果没有可以用 sudu su 来获取临时ROOT权限（运行后会提示输入[当前账号的密码]），或者更换为ROOT账号。
+Cannot write to ‘/etc/ocserv/ocserv.conf’ (Success).
+无法写入文件，可能是上面文件夹创建失败导致的，也可能是权限问题。
+</pre><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-08 00:52 <a class='comment-reply-link' href='index-replytocom=15353.html#respond' onclick='return addComment.moveForm( "div-comment-15353", "15353", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-15304"><div class="c-avatar"><div class="c-main" id="div-comment-15304">国外服务器也能搭建吗？<div class="c-meta"><span class="c-author">仙剑赋</span>2017-07-06 15:47 <a class='comment-reply-link' href='index-replytocom=15304.html#respond' onclick='return addComment.moveForm( "div-comment-15304", "15304", "respond", "2228" )' aria-label='回复给仙剑赋'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-15307"><div class="c-avatar"><div class="c-main" id="div-comment-15307">都行。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-06 17:04 <a class='comment-reply-link' href='index-replytocom=15307.html#respond' onclick='return addComment.moveForm( "div-comment-15307", "15307", "respond", "2228" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15276"><div class="c-avatar"><div class="c-main" id="div-comment-15276">每次都要输入密码 很麻烦，客户端证书怎么弄？还有就是配置文件有错误的地方，但提示说不是很重要，不影响<div class="c-meta"><span class="c-author">马鑫</span>2017-07-04 17:59 <a class='comment-reply-link' href='index-replytocom=15276.html#respond' onclick='return addComment.moveForm( "div-comment-15276", "15276", "respond", "2228" )' aria-label='回复给马鑫'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+		<a class="prev page-numbers" href="comment-page-1/index-replytocom=16318.html#comments">«</a>
+<a class='page-numbers' href='comment-page-1/index-replytocom=16318.html#comments'>1</a>
+<span class='page-numbers current'>2</span>	</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

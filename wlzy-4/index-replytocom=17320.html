@@ -1,0 +1,1311 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>一个支持 离线下载/BT/磁力链接 的Aria2在线管理面板 —— Aria2 WebUI | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2187] -->
+<meta name="description"  content="Aria2是一个命令行下运行、多协议、多来源下载工具，支持迅雷磁力链接、BT种子、HTTP、FTP等下载协议，当然了它是命令行下载工具我们想下载一个东西还需要去敲命令自然是不方便，但是现在有人开发了一个WebUI，可以直接在网页上面添加管理任务。 界面截图 声明：本文章仅提供 BT/磁力链接" />
+
+<meta name="keywords"  content="aria2,bt,磁力链接,离线下载" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法' href='../wlzy-3/index.html' />
+<link rel='next' title='大神出手，福利推荐！AMH 5.3 开心版一键安装脚本！' href='../wlzy-5/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="Aria2, BT, 磁力链接, 离线下载, 碉堡网站, 网络资源">
+<meta name="description" content="Aria2是一个命令行下运行、多协议、多来源下载工具，支持迅雷磁力链接、BT种子、HTTP、FTP等下载协议，当然了它是命令行下载工具我们想下载一个东西还需要去敲命令自然是不方便，但是现在有人开发了一个WebUI，可以直接在网页上面添加管理任务。     界面截图  声明：本文章仅提供 BT/磁力链接 下载工具的安装方法和说明，任何使用此工具 下载版权侵权文件或导致任何经济损失，皆和本人无任何关系！如果你不同意或有异议，请关闭这个网页！">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1442 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li class="current-post-ancestor"><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=17320.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">一个支持 离线下载/BT/磁力链接 的Aria2在线管理面板 —— Aria2 WebUI</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../dbwz/index.html"> 碉堡网站</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 1年前 (2016-08-19)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 13178℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">53评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E7%95%8C%E9%9D%A2%E6%88%AA%E5%9B%BE" title="界面截图"><span>界面截图</span></a></li><li class="content-index-level-1"><a href="index.html#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83" title="配置环境"><span>配置环境</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%20Aria2(%E5%90%8E%E7%AB%AF/%E6%9C%8D%E5%8A%A1%E7%AB%AF)" title="安装 Aria2(后端/服务端)"><span>安装 Aria2(后端/服务端)</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC" title="一键安装脚本"><span>一键安装脚本</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4" title="手动安装步骤"><span>手动安装步骤</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#Aria2(%E5%90%8E%E7%AB%AF/%E6%9C%8D%E5%8A%A1%E7%AB%AF)%20%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95" title="Aria2(后端/服务端) 使用方法"><span>Aria2(后端/服务端) 使用方法</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85" title="一键安装"><span>一键安装</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85" title="手动安装"><span>手动安装</span></a><ul class="children"><li class="content-index-level-3"><a href="index.html#%E5%A6%82%E6%9E%9C%E4%BD%BF%E7%94%A8%20nohup%20%E8%BF%9B%E7%A8%8B%E6%97%A0%E6%B3%95%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%88%96%E8%80%85%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98%EF%BC%8C%E8%AF%B7%E7%9C%8B%E8%BF%99%E4%B8%AA" title="如果使用 nohup 进程无法后台运行或者其他问题，请看这个"><span>如果使用 nohup 进程无法后台运行或者其他问题，请看这个</span></a></li></ul></li></ul></li><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%20Aria2%20WebUI%E5%89%8D%E7%AB%AF" title="安装 Aria2 WebUI前端"><span>安装 Aria2 WebUI前端</span></a></li><li class="content-index-level-1"><a href="index.html#%E9%85%8D%E7%BD%AE%E5%89%8D%E7%AB%AF" title="配置前端"><span>配置前端</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%9B%98%E5%BC%8F%E6%93%8D%E4%BD%9C" title="实现网盘式操作"><span>实现网盘式操作</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" title="注意事项"><span>注意事项</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E5%90%AF%E5%8A%A8%E6%98%BE%E7%A4%BA%E6%88%90%E5%8A%9F%EF%BC%8C%E4%BD%86%E6%98%AF%E5%AE%9E%E9%99%85%E6%9C%AA%E8%BF%90%E8%A1%8C" title="启动显示成功，但是实际未运行"><span>启动显示成功，但是实际未运行</span></a></li><li class="content-index-level-2"><a href="index.html#Caddy%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%EF%BC%8C%E6%89%93%E5%BC%80%20http://ip%20%E6%98%BE%E7%A4%BA%E7%9A%84%E6%98%AF%20It%20works%20!" title="Caddy启动失败，打开 http://ip 显示的是 It works !"><span>Caddy启动失败，打开 http://ip 显示的是 It works !</span></a></li><li class="content-index-level-2"><a href="index.html#Aria2(%E5%90%8E%E7%AB%AF/%E6%9C%8D%E5%8A%A1%E7%AB%AF)%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F%EF%BC%8C%E4%BD%86%E6%98%AF%20Aria2%20WebUI%20%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5" title="Aria2(后端/服务端)启动成功，但是 Aria2 WebUI 无法连接"><span>Aria2(后端/服务端)启动成功，但是 Aria2 WebUI 无法连接</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%85%B3%E4%BA%8E%E7%89%88%E6%9D%83%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A4%A7%E9%83%A8%E5%88%86%E5%9C%B0%E5%8C%BA%E6%98%AF%E7%A6%81%E6%AD%A2%E4%B8%8B%E8%BD%BDBT%E5%92%8C%E7%9B%97%E7%89%88%E6%96%87%E4%BB%B6%E7%9A%84" title="关于版权问题，大部分地区是禁止下载BT和盗版文件的"><span>关于版权问题，大部分地区是禁止下载BT和盗版文件的</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年8月31日 23:31</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>Aria2是一个命令行下运行、多协议、多来源下载工具，支持迅雷磁力链接、BT种子、HTTP、FTP等下载协议，当然了它是命令行下载工具我们想下载一个东西还需要去敲命令自然是不方便，但是现在有人开发了一个WebUI，可以直接在网页上面添加管理任务。</p>
+<hr />
+<p><span id="more-1442"></span></p>
+<h2 id="界面截图">界面截图</h2>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-4-06.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="1401" height="714" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-4-06.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="1401" height="714" /></noscript></p>
+<pre><strong><span style="color: #ff6464;">声明：</span>本文章仅提供 BT/磁力链接 下载工具的安装方法和说明，任何使用此工具 下载版权侵权文件或导致任何经济损失，皆和本人无任何关系！如果你不同意或有异议，请关闭这个网页！</strong></pre>
+<h2 id="配置环境">配置环境</h2>
+<p><strong>教程测试环境是：Debian 7</strong></p>
+<p>这个Aria2 WebUI是一个 <strong>Web面板 + Aria2c后端 </strong>组成的。</p>
+<h2 id="安装 Aria2(后端/服务端)">安装 Aria2(后端/服务端)</h2>
+<h3 id="一键安装脚本">一键安装脚本</h3>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Bash/aria2.sh &amp;&amp; chmod +x aria2.sh &amp;&amp; bash aria2.sh
+
+# 如果上面这个脚本无法下载，尝试使用备用下载：
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/aria2.sh &amp;&amp; chmod +x aria2.sh &amp;&amp; bash aria2.sh
+</pre>
+<h3 id="手动安装步骤">手动安装步骤</h3>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=17320.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<p>首先是安装 aria2 后端。</p>
+<pre class="prettyprint linenums">apt-get install aria2 git -y
+# 创建Aria2配置文件夹
+mkdir /root/.aria2 &amp;&amp; cd /root/.aria2
+# 下载Aria2配置文件、DHT文件(BT有没有速度就靠这个)
+wget --no-check-certificate https://softs.fun/Other/Aria2/aria2.conf
+wget --no-check-certificate https://softs.fun/Other/Aria2/dht.dat
+# 创建一个空的 Aria2 下载任务保存文件
+echo '' &gt; /root/.aria2/aria2.session</pre>
+<p></p></div>
+<p>默认我已经配置好了 Aria2的配置文件，如果你想要修改，那么你可以输入<code> vi /root/.aria2/aria2.conf </code>或者 把这个文件下载到本地修改（有中文注释，# 井号是注释的，不懂的参数不要乱动，默认就好）。</p>
+<p>主要就是下面这两个选项：<strong>下载目录(dir)、RPC监听端口(rpc-listen-port)、RPC令牌(rpc-secret)</strong>，默认是下面这样：</p>
+<p><strong>下载目录：dir=/usr/local/caddy/www/aria2</strong><strong>/Download</strong></p>
+<p><strong>RPC监听端口：rpc-listen-port=6800 (默认#注释)</strong></p>
+<p><strong>RPC令牌：rpc-secret=doub.io (如果不需要，则修改配置文件在参数前面加上 # 注释即可)</strong></p>
+<p>RPC令牌就相当于 Aria2(后端/服务端)远程API连接的授权密码，默认是开启的PRC令牌是 doub.io</p>
+<pre>注意：如果你访问的是本站的镜像域名 <strong>doub.bid</strong> ，那么你这里看到的密码将会是 doub.bid，而你要把 <strong>.bid 改成 .io</strong> 才行。</pre>
+<p>正式使用建议更改 PRC监听端口和令牌 ，避免安全隐患！</p>
+<h2 id="Aria2(后端/服务端) 使用方法">Aria2(后端/服务端) 使用方法</h2>
+<h3 id="一键安装">一键安装</h3>
+<p>看这里：<a href="../shell-jc4/index.html#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank">https://doub.io/shell-jc4/#使用说明</a></p>
+<h3 id="手动安装">手动安装</h3>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=17320.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<p><strong>启动 Aria2(后端/服务端)</strong></p>
+<pre class="prettyprint linenums">nohup aria2c -c &gt; /root/.aria2/aria2.log 2&gt;&amp;1 &amp;
+</pre>
+<h4 id="如果使用 nohup 进程无法后台运行或者其他问题，请看这个">如果使用 nohup 进程无法后台运行或者其他问题，请看这个</h4>
+<p>一些服务器的 nohup 并不好用，所以换到其他的保持进程的软件就行了，这里用 screen</p>
+<pre class="prettyprint linenums">apt-get install screen -y
+# 安装并运行 aria2 即可
+screen -dmS aria2 aria2c -c
+
+# 用下面这个命令可以进入aria2回话，查看输出信息什么的
+screen -r aria2
+</pre>
+<p><strong>停止 Aria2(后端/服务端)</strong></p>
+<pre class="prettyprint linenums">kill -9 $(ps -ef|grep "aria2c"|grep -v "grep"|awk '{print $2}')
+</pre>
+<p>重启就是先停止后启动喽~</p>
+<p><strong>查看 Aria2输出的日志</strong></p>
+<pre class="prettyprint linenums">tail -f /root/.aria2/aria2.log
+</pre>
+<p>这个命令是监控 日志输出，如果想要退出监控，那么按<code> Ctrl+C </code>键即可。</p>
+<p></p></div>
+<h2 id="安装 Aria2 WebUI前端">安装 Aria2 WebUI前端</h2>
+<p>Aria2 WebUI 前端 Github地址：<a href="https://github.com/ziahamza/webui-aria2" target="_blank">https://github.com/ziahamza/webui-aria2</a></p>
+<p>这里安装 Caddy 一个很简单的HTTP服务器，如果你想要使用Nginx/Apache或者LNMP一键包之类的，使用方法自行谷歌。</p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Bash/caddy_install.sh &amp;&amp; chmod +x caddy_install.sh &amp;&amp; bash caddy_install.sh install http.filemanager
+
+# 如果上面这个脚本无法下载，尝试使用备用下载：
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/caddy_install.sh &amp;&amp; chmod +x caddy_install.sh &amp;&amp; bash caddy_install.sh install http.filemanager
+</pre>
+<p>安装Caddy成功后，继续新建并进入虚拟主机文件夹下载安装前端，</p>
+<pre class="prettyprint linenums">mkdir /usr/local/caddy/www &amp;&amp; mkdir /usr/local/caddy/www/aria2 &amp;&amp; mkdir /usr/local/caddy/www/aria2/Download
+cd /usr/local/caddy/www/aria2
+
+git clone https://github.com/ziahamza/webui-aria2.git
+mv webui-aria2/* .
+rm -rf webui-aria2
+
+chmod -R 755 /usr/local/caddy/www/aria2
+</pre>
+<p>写入配置到 Caddy 配置文件，注意下面这五行要一起复制粘贴，不是一行一行复制！</p>
+<pre class="prettyprint linenums">echo ":80 {
+ root /usr/local/caddy/www/aria2
+ timeouts none
+ gzip
+ browse
+}" &gt; /usr/local/caddy/Caddyfile
+</pre>
+<p>上面代码都执行完后，就可以启动 Caddy了。</p>
+<pre class="prettyprint linenums">service caddy start
+</pre>
+<p>如果Caddy 运行正常，那么你打开<code> http://vps_ip </code>即可看到 Aria2 WebUI的页面了。</p>
+<h2 id="配置前端">配置前端</h2>
+<p>没有设置这个或者登录进去后，需要设置 <strong>连接设置</strong>。</p>
+<p>点击顶部菜单栏 <span style="color: #ff6464;"><strong>设置——连接设置</strong></span>。</p>
+<p><strong>主机选项</strong>，填写Aria2后端所在的服务器的IP或域名。</p>
+<p><strong>端口选项</strong>，默认 6800 。</p>
+<p><strong>密码令牌，</strong>如果你没有更改 Aria2配置文件中的内容，那么就是 doub.io</p>
+<p>最后的直接下载选项，就是<strong>填写相对路径：</strong><code> /Download/ </code></p>
+<p>最后点击下面的 <span style="color: #ff6464;"><strong>保存连接设置</strong></span> 按钮，不出意外就会提示连接成功，当然有时候还是会提示失败，多刷新几次就好了。</p>
+<hr />
+<p>这时候你就可以添加下载任务了。</p>
+<p>下载完成后，如果你在 <span style="color: #ff6464;"><strong>连接设置</strong></span> 中设置的<strong>直接下载的相对路径正确</strong>，那你直接点击下面的文件名就可以下载到本地了。</p>
+<p>当然因为 html5的支持，一些视频文件可以在线播放。</p>
+<p><span style="color: #ff6464;"><strong>所以就实现了，离线下载视频，并在线观看！</strong></span></p>
+<h3 id="实现网盘式操作">实现网盘式操作</h3>
+<p>Caddy自带的目录列表功能很简陋，不能 新建/重命名/移动/删除 文件/文件夹等操作，所以可以使用 Caddy的 FileManager 扩展。</p>
+<p>参考使用方法<a href="../jzzy-3/index.html#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%98%AF%20Aria2%20%E6%95%99%E7%A8%8B%E9%87%8C%E8%BF%87%E6%9D%A5%E7%9A%84%EF%BC%8C%E9%82%A3%E4%B9%88%E8%AF%B7%E7%9C%8B%E8%BF%99%E4%B8%AA%E7%A4%BA%E4%BE%8B%E5%92%8C%E8%AF%B4%E6%98%8E" target="_blank">看这里</a>。</p>
+<pre><strong>注意：2017/03/23 17:50</strong> 之前通过本教程安装的Caddy，皆没有这个扩展，需要卸载重装！</pre>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-4-07.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="549" height="234" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-4-07.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="549" height="234" /></noscript></p>
+<h2 id="注意事项">注意事项</h2>
+<p>Aria2 WebUI前端面板并不会保存任何设置，所有设置都是 从 Aria2(后端/服务端)的启动参数或者配置文件中获取的。</p>
+<h3 id="启动显示成功，但是实际未运行">启动显示成功，但是实际未运行</h3>
+<p>因为 服务脚本判断的问题，只判断了nohub是否运行 Caddy成功，但没有判断 Caddy 是否保持正常运行。</p>
+<p>你可以理解为，nohub成功启动了 Caddy，但是 Caddy因为配置文件错误等原因，启动后又退出了。</p>
+<p>所以这种情况下，你应该去查看启动日志：</p>
+<pre class="prettyprint linenums">tail -f /tmp/caddy.log
+</pre>
+<h3 id="Caddy启动失败，打开 http://ip 显示的是 It works !">Caddy启动失败，打开 http://ip 显示的是 It works !</h3>
+<p>一些系统会自带 apache2 ，而 apache2 会占用80端口，导致Caddy无法绑定端口，所以只要关掉就好了。</p>
+<pre class="prettyprint linenums">netstat -lntp
+# 我们可以通过这个命令查看是不是被其他软件占用了 80 端口。
+</pre>
+<p>不过 apache2 会默认开机自启动，如果不需要可以关闭自启动或者卸载 apache2 。</p>
+<p><strong>停止 Apache2</strong></p>
+<pre class="prettyprint linenums">service apache2 stop
+# 尝试使用上面这个关闭，如果没效果或者提示什么错误无法关闭，那就用下面这个强行关闭进程。
+kill -9 $(ps -ef|grep "apache2"|grep -v "grep"|awk '{print $2}')
+</pre>
+<p><strong>取消开机自启动</strong></p>
+<p>下面这些命令仅限 Debian/Ubuntu 系统可用。</p>
+<pre class="prettyprint linenums">update-rc.d -f apache2 remove
+</pre>
+<p><strong>卸载 Apache2</strong></p>
+<pre class="prettyprint linenums">apt-get remove --purge apache2
+</pre>
+<p>关闭 Apache2后，就可以尝试启动 Caddy ，并试试能不能打开网页。</p>
+<pre class="prettyprint linenums">service caddy start
+</pre>
+<h3 id="Aria2(后端/服务端)启动成功，但是 Aria2 WebUI 无法连接">Aria2(后端/服务端)启动成功，但是 Aria2 WebUI 无法连接</h3>
+<p>这个可能是防火墙的问题，开放防火墙端口即可。</p>
+<p>需要开放两个端口，一个是RPC监听端口 <strong>6800(默认)</strong>，一个是BT监听端口 <strong>51413(默认)</strong>。</p>
+<p>不清楚端口的话，可以打开配置文件去<code> vi /root/.aria2/aria2.conf </code>，或者查看本地端口监听情况<code> netstat -lntp </code>。</p>
+<pre class="prettyprint linenums">iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 端口 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 端口 -j ACCEPT
+
+# 删除防火墙规则，内容一样把 -I 换成 -D 就行了：
+iptables -D INPUT -m state --state NEW -m tcp -p tcp --dport 端口 -j ACCEPT
+iptables -D INPUT -m state --state NEW -m udp -p udp --dport 端口 -j ACCEPT
+</pre>
+<h3 id="关于版权问题，大部分地区是禁止下载BT和盗版文件的">关于版权问题，大部分地区是禁止下载BT和盗版文件的</h3>
+<p>大部分IDC都是对版权文件敏感，特别是美国的VPS，当你下载BT和磁力链接文件的时候，很有可能会被封VPS。</p>
+<p>所以请自行选择 版权文件不敏感的 瑞典 乌克兰 俄罗斯 罗马尼亚 地区的IDC的VPS。</p>
+<hr />
+<p><strong>其他的支持离线下载 BT和磁力链接的教程：<a href="../all-one/index.html#BT%E3%80%81%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5%E4%B8%8B%E8%BD%BD%20%E7%9B%B8%E5%85%B3%E6%95%99%E7%A8%8B" target="_blank">https://doub.io/all-one/#BT、磁力链接下载 相关教程</a></strong></p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">一个支持 离线下载/BT/磁力链接 的Aria2在线管理面板 —— Aria2 WebUI</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1442" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">28</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/aria2/index.html" rel="tag">Aria2</a><a href="../tag/bt/index.html" rel="tag">BT</a><a href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html" rel="tag">磁力链接</a><a href="../tag/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/index.html" rel="tag">离线下载</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../wlzy-3/index.html" rel="prev">另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法</a></span>
+			<span class="article-nav-next"><a href="../wlzy-5/index.html" rel="next">大神出手，福利推荐！AMH 5.3 开心版一键安装脚本！</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../shell-jc4/index.html" title="『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-04-10.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本" />	<br><span class="r_title">『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../shell-jc2/index.html" title="『原创』iptables 封禁 BT/PT/SPAM(垃圾邮件)和自定义端口/关键词 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-firewall-1.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』iptables 封禁 BT/PT/SPAM(垃圾邮件)和自定义端口/关键词 一键脚本" />	<br><span class="r_title">『原创』iptables 封禁 BT/PT/SPAM(垃圾邮件)和自定义端口/关键词 一键脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../wlzy-30/index.html" title="『重制』一个支持 离线下载/BT/磁力链接 的Aria2在线管理面板 —— AriaNg" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-magnet01.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『重制』一个支持 离线下载/BT/磁力链接 的Aria2在线管理面板 —— AriaNg" />	<br><span class="r_title">『重制』一个支持 离线下载/BT/磁力链接 的Aria2在线管理面板 —— AriaNg</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../wlzy-17/index.html" title="多线程 HTTP/BT/磁力链接 下载工具 —— Aria2 (Windows版教程)" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-magnet01.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="多线程 HTTP/BT/磁力链接 下载工具 —— Aria2 (Windows版教程)" />	<br><span class="r_title">多线程 HTTP/BT/磁力链接 下载工具 —— Aria2 (Windows版教程)</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../shell-jc4/index.html">『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc2/index.html">『原创』iptables 封禁 BT/PT/SPAM(垃圾邮件)和自定义端口/关键词 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-30/index.html">『重制』一个支持 离线下载/BT/磁力链接 的Aria2在线管理面板 —— AriaNg</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-17/index.html">多线程 HTTP/BT/磁力链接 下载工具 —— Aria2 (Windows版教程)</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-14/index.html">Linux中利用 iptables 封垃圾邮件(SPAM)和BT(磁力链接)、PT</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-13/index.html">『原创』支持 BT(磁力链接)、离线下载和边下边播的老司机坐骑 —— Peerflix Server 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-12/index.html">『原创』支持 BT(磁力链接)、离线下载和边下边播的老司机坐骑 —— Cloud Torrent 一键脚本</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-35/index.html">『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1442' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='17320' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (53)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-17321"><div class="c-avatar"><div class="c-main" id="div-comment-17321">而且这个还能多线程，15线程从百度云下载速度跑满，简直爽。<div class="c-meta"><span class="c-author">Colin</span>2017-08-19 18:18 <a class='comment-reply-link' href='index-replytocom=17321.html#respond' onclick='return addComment.moveForm( "div-comment-17321", "17321", "respond", "1442" )' aria-label='回复给Colin'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17320"><div class="c-avatar"><div class="c-main" id="div-comment-17320">我觉得这个面板比另一个要好。另一个我还是把它的网页给改了，加了一个按钮跳转到文件列表（用逗比云用的那个项目），然后下载。<div class="c-meta"><span class="c-author">Colin</span>2017-08-19 18:17 <a class='comment-reply-link' href='index-replytocom=17320.html#respond' onclick='return addComment.moveForm( "div-comment-17320", "17320", "respond", "1442" )' aria-label='回复给Colin'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-17054"><div class="c-avatar"><div class="c-main" id="div-comment-17054">写入配置到 Caddy 配置文件，注意下面这五行要一起复制粘贴，不是一行一行复制！
+请问这个配置文件的路径是哪里安装教程到这一步看不太明白请指教。。<div class="c-meta"><span class="c-author">无痕</span>2017-08-14 13:43 <a class='comment-reply-link' href='index-replytocom=17054.html#respond' onclick='return addComment.moveForm( "div-comment-17054", "17054", "respond", "1442" )' aria-label='回复给无痕'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17055"><div class="c-avatar"><div class="c-main" id="div-comment-17055">所以我才说了“五行一起复制粘贴，一起执行”，这是一整段代码，运行后会自动写入配置内容到配置文件，不需要其他操作。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-14 13:53 <a class='comment-reply-link' href='index-replytocom=17055.html#respond' onclick='return addComment.moveForm( "div-comment-17055", "17055", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16532"><div class="c-avatar"><div class="c-main" id="div-comment-16532">与楼上的问题一样，磁力链接一直显示没有速度，自己上传种子是可以的。<div class="c-meta"><span class="c-author">jerry</span>2017-08-05 17:33 <a class='comment-reply-link' href='index-replytocom=16532.html#respond' onclick='return addComment.moveForm( "div-comment-16532", "16532", "respond", "1442" )' aria-label='回复给jerry'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13874"><div class="c-avatar"><div class="c-main" id="div-comment-13874">安装成功·启动失败  配置文件 失败<div class="c-meta"><span class="c-author">sof</span>2017-05-16 22:41 <a class='comment-reply-link' href='index-replytocom=13874.html#respond' onclick='return addComment.moveForm( "div-comment-13874", "13874", "respond", "1442" )' aria-label='回复给sof'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13878"><div class="c-avatar"><div class="c-main" id="div-comment-13878">问问题请提供详细的信息，而不要浪费大家的时间。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-17 01:12 <a class='comment-reply-link' href='index-replytocom=13878.html#respond' onclick='return addComment.moveForm( "div-comment-13878", "13878", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13047"><div class="c-avatar"><div class="c-main" id="div-comment-13047">逗比，你写的时候后端参数的令牌默认是doub. io了，教程上面还是doub.bid 来反馈一下 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+刚才打的是 d o u b . i o,发出去就又变成.bid了。。。。还不能取消<div class="c-meta"><span class="c-author">sejin</span>2017-04-22 09:37 <a class='comment-reply-link' href='index-replytocom=13047.html#respond' onclick='return addComment.moveForm( "div-comment-13047", "13047", "respond", "1442" )' aria-label='回复给sejin'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13048"><div class="c-avatar"><div class="c-main" id="div-comment-13048">正常，你访问的是镜像域名 doub.bid，镜像会强行把 doub.io 替换为 doub.bid ，所以尽量还是挂代理用 doub.io 来访问。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-22 10:15 <a class='comment-reply-link' href='index-replytocom=13048.html#respond' onclick='return addComment.moveForm( "div-comment-13048", "13048", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13046"><div class="c-avatar"><div class="c-main" id="div-comment-13046">逗比，你写的时候后端参数的令牌默认是doub.io了，教程上面还是doub.bid 来反馈一下 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">sejin</span>2017-04-22 09:35 <a class='comment-reply-link' href='index-replytocom=13046.html#respond' onclick='return addComment.moveForm( "div-comment-13046", "13046", "respond", "1442" )' aria-label='回复给sejin'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-12302"><div class="c-avatar"><div class="c-main" id="div-comment-12302">怎么样才能让aria2开机自启动？我添加了nohup aria2c -c &amp;&gt;/root/.aria2/aria2.log &amp;到开机启动的脚本并没有用<div class="c-meta"><span class="c-author">MLab</span>2017-04-01 20:37 <a class='comment-reply-link' href='index-replytocom=12302.html#respond' onclick='return addComment.moveForm( "div-comment-12302", "12302", "respond", "1442" )' aria-label='回复给MLab'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-12167"><div class="c-avatar"><div class="c-main" id="div-comment-12167">偷油博主，CentOS系最好加上这条 避免各种恶心错误
+yum install -y gcc gcc-c++ kernel-devel libgcrypt-devel libxml2-devel openssl-devel gettext-devel cppunit<div class="c-meta"><span class="c-author"><a href='http://vivo.us/' rel='external nofollow' class='url'>VIVO美图</a></span>2017-03-29 11:06 <a class='comment-reply-link' href='index-replytocom=12167.html#respond' onclick='return addComment.moveForm( "div-comment-12167", "12167", "respond", "1442" )' aria-label='回复给VIVO美图'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-11814"><div class="c-avatar"><div class="c-main" id="div-comment-11814">你好，站长。我准备安装这个版本的。openvz,debian7-x64,系统自带有apache,然后我安装web-ui时通过vps_ip进入是空白页面，请问怎么解决？<div class="c-meta"><span class="c-author">Lao</span>2017-03-19 17:26 <a class='comment-reply-link' href='index-replytocom=11814.html#respond' onclick='return addComment.moveForm( "div-comment-11814", "11814", "respond", "1442" )' aria-label='回复给Lao'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-11815"><div class="c-avatar"><div class="c-main" id="div-comment-11815">这个教程已经废弃，请看新教程，我已经在哪个评论里告诉你了，跳过第一个添加 软件包源的步骤，直接安装Aria2就行了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-19 17:37 <a class='comment-reply-link' href='index-replytocom=11815.html#respond' onclick='return addComment.moveForm( "div-comment-11815", "11815", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-11835"><div class="c-avatar"><div class="c-main" id="div-comment-11835">你好。按照新教程安装了aria2后端，然后分别安装了webui-aria2和ariang，因为是老版本所以就换回了webui-aria。发现一个问题。用nohup aria2c -c &amp;&gt;/root/.aria2/aria2.log &amp;启动，很快aria2就会被杀掉，用netstat -lntp，刚启动后端时能够看到aria2的端口，过几分钟在看就没有了，前端也显示连接不成功。然后我执行aria2c --conf-path=/root/.aria2/aria2.conf,这样的话就可以正常使用了。<div class="c-meta"><span class="c-author">Lao</span>2017-03-20 00:24 <a class='comment-reply-link' href='index-replytocom=11835.html#respond' onclick='return addComment.moveForm( "div-comment-11835", "11835", "respond", "1442" )' aria-label='回复给Lao'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-11836"><div class="c-avatar"><div class="c-main" id="div-comment-11836">直接 aria2c 启动是前台启动，关闭SSH后，就挂了，nohup是挂到后台用的。<br />
+文章里更新了 screen 的启动方式，你可以试试。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-20 01:26 <a class='comment-reply-link' href='index-replytocom=11836.html#respond' onclick='return addComment.moveForm( "div-comment-11836", "11836", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-11604"><div class="c-avatar"><div class="c-main" id="div-comment-11604">多谢！
+AriaNg倒是搭建好了并且能够离线下载了，那么怎么用http下载到本地呢？
+看过您的另一篇文章“Linux开放HTTP服务并下载文件到本地 以测试 VPS回程速度”，里面提到安装了caddy就行，但是这个也是基于caddy的，在浏览器输入域名/IP之后跳转到了AriaNg而非VPS上的文件了呀。<div class="c-meta"><span class="c-author">godstick</span>2017-03-14 21:51 <a class='comment-reply-link' href='index-replytocom=11604.html#respond' onclick='return addComment.moveForm( "div-comment-11604", "11604", "respond", "1442" )' aria-label='回复给godstick'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-11606"><div class="c-avatar"><div class="c-main" id="div-comment-11606">AriaNg的问题，你怎么跑到 Aria2 WebUI文章里面问？AriaNg教程里教了如何 HTTP下载到本地，为什么看不到？<br />
+<a href="../wlzy-30/index.html#%E5%9C%A8%E7%BA%BF%E4%B8%8B%E8%BD%BD/%E8%A7%82%E7%9C%8B" target="_blank" rel="nofollow">https://doub.io/wlzy-30/#在线下载/观看</a><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-14 22:15 <a class='comment-reply-link' href='index-replytocom=11606.html#respond' onclick='return addComment.moveForm( "div-comment-11606", "11606", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-11250"><div class="c-avatar"><div class="c-main" id="div-comment-11250">在线播放的的链接的download后面少了一个"/"导致不能播放，更换下载目录，还是http://域名/download<div class="c-meta"><span class="c-author">Firw</span>2017-03-06 16:40 <a class='comment-reply-link' href='index-replytocom=11250.html#respond' onclick='return addComment.moveForm( "div-comment-11250", "11250", "respond", "1442" )' aria-label='回复给Firw'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-11077"><div class="c-avatar"><div class="c-main" id="div-comment-11077">感谢toyo大大的教程，但小白的我有几点疑问
+1、你说直接下载路径，说实在我填了是下不了，最终发现我nginx没有开放下载，然而身为nginx苦手的我不知道怎么开，只好借用多线程simplehttp开放端口下载。不知道你可否乐意教下，主要想在线观看（simple貌似不能在线观看）
+2、不知道你有没有用过ariang，想听下你对这前端的看法
+再次感谢<div class="c-meta"><span class="c-author">kurokutomoko</span>2017-02-28 19:01 <a class='comment-reply-link' href='index-replytocom=11077.html#respond' onclick='return addComment.moveForm( "div-comment-11077", "11077", "respond", "1442" )' aria-label='回复给kurokutomoko'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11085"><div class="c-avatar"><div class="c-main" id="div-comment-11085">nginx没有开放下载是什么鬼。。。<br />
+ariang我用过，挺好的，或许什么时候我会写一个这个教程的重置版，这个教程目前似乎问题很多。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-28 22:02 <a class='comment-reply-link' href='index-replytocom=11085.html#respond' onclick='return addComment.moveForm( "div-comment-11085", "11085", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-11086"><div class="c-avatar"><div class="c-main" id="div-comment-11086">如果直接填写直接下载相对路径的话，会出现404 无法下载，当时因这个而十分苦恼
+不过看到你打算重写教程，我感到十分kai x<div class="c-meta"><span class="c-author">kurokutomoko</span>2017-02-28 23:27 <a class='comment-reply-link' href='index-replytocom=11086.html#respond' onclick='return addComment.moveForm( "div-comment-11086", "11086", "respond", "1442" )' aria-label='回复给kurokutomoko'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10723"><div class="c-avatar"><div class="c-main" id="div-comment-10723">站长，按照教程安装的版本是1.15.1，怎么更新到最新版？apt-get说是最新版了<div class="c-meta"><span class="c-author">Lao</span>2017-02-16 18:39 <a class='comment-reply-link' href='index-replytocom=10723.html#respond' onclick='return addComment.moveForm( "div-comment-10723", "10723", "respond", "1442" )' aria-label='回复给Lao'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-10725"><div class="c-avatar"><div class="c-main" id="div-comment-10725">站长，你好。自己下载源码安装出现错误。
+Linux debian 4.9.10-040910-generic #201702141931 SMP Wed Feb 15 00:33:24 UTC 2017 x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Feb 16 19:02:47 2017 from 182.150.160.115
+root@debian:~# cd ar                                                         
+root@debian:~/ar# cd aira2-1.31.0                                            
+-bash: cd: aira2-1.31.0: 没有那个文件或目录
+root@debian:~/ar# cd aria2-1.31.0
+root@debian:~/ar/aria2-1.31.0# ./configure                                   
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking dependency style of gcc... gcc3
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking how to print strings... printf
+checking for a sed that does not truncate output... /bin/sed
+checking for fgrep... /bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /bin/dd
+checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking dependency style of g++... gcc3
+checking how to run the C++ preprocessor... g++ -E
+checking for ld used by g++... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the g++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC -DPIC
+checking if g++ PIC flag -fPIC -DPIC works... yes
+checking if g++ static flag -static works... yes
+checking if g++ supports -c -o file.o... yes
+checking if g++ supports -c -o file.o... (cached) yes
+checking whether the g++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking dependency style of gcc... (cached) gcc3
+checking for bison... bison -y
+checking dependency style of gcc... gcc3
+checking for ar... (cached) ar
+checking for sphinx-build... no
+checking for rst2html.py... no
+checking for rst2html... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.20... yes
+checking whether g++ supports C++11 features by default... no
+checking whether g++ supports C++11 features with -std=c++11 ... yes
+checking whether the c++ compiler supports nullptr... checking whether the C++ compiler supports `override` keyword... yes
+checking for CPPUNIT... yes
+checking for ZLIB... yes
+checking for gzbuffer... yes
+checking for gzsetparams... yes
+checking for LIBXML2... yes
+checking for SQLITE3... no
+configure: WARNING: No package 'sqlite3' found
+checking whether to enable Mac OS X native SSL/TLS... no
+checking for main in -lcrypt32... no
+checking for main in -lsecur32... no
+checking for main in -ladvapi32... no
+checking for wincrypt.h... no
+checking for security.h... no
+checking for LIBGNUTLS... yes
+checking for gnutls_certificate_set_x509_system_trust... no
+checking for LIBNETTLE... no
+checking for libgcrypt-config... /usr/bin/libgcrypt-config
+checking for LIBGCRYPT - version &gt;= 1.2.4... yes (1.5.0)
+checking for LIBSSH2... yes
+checking for LIBCARES... yes
+checking for ares_addr_node... yes
+checking for ares_set_servers... yes
+checking for size_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for ANSI C header files... (cached) yes
+checking argz.h usability... yes
+checking argz.h presence... yes
+checking for argz.h... yes
+checking arpa/inet.h usability... yes
+checking arpa/inet.h presence... yes
+checking for arpa/inet.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking float.h usability... yes
+checking float.h presence... yes
+checking for float.h... yes
+checking for inttypes.h... (cached) yes
+checking langinfo.h usability... yes
+checking langinfo.h presence... yes
+checking for langinfo.h... yes
+checking libintl.h usability... yes
+checking libintl.h presence... yes
+checking for libintl.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking locale.h usability... yes
+checking locale.h presence... yes
+checking for locale.h... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking netdb.h usability... yes
+checking netdb.h presence... yes
+checking for netdb.h... yes
+checking netinet/in.h usability... yes
+checking netinet/in.h presence... yes
+checking for netinet/in.h... yes
+checking netinet/tcp.h usability... yes
+checking netinet/tcp.h presence... yes
+checking for netinet/tcp.h... yes
+checking poll.h usability... yes
+checking poll.h presence... yes
+checking for poll.h... yes
+checking port.h usability... no
+checking port.h presence... no
+checking for port.h... no
+checking signal.h usability... yes
+checking signal.h presence... yes
+checking for signal.h... yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking for stdint.h... (cached) yes
+checking stdio_ext.h usability... yes
+checking stdio_ext.h presence... yes
+checking for stdio_ext.h... yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for strings.h... (cached) yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/resource.h usability... yes
+checking sys/resource.h presence... yes
+checking for sys/resource.h... yes
+checking sys/signal.h usability... yes
+checking sys/signal.h presence... yes
+checking for sys/signal.h... yes
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for sys/types.h... (cached) yes
+checking sys/uio.h usability... yes
+checking sys/uio.h presence... yes
+checking for sys/uio.h... yes
+checking sys/utsname.h usability... yes
+checking sys/utsname.h presence... yes
+checking for sys/utsname.h... yes
+checking termios.h usability... yes
+checking termios.h presence... yes
+checking for termios.h... yes
+checking for unistd.h... (cached) yes
+checking utime.h usability... yes
+checking utime.h presence... yes
+checking for utime.h... yes
+checking wchar.h usability... yes
+checking wchar.h presence... yes
+checking for wchar.h... yes
+checking ifaddrs.h usability... yes
+checking ifaddrs.h presence... yes
+checking for ifaddrs.h... yes
+checking pwd.h usability... yes
+checking pwd.h presence... yes
+checking for pwd.h... yes
+checking for stdbool.h that conforms to C99... yes
+checking for _Bool... no
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for int16_t... yes
+checking for int32_t... yes
+checking for int64_t... yes
+checking for int8_t... yes
+checking for mode_t... yes
+checking for off_t... yes
+checking for size_t... (cached) yes
+checking for ssize_t... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking for uint8_t... yes
+checking for pid_t... yes
+checking for working volatile... yes
+checking for ptrdiff_t... yes
+checking for struct timespec... yes
+checking whether byte ordering is bigendian... no
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking whether NLS is requested... yes
+checking for msgfmt... /usr/bin/msgfmt
+checking for gmsgfmt... /usr/bin/msgfmt
+checking for xgettext... /usr/bin/xgettext
+checking for msgmerge... /usr/bin/msgmerge
+checking for ld used by GCC... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking for shared library run path origin... done
+checking for CFPreferencesCopyAppValue... no
+checking for CFLocaleCopyCurrent... no
+checking for GNU gettext in libc... yes
+checking whether to use NLS... yes
+checking where the gettext function comes from... libc
+checking for error_at_line... yes
+checking whether gcc needs -traditional... no
+checking for working memcmp... yes
+checking for sys/time.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for alarm... yes
+checking for working mktime... yes
+checking sys/select.h usability... yes
+checking sys/select.h presence... yes
+checking for sys/select.h... yes
+checking for sys/socket.h... (cached) yes
+checking types of arguments for select... int,fd_set *,struct timeval *
+checking whether lstat correctly handles trailing slash... yes
+checking whether stat accepts an empty string... no
+checking for strftime... yes
+checking for vprintf... yes
+checking for _doprnt... no
+checking vfork.h usability... no
+checking vfork.h presence... no
+checking for vfork.h... no
+checking for fork... yes
+checking for vfork... yes
+checking for working fork... yes
+checking for working vfork... (cached) yes
+checking for working strtod... yes
+checking for __argz_count... yes
+checking for __argz_next... yes
+checking for __argz_stringify... yes
+checking for atexit... yes
+checking for ftruncate... yes
+checking for getcwd... yes
+checking for gethostbyaddr... yes
+checking for gethostbyname... yes
+checking for getifaddrs... yes
+checking for getpagesize... yes
+checking for getrandom... no
+checking for memchr... yes
+checking for memmove... yes
+checking for mempcpy... yes
+checking for memset... yes
+checking for mkdir... yes
+checking for mmap... yes
+checking for munmap... yes
+checking for nl_langinfo... yes
+checking for posix_fadvise... yes
+checking for posix_memalign... yes
+checking for pow... yes
+checking for putenv... yes
+checking for rmdir... yes
+checking for select... yes
+checking for setlocale... yes
+checking for sigaction... yes
+checking for sleep... yes
+checking for socket... yes
+checking for stpcpy... yes
+checking for strcasecmp... yes
+checking for strchr... yes
+checking for strcspn... yes
+checking for strdup... yes
+checking for strerror... yes
+checking for strncasecmp... yes
+checking for strstr... yes
+checking for strtol... yes
+checking for strtoul... yes
+checking for strtoull... yes
+checking for tzset... yes
+checking for unsetenv... yes
+checking for usleep... yes
+checking for utime... yes
+checking for utimes... yes
+checking for getrandom linux syscall interface... no
+checking for epoll_create... yes
+checking for posix_fallocate... yes
+checking for fallocate... yes
+checking for asctime_r... yes
+checking for localtime_r... yes
+checking for basename... yes
+checking for gai_strerror... yes
+checking for getaddrinfo... yes
+checking for gettimeofday... yes
+checking for strptime... yes
+checking for daemon... yes
+checking for poll... yes
+checking for timegm... yes
+checking for port_associate... no
+checking for kqueue... no
+checking for struct sockaddr_in.sin_len... no
+checking for struct sockaddr_in6.sin6_len... no
+checking whether struct option.name is assignable from const char*... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating src/libaria2.pc
+config.status: creating src/includes/Makefile
+config.status: creating test/Makefile
+config.status: creating po/Makefile.in
+config.status: creating lib/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/manual-src/Makefile
+config.status: creating doc/manual-src/en/Makefile
+config.status: creating doc/manual-src/en/conf.py
+config.status: creating doc/manual-src/ru/Makefile
+config.status: creating doc/manual-src/ru/conf.py
+config.status: creating doc/manual-src/pt/Makefile
+config.status: creating doc/manual-src/pt/conf.py
+config.status: creating deps/Makefile
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+config.status: executing libtool commands
+config.status: executing po-directories commands
+config.status: creating po/POTFILES
+config.status: creating po/Makefile
+=== configuring in deps/wslay (/root/ar/aria2-1.31.0/deps/wslay)
+configure: running /bin/bash ./configure --disable-option-checking '--prefix=/usr/local'  --cache-file=/dev/null --srcdir=.
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking how to print strings... printf
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a sed that does not truncate output... /bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for fgrep... /bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking for gawk... gawk
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /bin/dd
+checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking target system type... x86_64-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking whether make sets $(MAKE)... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking how to run the C++ preprocessor... g++ -E
+checking for ld used by g++... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the g++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC -DPIC
+checking if g++ PIC flag -fPIC -DPIC works... yes
+checking if g++ static flag -static works... yes
+checking if g++ supports -c -o file.o... yes
+checking if g++ supports -c -o file.o... (cached) yes
+checking whether the g++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking dependency style of g++... gcc3
+checking whether ln -s works... yes
+checking whether make sets $(MAKE)... (cached) yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.20... yes
+checking for sphinx-build... no
+checking for NETTLE... no
+checking for CU_initialize_registry in -lcunit... no
+checking arpa/inet.h usability... yes
+checking arpa/inet.h presence... yes
+checking for arpa/inet.h... yes
+checking netinet/in.h usability... yes
+checking netinet/in.h presence... yes
+checking for netinet/in.h... yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking for stdint.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for size_t... yes
+checking for ssize_t... yes
+checking for uint8_t... yes
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking for ptrdiff_t... yes
+checking whether byte ordering is bigendian... no
+checking for memmove... yes
+checking for memset... yes
+checking for ntohl... yes
+checking for ntohs... yes
+checking for htons... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating lib/Makefile
+config.status: creating lib/libwslay.pc
+config.status: creating lib/includes/Makefile
+config.status: creating lib/includes/wslay/wslayver.h
+config.status: creating tests/Makefile
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing libtool commands
+config.status: executing depfiles commands
+configure: summary of build options:
+
+    version:        1.0.1-DEV shared 0:1:0
+    Host type:      x86_64-pc-linux-gnu
+    Install prefix: /usr/local
+    C compiler:     gcc
+    CFlags:         -g -O2
+    Library types:  Shared=yes, Static=yes
+    CUnit:          no
+    Nettle:         no
+    Build examples: no
+
+configure: summary of build options:
+
+Build:          x86_64-pc-linux-gnu
+Host:           x86_64-pc-linux-gnu
+Target:         x86_64-pc-linux-gnu
+Install prefix: /usr/local
+CC:             gcc
+CXX:            g++
+CPP:            gcc -E
+CXXFLAGS:       -g -O2
+CFLAGS:         -g -O2
+CPPFLAGS:
+LDFLAGS:
+LIBS:
+DEFS:           -DHAVE_CONFIG_H
+CXX1XCXXFLAGS:   -std=c++11
+EXTRACXXFLAGS:   -pipe
+EXTRACFLAGS:     -pipe
+EXTRACPPFLAGS:
+EXTRALDFLAGS:
+EXTRALIBS:
+WARNCXXFLAGS:
+LibUV:          no (CFLAGS='' LIBS='')
+SQLite3:        no (CFLAGS='' LIBS='')
+SSL Support:    yes
+AppleTLS:       no (LDFLAGS='')
+WinTLS:         no (LIBS='')
+GnuTLS:         yes (CFLAGS='-I/usr/include/p11-kit-1  ' LIBS='-lgnutls  ')
+OpenSSL:        no (CFLAGS='' LIBS='')
+CA Bundle:
+LibNettle:      no (CFLAGS='' LIBS='')
+LibGmp:         no (CFLAGS='' LIBS='')
+LibGcrypt:      yes (CFLAGS='' LIBS='-L/lib/x86_64-linux-gnu -lgcrypt')
+LibXML2:        yes (CFLAGS='-I/usr/include/libxml2  ' LIBS='-lxml2  ')
+LibExpat:       no (CFLAGS='' LIBS='')
+LibCares:       yes (CFLAGS=' ' LIBS='-lcares  ')
+Zlib:           yes (CFLAGS=' ' LIBS='-lz  ')
+Libssh2:        yes (CFLAGS=' ' LIBS='-Wl,-z,relro -lssh2 -lgcrypt  ')
+Tcmalloc:       no (CFLAGS='' LIBS='')
+Jemalloc:       no (CFLAGS='' LIBS='')
+Epoll:          yes
+Bittorrent:     yes
+Metalink:       yes
+XML-RPC:        yes
+Message Digest: libgcrypt
+WebSocket:      yes (CFLAGS='-I$(top_builddir)/deps/wslay/lib/includes -I$(top_srcdir)/deps/wslay/lib/includes' LIBS='$(top_builddir)/deps/wslay/lib/libwslay.la')
+Libaria2:       no (shared=yes static=no)
+bash_completion dir: ${datarootdir}/doc/${PACKAGE_TARNAME}/bash_completion
+Static build:   no
+
+root@debian:~/ar/aria2-1.31.0# make
+make  all-recursive
+make[1]: Entering directory `/root/ar/aria2-1.31.0'
+Making all in po
+make[2]: Entering directory `/root/ar/aria2-1.31.0/po'
+make[2]: Leaving directory `/root/ar/aria2-1.31.0/po'
+Making all in lib
+make[2]: Entering directory `/root/ar/aria2-1.31.0/lib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/root/ar/aria2-1.31.0/lib'
+Making all in deps
+make[2]: Entering directory `/root/ar/aria2-1.31.0/deps'
+Making all in wslay
+make[3]: Entering directory `/root/ar/aria2-1.31.0/deps/wslay'
+make  all-recursive
+make[4]: Entering directory `/root/ar/aria2-1.31.0/deps/wslay'
+Making all in lib
+make[5]: Entering directory `/root/ar/aria2-1.31.0/deps/wslay/lib'
+Making all in includes
+make[6]: Entering directory `/root/ar/aria2-1.31.0/deps/wslay/lib/includes'
+make[6]: Nothing to be done for `all'.
+make[6]: Leaving directory `/root/ar/aria2-1.31.0/deps/wslay/lib/includes'
+make[6]: Entering directory `/root/ar/aria2-1.31.0/deps/wslay/lib'
+/bin/bash ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I..  -DHAVE_CONFIG_H -I./includes -I./includes  -Wall -g -O2 -MT wslay_frame.lo -MD -MP -MF .deps/wslay_frame.Tpo -c -o wslay_frame.lo wslay_frame.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -DHAVE_CONFIG_H -I./includes -I./includes -Wall -g -O2 -MT wslay_frame.lo -MD -MP -MF .deps/wslay_frame.Tpo -c wslay_frame.c  -fPIC -DPIC -o .libs/wslay_frame.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -DHAVE_CONFIG_H -I./includes -I./includes -Wall -g -O2 -MT wslay_frame.lo -MD -MP -MF .deps/wslay_frame.Tpo -c wslay_frame.c -o wslay_frame.o &gt;/dev/null 2&gt;&amp;1
+mv -f .deps/wslay_frame.Tpo .deps/wslay_frame.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I..  -DHAVE_CONFIG_H -I./includes -I./includes  -Wall -g -O2 -MT wslay_event.lo -MD -MP -MF .deps/wslay_event.Tpo -c -o wslay_event.lo wslay_event.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -DHAVE_CONFIG_H -I./includes -I./includes -Wall -g -O2 -MT wslay_event.lo -MD -MP -MF .deps/wslay_event.Tpo -c wslay_event.c  -fPIC -DPIC -o .libs/wslay_event.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -DHAVE_CONFIG_H -I./includes -I./includes -Wall -g -O2 -MT wslay_event.lo -MD -MP -MF .deps/wslay_event.Tpo -c wslay_event.c -o wslay_event.o &gt;/dev/null 2&gt;&amp;1
+mv -f .deps/wslay_event.Tpo .deps/wslay_event.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I..  -DHAVE_CONFIG_H -I./includes -I./includes  -Wall -g -O2 -MT wslay_queue.lo -MD -MP -MF .deps/wslay_queue.Tpo -c -o wslay_queue.lo wslay_queue.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -DHAVE_CONFIG_H -I./includes -I./includes -Wall -g -O2 -MT wslay_queue.lo -MD -MP -MF .deps/wslay_queue.Tpo -c wslay_queue.c  -fPIC -DPIC -o .libs/wslay_queue.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -DHAVE_CONFIG_H -I./includes -I./includes -Wall -g -O2 -MT wslay_queue.lo -MD -MP -MF .deps/wslay_queue.Tpo -c wslay_queue.c -o wslay_queue.o &gt;/dev/null 2&gt;&amp;1
+mv -f .deps/wslay_queue.Tpo .deps/wslay_queue.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I..  -DHAVE_CONFIG_H -I./includes -I./includes  -Wall -g -O2 -MT wslay_net.lo -MD -MP -MF .deps/wslay_net.Tpo -c -o wslay_net.lo wslay_net.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -DHAVE_CONFIG_H -I./includes -I./includes -Wall -g -O2 -MT wslay_net.lo -MD -MP -MF .deps/wslay_net.Tpo -c wslay_net.c  -fPIC -DPIC -o .libs/wslay_net.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -DHAVE_CONFIG_H -I./includes -I./includes -Wall -g -O2 -MT wslay_net.lo -MD -MP -MF .deps/wslay_net.Tpo -c wslay_net.c -o wslay_net.o &gt;/dev/null 2&gt;&amp;1
+mv -f .deps/wslay_net.Tpo .deps/wslay_net.Plo
+/bin/bash ../libtool --tag=CC   --mode=link gcc -Wall -g -O2 -no-undefined -version-info 0:1:0  -o libwslay.la   wslay_frame.lo wslay_event.lo wslay_queue.lo wslay_net.lo
+libtool: warning: '-version-info/-version-number' is ignored for convenience libraries
+libtool: link: rm -fr  .libs/libwslay.a .libs/libwslay.la
+libtool: link: ar cru .libs/libwslay.a .libs/wslay_frame.o .libs/wslay_event.o .libs/wslay_queue.o .libs/wslay_net.o
+libtool: link: ranlib .libs/libwslay.a
+libtool: link: ( cd ".libs" &amp;&amp; rm -f "libwslay.la" &amp;&amp; ln -s "../libwslay.la" "libwslay.la" )
+make[6]: Leaving directory `/root/ar/aria2-1.31.0/deps/wslay/lib'
+make[5]: Leaving directory `/root/ar/aria2-1.31.0/deps/wslay/lib'
+Making all in tests
+make[5]: Entering directory `/root/ar/aria2-1.31.0/deps/wslay/tests'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/root/ar/aria2-1.31.0/deps/wslay/tests'
+make[5]: Entering directory `/root/ar/aria2-1.31.0/deps/wslay'
+make[5]: Leaving directory `/root/ar/aria2-1.31.0/deps/wslay'
+make[4]: Leaving directory `/root/ar/aria2-1.31.0/deps/wslay'
+make[3]: Leaving directory `/root/ar/aria2-1.31.0/deps/wslay'
+make[3]: Entering directory `/root/ar/aria2-1.31.0/deps'
+make[3]: Nothing to be done for `all-am'.
+make[3]: Leaving directory `/root/ar/aria2-1.31.0/deps'
+make[2]: Leaving directory `/root/ar/aria2-1.31.0/deps'
+Making all in src
+make[2]: Entering directory `/root/ar/aria2-1.31.0/src'
+Making all in includes
+make[3]: Entering directory `/root/ar/aria2-1.31.0/src/includes'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/root/ar/aria2-1.31.0/src/includes'
+make[3]: Entering directory `/root/ar/aria2-1.31.0/src'
+  CXX    AbstractAuthResolver.lo
+In file included from AbstractAuthResolver.cc:35:0:
+AbstractAuthResolver.h:46:11: error: looser throw specifier for ‘virtual aria2::AbstractAuthResolver::~AbstractAuthResolver()’
+In file included from AbstractAuthResolver.h:38:0,
+                 from AbstractAuthResolver.cc:35:
+AuthResolver.h:49:11: error:   overriding ‘virtual aria2::AuthResolver::~AuthResolver() noexcept (true)’
+make[3]: *** [AbstractAuthResolver.lo] 错误 1
+make[3]: Leaving directory `/root/ar/aria2-1.31.0/src'
+make[2]: *** [all-recursive] 错误 1
+make[2]: Leaving directory `/root/ar/aria2-1.31.0/src'
+make[1]: *** [all-recursive] 错误 1
+make[1]: Leaving directory `/root/ar/aria2-1.31.0'
+make: *** [all] 错误 2
+root@debian:~/ar/aria2-1.31.0#
+谷歌了一下看不明白。站长，你出个自动安装的吧<div class="c-meta"><span class="c-author">Lao</span>2017-02-16 19:17 <a class='comment-reply-link' href='index-replytocom=10725.html#respond' onclick='return addComment.moveForm( "div-comment-10725", "10725", "respond", "1442" )' aria-label='回复给Lao'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-3" id="comment-10728"><div class="c-avatar"><div class="c-main" id="div-comment-10728">编译安装，需要安装大量的支持库和依赖，看着就头疼。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-16 19:53 <a class='comment-reply-link' href='index-replytocom=10728.html#respond' onclick='return addComment.moveForm( "div-comment-10728", "10728", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10508"><div class="c-avatar"><div class="c-main" id="div-comment-10508">装完之后发现除了BT别的下载都有速度，BT一直是0，查了下好像都是有这个问题的，求解<div class="c-meta"><span class="c-author">Araragi</span>2017-02-10 13:19 <a class='comment-reply-link' href='index-replytocom=10508.html#respond' onclick='return addComment.moveForm( "div-comment-10508", "10508", "respond", "1442" )' aria-label='回复给Araragi'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10509"><div class="c-avatar"><div class="c-main" id="div-comment-10509">DTH问题，详细的我也不清楚，刚安装BT没有速度，都是DTH问题。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-10 13:51 <a class='comment-reply-link' href='index-replytocom=10509.html#respond' onclick='return addComment.moveForm( "div-comment-10509", "10509", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-10518"><div class="c-avatar"><div class="c-main" id="div-comment-10518">好像是我设置的不对，我在前端下了一个文件后却找不到download文件夹。但是这文件确实已经在机器里了，可以下载。而且这个aria2.conf文件也不在root目录里面..<div class="c-meta"><span class="c-author">Araragi</span>2017-02-10 16:48 <a class='comment-reply-link' href='index-replytocom=10518.html#respond' onclick='return addComment.moveForm( "div-comment-10518", "10518", "respond", "1442" )' aria-label='回复给Araragi'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10404"><div class="c-avatar"><div class="c-main" id="div-comment-10404">站长，把安转yaaw汉化版的教程也一并写了吧。这个ui我用uc浏览器访问显示乱码，uc云加速是关闭了的<div class="c-meta"><span class="c-author">lao</span>2017-02-06 15:11 <a class='comment-reply-link' href='index-replytocom=10404.html#respond' onclick='return addComment.moveForm( "div-comment-10404", "10404", "respond", "1442" )' aria-label='回复给lao'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-9672"><div class="c-avatar"><div class="c-main" id="div-comment-9672">打开ip:6800输入完密码之后一片空白怎么办。
+密码是对的<div class="c-meta"><span class="c-author">saber</span>2017-01-07 12:57 <a class='comment-reply-link' href='index-replytocom=9672.html#respond' onclick='return addComment.moveForm( "div-comment-9672", "9672", "respond", "1442" )' aria-label='回复给saber'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-9627"><div class="c-avatar"><div class="c-main" id="div-comment-9627">centos 安装过程中还是有很大的问题，没有详细的解决方案，Google了一下国外的朋友貌似说要自行编译。<div class="c-meta"><span class="c-author"><a href='http://0rat.com' rel='external nofollow' class='url'>bogie</a></span>2017-01-05 16:57 <a class='comment-reply-link' href='index-replytocom=9627.html#respond' onclick='return addComment.moveForm( "div-comment-9627", "9627", "respond", "1442" )' aria-label='回复给bogie'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-9631"><div class="c-avatar"><div class="c-main" id="div-comment-9631">不清楚，不用centos，我只用debian/ubuntu。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-01-05 18:34 <a class='comment-reply-link' href='index-replytocom=9631.html#respond' onclick='return addComment.moveForm( "div-comment-9631", "9631", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-9167"><div class="c-avatar"><div class="c-main" id="div-comment-9167">写一个windows下使用aria2的教程吧<div class="c-meta"><span class="c-author">潜龙勿用</span>2016-12-15 17:32 <a class='comment-reply-link' href='index-replytocom=9167.html#respond' onclick='return addComment.moveForm( "div-comment-9167", "9167", "respond", "1442" )' aria-label='回复给潜龙勿用'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-9169"><div class="c-avatar"><div class="c-main" id="div-comment-9169">这个其实挺容易的，本来几个月前就打算上写的，只是我测试后发现，Aria2的DHT不行，下载BT和磁力链接要么解析不出来，要么下载速度非常慢，windows还是用迅雷这种 用户量大，DHT充足的工具吧。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-12-15 19:32 <a class='comment-reply-link' href='index-replytocom=9169.html#respond' onclick='return addComment.moveForm( "div-comment-9169", "9169", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-8681"><div class="c-avatar"><div class="c-main" id="div-comment-8681">是不是失效了？为什么一步步的来，到了aria2c --enable-rpc --rpc-listen-all这一步就提示bash: aria2c: command not found，前端可以打开呀！<div class="c-meta"><span class="c-author">你猜呀？</span>2016-11-19 18:04 <a class='comment-reply-link' href='index-replytocom=8681.html#respond' onclick='return addComment.moveForm( "div-comment-8681", "8681", "respond", "1442" )' aria-label='回复给你猜呀？'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-8682"><div class="c-avatar"><div class="c-main" id="div-comment-8682">aria2c 的安装有问题，我只在debian7 x64的系统上面测试过。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-11-19 18:34 <a class='comment-reply-link' href='index-replytocom=8682.html#respond' onclick='return addComment.moveForm( "div-comment-8682", "8682", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-8688"><div class="c-avatar"><div class="c-main" id="div-comment-8688">就是debina7 X64的系统<div class="c-meta"><span class="c-author">你猜呀？</span>2016-11-20 10:16 <a class='comment-reply-link' href='index-replytocom=8688.html#respond' onclick='return addComment.moveForm( "div-comment-8688", "8688", "respond", "1442" )' aria-label='回复给你猜呀？'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-8549"><div class="c-avatar"><div class="c-main" id="div-comment-8549">为啥我点击下载好的文件文件名后会出现 404 not found<div class="c-meta"><span class="c-author">eepldo</span>2016-11-05 13:20 <a class='comment-reply-link' href='index-replytocom=8549.html#respond' onclick='return addComment.moveForm( "div-comment-8549", "8549", "respond", "1442" )' aria-label='回复给eepldo'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-8550"><div class="c-avatar"><div class="c-main" id="div-comment-8550">404是找不到文件，你去看看是不是下载到其他地方了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-11-05 14:40 <a class='comment-reply-link' href='index-replytocom=8550.html#respond' onclick='return addComment.moveForm( "div-comment-8550", "8550", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-8524"><div class="c-avatar"><div class="c-main" id="div-comment-8524">windows怎么用啊<div class="c-meta"><span class="c-author">Guangd</span>2016-11-03 13:18 <a class='comment-reply-link' href='index-replytocom=8524.html#respond' onclick='return addComment.moveForm( "div-comment-8524", "8524", "respond", "1442" )' aria-label='回复给Guangd'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-8528"><div class="c-avatar"><div class="c-main" id="div-comment-8528">你可以<a href="http://aria2c.com/usage.html" target="_blank" rel="nofollow">看看这个</a>。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-11-03 18:51 <a class='comment-reply-link' href='index-replytocom=8528.html#respond' onclick='return addComment.moveForm( "div-comment-8528", "8528", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-8355"><div class="c-avatar"><div class="c-main" id="div-comment-8355">aria2c --enable-rpc --rpc-listen-all
+这一句显示bash: aria2c: command not found<div class="c-meta"><span class="c-author">hkfix</span>2016-10-18 20:59 <a class='comment-reply-link' href='index-replytocom=8355.html#respond' onclick='return addComment.moveForm( "div-comment-8355", "8355", "respond", "1442" )' aria-label='回复给hkfix'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-8359"><div class="c-avatar"><div class="c-main" id="div-comment-8359">没有这个命令，说明安装出问题了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-10-18 22:19 <a class='comment-reply-link' href='index-replytocom=8359.html#respond' onclick='return addComment.moveForm( "div-comment-8359", "8359", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-8368"><div class="c-avatar"><div class="c-main" id="div-comment-8368">yum  -y  install  aria2 显示Loaded plugins: fastestmirror, security
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+No package aria2 available.
+Error: Nothing to do<div class="c-meta"><span class="c-author">hkfix</span>2016-10-19 21:57 <a class='comment-reply-link' href='index-replytocom=8368.html#respond' onclick='return addComment.moveForm( "div-comment-8368", "8368", "respond", "1442" )' aria-label='回复给hkfix'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even depth-3" id="comment-8369"><div class="c-avatar"><div class="c-main" id="div-comment-8369">已经更新过了YUM了<div class="c-meta"><span class="c-author">hkfix</span>2016-10-19 21:58 <a class='comment-reply-link' href='index-replytocom=8369.html#respond' onclick='return addComment.moveForm( "div-comment-8369", "8369", "respond", "1442" )' aria-label='回复给hkfix'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-8330"><div class="c-avatar"><div class="c-main" id="div-comment-8330">有演示吗？  如果自己看估计可以，真实要分享给别人。分分钟崩溃吗？<div class="c-meta"><span class="c-author"><a href='http://www.zhulou.net' rel='external nofollow' class='url'>筑楼</a></span>2016-10-15 14:06 <a class='comment-reply-link' href='index-replytocom=8330.html#respond' onclick='return addComment.moveForm( "div-comment-8330", "8330", "respond", "1442" )' aria-label='回复给筑楼'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-8334"><div class="c-avatar"><div class="c-main" id="div-comment-8334">没有链接后端，前端就是个壳，加上后端演示，分分钟版权投诉。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-10-16 00:49 <a class='comment-reply-link' href='index-replytocom=8334.html#respond' onclick='return addComment.moveForm( "div-comment-8334", "8334", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-8245"><div class="c-avatar"><div class="c-main" id="div-comment-8245">博主，我是按照Nginx+aria2+Screen搭建的，但是我下载的mp4无法播放，点击一下就下载的信息收缩回去了.........，我该如何解决？<div class="c-meta"><span class="c-author">Null</span>2016-09-29 10:21 <a class='comment-reply-link' href='index-replytocom=8245.html#respond' onclick='return addComment.moveForm( "div-comment-8245", "8245", "respond", "1442" )' aria-label='回复给Null'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-8068"><div class="c-avatar"><div class="c-main" id="div-comment-8068">我只想问下那个红蔷薇白玫瑰是不是只有封面一个图像的视频<div class="c-meta"><span class="c-author">arimakousei</span>2016-09-09 12:18 <a class='comment-reply-link' href='index-replytocom=8068.html#respond' onclick='return addComment.moveForm( "div-comment-8068", "8068", "respond", "1442" )' aria-label='回复给arimakousei'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-8069"><div class="c-avatar"><div class="c-main" id="div-comment-8069">什么意思？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2016-09-09 14:09 <a class='comment-reply-link' href='index-replytocom=8069.html#respond' onclick='return addComment.moveForm( "div-comment-8069", "8069", "respond", "1442" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-7815"><div class="c-avatar"><div class="c-main" id="div-comment-7815">为啥我尝试了很多次启动后端都失败<div class="c-meta"><span class="c-author">hyk313</span>2016-08-21 21:23 <a class='comment-reply-link' href='index-replytocom=7815.html#respond' onclick='return addComment.moveForm( "div-comment-7815", "7815", "respond", "1442" )' aria-label='回复给hyk313'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-7808"><div class="c-avatar"><div class="c-main" id="div-comment-7808">其实我觉得可以顺便把https://github.com/meoow/aria2rpc里面的脚本使用方法也贴上去。。。。毕竟copy太烦了
+可惜脚本有各种缺陷（比如文件名有时操蛋、flashgot不支持带""的参数、改ua麻烦 等等），不过大部分时候都挺好用的<div class="c-meta"><span class="c-author">Phanes</span>2016-08-21 14:10 <a class='comment-reply-link' href='index-replytocom=7808.html#respond' onclick='return addComment.moveForm( "div-comment-7808", "7808", "respond", "1442" )' aria-label='回复给Phanes'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-7785"><div class="c-avatar"><div class="c-main" id="div-comment-7785">顶！d=====(￣▽￣*)b<div class="c-meta"><span class="c-author">2064605526</span>2016-08-19 16:55 <a class='comment-reply-link' href='index-replytocom=7785.html#respond' onclick='return addComment.moveForm( "div-comment-7785", "7785", "respond", "1442" )' aria-label='回复给2064605526'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>ShadowsocksR 多用户版服务端安装教程（SS-Panel后端） | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2178] -->
+<meta name="description"  content="注:多用户版需配合ss-panel等前端使用，查看SS-Panel教程。 这篇文章主要说明ShadowsocksR后端的安装教程，这属于后端教程，前端教程请看这里，新手扩展篇请看这里！（教程都是配套的，建议放在一起看！） 如果你看不太懂，那么你需要看这个：SS-Panel 前后端详细演示安装" />
+
+<meta name="keywords"  content="shadowsocks,shadowsocksr,多用户服务端,教程" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='Shadowsocks多用户管理面板——SS-Panel教程' href='../ss-jc13/index.html' />
+<link rel='next' title='SS-Panel教程——新手扩展篇（数据库和后台介绍）' href='../ss-jc15/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="Shadowsocks, ShadowsocksR, 多用户服务端, 教程, Shadowsocks">
+<meta name="description" content="注:多用户版需配合ss-panel等前端使用，查看SS-Panel教程。 这篇文章主要说明ShadowsocksR后端的安装教程，这属于后端教程，前端教程请看这里，新手扩展篇请看这里！（教程都是配套的，建议放在一起看！）  如果你看不太懂，那么你需要看这个：SS-Panel 前后端详细演示安装 视频教程  SS-Panel教程特别声明！！！！！！！！！！！！！！！！！！！ 此教程为多用户版，适合站长。如果你是个人使用，请查看单用户版教程">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-994 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=18347.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">ShadowsocksR 多用户版服务端安装教程（SS-Panel后端）</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../ss/index.html"> Shadowsocks</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 2年前 (2015-12-18)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 49888℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">175评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E5%9F%BA%E6%9C%AC%E5%BA%93%E5%AE%89%E8%A3%85" title="基本库安装"><span>基本库安装</span></a></li><li class="content-index-level-1"><a href="index.html#%E8%8E%B7%E5%8F%96%E6%BA%90%E4%BB%A3%E7%A0%81" title="获取源代码"><span>获取源代码</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%EF%BC%88cymysql%EF%BC%89" title="安装依赖（cymysql）"><span>安装依赖（cymysql）</span></a></li><li class="content-index-level-1"><a href="index.html#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE" title="服务端配置"><span>服务端配置</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config.json%EF%BC%9A" title="配置文件config.json："><span>配置文件config.json：</span></a></li><li class="content-index-level-2"><a href="index.html#id%20//%E7%94%A8%E6%88%B7id%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E8%AF%B4%E6%98%8E:" title="id //用户id数据库字段说明:"><span>id //用户id数据库字段说明:</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%BF%90%E8%A1%8C%E4%B8%8E%E5%81%9C%E6%AD%A2" title="服务端运行与停止"><span>服务端运行与停止</span></a></li><li class="content-index-level-1"><a href="index.html#%E9%80%9A%E8%BF%87%E8%84%9A%E6%9C%AC%E8%BF%90%E8%A1%8C" title="通过脚本运行"><span>通过脚本运行</span></a></li><li class="content-index-level-1"><a href="index.html#%E7%AB%AF%E5%8F%A3%E9%99%90%E9%80%9F%E5%92%8C%E9%99%90%E5%88%B6%E8%AE%BE%E5%A4%87%E6%95%B0" title="端口限速和限制设备数"><span>端口限速和限制设备数</span></a></li><li class="content-index-level-1"><a href="index.html#%E6%9B%B4%E6%96%B0%E6%BA%90%E4%BB%A3%E7%A0%81" title="更新源代码"><span>更新源代码</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8" title="开机启动"><span>开机启动</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%85%B6%E5%AE%83%E5%BC%82%E5%B8%B8" title="其它异常"><span>其它异常</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5Shadowsocks%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%B2%A1%E6%8F%90%E7%A4%BA%E9%94%99%E8%AF%AF%E6%88%96%E8%80%85%E6%8F%90%E7%A4%BAIP%E8%A2%AB%E5%8D%A0%E7%94%A8" title="无法连接Shadowsocks服务端，并且没提示错误或者提示IP被占用"><span>无法连接Shadowsocks服务端，并且没提示错误或者提示IP被占用</span></a></li><li class="content-index-level-2"><a href="index.html#Shadowsocksr%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%81MYSQL%EF%BC%9A2003" title="Shadowsocksr无法连接到数据库！MYSQL：2003"><span>Shadowsocksr无法连接到数据库！MYSQL：2003</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年7月28日 13:19</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><pre>注:多用户版需配合ss-panel等前端使用，<a href="../ss-jc13/index.html" target="_blank">查看SS-Panel教程。</a></pre>
+<blockquote><p>这篇文章主要说明ShadowsocksR后端的安装教程，这属于后端教程，前端教程<a href="../ss-jc13/index.html" target="_blank">请看这里</a>，新手扩展篇<a href="../ss-jc15/index.html" target="_blank">请看这里</a>！<strong>（教程都是配套的，建议放在一起看！）</strong></p>
+<p><span style="color: #ff5c5c;"><strong>如果你看不太懂，那么你需要看这个：</strong></span><a title="SS-Panel 前后端详细演示安装 视频教程" href="../ss-jc30/index.html" target="_blank">SS-Panel 前后端详细演示安装 视频教程</a></p>
+<p><a title="SS-Panel教程特别声明！！！！！！！！！！！！！！！！！！！" href="../ss-jc31/index.html" target="_blank">SS-Panel教程特别声明！！！！！！！！！！！！！！！！！！！</a></p></blockquote>
+<p>此教程为多用户版，适合站长。如果你是个人使用，请查看单用户版教程：<a href="../ss-jc11/index.html" target="_blank">单用户版教程</a></p>
+<p>以下命令均以root用户执行，或sudo方式执行。</p>
+<p>以下部分内容可能需要VIM操作，不懂的可以看一下这个<a href="../linux-jc1/index.html" target="_blank">VIM小白教程</a>。</p>
+<p><span id="more-994"></span></p>
+<hr />
+<blockquote><p><strong>说明一下新手步骤，安装依赖 → 下载源码 → 修改数据库配置 → 设置脚本权限并运行脚本！</strong></p>
+<p>没了，就这么简单，不要想的那么复杂。</p></blockquote>
+<pre><strong>不会链接VPS的，你需要看着个：<a title="Linux SSH链接工具 Putty 新手详细使用教程 - 逗比根据地" href="../linux-jc2/index.html" target="_blank">Linux SSH链接工具 Putty 新手详细使用教程</a></strong></pre>
+<p><strong>更多的Shadowsocks安装教程/一键脚本请看这里：<a href="../ss-jc26/index.html#2.2.2%E3%80%81%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1" target="_blank">Shadowsocks指导篇</a></strong></p>
+<p><strong>ShadowsocksR单服务器用户：</strong><a title="ShadowsocksR 多用户 mudbjson模式使用教程 支持流量限制" href="../ss-jc57/index.html" target="_blank">ShadowsocksR 多用户 mudbjson模式使用教程 支持流量限制</a></p>
+<h2 id="基本库安装">基本库安装</h2>
+<p><strong>Centos系统执行这个：</strong></p>
+<pre class="prettyprint linenums">yum update
+yum install git -y
+</pre>
+<p><strong>Ubuntu/Debian系统执行这个（推荐这两个系统，对新手友好）：</strong></p>
+<pre class="prettyprint linenums">apt-get update
+apt-get install git -y
+</pre>
+<p>如果要使用 salsa20 和 chacha20 加密方式，请安装 <a href="https://github.com/jedisct1/libsodium" target="_blank">libsodium</a>：</p>
+<ul>
+<li><a title="ShadowsocksR 安装libsodium 以支持 Chacha20/Chacha20-ietf 加密方式" href="../ss-jc51/index.html" target="_blank">ShadowsocksR 安装libsodium 以支持 Chacha20/Chacha20-ietf 加密方式</a></li>
+</ul>
+<p>如果曾经安装过旧版本，亦可重复用以上步骤更新到最新版，仅1.0.4或以上版本支持chacha20-ietf</p>
+<h2 id="获取源代码">获取源代码</h2>
+<pre class="prettyprint linenums">git clone -b manyuser https://github.com/ToyoDAdoubi/shadowsocksr.git</pre>
+<p>执行完毕后此目录会新建一个shadowsocksr目录，其中<strong>根目录的是多用户版（即数据库版）</strong>，<strong>子目录中的是单用户版。</strong></p>
+<p><strong>子目录中的是单用户版</strong>(即 shadowsocksr/shadowsocks)。</p>
+<p><strong>以下是相对路径</strong>，比如你在 <strong>/root</strong> 目录下执行上面的代码，那你的SS根目录就是 <strong>/root/shadowsocksr</strong> 。</p>
+<p>根目录即 <strong>shadowsocksr</strong></p>
+<p>子目录即 <strong>shadowsocksr/shadowsocks</strong></p>
+<h2 id="安装依赖（cymysql）">安装依赖（cymysql）</h2>
+<pre class="prettyprint linenums">cd shadowsocksr
+# 进入ShadowsocksR根目录
+bash setup_cymysql.sh
+# 安装Cymysql 依赖
+bash initcfg.sh
+# 初始化ShadowsocksR服务端</pre>
+<h2 id="服务端配置">服务端配置</h2>
+<p>shadowsocksr 根目录内，打开文件<code>vi usermysql.json</code>：</p>
+<pre class="prettyprint linenums">"host": "127.0.0.1", //前端mysql域名/IP
+"port": 3306, //mysql端口
+"user": "ss", //mysql用户名
+"password": "pass", //mysql密码
+"db": "shadowsocks", //数据库名
+</pre>
+<pre><span style="color: #ff5252;"><strong>注意：这里的数据库信息除了 host ，其他的必须和SS-Panel完全一致，服务端启动的时候会读取数据库信息！至于 host ，如果你的服务端和前端（SS-Panel）在一个VPS上，那就写localhost或者127.0.0.1，如果不在一起，请写前端（SS-Panel）所在VPS的ip或者域名！
+</strong></span><strong>还有一条要注意的，</strong><span style="color: #ff5252;"><strong>如果服务端和前端（SS-Panel）不在一个VPS上，那么数据库链接就属于远程链接了，这时候需要开启数据库用户的远程链接功能！
+</strong><strong>开启方法：</strong></span>在数据库——用户——编辑权限——登录信息中修改Host为任意主机“%”</pre>
+<p><img class="lazy alignnone" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/ss-jc14-01.jpg?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/10/dy/10" alt="" width="628" height="538" /><noscript><img class="alignnone" src="https://img.mlkxs.com/ss-jc14-01.jpg?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/80/gravity/SouthEast/dx/10/dy/10" alt="" width="628" height="538" /></noscript></p>
+<h3 id="配置文件config.json：">配置文件config.json：</h3>
+<pre class="prettyprint linenums"># 一般情况下不需要编辑，除非你需要修改 加密方式/协议/混淆等参数。
+vi user-config.json
+</pre>
+<pre><strong>注意：</strong>新版ShadowsocksR服务端的 默认加密方式从<code> aes-256-cfb </code>改为<code> aes-128-ctr </code>了，大家注意一下。</pre>
+<pre class="prettyprint linenums">"method":"aes-128-ctr", //修改成您要的加密方式的名称
+"protocol": "auth_aes128_md5", //修改成您要的协议插件名称
+"obfs": "tls1.2_ticket_auth_compatible", //修改成您要的混淆插件名称
+</pre>
+<p>如果需要修改协议插件和混淆插件，请根据<a href="../ss-jc11/index.html" target="_blank">单用户版服务端</a>页面的<strong>选项对照说明</strong>修改参数。</p>
+<p><strong>compatible</strong> 是兼容原版模式，原版也可以用，SSR开启插件也可以用！</p>
+<pre>注意：ShadowsocksR服务端<code> auth_aes128_* </code>及以后的所有协议<strong>不支持兼容原版</strong>，混淆依然支持，<a href="../ss-jc35/index.html#ShadowsocksR%20%E6%9C%80%E6%96%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%85%BC%E5%AE%B9%E5%8E%9F%E7%89%88%EF%BC%88%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%89%88SS%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%89%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%BD%B1%E5%93%8D%EF%BC%9F" target="_blank">影响解释看着个</a>。</pre>
+<h3 id="id //用户id数据库字段说明:">id //用户id<span style="color: #ff5252;"><strong>数据库字段</strong></span>说明:</h3>
+<pre class="prettyprint linenums">email //用户邮箱
+pass //用户密码
+passwd //ss密码
+t //最后使用的时间
+u //已上传流量
+d //已下载流量
+transfer_enable //可用流量（总量）
+port //ss端口
+switch //保留字段
+enable //启用或禁用ss帐号（1启用，0禁用）
+type //保留字段
+last_get_gift_time //保留字段
+last_rest_pass_time //保留字段
+</pre>
+<p><span style="color: #ff6600;"><strong>ShadowsocksR多用户板服务端默认开启UDP的</strong></span></p>
+<h2 id="服务端运行与停止">服务端运行与停止</h2>
+<pre class="prettyprint linenums">python server.py
+</pre>
+<p><strong>这句运行代码主要用于调试，关闭ssh后ss后端自动关闭，所以正式使用请使用下面的脚本运行！如果需要停止请按<code>Ctrl+C</code>键终止程序。</strong></p>
+<p>这时可查看有运行情况，检查有没有错误。如果服务端没有错误，而连接不上，需要检查iptables或firewall(centos7)的防火墙配置</p>
+<h2 id="通过脚本运行">通过脚本运行</h2>
+<p>脚本位于<code> shadowsocksr </code>根目录，如果你没有在这个目录，请先进入根目录<code>cd shadowsocksr</code></p>
+<p>请分清楚，根目录<code> shadowsocksr </code>和子目录<code> shadowsocksr/shadowsocks </code>！</p>
+<p><strong>赋予脚本执行权限</strong>（执行一次就好）</p>
+<pre class="prettyprint linenums">chmod +x *.sh
+</pre>
+<p><strong>后台运行</strong> 但<strong><span style="color: #ff6464;">不记录日志</span>（ssh窗口关闭后也继续运行）</strong></p>
+<pre class="prettyprint linenums">./run.sh
+</pre>
+<p><strong>后台运行</strong> 且 <strong><span style="color: #ff6464;">记录日志</span>（ssh窗口关闭后也继续运行）</strong></p>
+<pre class="prettyprint linenums">./logrun.sh</pre>
+<p><strong>查看 SS日志</strong>（用 <strong>logrun.sh</strong> 脚本启动才会打开日志）</p>
+<pre class="prettyprint linenums">./tail.sh
+</pre>
+<p><strong>停止运行</strong></p>
+<pre class="prettyprint linenums">./stop.sh
+</pre>
+<p>注：通过脚本运行默认日志会保存在根目录的<strong>ssserver.log</strong>，可手动查看。</p>
+<p>如果日志文件太大，需要清理，可以用下面这个命令 清空 日志文件。</p>
+<pre class="prettyprint linenums">cat /dev/null &gt; ssserver.log</pre>
+<h2 id="端口限速和限制设备数">端口限速和限制设备数</h2>
+<p>请查看这个文章：<a title="ShadowsocksR服务端 限制设备连接数 和 限制端口速度 的方法" href="../ss-jc47/index.html" target="_blank">ShadowsocksR服务端 限制设备连接数 和 限制端口速度 的方法</a></p>
+<h2 id="更新源代码">更新源代码</h2>
+<p>如果代码有更新可用本命令更新代码</p>
+<p>进入shadowsocksr目录</p>
+<pre class="prettyprint linenums">cd shadowsocksr
+</pre>
+<p>执行</p>
+<pre class="prettyprint linenums">git pull
+</pre>
+<p>成功后重启ss服务</p>
+<h2 id="开机启动">开机启动</h2>
+<p>一些人可能需要开机启动，我就一起写上吧。</p>
+<p>首先设置开机启动文件的权限，并打开该文件。</p>
+<p><strong>Centos系统：</strong></p>
+<pre class="prettyprint linenums">chmod +x /etc/rc.d/rc.local
+vi /etc/rc.d/rc.local
+</pre>
+<p><strong>Ubuntu/Debian系统：</strong></p>
+<pre class="prettyprint linenums">chmod +x /etc/rc.local
+vi /etc/rc.local
+</pre>
+<p>然后在<code> exit 0 </code>这一句代码（只有ubuntu/debian有这个 exit 0）的前面加上 下面这句代码<strong>(如果你的Shadowsocksr文件夹不在root目录下，请自行修改路径)</strong>。</p>
+<p>是使用不记录日志的 run.sh 脚本还是记录日志的 logrun.sh 自己看着改。</p>
+<pre class="prettyprint linenums">bash /root/shadowsocksr/run.sh
+</pre>
+<p>然后按<code> ESC键 </code>退出vi编辑模式，然后输入<code> :wq </code>保存并退出该文件，就完成了。</p>
+<p><span style="color: #ff6464;"><strong style="font-size: 30px;">我以后不再写任何sspanel教程，也不再回复任何sspanel问题！</strong></span></p>
+<h2 id="其它异常">其它异常</h2>
+<h3 id="无法连接Shadowsocks服务端，并且没提示错误或者提示IP被占用"><span style="color: #ff6600;">无法连接Shadowsocks服务端，并且没提示错误或者提示IP被占用</span></h3>
+<p>如果Shadowsocks服务端没有提示错误，或者提示IP被占用，并且使用./stop.sh和./run.sh脚本重启后，依旧无法连接Shadowsocks，请重启当前VPS（这个问题我猜测可能是./stop脚本并不能完全关闭Shadowsocks所有连接，导致无法解决问题。正好Shadowsocks服务端默认随机启动，所以重启VPS可以解决这个问题。如果你知道原因或者其他更好的解决办法请在下面留言）。</p>
+<h3 id="Shadowsocksr无法连接到数据库！MYSQL：2003"><span style="color: #ff0000;">Shadowsocksr无法连接到数据库！MYSQL：2003</span></h3>
+<p>经过我多次实验，发现这个问题都是出现在Shadowsocksr后端和数据库不在一个VPS上，这就说明了是数据库所在VPS的错误，先开放数据库的远程连接“%”，这个上面服务端配置里说的有方法。然后再打开你iptables防火墙配置文件（多半问题都是出现在这里，3306数据库端口没有对外开放）。</p>
+<hr />
+<p>默认lnmp安装后，会封闭3306的端口，不允许外部链接，所以删掉这个规则重新添加开放规则就好了。</p>
+<p>删掉原来的3306 DROP规则，然后加上开放3306端口规则。</p>
+<pre class="prettyprint linenums">iptables -D INPUT -p tcp --dport 3306 -j DROP
+iptables -A INPUT -p tcp --dport 3306 -j ACCEPT</pre>
+<hr />
+<p><span style="color: #ff0000;"><strong>服务端运行提示/日志正常，客户端填写也正确，但是依然无法连接！</strong></span></p>
+<p>这种情况一般都是防火墙搞的鬼（Debian/Ubuntu基本排除，多出现在Centos系统）。</p>
+<pre class="prettyprint linenums">iptables -L
+</pre>
+<p>看一下有没有什么东西阻止了ss端口，或者说是没有允许/开放ss的端口。</p>
+<p>如果你看不明白，你可以先关闭防火墙，试一试是不是防火墙的问题导致的无法连接。</p>
+<pre class="prettyprint linenums">/etc/init.d/iptables stop
+</pre>
+<p>对了，部分VPS是没有吧iptables添加到服务里面，所以只能清空防火墙规则（也就是开放所有端口）</p>
+<pre>iptables -F</pre>
+<p>如果关闭后SS链接正常，那就是防火墙的问题，你可以随后慢慢排除防火墙规则。也可以直接 iptables -F 清空防火墙，但是我不建议这么做，一不小心就需要重装服务器了。</p>
+<hr />
+<p>如果你的服务端python版本在2.6以下，那么必须更新python到2.6.x或2.7.x版本</p>
+<hr />
+<p>如果运行一段时间后，你发现服务器无法连接，同时ssh连上去后，执行</p>
+<pre class="prettyprint linenums">netstat -ltnap | grep -c CLOSE_WAIT
+</pre>
+<p>显示的数值很大（超过50是严重不正常），那么请修改服务器的最大连接数，如果是ubuntu/centos均可修改</p>
+<p>/etc/security/limits.conf</p>
+<p>添加两行：</p>
+<pre class="prettyprint linenums">* soft nofile 32768
+* hard nofile 131072
+</pre>
+<p>然后重启机器生效（详细的看这个<a title="" href="../ss-jc8/index.html" target="_blank" data-original-title="Linux上的shadowsocks服务端优化方法">Linux上的shadowsocks服务端优化方法</a>）</p>
+<p>如果还是出现大量的too many open files错误，可以通过执行以下命令确定占用大量文件数的进程：</p>
+<pre class="prettyprint linenums">lsof -n |awk '{print $2}'|sort|uniq -c |sort -nr|more
+</pre>
+<p><strong>更多的Shadowsocks安装教程/一键脚本请看这里：<a href="../ss-jc26/index.html#2.2.2%E3%80%81%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1" target="_blank">Shadowsocks指导篇</a></strong></p>
+<p>转载自ShadowsocksR官方Github文档：<a href="https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup(manyuser)" target="_blank">https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup(manyuser)</a></p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">ShadowsocksR 多用户版服务端安装教程（SS-Panel后端）</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="994" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">43</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/shadowsocks/index.html" rel="tag">Shadowsocks</a><a href="../tag/shadowsocksr/index.html" rel="tag">ShadowsocksR</a><a href="../tag/%E5%A4%9A%E7%94%A8%E6%88%B7%E6%9C%8D%E5%8A%A1%E7%AB%AF/index.html" rel="tag">多用户服务端</a><a href="../tag/%E6%95%99%E7%A8%8B/index.html" rel="tag">教程</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../ss-jc13/index.html" rel="prev">Shadowsocks多用户管理面板——SS-Panel教程</a></span>
+			<span class="article-nav-next"><a href="../ss-jc15/index.html" rel="next">SS-Panel教程——新手扩展篇（数据库和后台介绍）</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../dbrj-5/index.html" title="ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP" />	<br><span class="r_title">ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc60/index.html" title="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" />	<br><span class="r_title">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc59/index.html" title="『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-0.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC" />	<br><span class="r_title">『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc58/index.html" title="支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-04-05.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap" />	<br><span class="r_title">支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../dbrj-5/index.html">ShadowsocksR 转为类VPN的真 · 全局代理神器 (软件/游戏走代理) — SSTAP</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc60/index.html">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc59/index.html">『修复』做了个GFWList PAC最新下载地址，可用于更新 SSR PC客户端的PAC</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc58/index.html">支持批量检测 SS/SSR账号延迟和TCP/UDP可用性的客户端 —— SSCap</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc57/index.html">ShadowsocksR 单服务器多用户 mudbjson模式使用教程 支持流量限制</a></li><li><i class="fa fa-minus"></i><a href="../sxsx-05/index.html">没教程写我要死了（滑稽），有想要让我写的教程请在这里告诉我！</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc5/index.html">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc56/index.html">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='994' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='18347' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (175)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-18352"><div class="c-avatar"><div class="c-main" id="div-comment-18352">端口可以正常监听，防火墙已关闭，sstap测试是tcp不通过，udp通过，求解
+
+2017-06-04 17:27:25 INFO     obfs_tls.py:290 tls_auth wrong time
+2017-06-04 17:27:25 WARNING  common.py:238 unsupported addrtype 69, maybe wrong password or encryption method
+2017-06-04 17:27:25 WARNING  tcprelay.py:521 Protocol ERROR, TCP ogn data 16030101e6010001e2030359b168a964ef9b002c2f6d206193d8c42b028b23db67c123efae77a93fcccf832040f924b964aa8936be7cdf4a460f517ffe89ceeab3f2e33b273c13328e9bf5a0001cc02bc02fcca9cca8cc14cc13c00ac014c009c013009c0035002f000a0100017dff010001000000000f000d00000a636f6d70617469626c6500170000002300b8b8a8d61bb9a09ee0290403b47ed8b14dd9ccfa003b06836c86cd12ee429f2bb63f498a45179b98723bc3640a45c27a0d19c4e396451ba7c0c398be17ca01cbf9542b929ec8134bd9657ae5d44f0968290c9a1db6e36d4598bbfd82371a70b74297a1324748003d501095c3a5a6ce61bbd0eee83deeab8c1b70b9f70047a48a7523d63869b7bb5a8e2a7f4ccca515e48b491a7b01a9daca874231e2d63fd45ffb9792874fbfc0ea51c2ee64276b8d209db0e8244218df0ea9000d0016001406010603050105030401040303010303020102030005000501000000000012000075500000000b00020100000a000600040017001800150066000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 from ::ffff:192.168.136.128:49245 via port 3665 by UID 3665
+2017-06-04 17:27:25 ERROR    tcprelay.py:1097 can not parse header when handling connection from ::ffff:192.168.136.128:49245
+2017-06-04 17:27:25 INFO     obfs_tls.py:290 tls_auth wrong time
+2017-06-04 17:27:25 WARNING  common.py:238 unsupported addrtype 69, maybe wrong password or encryption method
+2017-06-04 17:27:25 WARNING  tcprelay.py:521 Protocol ERROR, TCP ogn data 16030101ee010001ea030359b168a9244d1ba57ca4da397834c5bad773d53d9a8980f4d646889b3c299d8f20399e3640af51b0ee23aeaa6c5da83f35e1fa2b9e27b7ee187372603d55932154001cc02bc02fcca9cca8cc14cc13c00ac014c009c013009c0035002f000a01000185ff010001000000000f000d00000a636f6d70617469626c6500170000002300c0331fa06c09f37d4991ca55605c5da3f9aaf085d468725b2d38ba77dfc52eb51e652b04b2fb31aec614993eab31a49d22142ae4599ead431673fb0e7d4c673b02679c16feb9518500a9b5c45f7e7933b0a93a8a03f7433862fd96653e742a6933610cfce99ced048f33805e1dacaf5db6c78f615a0e007a76fb3cc38b2e609a7f7b2bec42b031483cef42d298fb3ad9255ff89756566f95909f9e22da000e2d6881cfbd2b69441dbf8da474ceed267d6fd43e48b6a180db1500a2bc22ca1974b3000d0016001406010603050105030401040303010303020102030005000501000000000012000075500000000b00020100000a000600040017001800150066000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 from ::ffff:192.168.136.128:49246 via port 3665 by UID 3665
+2017-06-04 17:27:25 ERROR    tcprelay.py:1097 can not parse header when handling connection from ::ffff:192.168.136.128:49246
+2017-06-04 17:27:25 INFO     obfs_tls.py:290 tls_auth wrong time
+2017-06-04 17:27:25 WARNING  common.py:238 unsupported addrtype 69, maybe wrong password or encryption method
+2017-06-04 17:27:25 WARNING  tcprelay.py:521 Protocol ERROR, TCP ogn data 16030101f5010001f1030359b168a9620c2155d6920fd0a490fae28a594e4934a8913eaf3cbf769371630120a3657d6068c8ac08ea5da37a7a829e38800f94015492d3508c274ed011938248001cc02bc02fcca9cca8cc14cc13c00ac014c009c013009c0035002f000a0100018cff010001000000000f000d00000a636f6d70617469626c6500170000002300c7e50760460bbe173367703d5df9914599c504bcdf5f8cf2943c98a9b638888ff6cddbd04ffd5b46dea9631b920e82b1525a34b301aaa270b7090b0249b1f15bd7d7f5bc1c65d315a1d39464363efc446f0761657612362bb96051aeff3c8ad3e5fb1dee833284044652c712a70125e73557668ecdae1031bfb4deab9549b7223415c92ea300cf620d753b00407815659b83ab10d08a4338a3514e3e2185fce40a03fc23a4c86b294698a7aaa01f328b3e30b14a6dbf877eb669d90fee8f1dc72529497083405a85000d0016001406010603050105030401040303010303020102030005000501000000000012000075500000000b00020100000a000600040017001800150066000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 from ::ffff:192.168.136.128:49247 via port 3665 by UID 3665
+2017-06-04 17:27:25 ERROR    tcprelay.py:1097 can not parse header when handling connection from ::ffff:192.168.136.128:49247
+2017-06-04 17:27:25 INFO     obfs_tls.py:290 tls_auth wrong time
+2017-06-04 17:27:25 WARNING  common.py:238 unsupported addrtype 69, maybe wrong password or encryption method
+2017-06-04 17:27:25 WARNING  tcprelay.py:521 Protocol ERROR, TCP ogn data 16030101ac010001a8030359b168a9b570fe841ab4c01930953270a9a072d5cc561541542bcaa95dea220a201ea88e832899cf6e3a745971546d868f79ea77bbbd8c8633b6d04adf531b5295001cc02bc02fcca9cca8cc14cc13c00ac014c009c013009c0035002f000a01000143ff010001000000000f000d00000a636f6d70617469626c65001700000023007eb0ae43a11e8ff5996d79408ae3b224589b3cb98b1993ff626712a0abb9af4f920fa49c9c615d78aa67862bd15f6da5176a9ae225030a4e205ab6d92215155ebc124f3654053fac53853390dc832cbf3e21eb5f5dbba91fbca69ba91f8343034158333c1affeeb800b5846332a67d2a0967fa0ea8148a3eb911204dd3e621000d0016001406010603050105030401040303010303020102030005000501000000000012000075500000000b00020100000a000600040017001800150066000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 from ::ffff:192.168.136.128:49248 via port 3665 by UID 3665
+2017-06-04 17:27:25 ERROR    tcprelay.py:1097 can not parse header when handling connection from ::ffff:192.168.136.128:49248<div class="c-meta"><span class="c-author"><a href='http://www.ceshi.com' rel='external nofollow' class='url'>Banc</a></span>2017-09-07 23:44  (18小时前)<a class='comment-reply-link' href='index-replytocom=18352.html#respond' onclick='return addComment.moveForm( "div-comment-18352", "18352", "respond", "994" )' aria-label='回复给Banc'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-18355"><div class="c-avatar"><div class="c-main" id="div-comment-18355"><pre class="prettyprint linenums" >
+WARNING common.py:238 unsupported addrtype 69, maybe wrong password or encryption method
+# 服务端说 密码或者加密方式错误。
+WARNING tcprelay.py:521 Protocol ERROR, TCP ogn data 
+# 服务端说 协议TCP错误
+# 客户端服务器链接统计里，是不是提示报错错误（数字）？
+# 尝试过更换协议吗？
+</pre><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-09-07 23:53  (18小时前)<a class='comment-reply-link' href='index-replytocom=18355.html#respond' onclick='return addComment.moveForm( "div-comment-18355", "18355", "respond", "994" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-18365"><div class="c-avatar"><div class="c-main" id="div-comment-18365">谢谢，更换协议后正常了，另外，支持ssr后端支持自定义加密吗？<div class="c-meta"><span class="c-author"><a href='http://www.ceshi.com' rel='external nofollow' class='url'>Banc</a></span>2017-09-08 10:42  (7小时前)<a class='comment-reply-link' href='index-replytocom=18365.html#respond' onclick='return addComment.moveForm( "div-comment-18365", "18365", "respond", "994" )' aria-label='回复给Banc'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-18347"><div class="c-avatar"><div class="c-main" id="div-comment-18347">ssr后端支持自定义加密吗？<div class="c-meta"><span class="c-author"><a href='http://www.ceshi.com' rel='external nofollow' class='url'>Banc</a></span>2017-09-07 23:11  (19小时前)<a class='comment-reply-link' href='index-replytocom=18347.html#respond' onclick='return addComment.moveForm( "div-comment-18347", "18347", "respond", "994" )' aria-label='回复给Banc'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-18327"><div class="c-avatar"><div class="c-main" id="div-comment-18327">已经搞定了，谢谢，我误以为多用户版的用户配置和单机版是一样的，原来是要用数据库里的设置……<div class="c-meta"><span class="c-author"><a href='http://rocky.im' rel='external nofollow' class='url'>Rocky</a></span>2017-09-07 18:44  (23小时前)<a class='comment-reply-link' href='index-replytocom=18327.html#respond' onclick='return addComment.moveForm( "div-comment-18327", "18327", "respond", "994" )' aria-label='回复给Rocky'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15323"><div class="c-avatar"><div class="c-main" id="div-comment-15323">2017-07-07 02:43:13 INFO     util.py:85 loading libcrypto from libcrypto.so.10
+2017-07-07 02:43:13 INFO     asyncdns.py:324 dns server: [('8.8.8.8', 53), ('8.8                                                                                       .4.4', 53)]
+2017-07-07 02:43:13 INFO     shell.py:72 ShadowsocksR 3.3.3 2017-06-03
+2017-07-07 02:43:13 INFO     db_transfer.py:236 current process RLIMIT_NOFILE re                                                                                       source: soft 65535 hard 65535
+2017-07-07 02:43:13 INFO     db_transfer.py:203 db start server at port [10000]                                                                                        pass [LoveFish] protocol [auth_aes128_md5] method [aes-128-ctr] obfs [tls1.2_tic                                                                                       ket_auth_compatible]
+2017-07-07 02:43:13 INFO     server_pool.py:127 starting server at [::]:10000
+2017-07-07 02:43:13 INFO     server_pool.py:153 starting server at 0.0.0.0:10000
+2017-07-07 02:43:13 INFO     db_transfer.py:203 db start server at port [10004]                                                                                        pass [vL1OMN5O] protocol [auth_aes128_md5] method [aes-128-ctr] obfs [tls1.2_tic                                                                                       ket_auth_compatible]
+2017-07-07 02:43:13 INFO     server_pool.py:127 starting server at [::]:10004
+2017-07-07 02:43:13 INFO     server_pool.py:153 starting server at 0.0.0.0:10004
+想请问下不知道为什么能连接但是没有网络<div class="c-meta"><span class="c-author"><a href='http://jinyuss.pw' rel='external nofollow' class='url'>西贝</a></span>2017-07-07 02:42 <a class='comment-reply-link' href='index-replytocom=15323.html#respond' onclick='return addComment.moveForm( "div-comment-15323", "15323", "respond", "994" )' aria-label='回复给西贝'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-15329"><div class="c-avatar"><div class="c-main" id="div-comment-15329">这个日志信息中没有错误信息，所以可能是防火墙问题或者本地客户端(本地设备)方面的问题。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-07 12:47 <a class='comment-reply-link' href='index-replytocom=15329.html#respond' onclick='return addComment.moveForm( "div-comment-15329", "15329", "respond", "994" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-14883"><div class="c-avatar"><div class="c-main" id="div-comment-14883">好像少了两条被删除了。。
+
+apt-get update &amp;&amp; apt-get install python-pip -y &amp;&amp; apt-get install git -y
+pip install cymysql<div class="c-meta"><span class="c-author">sodaer</span>2017-06-17 18:17 <a class='comment-reply-link' href='index-replytocom=14883.html#respond' onclick='return addComment.moveForm( "div-comment-14883", "14883", "respond", "994" )' aria-label='回复给sodaer'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-14893"><div class="c-avatar"><div class="c-main" id="div-comment-14893">不，不需要这两条了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-06-17 21:14 <a class='comment-reply-link' href='index-replytocom=14893.html#respond' onclick='return addComment.moveForm( "div-comment-14893", "14893", "respond", "994" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-14535"><div class="c-avatar"><div class="c-main" id="div-comment-14535">弄完以后。 能连接，但是没网，怎么回事？<div class="c-meta"><span class="c-author"><a href='http://3333321.cn' rel='external nofollow' class='url'>8364245</a></span>2017-06-05 21:25 <a class='comment-reply-link' href='index-replytocom=14535.html#respond' onclick='return addComment.moveForm( "div-comment-14535", "14535", "respond", "994" )' aria-label='回复给8364245'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+		<a class="prev page-numbers" href="comment-page-2/index-replytocom=18347.html#comments">«</a>
+<a class='page-numbers' href='comment-page-1/index-replytocom=18347.html#comments'>1</a>
+<a class='page-numbers' href='comment-page-2/index-replytocom=18347.html#comments'>2</a>
+<span class='page-numbers current'>3</span>	</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

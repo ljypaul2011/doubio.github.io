@@ -1,0 +1,922 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>搭建一个属于自己 可多平台同步的私有云盘 —— Seafile | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2173] -->
+<meta name="description"  content="前段时间，各个网盘纷纷下线，导致目前能用的大网盘，也就几个，还都限速... 然后很早的时候就有人想让我写个 自建私有云盘（网盘）的教程了，我以前用过 owncloud，但是这个玩意，安装后进去一看，一堆报错的，看着就头大，然后网上查了查，也有人安利，最终我选择了 Seafile，我对这类程序也不了解，就先写个Se" />
+
+<meta name="keywords"  content="seafile,云盘,建站,网站" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='为何 shadowsocks 要弃用一次性验证 (OTA)' href='../ss-jc46/index.html' />
+<link rel='next' title='ShadowsocksR服务端 限制设备连接数 和 限制端口速度 的方法' href='../ss-jc47/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="Seafile, 云盘, 建站, 网站, 建站资源, 网络资源">
+<meta name="description" content="前段时间，各个网盘纷纷下线，导致目前能用的大网盘，也就几个，还都限速...  然后很早的时候就有人想让我写个 自建私有云盘（网盘）的教程了，我以前用过 owncloud，但是这个玩意，安装后进去一看，一堆报错的，看着就头大，然后网上查了查，也有人安利，最终我选择了 Seafile，我对这类程序也不了解，就先写个Seafile教程好了。 Seafile 简介 Seafile 是一个开源的文件云存储平台，解决文件集中存储、同步、多平台访问的">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1871 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=12670.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">搭建一个属于自己 可多平台同步的私有云盘 —— Seafile</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../jzzy/index.html"> 建站资源</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 7个月前 (02-12)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 7642℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">33评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#Seafile%20%E7%AE%80%E4%BB%8B" title="Seafile 简介"><span>Seafile 简介</span></a></li><li class="content-index-level-1"><a href="index.html#%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83" title="搭建环境"><span>搭建环境</span></a></li><li class="content-index-level-1"><a href="index.html#%E9%83%A8%E7%BD%B2Seafile" title="部署Seafile"><span>部署Seafile</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96" title="安装依赖"><span>安装依赖</span></a></li><li class="content-index-level-2"><a href="index.html#%E4%B8%8B%E8%BD%BD%E8%A7%A3%E5%8E%8B" title="下载解压"><span>下载解压</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85" title="开始安装"><span>开始安装</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%90%AF%E5%8A%A8%E8%BF%90%E8%A1%8C" title="启动运行"><span>启动运行</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%9B%B4%E6%94%B9%E7%AB%AF%E5%8F%A3" title="更改端口"><span>更改端口</span></a></li><li class="content-index-level-2"><a href="index.html#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%EF%BC%9A" title="使用说明："><span>使用说明：</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E9%85%8D%E7%BD%AENginx(%E5%8F%AF%E9%80%89)" title="配置Nginx(可选)"><span>配置Nginx(可选)</span></a></li><li class="content-index-level-1"><a href="index.html#%E9%85%8D%E7%BD%AESSL(%E5%8F%AF%E9%80%89)" title="配置SSL(可选)"><span>配置SSL(可选)</span></a></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年4月23日 21:11</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>前段时间，各个网盘纷纷下线，导致目前能用的大网盘，也就几个，还都限速&#8230;</p>
+<p>然后很早的时候就有人想让我写个 自建私有云盘（网盘）的教程了，我以前用过 owncloud，但是这个玩意，安装后进去一看，一堆报错的，看着就头大，然后网上查了查，也有人安利，最终我选择了 Seafile，我对这类程序也不了解，就先写个Seafile教程好了。</p>
+<h2 id="Seafile 简介">Seafile 简介</h2>
+<p>Seafile 是一个开源的文件云存储平台，解决文件集中存储、同步、多平台访问的问题，注重安全和性能。</p>
+<p>Seafile 通过“资料库”来分类管理文件，每个资料库可单独同步，用户可加密资料库， 且密码不会保存在服务器端，所以即使是服务器管理员也无权访问你的文件。</p>
+<p>Seafile 允许用户创建“群组”，在群组内共享和同步文件，方便了团队协同工作。</p>
+<p><strong>Seafile 官方网站：</strong><a href="https://www.seafile.com/" target="_blank">https://www.seafile.com/</a></p>
+<p><strong>Github 开源项目地址：</strong><a href="https://github.com/haiwen/seafile" target="_blank">https://github.com/haiwen/seafile</a></p>
+<p><strong>各平台同步客户端下载：</strong><a href="https://www.seafile.com/download/" target="_blank">https://www.seafile.com/download/</a></p>
+<p><strong>其他私人网盘教程：<a href="../all-one/index.html#%E7%A7%81%E6%9C%89%E7%BD%91%E7%9B%98%20%E7%9B%B8%E5%85%B3%E6%95%99%E7%A8%8B" target="_blank">https://doub.io/all-one/#私有网盘 相关教程</a></strong></p>
+<h2 id="搭建环境">搭建环境</h2>
+<p>本人测试和教程所用环境为 Debian 7 x64 （我写教程除非不支持这个系统否则我都会用这个系统做教程测试的）</p>
+<p>一个刚重装，纯净的 VPS。</p>
+<blockquote><p>做私人网盘，你可能需要一个大硬盘的VPS，<strong>推荐 MineCloud的大硬盘(110GB/250GB)俄罗斯：</strong></p>
+<p><a title="『评测』MineCloud 吾云 — 俄罗斯KHB 1G大水管 110G大硬盘 KVM 67元/月 399元/半年" href="../vpszy-12/index.html" target="_blank">『评测』MineCloud 吾云 — 俄罗斯KHB 1G大水管 110G大硬盘 KVM 67元/月 399元/半年</a></p></blockquote>
+<p>本教程示例域名为：<code> demo.toyoo.ml </code></p>
+<p>本教程安装目录为：<code> /root/seafile/... </code></p>
+<p>域名和安装目录，请自行替换为自己的配置。</p>
+<h2 id="部署Seafile">部署Seafile</h2>
+<h3 id="安装依赖">安装依赖</h3>
+<pre class="prettyprint linenums">wget -N --no-check-certificate -P /etc/apt https://softs.fun/Bash/sources/us.sources.list &amp;&amp; rm -rf /etc/apt/sources.list &amp;&amp; cp /etc/apt/*.sources.list /etc/apt/sources.list
+</pre>
+<p><span style="color: #339966;"><strong>为了避免安装依赖时，因为源的问题缺少安装组件，所以请使用最新的Debian 稳定源（jessie）！</strong></span></p>
+<p>上面代码默认是 美国的镜像源，更多的请在<a href="https://softs.fun/?dir=Bash/sources" target="_blank">这里查看</a>，选择最佳的镜像源文件，替换上面的 us.sources.list 文件名即可。</p>
+<hr />
+<p>Seafile依赖于Python，所以你的VPS中的 Python版本要高于 2.7 。</p>
+<pre class="prettyprint linenums">apt-get update
+apt-get install mariadb-server -y
+apt-get install python2.7 python-setuptools python-imaging python-ldap python-mysqldb python-memcache python-urllib3 vim -y
+</pre>
+<p>第二行代码是安装MariaDB的，安装期间，会提示你输入要设置的<code> 数据库ROOT账号的密码 </code>。<strong>注意，输入的时候是看不到输入内容的，盲输！</strong></p>
+<p><strong>提示可能是这样的：</strong></p>
+<pre class="prettyprint linenums">While not mandatory, it is highly recommended that you set a password for the MariaDB administrative "root" user.
+If this field is left blank, the password will not be changed.
+<strong>New password for the MariaDB "root" user: 
+Repeat password for the MariaDB "root" user: </strong>
+</pre>
+<p>第三行就是让你输入 ROOT的密码，第四行是让你重复输入一遍刚才设置的 ROOT密码。</p>
+<h3 id="下载解压">下载解压</h3>
+<p>假设你当前是在<code> /root </code>文件夹内执行以下命令，后面的所有seafile目录都是在<code> /root </code>文件夹内的。</p>
+<pre class="prettyprint linenums">mkdir seafile &amp;&amp; cd seafile
+</pre>
+<p>创建一个 seafile 文件夹并进入文件夹，以后你的 seafile相关文件都在<code> /root/seafile </code>文件夹中了。</p>
+<pre class="prettyprint linenums">uname -m
+#查看自己的VPS 系统位数，如果返回 X86_X64 那么就使用第一行代码，如果是 i386 那就使用第二行代码。
+wget "http://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_6.0.7_x86-64.tar.gz"
+wget "http://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_6.0.7_i386.tar.gz"
+</pre>
+<p>此处的下载链接版本可能不是最新的，最新版本请查看<a href="https://www.seafile.com/download/#server" target="_blank">这里</a>。</p>
+<pre class="prettyprint linenums">tar -xzf seafile-server_*.tar.gz
+mkdir installed &amp;&amp; mv seafile-server_*.tar.gz installed
+# 解压下载的压缩包文件，并把压缩包文件移到新建的 installed 文件夹。
+</pre>
+<h3 id="开始安装">开始安装</h3>
+<pre class="prettyprint linenums">cd seafile-server-* &amp;&amp; chmod +x *.sh
+./setup-seafile-mysql.sh
+# 运行安装脚本并回答问题
+</pre>
+<p>根据下面的中文注释填写。<br />
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=12670.html#">点击展开 查看详细注释内容</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums"><strong>root@DOUBI:~/seafile/seafile-server-6.0.7# ./setup-seafile-mysql.sh</strong>
+Checking python on this machine ...
+  Checking python module: setuptools ... Done.
+  Checking python module: python-imaging ... Done.
+  Checking python module: python-mysqldb ... Done.
+
+-----------------------------------------------------------------
+This script will guide you to setup your seafile server using MySQL.
+Make sure you have read seafile server manual at
+
+        https://github.com/haiwen/seafile/wiki
+
+<strong>Press ENTER to continue</strong>
+# 一开始会检查依赖是否安装完整，如果不完整会提示你缺少什么，如果完整就会让你 <strong>按回车键</strong> 继续。
+
+-----------------------------------------------------------------
+What is the name of the server? It will be displayed on the client.
+3 - 15 letters or digits
+<strong>[ server name ] DOUBI</strong> 
+# 输入你的服务名字，不过没什么卵用，据说已经废弃了这个选项。
+
+What is the ip or domain of the server?
+For example: www.mycompany.com, 192.168.1.101
+<strong>[ This server ip or domain ] demo.toyoo.ml</strong>
+# 输入你的域名或者IP，如果你有域名，那么就输入域名，IP请输入VPS的公网IP
+
+Where do you want to put your seafile data?
+Please use a volume with enough free space
+<strong>[ default "/root/seafile/seafile-data" ]</strong> 
+# 输入你要设置的数据储存文件夹，默认回车即可
+
+Which port do you want to use for the seafile fileserver?
+<strong>[ default "8082" ]</strong> 
+# 输入你的 文件同步端口，这个直接回车，不要改！
+
+-------------------------------------------------------
+Please choose a way to initialize seafile databases:
+-------------------------------------------------------
+
+[1] Create new ccnet/seafile/seahub databases
+[2] Use existing ccnet/seafile/seahub databases
+
+<strong>[ 1 or 2 ] 1</strong>
+# 选项1指的是，Seafile自动给你创建数据库。
+# 选项2指的是，你自己已经创建好了数据库。
+# 这里选择 <strong>1</strong> ，回车后就会提示你输入要创建的数据库信息了。
+
+What is the host of mysql server?
+<strong>[ default "localhost" ]</strong> 
+# 问你Mysql服务器的位置在哪里，默认本地，直接回车
+
+What is the port of mysql server?
+<strong>[ default "3306" ]</strong> 
+# 问你Mysql的端口是什么，默认3306，直接回车
+
+What is the password of the mysql root user?
+<strong>[ root password ]</strong> 
+# 让你输入你前面安装依赖的时候设置的数据库ROOT密码（注意这里输入密码不会显示出来，盲输，或者直接粘贴）
+
+verifying password of user root ...  done
+# 如果密码正确就会提示这个
+Enter the name for mysql user of seafile. It would be created if not exists.
+<strong>[ default "seafile" ]</strong> 
+# 问你要创建的数据库名，下面几个全部直接回车！
+
+Enter the password for mysql user "seafile":
+<strong>[ password for seafile ]</strong> 
+# 回车
+
+Enter the database name for ccnet-server:
+<strong>[ default "ccnet-db" ]</strong> 
+# 回车
+
+Enter the database name for seafile-server:
+<strong>[ default "seafile-db" ]</strong> 
+# 回车
+
+Enter the database name for seahub:
+<strong>[ default "seahub-db" ]</strong> 
+
+---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            DOUBI
+    server ip/domain:       demo.toyoo.ml
+
+    seafile data dir:       /root/seafile/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet-db
+    seafile database:       seafile-db
+    seahub database:        seahub-db
+    database user:          seafile
+
+---------------------------------
+Press ENTER to continue, or Ctrl-C to abort
+---------------------------------
+# 这里会提醒你查看一下信息是否输入错误，如果无误，按回车键 继续。
+
+Generating ccnet configuration ...
+
+done
+Successly create configuration dir /root/seafile/ccnet.
+Generating seafile configuration ...
+
+Done.
+done
+Generating seahub configuration ...
+
+----------------------------------------
+Now creating seahub database tables ...
+----------------------------------------
+
+creating seafile-server-latest symbolic link ...  done
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+
+run seafile server:     ./seafile.sh { start | stop | restart }
+run seahub  server:     ./seahub.sh  { start  | stop | restart  }
+
+-----------------------------------------------------------------
+If you are behind a firewall, remember to allow input/output of these tcp ports:
+-----------------------------------------------------------------
+
+port of seafile fileserver:   8082
+port of seahub:               8000
+
+When problems occur, Refer to
+
+        https://github.com/haiwen/seafile/wiki
+
+for information.
+# 到这里就安装完成了。</pre>
+<p></p></div></p>
+<p>这时候，基本的Seafile服务以及安装完毕，下面只要启动就可以直接使用了。</p>
+<h3 id="启动运行">启动运行</h3>
+<p>在<code> /root/seafile/seafile-server-*.*.* </code>目录下，运行如下命令：</p>
+<pre class="prettyprint linenums">./seafile.sh start
+# 启动 Seafile 服务
+./seahub.sh start
+# 启动 Seahub 网站 （默认运行在8000端口上，可以加上端口参数比如：<strong>./seahub.sh start 8888</strong>）
+</pre>
+<p>注意：第一次启动 Seahub 时，<code> seahub.sh </code>脚本会提示你创建一个 seafile 管理员帐号。<br />
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=12670.html#">点击展开 查看详细注释内容</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">root@DOUBI:~/seafile/seafile-server-6.0.7# ./seahub.sh start
+
+LANG is not set in ENV, set to en_US.UTF-8
+LC_ALL is not set in ENV, set to en_US.UTF-8
+Starting seahub at port 8000 ...
+
+----------------------------------------
+It's the first time you start the seafile server. Now let's create the admin account
+----------------------------------------
+
+What is the email for the admin account?
+<strong>[ admin email ] xxx@gmail.com</strong>
+# 输入你的管理员邮箱（账号）
+
+What is the password for the admin account?
+<strong>[ admin password ] </strong>
+# 输入你的管理员账号的密码（注意，输入密码不会显示，盲输）
+
+Enter the password again:
+[ admin password again ] 
+# 重新输入你的管理员账号的密码（注意，输入密码不会显示，盲输）
+
+----------------------------------------
+Successfully created seafile admin
+----------------------------------------
+
+Seahub is started
+
+Done.
+</pre>
+<p></p></div></p>
+<p>服务启动后无报错，打开浏览器并输入你当时设置的 域名或者公网IP，比如：</p>
+<pre class="prettyprint linenums">http://demo.toyoo.ml:8000/
+http://1.1.1.1:8000/
+</pre>
+<p>然后你就会看到登录页面了，输入账号密码后登录即可。</p>
+<p>这时候，你就成功的完成了Seafile服务最基本的搭建和使用，目前已经可以正常使用和运行了。</p>
+<h3 id="更改端口">更改端口</h3>
+<p>如果你觉得域名或者IP后面还需要输入<code> 8000 </code>端口很麻烦，那么你可以更改端口，比如你要设置为<code> 80 </code>端口。</p>
+<p>通过上面你设置的 IP或者域名 进入Seafile网站后，点击<strong>右上角的用户头像 — 系统设置 — 设置 — URL</strong></p>
+<p>然后如下图所示，把第一个红框圈中的<code> http://demo.toyoo.ml:8000 </code>改为<code> http://demo.toyoo.ml </code>（80可以不用写，443也是，其他端口就需要写端口号了）</p>
+<p>然后右边会出来一个<code> √ 和 × </code>，点击<code> 对号√ </code>保存。</p>
+<pre>注意：下图中我是完整了设置了Ngxin和SSL，如果没有设置Nginx，那么 FILE_SERVER_ROOT 默认即可（忘记截图了，我也忘了原来是什么了。。。）</pre>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/jzzy-1-02.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="888" height="484" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/jzzy-1-02.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="888" height="484" /></noscript></p>
+<h3 id="使用说明：">使用说明：</h3>
+<p><strong>启动服务</strong></p>
+<pre class="prettyprint linenums">./seafile.sh start
+# 启动 Seafile 服务
+./seahub.sh start 8001
+# 启动 Seahub 网站 （运行在 8001 端口上，默认不写参数为 8000）
+</pre>
+<p>如果你配置Nginx/Apache后，那么就用下面的代码启动：</p>
+<pre class="prettyprint linenums">./seafile.sh start
+./seahub.sh start-fastcgi
+</pre>
+<p><strong>停止服务</strong></p>
+<pre class="prettyprint linenums">./seahub.sh stop
+# 停止 Seahub
+./seafile.sh stop
+# 停止 Seafile 进程
+</pre>
+<p><strong>重启服务</strong></p>
+<pre class="prettyprint linenums">./seafile.sh restart
+# 停止当前的 Seafile 进程，然后重启 Seafile
+./seahub.sh restart
+# 停止当前的 Seahub 进程，并在 8000 端口重新启动 Seahub
+</pre>
+<h2 id="配置Nginx(可选)">配置Nginx(可选)</h2>
+<p>默认自带的HTTP服务器，有一些限制，不够灵活，比如不能直接SSL，所以我们可以在前面加上Nginx。</p>
+<p><strong>安装Nginx：</strong></p>
+<pre class="prettyprint linenums">apt-get install nginx -y
+</pre>
+<p>安装后默认自动启动，然后查看端口使用情况，看一看 80 端口是否被Nginx占用，如果是其他程序占用，请先关闭。</p>
+<pre class="prettyprint linenums">netstat -lntp
+</pre>
+<p>确定 Nginx 安装运行正常后，我们新建一个虚拟主机配置文件：</p>
+<pre class="prettyprint linenums">vi /etc/nginx/sites-available/seafile.conf
+</pre>
+<p>然后按<code> I键 </code>进入编辑模式，并粘贴一下内容<strong>（自己修改 第三行的域名 和 倒数第三行的Seafile目录）</strong></p>
+<p><strong>配置文件示例：</strong><br />
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=12670.html#">点击展开 查看HTTP配置示例</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">server {
+	listen 80;
+	server_name demo.toyoo.ml;
+
+	proxy_set_header X-Forwarded-For $remote_addr;
+
+	location / {
+		fastcgi_pass    127.0.0.1:8000;
+		fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
+		fastcgi_param   PATH_INFO           $fastcgi_script_name;
+
+		fastcgi_param    SERVER_PROTOCOL        $server_protocol;
+		fastcgi_param   QUERY_STRING        $query_string;
+		fastcgi_param   REQUEST_METHOD      $request_method;
+		fastcgi_param   CONTENT_TYPE        $content_type;
+		fastcgi_param   CONTENT_LENGTH      $content_length;
+		fastcgi_param    SERVER_ADDR         $server_addr;
+		fastcgi_param    SERVER_PORT         $server_port;
+		fastcgi_param    SERVER_NAME         $server_name;
+		fastcgi_param   REMOTE_ADDR         $remote_addr;
+
+		access_log      /var/log/nginx/seahub.access.log;
+		error_log       /var/log/nginx/seahub.error.log;
+	}
+
+	location /seafhttp {
+		rewrite ^/seafhttp(.*)$ $1 break;
+		proxy_pass http://127.0.0.1:8082;
+		client_max_body_size 0;
+		proxy_connect_timeout  36000s;
+		proxy_read_timeout  36000s;
+	}
+
+	location /media {
+		root /root/seafile/seafile-server-latest/seahub;
+	}
+}
+</pre>
+<p></p></div></p>
+<p><strong>注意：</strong>中间的两行<code> access_log 和 error_log </code>是日志记录，如果不需要的话，可以关闭访问日志，只保留错误日志，否则时间长了，日志大小感人。</p>
+<pre class="prettyprint linenums">		access_log      /var/log/nginx/seahub.access.log;
+		error_log       /var/log/nginx/seahub.error.log;
+# 正常开启 访问和错误 日志记录
+		access_log      off;
+		error_log       /var/log/nginx/seahub.error.log;
+# 关闭访问日志记录，开启错误日志记录
+		access_log      off;
+		error_log       off;
+# 关闭 访问和错误 日志记录
+</pre>
+<p>修改并设置完后，按<code> ESC键 </code>退出编辑模式，然后输入<code> :wq </code>保存并退出VI。</p>
+<p>然后我们删除默认的Nginx 虚拟主机配置文件，并创建刚才我们新建的配置文件软连接。</p>
+<pre class="prettyprint linenums">rm -rf /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
+</pre>
+<p>然后我们设置一下我们的网页文件权限，否则Nginx会报错 403。</p>
+<pre class="prettyprint linenums">chown root:root -R /root/seafile/seafile-server-latest/seahub/media
+</pre>
+<p>然后我们打开<code> nginx.conf </code>文件，</p>
+<pre class="prettyprint linenums">vi /etc/nginx/nginx.conf
+</pre>
+<p>按<code> I键 </code>进入编辑模式，修改<code> user www-date; </code>(可能会不一样，如果没有就自己添加到第一行)为<code> user root; </code>（注意最后的 分号 ; 结尾），然后按<code> ESC键 </code>退出编辑模式，然后输入<code> :wq </code>保存并退出VI。</p>
+<p>然后我们，打开 Seafile网站，在<strong>右上角的用户头像 — 系统设置 — 设置 — URL</strong>中分别设置<code> SERVICE_URL 和 FILE_SERVER_ROOT </code>为：</p>
+<pre class="prettyprint linenums">SERVICE_URL：http://demo.toyoo.ml
+
+FILE_SERVER_ROOT：http://demo.toyoo.ml/seafhttp
+</pre>
+<p>并点右边的<code> 对号 √ </code>保存。</p>
+<p><strong>重启Nginx：</strong></p>
+<pre class="prettyprint linenums">service nginx restart
+</pre>
+<p><strong>重启seafile：</strong></p>
+<pre class="prettyprint linenums">./seahub.sh stop
+./seafile.sh stop
+
+# 设置Nginx/Apache以后就用下面代码启动。
+
+./seafile.sh start
+./seahub.sh start-fastcgi
+</pre>
+<p>这时候你再打开你的 Seafile网站 看一看是否正常。</p>
+<p><strong>Nginx使用说明：</strong></p>
+<pre class="prettyprint linenums">service nginx start
+# 启动Nginx
+service nginx stop
+# 停止Nginx
+service nginx restart
+# 重启Nginx
+nginx -s reload
+# 重载Nginx配置
+</pre>
+<h2 id="配置SSL(可选)">配置SSL(可选)</h2>
+<p>如果你想要保证数据安全，那么你可以配置SSL，这个需要根据上面的教程配置过Nginx。</p>
+<p>首先你要有SSL证书，没有？<strong>免费申请教程：</strong><a title="免费申请SSL证书 — AlphaSSL 及 LNMP一键包Nginx配置SSL证书教程" href="../wlzy-28/index.html" target="_blank">免费申请SSL证书 — AlphaSSL 及 LNMP一键包Nginx配置SSL证书教程</a></p>
+<p>然后把你的 SSL证书(.crt)和SSL密匙(.key) 文件假设放到<code> /root </code>文件夹下面。</p>
+<p>然后根据情况，<strong>自己修改 第5、6行 SSL证书/密匙 位置，第10行 域名，倒数第3行 seafile目录，第 14-16 行是访问HTTP重定向到HTTPS。</strong></p>
+<p><strong>配置文件示例：</strong><br />
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=12670.html#">点击展开 查看HTTPS配置示例</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">server {
+	listen 80;
+	listen 443 ssl;
+	ssl on;
+	ssl_certificate /root/toyoo.ml.crt;
+	ssl_certificate_key /root/toyoo.ml.key;
+	ssl_session_cache shared:SSL:10m;
+	ssl_session_timeout  10m;
+	add_header Strict-Transport-Security "max-age=31536000";
+	server_name demo.toyoo.ml;
+
+	proxy_set_header X-Forwarded-For $remote_addr;
+
+	if ( $scheme = http ){
+		return 301 https://$server_name$request_uri;
+	}
+	
+	location / {
+		fastcgi_pass    127.0.0.1:8000;
+		fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
+		fastcgi_param   PATH_INFO           $fastcgi_script_name;
+
+		fastcgi_param    SERVER_PROTOCOL        $server_protocol;
+		fastcgi_param   QUERY_STRING        $query_string;
+		fastcgi_param   REQUEST_METHOD      $request_method;
+		fastcgi_param   CONTENT_TYPE        $content_type;
+		fastcgi_param   CONTENT_LENGTH      $content_length;
+		fastcgi_param    SERVER_ADDR         $server_addr;
+		fastcgi_param    SERVER_PORT         $server_port;
+		fastcgi_param    SERVER_NAME         $server_name;
+		fastcgi_param   REMOTE_ADDR         $remote_addr;
+		fastcgi_param   HTTPS               on;
+		fastcgi_param   HTTP_SCHEME         https;
+
+		access_log      /var/log/nginx/seahub.access.log;
+		error_log       /var/log/nginx/seahub.error.log;
+	}
+
+	location /seafhttp {
+		rewrite ^/seafhttp(.*)$ $1 break;
+		proxy_pass http://127.0.0.1:8082;
+		client_max_body_size 0;
+		proxy_connect_timeout  36000s;
+		proxy_read_timeout  36000s;
+	}
+
+	location /media {
+		root /root/seafile/seafile-server-latest/seahub;
+	}
+}
+</pre>
+<p></p></div></p>
+<p>然后打开 虚拟主机配置文件：</p>
+<pre class="prettyprint linenums">vi /etc/nginx/sites-available/seafile.conf
+</pre>
+<p>把里面的内容全部删除，并把修改后的配置文件内容粘贴进去。</p>
+<p>然后我们，打开 Seafile网站，在<strong>右上角的用户头像 — 系统设置 — 设置 — URL</strong>中分别设置<code> SERVICE_URL 和 FILE_SERVER_ROOT </code>为：</p>
+<pre class="prettyprint linenums">SERVICE_URL：https://demo.toyoo.ml
+FILE_SERVER_ROOT：https://demo.toyoo.ml/seafhttp
+</pre>
+<p>并点右边的<code> 对号 √ </code>保存。</p>
+<p><strong>重载Nginx配置：</strong></p>
+<pre class="prettyprint linenums">nginx -s reload
+</pre>
+<p>如果没有报错，那么就继续<strong>重启seafile：</strong></p>
+<pre class="prettyprint linenums">./seahub.sh stop
+./seafile.sh stop
+
+# 设置Nginx/Apache以后就用下面代码启动。
+
+./seafile.sh start
+./seahub.sh start-fastcgi
+</pre>
+<p>然后你尝试使用 HTTPS 访问网站试试。</p>
+<hr />
+<p>简单的搭建教程就到这里了，有什么需要补充的请在下面评论留言。</p>
+<p><strong>参考资料，seafile官方服务器手册：</strong></p>
+<p><a href="https://manual-cn.seafile.com/deploy/using_mysql.html" target="_blank">https://manual-cn.seafile.com/deploy/using_mysql.html</a></p>
+<p><a href="https://manual-cn.seafile.com/deploy/deploy_with_nginx.html" target="_blank">https://manual-cn.seafile.com/deploy/deploy_with_nginx.html</a></p>
+<p><a href="https://manual-cn.seafile.com/deploy/https_with_nginx.html" target="_blank">https://manual-cn.seafile.com/deploy/https_with_nginx.html</a></p>
+<p><strong>其他私人网盘教程：<a href="../all-one/index.html#%E7%A7%81%E6%9C%89%E7%BD%91%E7%9B%98%20%E7%9B%B8%E5%85%B3%E6%95%99%E7%A8%8B" target="_blank">https://doub.io/all-one/#私有网盘 相关教程</a></strong></p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">搭建一个属于自己 可多平台同步的私有云盘 —— Seafile</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1871" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">28</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/seafile/index.html" rel="tag">Seafile</a><a href="../tag/%E4%BA%91%E7%9B%98/index.html" rel="tag">云盘</a><a href="../tag/%E5%BB%BA%E7%AB%99/index.html" rel="tag">建站</a><a href="../tag/%E7%BD%91%E7%AB%99/index.html" rel="tag">网站</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../ss-jc46/index.html" rel="prev">为何 shadowsocks 要弃用一次性验证 (OTA)</a></span>
+			<span class="article-nav-next"><a href="../ss-jc47/index.html" rel="next">ShadowsocksR服务端 限制设备连接数 和 限制端口速度 的方法</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../jzzy-3/index.html" title="利用 Caddy FileManager扩展 非常简单的部署 私人网盘/在线文件管理器" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-caddy.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="利用 Caddy FileManager扩展 非常简单的部署 私人网盘/在线文件管理器" />	<br><span class="r_title">利用 Caddy FileManager扩展 非常简单的部署 私人网盘/在线文件管理器</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../wlzy-29/index.html" title="Linux 网站文件+数据库 定时备份到七牛云储存 脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qiniu-1.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Linux 网站文件+数据库 定时备份到七牛云储存 脚本" />	<br><span class="r_title">Linux 网站文件+数据库 定时备份到七牛云储存 脚本</span></a>
+		</li>
+	
+	<li class="related_box"  >
+		<a href="../wlzy-35/index.html" title="『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程" target="_blank">
+		<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-baiduyun.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程" /><br><span class="r_title">『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</span></a>
+		</li>
+	
+	<li class="related_box"  >
+		<a href="../wlzy-34/index.html" title="Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）" target="_blank">
+		<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-qita-04-03.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）" /><br><span class="r_title">Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../jzzy-3/index.html">利用 Caddy FileManager扩展 非常简单的部署 私人网盘/在线文件管理器</a></li><li><i class="fa fa-minus"></i><a href="../wlzy-29/index.html">Linux 网站文件+数据库 定时备份到七牛云储存 脚本</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-35/index.html">『7/24』百度云网盘不限速 命令行下载工具 —— BaiduPCS 使用教程</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-34/index.html">Debian 编译安装 SNI Proxy 反向代理教程（可用于Hosts/DNS服务器）</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../wlzy-33/index.html">锐速(ServerSpeeder/LotServer)配置参数简单说明，合理修改配置 提高加速效果</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../dowsdns-jc2/index.html">Linux 使用 dowsDNS 快速自建DNS服务器以 科学上网+屏蔽广告</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../brook-jc2/index.html">Brook代理 Windows/Android版客户端简单使用教程</a></li><li><i class="fa fa-minus"></i><a target="_blank" href="../brook-jc1/index.html">一个优秀的跨平台 Socks5代理软件 —— Brook 服务端教程</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1871' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='12670' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (33)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-17909"><div class="c-avatar"><div class="c-main" id="div-comment-17909">求教大佬如何在lnmp创建虚拟主机的环境下搭建seafile。貌似在lnmp一键包环境下按照上面的步骤做下来，访问相应域名时还是只显示那个一键包的界面<div class="c-meta"><span class="c-author">ceaeyjy</span>2017-08-31 21:07 <a class='comment-reply-link' href='index-replytocom=17909.html#respond' onclick='return addComment.moveForm( "div-comment-17909", "17909", "respond", "1871" )' aria-label='回复给ceaeyjy'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17050"><div class="c-avatar"><div class="c-main" id="div-comment-17050">小白问题：请问大佬，我装了你的shadowsocks多用户一键脚本以及安装了AMH面板，还可以装这个seafile 吗？<div class="c-meta"><span class="c-author">余水</span>2017-08-14 12:27 <a class='comment-reply-link' href='index-replytocom=17050.html#respond' onclick='return addComment.moveForm( "div-comment-17050", "17050", "respond", "1871" )' aria-label='回复给余水'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-17051"><div class="c-avatar"><div class="c-main" id="div-comment-17051">我没有Shadowsocks多用户一键脚本，只有ShadowsocksR的。这类软件只要端口不冲突都能共存，不过seafile的安装数据库 会和你的AMH面板冲突，你可以尝试省略数据库，然后在AMH面板安装的数据里添加seafile的数据库，但是我没试过，不清楚是否可行，如果不需要各平台同步文件功能，我建议你用这个做私人网盘更简单一些：<a href="../jzzy-3/index.html" target="_blank" rel="nofollow">https://doub.io/jzzy-3/</a>。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-14 12:33 <a class='comment-reply-link' href='index-replytocom=17051.html#respond' onclick='return addComment.moveForm( "div-comment-17051", "17051", "respond", "1871" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-17052"><div class="c-avatar"><div class="c-main" id="div-comment-17052">谢谢大佬<div class="c-meta"><span class="c-author">余水</span>2017-08-14 13:41 <a class='comment-reply-link' href='index-replytocom=17052.html#respond' onclick='return addComment.moveForm( "div-comment-17052", "17052", "respond", "1871" )' aria-label='回复给余水'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-15221"><div class="c-avatar"><div class="c-main" id="div-comment-15221">按照登录网盘系统设置—设置—URL 去掉8000后，登录不含:8000后缀的地址显示 no such site at :80，尝试直接重启 Seafile 进程 和  Seahub 进程(seahub 重启指令后已加端口80)，也是这个提示；先后停止Seafile和Seahub进程然后依停止顺序再分别启动两个进程，问题依旧，请问toyo问题出在哪里？<div class="c-meta"><span class="c-author">ogr1432</span>2017-07-01 21:25 <a class='comment-reply-link' href='index-replytocom=15221.html#respond' onclick='return addComment.moveForm( "div-comment-15221", "15221", "respond", "1871" )' aria-label='回复给ogr1432'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-14510"><div class="c-avatar"><div class="c-main" id="div-comment-14510">请问这是什么问题？
+<pre class="prettyprint linenums" >
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ mariadb-server : Depends: mariadb-server-10.0 (&gt;= 10.0.30-0+deb8u2) but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.</pre><div class="c-meta"><span class="c-author">KCP</span>2017-06-05 02:29 <a class='comment-reply-link' href='index-replytocom=14510.html#respond' onclick='return addComment.moveForm( "div-comment-14510", "14510", "respond", "1871" )' aria-label='回复给KCP'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-14514"><div class="c-avatar"><div class="c-main" id="div-comment-14514">依赖为满足，包损坏。可以尝试 apt-get install -f -y mariadb-server ，但不一定有用。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-06-05 12:14 <a class='comment-reply-link' href='index-replytocom=14514.html#respond' onclick='return addComment.moveForm( "div-comment-14514", "14514", "respond", "1871" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-14413"><div class="c-avatar"><div class="c-main" id="div-comment-14413">这个能不能出个一键包  <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_mrgreen.gif" alt=":mrgreen:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">Bob</span>2017-06-02 14:02 <a class='comment-reply-link' href='index-replytocom=14413.html#respond' onclick='return addComment.moveForm( "div-comment-14413", "14413", "respond", "1871" )' aria-label='回复给Bob'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-14067"><div class="c-avatar"><div class="c-main" id="div-comment-14067">你好，我用腾讯云搭建成功了，但是就是手机无法同步，即使我选择了相册自动同步还是不行，只能自己一张图片一张图片自己上传，请问这是我配置哪里出问题了吗？还是大家都这样?<div class="c-meta"><span class="c-author">tiger233</span>2017-05-23 23:53 <a class='comment-reply-link' href='index-replytocom=14067.html#respond' onclick='return addComment.moveForm( "div-comment-14067", "14067", "respond", "1871" )' aria-label='回复给tiger233'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-12668"><div class="c-avatar"><div class="c-main" id="div-comment-12668">请问大佬我配置的https访问的时候不加https：//会出
+400 Bad Request
+The plain HTTP request was sent to HTTPS port
+nginx/1.6.2
+怎么办<div class="c-meta"><span class="c-author">XYenon</span>2017-04-10 22:47 <a class='comment-reply-link' href='index-replytocom=12668.html#respond' onclick='return addComment.moveForm( "div-comment-12668", "12668", "respond", "1871" )' aria-label='回复给XYenon'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-12670"><div class="c-avatar"><div class="c-main" id="div-comment-12670">贴出 nginx域名的.conf文件内容。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-11 01:05 <a class='comment-reply-link' href='index-replytocom=12670.html#respond' onclick='return addComment.moveForm( "div-comment-12670", "12670", "respond", "1871" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-12843"><div class="c-avatar"><div class="c-main" id="div-comment-12843">解决了，去掉上面https配置里的ssl on;就行了<div class="c-meta"><span class="c-author">XYenon</span>2017-04-15 20:46 <a class='comment-reply-link' href='index-replytocom=12843.html#respond' onclick='return addComment.moveForm( "div-comment-12843", "12843", "respond", "1871" )' aria-label='回复给XYenon'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-12091"><div class="c-avatar"><div class="c-main" id="div-comment-12091">请问toyo大佬，这个按照官方文档搞的开机自启总是提示seahub.sh kill错误，可否告知该怎么解决，Google了一通没找到能解决的办法，谢谢<div class="c-meta"><span class="c-author"><a href='http://fox.cn' rel='external nofollow' class='url'>admin</a></span>2017-03-27 00:34 <a class='comment-reply-link' href='index-replytocom=12091.html#respond' onclick='return addComment.moveForm( "div-comment-12091", "12091", "respond", "1871" )' aria-label='回复给admin'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-12041"><div class="c-avatar"><div class="c-main" id="div-comment-12041">请问安装了这个重启vps后为什么连不上数据库错误2002<div class="c-meta"><span class="c-author"><a href='http://1823931118@qq.com' rel='external nofollow' class='url'>df</a></span>2017-03-25 19:55 <a class='comment-reply-link' href='index-replytocom=12041.html#respond' onclick='return addComment.moveForm( "div-comment-12041", "12041", "respond", "1871" )' aria-label='回复给df'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-11864"><div class="c-avatar"><div class="c-main" id="div-comment-11864">能不能写个专业版的安装教程呢？专业版3用户可以免费使用的，有全文搜索功能<div class="c-meta"><span class="c-author">流量</span>2017-03-21 12:10 <a class='comment-reply-link' href='index-replytocom=11864.html#respond' onclick='return addComment.moveForm( "div-comment-11864", "11864", "respond", "1871" )' aria-label='回复给流量'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-11599"><div class="c-avatar"><div class="c-main" id="div-comment-11599">有没有办法Seafile和aria2结合起来呢，这样就可以远程下载+网盘式管理了<div class="c-meta"><span class="c-author">Alex</span>2017-03-14 19:37 <a class='comment-reply-link' href='index-replytocom=11599.html#respond' onclick='return addComment.moveForm( "div-comment-11599", "11599", "respond", "1871" )' aria-label='回复给Alex'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11600"><div class="c-avatar"><div class="c-main" id="div-comment-11600">这个需要 开发一个 Seafile 扩展什么的，而且还有把他们放在一起。<br />
+最重要的是，Seafile和aria2存储文件的方式不一样，Aria2是直接下载文件存储到指定文件夹，而Seafile则是为了安全，而把文件都加密分割处理了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-14 19:42 <a class='comment-reply-link' href='index-replytocom=11600.html#respond' onclick='return addComment.moveForm( "div-comment-11600", "11600", "respond", "1871" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11431"><div class="c-avatar"><div class="c-main" id="div-comment-11431">服务器重启后怎么办,
+./seafile.sh start
+# 启动 Seafile 服务
+./seahub.sh start 8001
+# 启动 Seahub 网站 （运行在 8001 端口上，默认不写参数为 8000）
+
+我尝试上面的命令,提示 No such file or directory<div class="c-meta"><span class="c-author">武子</span>2017-03-11 16:50 <a class='comment-reply-link' href='index-replytocom=11431.html#respond' onclick='return addComment.moveForm( "div-comment-11431", "11431", "respond", "1871" )' aria-label='回复给武子'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11434"><div class="c-avatar"><div class="c-main" id="div-comment-11434">“No such file or directory”找不到文件，很明显，你没有在seafile的文件夹内，所以你直接执行是不行的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-11 17:09 <a class='comment-reply-link' href='index-replytocom=11434.html#respond' onclick='return addComment.moveForm( "div-comment-11434", "11434", "respond", "1871" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-11289"><div class="c-avatar"><div class="c-main" id="div-comment-11289">It works!
+
+This is the default web page for this server.
+
+The web server software is running but no content has been added, yet.
+把那个端口去掉 重进就这样  <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_mrgreen.gif" alt=":mrgreen:" class="wp-smiley" style="height: 1em; max-height: 1em;" /> 这是哪出问题了<div class="c-meta"><span class="c-author">Guangd</span>2017-03-07 21:04 <a class='comment-reply-link' href='index-replytocom=11289.html#respond' onclick='return addComment.moveForm( "div-comment-11289", "11289", "respond", "1871" )' aria-label='回复给Guangd'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10788"><div class="c-avatar"><div class="c-main" id="div-comment-10788">以前用pi尝试过，感觉还可以。<div class="c-meta"><span class="c-author">chintj</span>2017-02-18 17:27 <a class='comment-reply-link' href='index-replytocom=10788.html#respond' onclick='return addComment.moveForm( "div-comment-10788", "10788", "respond", "1871" )' aria-label='回复给chintj'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10726"><div class="c-avatar"><div class="c-main" id="div-comment-10726">开机启动的脚本的内容怎么设置呀，用户名HughGe
+ seafile data dir为  /root/seafile/seafile
+-data    
+整了半天，脚本好像改的都不对<div class="c-meta"><span class="c-author">HughGe</span>2017-02-16 19:34 <a class='comment-reply-link' href='index-replytocom=10726.html#respond' onclick='return addComment.moveForm( "div-comment-10726", "10726", "respond", "1871" )' aria-label='回复给HughGe'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10715"><div class="c-avatar"><div class="c-main" id="div-comment-10715">其实...sftp就可以了吧<div class="c-meta"><span class="c-author">南琴浪</span>2017-02-16 15:23 <a class='comment-reply-link' href='index-replytocom=10715.html#respond' onclick='return addComment.moveForm( "div-comment-10715", "10715", "respond", "1871" )' aria-label='回复给南琴浪'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-10721"><div class="c-avatar"><div class="c-main" id="div-comment-10721">能一样吗？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-16 17:51 <a class='comment-reply-link' href='index-replytocom=10721.html#respond' onclick='return addComment.moveForm( "div-comment-10721", "10721", "respond", "1871" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even depth-2" id="comment-11116"><div class="c-avatar"><div class="c-main" id="div-comment-11116">Sftp速度。不敢恭维<div class="c-meta"><span class="c-author">kurokutomoko</span>2017-03-01 19:57 <a class='comment-reply-link' href='index-replytocom=11116.html#respond' onclick='return addComment.moveForm( "div-comment-11116", "11116", "respond", "1871" )' aria-label='回复给kurokutomoko'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10704"><div class="c-avatar"><div class="c-main" id="div-comment-10704">求推荐一下比较适合做私有云的vps。。。我买的一些vps，硬盘就30g。。。做私有云是不是有点小。。。<div class="c-meta"><span class="c-author">龙井</span>2017-02-16 11:16 <a class='comment-reply-link' href='index-replytocom=10704.html#respond' onclick='return addComment.moveForm( "div-comment-10704", "10704", "respond", "1871" )' aria-label='回复给龙井'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10701"><div class="c-avatar"><div class="c-main" id="div-comment-10701">公司小团队用seafile免费版快一年了，平常传传小文件，感觉还是还是蛮稳定的。用的windows版<div class="c-meta"><span class="c-author">卑鄙的我</span>2017-02-16 11:09 <a class='comment-reply-link' href='index-replytocom=10701.html#respond' onclick='return addComment.moveForm( "div-comment-10701", "10701", "respond", "1871" )' aria-label='回复给卑鄙的我'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10623"><div class="c-avatar"><div class="c-main" id="div-comment-10623">站长，你好。安装依赖出现问题。root@debian:~# apt-get install mariadb-server -y
+正在读取软件包列表... 完成
+正在分析软件包的依赖关系树
+正在读取状态信息... 完成
+有一些软件包无法被安装。如果您用的是 unstable 发行版，这也许是
+因为系统无法达到您要求的状态造成的。该版本中可能会有一些您需要的软件
+包尚未被创建或是它们已被从新到(Incoming)目录移出。
+下列信息可能会对解决问题有所帮助：
+
+下列软件包有未满足的依赖关系：
+ libglib2.0-0 : 破坏: glib-networking (&lt; 2.33.12) 但是 2.32.3-1 正要被安装
+E: 错误，pkgProblemResolver::Resolve 发生故障，这可能是有软件包被要求保持现状的缘故。
+root@debian:~#
+
+我的机房在德国，之前我是直接复制你的代码，然后就提示同样的内容。然后我换成de.sources.list,然后还是同样的提示。<div class="c-meta"><span class="c-author">Lao</span>2017-02-14 15:57 <a class='comment-reply-link' href='index-replytocom=10623.html#respond' onclick='return addComment.moveForm( "div-comment-10623", "10623", "respond", "1871" )' aria-label='回复给Lao'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10625"><div class="c-avatar"><div class="c-main" id="div-comment-10625">不是源的问题，是自身系统内的问题，可能存在冲突之类的，具体不是很清楚，谷歌看看吧。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-14 17:16 <a class='comment-reply-link' href='index-replytocom=10625.html#respond' onclick='return addComment.moveForm( "div-comment-10625", "10625", "respond", "1871" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10622"><div class="c-avatar"><div class="c-main" id="div-comment-10622">晚点玩玩哈哈哈<div class="c-meta"><span class="c-author">许未来</span>2017-02-14 14:43 <a class='comment-reply-link' href='index-replytocom=10622.html#respond' onclick='return addComment.moveForm( "div-comment-10622", "10622", "respond", "1871" )' aria-label='回复给许未来'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10620"><div class="c-avatar"><div class="c-main" id="div-comment-10620">我又会折腾很久。不过正好试试。<div class="c-meta"><span class="c-author">Lao</span>2017-02-14 12:37 <a class='comment-reply-link' href='index-replytocom=10620.html#respond' onclick='return addComment.moveForm( "div-comment-10620", "10620", "respond", "1871" )' aria-label='回复给Lao'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10602"><div class="c-avatar"><div class="c-main" id="div-comment-10602">非常感谢！早就想要做一个了，当时留了言，没想到真的出教程了！感谢！<div class="c-meta"><span class="c-author"><a href='http://akll.pro' rel='external nofollow' class='url'>akll</a></span>2017-02-13 18:42 <a class='comment-reply-link' href='index-replytocom=10602.html#respond' onclick='return addComment.moveForm( "div-comment-10602", "10602", "respond", "1871" )' aria-label='回复给akll'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10590"><div class="c-avatar"><div class="c-main" id="div-comment-10590">看完正片文章，很不错，就是觉得偷油写的文章很亲民。我也搭建成功了，我是用的lnmp搭建的。
+喜欢<div class="c-meta"><span class="c-author">amazed</span>2017-02-13 10:36 <a class='comment-reply-link' href='index-replytocom=10590.html#respond' onclick='return addComment.moveForm( "div-comment-10590", "10590", "respond", "1871" )' aria-label='回复给amazed'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

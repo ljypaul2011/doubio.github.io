@@ -1,0 +1,717 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>『原创』支持 BT(磁力链接)、离线下载和边下边播的老司机坐骑 —— Cloud Torrent 一键脚本 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2195] -->
+<meta name="description"  content="最近意外发现了一个 老司机神器，可以离线下载 BT和磁力链接 的Cloud Torrent，并且网上搜了搜没见到写这个教程的。 就研究了一下，感觉挺不错的就赶紧写教程给各位老司机！嘀嘀嘀~ 声明：本文章仅提供 BT/磁力链接 下载工具的安装方法和说明，任何使用此工具" />
+
+<meta name="keywords"  content="bt,cloud torrent,磁力链接,离线下载,脚本" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='Shadowsocks手动 添加和编辑 PAC中的网址规则' href='../ss-jc43/index.html' />
+<link rel='next' title='『原创』支持 BT(磁力链接)、离线下载和边下边播的老司机坐骑 —— Peerflix Server 一键脚本' href='../wlzy-13/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="BT, Cloud Torrent, 磁力链接, 离线下载, 脚本, Shell脚本, 碉堡网站, 网络资源, 逗比软件">
+<meta name="description" content="最近意外发现了一个 老司机神器，可以离线下载 BT和磁力链接 的Cloud Torrent，并且网上搜了搜没见到写这个教程的。  就研究了一下，感觉挺不错的就赶紧写教程给各位老司机！嘀嘀嘀~     声明：本文章仅提供 BT/磁力链接 下载工具的安装方法和说明，任何使用此工具 下载版权侵权文件或导致任何经济损失，皆和本人无任何关系！如果你不同意或有异议，请关闭这个网页！ 原本安装步骤就非常简单，但是我又想要更简单一些，所以写了一个脚本来">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-1712 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li class="current-post-ancestor"><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li class="current-post-ancestor"><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=10802.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">『原创』支持 BT(磁力链接)、离线下载和边下边播的老司机坐骑 —— Cloud Torrent 一键脚本</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../shell/index.html"> Shell脚本</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 9个月前 (11-29)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 19023℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">120评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82" title="系统需求"><span>系统需求</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E8%84%9A%E6%9C%AC%E7%89%88%E6%9C%AC%EF%BC%9A" title="脚本版本："><span>脚本版本：</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#Cloud%20Torrent%E7%89%B9%E7%82%B9" title="Cloud Torrent特点"><span>Cloud Torrent特点</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4" title="安装步骤"><span>安装步骤</span></a></li><li class="content-index-level-1"><a href="index.html#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" title="使用说明"><span>使用说明</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E8%84%9A%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" title="脚本使用说明"><span>脚本使用说明</span></a></li><li class="content-index-level-2"><a href="index.html#Cloud%20Torrent%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" title="Cloud Torrent使用说明"><span>Cloud Torrent使用说明</span></a><ul class="children"><li class="content-index-level-3"><a href="index.html#BT%20%E5%92%8C%20%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5" title="BT 和 磁力链接"><span>BT 和 磁力链接</span></a></li><li class="content-index-level-3"><a href="index.html#%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E" title="按钮说明"><span>按钮说明</span></a></li><li class="content-index-level-3"><a href="index.html#%E6%90%9C%E7%B4%A2%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5" title="搜索磁力链接"><span>搜索磁力链接</span></a></li><li class="content-index-level-3"><a href="index.html#%E8%AE%BE%E7%BD%AECloud%20Torrent" title="设置Cloud Torrent"><span>设置Cloud Torrent</span></a></li><li class="content-index-level-3"><a href="index.html#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6" title="删除文件"><span>删除文件</span></a></li><li class="content-index-level-3"><a href="index.html#%E4%B8%8B%E8%BD%BD/%E5%9C%A8%E7%BA%BF%E6%92%AD%E6%94%BE" title="下载/在线播放"><span>下载/在线播放</span></a></li></ul></li><li class="content-index-level-2"><a href="index.html#%E8%BE%B9%E4%B8%8B%E8%BE%B9%E6%92%AD" title="边下边播"><span>边下边播</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE" title="文件位置"><span>文件位置</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" title="注意事项"><span>注意事项</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E4%BD%A0%E7%9A%84%20http://IP:%E7%AB%AF%E5%8F%A3" title="无法访问你的 http://IP:端口"><span>无法访问你的 http://IP:端口</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BAwget:%C2%A0unknown%20host%20%E2%80%9Csofts.fun%E2%80%9D%20%E4%B9%8B%E7%B1%BB%E7%9A%84%E9%94%99%E8%AF%AF" title="提示wget: unknown host &#8220;softs.fun&#8221; 之类的错误"><span>提示wget: unknown host &#8220;softs.fun&#8221; 之类的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BA%20wget:%20command%20not%20found%20%E7%9A%84%E9%94%99%E8%AF%AF" title="提示 wget: command not found 的错误"><span>提示 wget: command not found 的错误</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97" title="更新日志"><span>更新日志</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B404%E6%9C%8805%E6%97%A5%EF%BC%8CVer%201.1.3" title="2017年04月05日，Ver 1.1.3"><span>2017年04月05日，Ver 1.1.3</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B404%E6%9C%8802%E6%97%A5%EF%BC%8CVer%201.1.2" title="2017年04月02日，Ver 1.1.2"><span>2017年04月02日，Ver 1.1.2</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B404%E6%9C%8801%E6%97%A5%EF%BC%8CVer%201.1.1" title="2017年04月01日，Ver 1.1.1"><span>2017年04月01日，Ver 1.1.1</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B404%E6%9C%8801%E6%97%A5%EF%BC%8CVer%201.1.0" title="2017年04月01日，Ver 1.1.0"><span>2017年04月01日，Ver 1.1.0</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B401%E6%9C%8820%E6%97%A5%EF%BC%8CVer%201.0.5" title="2017年01月20日，Ver 1.0.5"><span>2017年01月20日，Ver 1.0.5</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B401%E6%9C%882%E6%97%A5%EF%BC%8CVer%201.0.4" title="2017年01月2日，Ver 1.0.4"><span>2017年01月2日，Ver 1.0.4</span></a></li><li class="content-index-level-2"><a href="index.html#2016%E5%B9%B412%E6%9C%8813%E6%97%A5%EF%BC%8CVer%201.0.3" title="2016年12月13日，Ver 1.0.3"><span>2016年12月13日，Ver 1.0.3</span></a></li><li class="content-index-level-2"><a href="index.html#2016%E5%B9%B412%E6%9C%8805%E6%97%A5%EF%BC%8CVer%201.0.2" title="2016年12月05日，Ver 1.0.2"><span>2016年12月05日，Ver 1.0.2</span></a></li><li class="content-index-level-2"><a href="index.html#2016%E5%B9%B411%E6%9C%8829%E6%97%A5%EF%BC%8CVer%201.0.1" title="2016年11月29日，Ver 1.0.1"><span>2016年11月29日，Ver 1.0.1</span></a></li><li class="content-index-level-2"><a href="index.html#2016%E5%B9%B411%E6%9C%8829%E6%97%A5%EF%BC%8CVer%201.0.0" title="2016年11月29日，Ver 1.0.0"><span>2016年11月29日，Ver 1.0.0</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年4月20日 15:35</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>最近意外发现了一个 老司机神器，可以离线下载 BT和磁力链接 的Cloud Torrent，并且网上搜了搜没见到写这个教程的。</p>
+<p>就研究了一下，感觉挺不错的就赶紧写教程给各位老司机！嘀嘀嘀~</p>
+<hr />
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-01.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="754" height="859" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-01.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="754" height="859" /></noscript></p>
+<pre><strong><span style="color: #ff6464;">声明：</span>本文章仅提供 BT/磁力链接 下载工具的安装方法和说明，任何使用此工具 下载版权侵权文件或导致任何经济损失，皆和本人无任何关系！如果你不同意或有异议，请关闭这个网页！</strong></pre>
+<p>原本安装步骤就非常简单，但是我又想要更简单一些，所以写了一个脚本来简单操作，临时写的可能会有一些BUG，记得留言反馈。</p>
+<h2 id="系统需求">系统需求</h2>
+<p><strong>CentOS / Debian / Ubuntu</strong> 都可以，因为是 Go语言写的。</p>
+<p>不过，本人测试系统为 <strong>Debian 7 x64 建议使用这个。</strong></p>
+<h3 id="脚本版本：">脚本版本：</h3>
+<p><strong>Ver:</strong> 1.1.3</p>
+<blockquote><p>2017/04/01，脚本重写了，升级脚本请先卸载旧版本的 Cloud Torrent！</p></blockquote>
+<h2 id="Cloud Torrent特点">Cloud Torrent特点</h2>
+<ol>
+<li>支持 BT下载</li>
+<li>支持 磁力链接下载</li>
+<li>支持 搜索磁力链接</li>
+<li>支持 离线下载</li>
+<li>支持 边下边播<strong>( 格式限制：mp4/wbem/ogg，同时需要手动输入链接)</strong></li>
+<li>可视化界面 Web UI</li>
+</ol>
+<h2 id="安装步骤">安装步骤</h2>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Bash/cloudt.sh &amp;&amp; chmod +x cloudt.sh &amp;&amp; bash cloudt.sh
+</pre>
+<p><strong>备用下载地址（上面的链接无法下载，就用这个）：</strong></p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/cloudt.sh &amp;&amp; chmod +x cloudt.sh &amp;&amp; bash cloudt.sh
+</pre>
+<p>下载运行完毕脚本，会出现脚本菜单，选择并输入 1，就会直接开始安装 Cloud Torrent。</p>
+<p>安装完成之后，就会提醒你，输入要开放的端口（<strong>默认 8000</strong>）<strong>可选：</strong>用户名（<strong>默认 user</strong>）和密码（<strong>默认 doub.io</strong>）。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10802.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">请输入要开放的端口 [1-65535]
+(默认端口: 8000):
+========================
+端口 : 8000
+========================
+是否设置 用户名和密码 ? [Y/n] :
+请输入用户名
+(默认用户名: user):
+========================
+	用户名 :  user 
+========================
+
+请输入用户名的密码
+(默认密码: doub.io):
+========================
+	密码 :  doub.io
+========================
+————————————————
+ 你的 Cloud Torrent 信息 :
+
+ 地址 : http://VPS_IP:8000
+ 用户 : user
+ 密码 : doub.io
+————————————————
+</pre>
+<p></p></div>
+<p>启动后，访问<code> http://VPS_IP:8000 </code>即可看到Web UI界面了。</p>
+<h2 id="使用说明">使用说明</h2>
+<h3 id="脚本使用说明">脚本使用说明</h3>
+<pre class="prettyprint linenums">bash cloudt.sh</pre>
+<p>然后就会看到菜单，输入对应选项的数字即可。</p>
+<pre class="prettyprint linenums">请输入一个数字来选择选项
+
+ 1. 安装 Cloud Torrent
+ 2. 升级 Cloud Torrent
+ 3. 卸载 Cloud Torrent
+————————————
+ 4. 启动 Cloud Torrent
+ 5. 停止 Cloud Torrent
+ 6. 重启 Cloud Torrent
+————————————
+ 7. 设置 Cloud Torrent 账号
+ 8. 查看 Cloud Torrent 账号
+ 9. 查看 Cloud Torrent 日志
+————————————
+
+ 当前状态: 已安装 并 已启动
+</pre>
+<p>同时脚本设置了 系统服务，所以可以这样控制：</p>
+<p><strong>启动：</strong>service cloudt start</p>
+<p><strong>停止：</strong>service cloudt stop</p>
+<p><strong>重启：</strong>service cloudt restart</p>
+<p><strong>查看状态：</strong>service cloudt status</p>
+<p>并且支持开机启动了。</p>
+<h3 id="Cloud Torrent使用说明">Cloud Torrent使用说明</h3>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10802.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<h4 id="BT 和 磁力链接">BT 和 磁力链接</h4>
+<p>Cloud Torrent可以直接在输入中输入 <strong>磁力链接 或者 在线的BT种子（不支持本地上传）</strong>，点击下面的 <strong><span style="color: #3366ff;">蓝色的按钮</span></strong>，就会开始解析资源。</p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-06.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="775" height="144" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-06.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="775" height="144" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-07.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="727" height="144" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-07.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="727" height="144" /></noscript></p>
+<h4 id="按钮说明">按钮说明</h4>
+<p>成功解析后，就会显示如下的界面，开始下载。</p>
+<p><strong>Files</strong> 是查看正在下载的文件列表， <strong>Start</strong> 是启动下载（默认解析后直接启动下载）， <strong>Stop</strong> 是停止下载。</p>
+<p>还有，如果你下载完毕或者点了 <strong>Stop</strong> 停止下载，那么 <strong>Stop</strong> 就会变成 <strong>Remove</strong> 删除任务的按钮了。</p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-09.png" alt="" width="721" height="111" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-09.png" alt="" width="721" height="111" /></noscript></p>
+<h4 id="搜索磁力链接">搜索磁力链接</h4>
+<p>Cloud Torrent支持搜索磁力链接，在输入栏中直接输入你要搜索的文件名称，同时点击 <span style="color: #008000;"><strong>绿色的按钮</strong></span> 选择一个搜索源，然后点击 <span style="color: #3366ff;"><strong>蓝色的Search</strong></span> 按钮就可以搜索了。</p>
+<pre>注意：Cloud Torrent是国外人写的，所以这些搜索源均是国外的磁力链接网站，搜索到的资源基本没有中文的，所以非特殊需求的这个功能就没什么卵用了。</pre>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-05.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/200" alt="" width="750" height="360" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-05.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/200" alt="" width="750" height="360" /></noscript></p>
+<h4 id="设置Cloud Torrent">设置Cloud Torrent</h4>
+<p>点击右上角的第一个按钮，就会出现下面这个界面。</p>
+<p><strong>功能依次是：</strong></p>
+<ul>
+<li>自动启动</li>
+<li>禁用加密</li>
+<li>下载目录</li>
+<li>启用种子</li>
+<li>启用上传</li>
+<li>输入端口</li>
+</ul>
+<p>这里的配置存在：/etc/cloudtorrent/cloud-torrent.json</p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-08.png?imageView2/1/w/2000/q/100|watermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="732" height="512" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-08.png?imageView2/1/w/2000/q/100%7Cwatermark/1/image/aHR0cDovLzd4ajh0NC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9zaHVpeWluLnBuZw==/dissolve/70/gravity/SouthEast/dx/10/dy/10" alt="" width="732" height="512" /></noscript></p>
+<h4 id="删除文件">删除文件</h4>
+<p>如果你想要删除刚才下载的文件，那么你可以点击你 下载的文件的名称 <strong>右边的垃圾箱图标</strong>，点击之后会变成一个 <strong>对号</strong> 图标，代表确认按钮，所以再点击一下就会出现转圈圈删除了。</p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-02.png" alt="" width="406" height="52" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-02.png" alt="" width="406" height="52" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-03.png" alt="" width="402" height="50" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-03.png" alt="" width="402" height="50" /></noscript></p>
+<p><img class="lazy  aligncenter" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-04.png" alt="" width="416" height="57" /><noscript><img class=" aligncenter" src="https://img.mlkxs.com/wlzy-12-04.png" alt="" width="416" height="57" /></noscript></p>
+<h4 id="下载/在线播放">下载/在线播放</h4>
+<p>当BT中的某个文件下载完毕之后，<strong>文件名 就会变成可以点击的蓝色</strong>，点击后就会开始下载。</p>
+<p>如果是 <strong>MP4 Webm Ogg</strong> 这三个格式的视频，那只要浏览器支持HTML5视频 就能在线播放，其他的格式需要额外的解码器，所以浏览器无法直接播放。</p>
+<h3 id="边下边播">边下边播</h3>
+<p>这个软件其实也可以边下载边播放的，只是软件的机制是：<strong>只有当BT中的某个文件下载完成后，才会显示下载连接，所以文件正在下载的时候，显示文件名是无法点击的，但是不代表链接不存在，所以你可以手动拼接链接，这样就能实现边下边播了！</strong>下面是示例。</p>
+<p>比如：你的网站是<code> 1.1.1.1:8000 </code>，你下载的是下图中的 mp4 视频，那么你访问</p>
+<pre class="prettyprint linenums">http://1.1.1.1:8000/download/文件夹（一定要注意这个，不要忽略了文件夹！！！！）/文件名.mp4
+</pre>
+<pre class="prettyprint linenums">http://1.1.1.1:8000/download/圆梦巨人.The.BFG.2016.BD720P.超清中英字幕-迅影网/圆梦巨人.The.BFG.2016.BD720P.超清中英字幕-迅影网.mp4
+</pre>
+<p>下载的BT文件都是在<code> download </code>文件夹下面新建立一个单独的文件夹，里面包含了下载的文件。</p>
+<p>所以即使是在下载中，你也可以直接播放，当然，最好BT下载一部分再开始观看，否则可能不流畅。</p>
+<p><img class="lazy alignnone" src="../wp-content/plugins/wp-images-lazy-loading/images/grey.gif" data-original="https://img.mlkxs.com/wlzy-12-10.png" alt="" width="746" height="288" /><noscript><img class="alignnone" src="https://img.mlkxs.com/wlzy-12-10.png" alt="" width="746" height="288" /></noscript><br />
+</p></div>
+<h3 id="文件位置">文件位置</h3>
+<p>安装目录：/etc/cloudtorrent</p>
+<p>下载目录：/etc/cloudtorrent/downloads</p>
+<p>配置文件：/etc/cloudtorrent/cloud-torrent.json</p>
+<p>日志文件：/etc/cloudtorrent/ct.log</p>
+<h2 id="注意事项">注意事项</h2>
+<p>BT和磁力链接的速度是和， 磁力链接/BT 的用户上传共享量 和 中心服务器的宽带质量，以及你下载 磁力链接/BT 的VPS的宽带有关系。</p>
+<p>这种软件在某些程度上比不上 国内的迅雷，毕竟迅雷 用户了很大共享了很多的上传速度，而且还有缓存的中心服务器，所以才会那么快。</p>
+<hr />
+<p>Cloud Torrent还支持 Windows 64位的，但是我现在只有32位的，无法测试，你们自己看看吧。</p>
+<p>下载这个并解压：<strong>cloud-torrent_windows_amd64.exe.gz</strong></p>
+<p><a href="https://github.com/jpillora/cloud-torrent/releases" target="_blank">https://github.com/jpillora/cloud-torrent/releases</a></p>
+<hr />
+<p>如果你是国外的VPS，特别是美国的，<strong>一定要注意下载 BT/磁力链接 容易遇到蜜罐，然后被投诉封VPS</strong>。建议使用欧洲的<strong>罗马尼亚</strong>，那里的VPS无视版权，当然拉回本地，速度肯定也不会多快。</p>
+<h3 id="无法访问你的 http://IP:端口">无法访问你的 http://IP:端口</h3>
+<p>可能是防火墙规则的问题，使用下面这个命令来开放端口。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10802.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">iptables -I INPUT -p tcp --dport 端口 -j ACCEPT
+# 删除防火墙规则就是把 -I 改成 -D 即可
+iptables -D INPUT -p tcp --dport 端口 -j ACCEPT</pre>
+<p></p></div>
+<h3 id="提示wget: unknown host &#8220;softs.fun&#8221; 之类的错误">提示wget: unknown host &#8220;softs.fun&#8221; 之类的错误</h3>
+<p>这是无法解析我的域名，多半是DNS的问题，请更换DNS为谷歌DNS。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10802.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p></p>
+<pre class="prettyprint linenums">echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf
+echo "nameserver 8.8.4.4" &gt;&gt; /etc/resolv.conf
+</pre>
+<p></p></div>
+<h3 id="提示 wget: command not found 的错误">提示 wget: command not found 的错误</h3>
+<p>这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10802.html#">点击展开 查看更多</a></p><div class="toggle-box" style="display: none;"><p><br />
+<strong>CentOS系统:</strong></p>
+<pre class="prettyprint linenums">yum install -y wget
+</pre>
+<p><strong>Debian/Ubuntu系统:</strong></p>
+<pre class="prettyprint linenums">apt-get install -y wget</pre>
+<p></p></div>
+<hr />
+<p>关于Cloud Torrent 右上角第二个的那个磁力图标，我也不清楚是干嘛的好像是编辑磁力链接的，懂得可以跟我说一下。</p>
+<h2 id="更新日志">更新日志</h2>
+<h3 id="2017年04月05日，Ver 1.1.3">2017年04月05日，Ver 1.1.3</h3>
+<p><strong>1.修复</strong> 菜单选项 8 查看账号不显示端口的问题。</p>
+<p><strong>2.修复</strong> 系统服务脚本 查看Cloud Torrent状态，不显示端口的问题。</p>
+<p class="toggle" style="margin: 0 -10px;"><i class="fa fa-thumb-tack" style="float: left;color: #00a67c;line-height: 1.5;"></i> <a href="index-replytocom=10802.html#">点击展开 查看更多更新日志</a></p><div class="toggle-box" style="display: none;"><p></p>
+<h3 id="2017年04月02日，Ver 1.1.2">2017年04月02日，Ver 1.1.2</h3>
+<p><strong>1.新增</strong> 支持32位 i686 系统安装使用</p>
+<h3 id="2017年04月01日，Ver 1.1.1">2017年04月01日，Ver 1.1.1</h3>
+<p><strong>1.修复</strong> 因系统根证书不完整，导致不信任 Github SSL证书，因而无法正常下载的问题。</p>
+<h3 id="2017年04月01日，Ver 1.1.0">2017年04月01日，Ver 1.1.0</h3>
+<p><strong>1.新增</strong> 服务管理脚本。</p>
+<p><strong>2.新增</strong> 开机启动支持。</p>
+<p><strong>3.重新</strong> 脚本。</p>
+<h3 id="2017年01月20日，Ver 1.0.5">2017年01月20日，Ver 1.0.5</h3>
+<p><strong>1.新增</strong> 启动Cloud Torrent自动开放防火墙端口。</p>
+<h3 id="2017年01月2日，Ver 1.0.4">2017年01月2日，Ver 1.0.4</h3>
+<p><strong>1.新增</strong> 安装Cloud Torrent时候可以手动输入版本号功能。</p>
+<p>—— 一些VPS自动获取最新版本号会出现获取失败的问题，再加上一些人可能觉得新版本不好用，所以增加了一个手动输入版本号的功能。</p>
+<p>版本号从这里获取：<a href="https://github.com/jpillora/cloud-torrent/releases" target="_blank">Github</a>，格式是<strong> x.x.xx</strong> 。</p>
+<h3 id="2016年12月13日，Ver 1.0.3">2016年12月13日，Ver 1.0.3</h3>
+<p><strong>1.新增</strong> Cloud Torrent 检测版本功能。</p>
+<p>—— 在启动Cloud Torrent时，会自动检测最新版本，如果发现新版本就会提示升级。</p>
+<p><strong>2.修复</strong> Cloud Torrent 偶尔遇到下载失败的问题。</p>
+<p>—— 不再使用作者提供的API了，直接自己判断来下载文件，免得Github限速API 导致偶尔出现下载失败的情况。</p>
+<p>这个版本之后，基本上功能都完善了，也没有明显的BUG了。自动检测升级功能也加上了，脚本也没什么好更新的功能了。</p>
+<h3 id="2016年12月05日，Ver 1.0.2">2016年12月05日，Ver 1.0.2</h3>
+<p><strong>1.新增</strong> 脚本自动判断功能。</p>
+<p>—— 不需要输入<code> bash cloudt.sh install/start/stop </code>后面参数了，直接输入<code> bash cloudt.sh </code>就会自动判断，如果没有安装就自动安装，如果没有启动会自动启动，如果正在运行，会提示是否停止。</p>
+<p><strong>2.修复</strong> 启动/停止成功，但是提示启动/停止失败的BUG。</p>
+<h3 id="2016年11月29日，Ver 1.0.1">2016年11月29日，Ver 1.0.1</h3>
+<p><strong>1.新增</strong> 判断系统功能。</p>
+<p><strong>2.新增</strong> 修改DNS为谷歌DNS。</p>
+<p><strong>3.新增</strong> 可选是否设置用户名和密码的选项。</p>
+<p><strong>4.修复</strong> 部分BUG。</p>
+<h3 id="2016年11月29日，Ver 1.0.0">2016年11月29日，Ver 1.0.0</h3>
+<p><strong>1.推出</strong> 正式版 1.0.0 。<br />
+</p></div>
+<hr />
+<p>如果发现BUG请在下面留言，如果需要什么新功能，记得也留言联系我。</p>
+<p><strong>其他的支持离线下载 BT和磁力链接的教程：<a href="../all-one/index.html#BT%E3%80%81%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5%E4%B8%8B%E8%BD%BD%20%E7%9B%B8%E5%85%B3%E6%95%99%E7%A8%8B" target="_blank">https://doub.io/all-one/#BT、磁力链接下载 相关教程</a></strong></p>
+<p>GitHub项目地址（感谢作者）：<a href="https://github.com/jpillora/cloud-torrent" target="_blank">https://github.com/jpillora/cloud-torrent</a></p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">『原创』支持 BT(磁力链接)、离线下载和边下边播的老司机坐骑 —— Cloud Torrent 一键脚本</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="1712" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">34</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/bt/index.html" rel="tag">BT</a><a href="../tag/cloud-torrent/index.html" rel="tag">Cloud Torrent</a><a href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html" rel="tag">磁力链接</a><a href="../tag/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/index.html" rel="tag">离线下载</a><a href="../tag/%E8%84%9A%E6%9C%AC/index.html" rel="tag">脚本</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../ss-jc43/index.html" rel="prev">Shadowsocks手动 添加和编辑 PAC中的网址规则</a></span>
+			<span class="article-nav-next"><a href="../wlzy-13/index.html" rel="next">『原创』支持 BT(磁力链接)、离线下载和边下边播的老司机坐骑 —— Peerflix Server 一键脚本</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../ss-jc60/index.html" title="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" />	<br><span class="r_title">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpnzy-7/index.html" title="『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本" />	<br><span class="r_title">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../shell-jc5/index.html" title="『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本" />	<br><span class="r_title">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc56/index.html" title="『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本" />	<br><span class="r_title">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../ss-jc60/index.html">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-7/index.html">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc5/index.html">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc56/index.html">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc4/index.html">『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc3/index.html">『原创』多服务器 云探针、云监控 —— ServerStatus 一键管理脚本</a></li><li><i class="fa fa-minus"></i><a href="../dowsdns-jc3/index.html">『原创』快速自建DNS服务器以 科学上网+屏蔽广告 —— dowsDNS 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc2/index.html">『原创』iptables 封禁 BT/PT/SPAM(垃圾邮件)和自定义端口/关键词 一键脚本</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='1712' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='10802' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (120)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-16752"><div class="c-avatar"><div class="c-main" id="div-comment-16752">请问可以加上http下载功能吗，搭建其他感觉好麻烦，这个最方便了，可惜只能下载bt<div class="c-meta"><span class="c-author">Shark</span>2017-08-10 00:25 <a class='comment-reply-link' href='index-replytocom=16752.html#respond' onclick='return addComment.moveForm( "div-comment-16752", "16752", "respond", "1712" )' aria-label='回复给Shark'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16762"><div class="c-avatar"><div class="c-main" id="div-comment-16762">我只能写一写脚本，无法修改这个软件的源代码来实现HTTP等协议下载。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-10 07:19 <a class='comment-reply-link' href='index-replytocom=16762.html#respond' onclick='return addComment.moveForm( "div-comment-16762", "16762", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-16767"><div class="c-avatar"><div class="c-main" id="div-comment-16767">请问有那种支持http，bt，https多线程下载的带管理网页的一键脚本吗，小白路过。。。。<div class="c-meta"><span class="c-author">Shark</span>2017-08-10 08:22 <a class='comment-reply-link' href='index-replytocom=16767.html#respond' onclick='return addComment.moveForm( "div-comment-16767", "16767", "respond", "1712" )' aria-label='回复给Shark'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-16769"><div class="c-avatar"><div class="c-main" id="div-comment-16769"><a href="../shell-jc4/index.html" target="_blank" rel="nofollow">『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本</a><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-10 08:35 <a class='comment-reply-link' href='index-replytocom=16769.html#respond' onclick='return addComment.moveForm( "div-comment-16769", "16769", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16751"><div class="c-avatar"><div class="c-main" id="div-comment-16751">请问管理的网页可以设置成https吗，http的下载文件感觉不安全。。。。。<div class="c-meta"><span class="c-author">Shark</span>2017-08-10 00:24 <a class='comment-reply-link' href='index-replytocom=16751.html#respond' onclick='return addComment.moveForm( "div-comment-16751", "16751", "respond", "1712" )' aria-label='回复给Shark'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-16768"><div class="c-avatar"><div class="c-main" id="div-comment-16768">可以用cloudfire转发一下吗，如果可以如何设置呢，vps的是非80,443端口。直接从vps用http下载害怕流量一大就被封，vps就废了。。。。<div class="c-meta"><span class="c-author">Shark</span>2017-08-10 08:24 <a class='comment-reply-link' href='index-replytocom=16768.html#respond' onclick='return addComment.moveForm( "div-comment-16768", "16768", "respond", "1712" )' aria-label='回复给Shark'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-3" id="comment-16770"><div class="c-avatar"><div class="c-main" id="div-comment-16770">你Cloud Torrent设置端口为2333，那么你下载就是从 2333端口下载的，ip:2333/xxx/xxxx.mp4 。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-10 09:01 <a class='comment-reply-link' href='index-replytocom=16770.html#respond' onclick='return addComment.moveForm( "div-comment-16770", "16770", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-4" id="comment-16799"><div class="c-avatar"><div class="c-main" id="div-comment-16799">假设设置2333端口，我知道是从2333端口下载，但是下载的内容是没有加密的，岂不是很容易被GFW封掉？而且页面也是http，能不能教我们如何设置成https....<div class="c-meta"><span class="c-author">Shark</span>2017-08-10 13:13 <a class='comment-reply-link' href='index-replytocom=16799.html#respond' onclick='return addComment.moveForm( "div-comment-16799", "16799", "respond", "1712" )' aria-label='回复给Shark'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-5" id="comment-16801"><div class="c-avatar"><div class="c-main" id="div-comment-16801">墙管你这个干嘛，我用了十个月了也没见怎么样，墙只会去墙他匹配到"违规"的流量，比如你访问谷歌，下载谷歌网盘文件等，而你从你的服务器下载文件，除非这个文件是反动等犯法文件，否则墙怎么会管你，你把墙想的太闲了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-10 13:17 <a class='comment-reply-link' href='index-replytocom=16801.html#respond' onclick='return addComment.moveForm( "div-comment-16801", "16801", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-15525"><div class="c-avatar"><div class="c-main" id="div-comment-15525">最近Cloud Torrent 当前状态总是未启动，无论是重装还是改端口，问题依旧，大神，这是什么问题？<div class="c-meta"><span class="c-author">A</span>2017-07-16 10:49 <a class='comment-reply-link' href='index-replytocom=15525.html#respond' onclick='return addComment.moveForm( "div-comment-15525", "15525", "respond", "1712" )' aria-label='回复给A'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-15529"><div class="c-avatar"><div class="c-main" id="div-comment-15529">请提供相关时间的日志<code> cat /etc/cloudtorrent/ct.log </code><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-16 11:47 <a class='comment-reply-link' href='index-replytocom=15529.html#respond' onclick='return addComment.moveForm( "div-comment-15529", "15529", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-14929"><div class="c-avatar"><div class="c-main" id="div-comment-14929">下载到服务器后，能不能用迅雷下载回本地呢？centos 7<div class="c-meta"><span class="c-author">h</span>2017-06-18 21:02 <a class='comment-reply-link' href='index-replytocom=14929.html#respond' onclick='return addComment.moveForm( "div-comment-14929", "14929", "respond", "1712" )' aria-label='回复给h'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-14931"><div class="c-avatar"><div class="c-main" id="div-comment-14931">文件下载完成后，文件名就变成蓝色，可点击下载，你用什么下载工具都行。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-06-19 01:53 <a class='comment-reply-link' href='index-replytocom=14931.html#respond' onclick='return addComment.moveForm( "div-comment-14931", "14931", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13442"><div class="c-avatar"><div class="c-main" id="div-comment-13442">为啥要写到/etc文件夹里？这样非root用户访问文件好麻烦，而且装的时候也没有提示，结果一开始直接复制粘贴教程里的那句代码显然失败了（没有sudo），看了一会才发现问题。。。<div class="c-meta"><span class="c-author">zjb</span>2017-05-04 21:45 <a class='comment-reply-link' href='index-replytocom=13442.html#respond' onclick='return addComment.moveForm( "div-comment-13442", "13442", "respond", "1712" )' aria-label='回复给zjb'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13443"><div class="c-avatar"><div class="c-main" id="div-comment-13443">一开始学习shell的时候，看别人的脚本把软件都装到了 /etc 文件夹内，然后后来的脚本都改了位置了(/usr/local)，不过考虑到很多人已经安装了这个软件，再去更改位置的话会有很多问题，所以用我的任何脚本，请先获取root用户权限，这些问题自行解决，我只负责写脚本。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-04 21:48 <a class='comment-reply-link' href='index-replytocom=13443.html#respond' onclick='return addComment.moveForm( "div-comment-13443", "13443", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-12829"><div class="c-avatar"><div class="c-main" id="div-comment-12829">站长，怎么边下边播，哪里有播放的地方<div class="c-meta"><span class="c-author">s</span>2017-04-15 15:33 <a class='comment-reply-link' href='index-replytocom=12829.html#respond' onclick='return addComment.moveForm( "div-comment-12829", "12829", "respond", "1712" )' aria-label='回复给s'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-12834"><div class="c-avatar"><div class="c-main" id="div-comment-12834"><a href="index.html#%E8%BE%B9%E4%B8%8B%E8%BE%B9%E6%92%AD" rel="nofollow">https://doub.io/wlzy-12/#边下边播</a><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-15 16:16 <a class='comment-reply-link' href='index-replytocom=12834.html#respond' onclick='return addComment.moveForm( "div-comment-12834", "12834", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-12737"><div class="c-avatar"><div class="c-main" id="div-comment-12737">下载下来了个mp4文件 却不能在线播放，甚至连下载都下载不了 求问下什么原因<div class="c-meta"><span class="c-author">Fantasy</span>2017-04-13 08:02 <a class='comment-reply-link' href='index-replytocom=12737.html#respond' onclick='return addComment.moveForm( "div-comment-12737", "12737", "respond", "1712" )' aria-label='回复给Fantasy'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-12739"><div class="c-avatar"><div class="c-main" id="div-comment-12739">问问题请具体描述信息，否则我根本无法解决。<br />
+尝试更换浏览器或者更换其他BT视频下载试试，我个人使用是没任何问题的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-13 11:25 <a class='comment-reply-link' href='index-replytocom=12739.html#respond' onclick='return addComment.moveForm( "div-comment-12739", "12739", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-12321"><div class="c-avatar"><div class="c-main" id="div-comment-12321">腾讯云是不是告别这个脚本了<br />
+感觉是腾讯云的问题啊，都选了上海的服务器了都不行<br />
+有没有更加备用的方法啊<div class="c-meta"><span class="c-author">问题君</span>2017-04-02 10:21 <a class='comment-reply-link' href='index-replytocom=12321.html#respond' onclick='return addComment.moveForm( "div-comment-12321", "12321", "respond", "1712" )' aria-label='回复给问题君'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-12324"><div class="c-avatar"><div class="c-main" id="div-comment-12324">为什么你们评论说话都是说一句发一句？<br />
+国内对 github的 下载分发CDN封锁的比较严格，很多地区都是限速很严重，或者根本连不上，特别是国内的服务器。你选上海和选北京没区别，都是国内。<br />
+暂时没有备用的方法。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-02 10:47 <a class='comment-reply-link' href='index-replytocom=12324.html#respond' onclick='return addComment.moveForm( "div-comment-12324", "12324", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-12318"><div class="c-avatar"><div class="c-main" id="div-comment-12318">下载的时候连接github失败
+--2017-04-02 10:04:07--  (try: 5)  https://github-cloud.s3.amazonaws.com/releases/36588302/b34dfd1a-b689-11e6-9a2b-a5f8d1616604.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAISTNZFOVBIJMK3TQ%2F20170402%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20170402T015528Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=766e2208d21145c0b9e7f61887fd90a5f2b8a4339c2dc7bef4a8cce0dfcf346e&amp;X-Amz-SignedHeaders=host&amp;actor_id=0&amp;response-content-disposition=attachment%3B%20filename%3Dcloud-torrent_linux_amd64.gz&amp;response-content-type=application%2Foctet-stream
+Connecting to github-cloud.s3.amazonaws.com (github-cloud.s3.amazonaws.com)|52.216.66.56|:443...<div class="c-meta"><span class="c-author">问题君</span>2017-04-02 10:06 <a class='comment-reply-link' href='index-replytocom=12318.html#respond' onclick='return addComment.moveForm( "div-comment-12318", "12318", "respond", "1712" )' aria-label='回复给问题君'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-12320"><div class="c-avatar"><div class="c-main" id="div-comment-12320">是github 扑街还是你的VPS连接 github的网络有问题？<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-02 10:13 <a class='comment-reply-link' href='index-replytocom=12320.html#respond' onclick='return addComment.moveForm( "div-comment-12320", "12320", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-12308"><div class="c-avatar"><div class="c-main" id="div-comment-12308">[信息] 开始安装/配置 依赖...
+[信息] 开始检测最新版本...
+[错误] Cloud Torrent 最新版本获取失败，请手动获取最新版本号[ https://github.com/jpillora/cloud-torrent/releases ]
+请输入版本号 [ 格式 x.x.xx , 如 0.8.16 ] :0.8.16
+[信息] 开始下载/安装...
+--2017-04-01 10:33:25--  https://github.com/jpillora/cloud-torrent/releases/download/0.8.16/cloud-torrent_linux_amd64.gz
+Resolving github.com (github.com)... 192.30.253.113, 192.30.253.112
+Connecting to github.com (github.com)|192.30.253.113|:443... connected.
+ERROR: The certificate of `github.com' is not trusted.
+ERROR: The certificate of `github.com' hasn't got a known issuer.
+
+gzip: cloud-torrent.gz: unexpected end of file
+[错误] Cloud Torrent 解压失败 !<div class="c-meta"><span class="c-author">麦子</span>2017-04-01 22:34 <a class='comment-reply-link' href='index-replytocom=12308.html#respond' onclick='return addComment.moveForm( "div-comment-12308", "12308", "respond", "1712" )' aria-label='回复给麦子'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-12309"><div class="c-avatar"><div class="c-main" id="div-comment-12309">你这个是系统根证书不完整，导致不信任 github 的SSL证书，从而无法下载文件，我已经更新了脚本 v1.1.1，重新下载脚本安装即可。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-01 23:03 <a class='comment-reply-link' href='index-replytocom=12309.html#respond' onclick='return addComment.moveForm( "div-comment-12309", "12309", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-12478"><div class="c-avatar"><div class="c-main" id="div-comment-12478">github连不上了，扑街了，之前还可以<div class="c-meta"><span class="c-author"><a href='http://qq.com' rel='external nofollow' class='url'>千秋信</a></span>2017-04-05 21:35 <a class='comment-reply-link' href='index-replytocom=12478.html#respond' onclick='return addComment.moveForm( "div-comment-12478", "12478", "respond", "1712" )' aria-label='回复给千秋信'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-12479"><div class="c-avatar"><div class="c-main" id="div-comment-12479">刚才安装测试了一下，是可以正常下载和安装的，你无法连接Github可能是你的服务器地区对Github限制了或者，当地的Github分发CDN有问题。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-05 21:59 <a class='comment-reply-link' href='index-replytocom=12479.html#respond' onclick='return addComment.moveForm( "div-comment-12479", "12479", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-12244"><div class="c-avatar"><div class="c-main" id="div-comment-12244">好像两个磁力下载教程都用不了，一个一直loading，一个没反应。。。以前没这情况，<div class="c-meta"><span class="c-author"><a href='http://qq.com' rel='external nofollow' class='url'>千秋信</a></span>2017-03-31 16:09 <a class='comment-reply-link' href='index-replytocom=12244.html#respond' onclick='return addComment.moveForm( "div-comment-12244", "12244", "respond", "1712" )' aria-label='回复给千秋信'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-12245"><div class="c-avatar"><div class="c-main" id="div-comment-12245">你确定不是自己BT源的问题？我这边是正常使用的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-31 16:22 <a class='comment-reply-link' href='index-replytocom=12245.html#respond' onclick='return addComment.moveForm( "div-comment-12245", "12245", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-12285"><div class="c-avatar"><div class="c-main" id="div-comment-12285">不清楚，我换了好几个bt源，还重装系统换了好几个vps😂一脸懵中，不知道干嘛了<div class="c-meta"><span class="c-author"><a href='http://qq.com' rel='external nofollow' class='url'>千秋信</a></span>2017-04-01 13:29 <a class='comment-reply-link' href='index-replytocom=12285.html#respond' onclick='return addComment.moveForm( "div-comment-12285", "12285", "respond", "1712" )' aria-label='回复给千秋信'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-12286"><div class="c-avatar"><div class="c-main" id="div-comment-12286">你下载这个BT站的BT试试 <a href="http://www.rarbt.com" target="_blank" rel="nofollow">www.rarbt.com</a> 被墙需要挂代理，我昨天还用一个加拿大的VPS下了两个电影BT，如果这里的BT也是无法下载，那么和 CT软件、BT源 没关系了，那就是IDC限制或者其他未知问题了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-04-01 13:53 <a class='comment-reply-link' href='index-replytocom=12286.html#respond' onclick='return addComment.moveForm( "div-comment-12286", "12286", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-5" id="comment-12287"><div class="c-avatar"><div class="c-main" id="div-comment-12287">尴尬，怎么bt种子下载，我找不到上传的地方<div class="c-meta"><span class="c-author"><a href='http://qq.com' rel='external nofollow' class='url'>千秋信</a></span>2017-04-01 14:05 <a class='comment-reply-link' href='index-replytocom=12287.html#respond' onclick='return addComment.moveForm( "div-comment-12287", "12287", "respond", "1712" )' aria-label='回复给千秋信'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even depth-5" id="comment-12288"><div class="c-avatar"><div class="c-main" id="div-comment-12288">可以用，种子可以不用等直接开始下载，试了好几个，磁力链接不行，要等好久才可以开始下载，以前12月用过的磁力链接现在都不行了，换了很多磁力链接都没用0.0<div class="c-meta"><span class="c-author"><a href='http://qq.com' rel='external nofollow' class='url'>千秋信</a></span>2017-04-01 14:18 <a class='comment-reply-link' href='index-replytocom=12288.html#respond' onclick='return addComment.moveForm( "div-comment-12288", "12288", "respond", "1712" )' aria-label='回复给千秋信'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11735"><div class="c-avatar"><div class="c-main" id="div-comment-11735">Toyo, 下载了一个文件夹下来了，但是整个文件夹里有很多文件，怎么同时取回本地呢？难道要一个个的取回吗？<div class="c-meta"><span class="c-author">hello kitty</span>2017-03-17 23:23 <a class='comment-reply-link' href='index-replytocom=11735.html#respond' onclick='return addComment.moveForm( "div-comment-11735", "11735", "respond", "1712" )' aria-label='回复给hello kitty'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11738"><div class="c-avatar"><div class="c-main" id="div-comment-11738">并不能直接取回文件夹。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-17 23:37 <a class='comment-reply-link' href='index-replytocom=11738.html#respond' onclick='return addComment.moveForm( "div-comment-11738", "11738", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-11616"><div class="c-avatar"><div class="c-main" id="div-comment-11616">你用的是什么服务器啊   我用vultr  好慢啊 才几百K  你的是M的 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_confused.gif" alt=":???:" class="wp-smiley" style="height: 1em; max-height: 1em;" />  <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_confused.gif" alt=":???:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">我最纯良</span>2017-03-15 08:03 <a class='comment-reply-link' href='index-replytocom=11616.html#respond' onclick='return addComment.moveForm( "div-comment-11616", "11616", "respond", "1712" )' aria-label='回复给我最纯良'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-11619"><div class="c-avatar"><div class="c-main" id="div-comment-11619">我用永久鸡CAC加拿大服务器来搞的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-15 09:35 <a class='comment-reply-link' href='index-replytocom=11619.html#respond' onclick='return addComment.moveForm( "div-comment-11619", "11619", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-11630"><div class="c-avatar"><div class="c-main" id="div-comment-11630">给网站链接看看。<div class="c-meta"><span class="c-author">我最纯良</span>2017-03-15 13:59 <a class='comment-reply-link' href='index-replytocom=11630.html#respond' onclick='return addComment.moveForm( "div-comment-11630", "11630", "respond", "1712" )' aria-label='回复给我最纯良'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-11631"><div class="c-avatar"><div class="c-main" id="div-comment-11631"><a href="https://www.cloudatcost.com" target="_blank" rel="nofollow">CloudAtCost</a>，当然并不推荐买这个，而且平时都是半折 17.5美元永久 不值，活动的时候是一折两浙，而且VPS购买后每个月都最少会出问题几次。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-15 14:11 <a class='comment-reply-link' href='index-replytocom=11631.html#respond' onclick='return addComment.moveForm( "div-comment-11631", "11631", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-5" id="comment-11638"><div class="c-avatar"><div class="c-main" id="div-comment-11638">这么不好啊  我昨晚买了个vultr  发现不送美金了  唉 用不了多久     Hostus和Hostodo不知道买哪个好<div class="c-meta"><span class="c-author">我最纯良</span>2017-03-15 15:17 <a class='comment-reply-link' href='index-replytocom=11638.html#respond' onclick='return addComment.moveForm( "div-comment-11638", "11638", "respond", "1712" )' aria-label='回复给我最纯良'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-6" id="comment-11644"><div class="c-avatar"><div class="c-main" id="div-comment-11644">好不好，别人说的都不算，没有亲自用到之前 永远都不知道哪个VPS适合自己。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-03-15 16:54 <a class='comment-reply-link' href='index-replytocom=11644.html#respond' onclick='return addComment.moveForm( "div-comment-11644", "11644", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10918"><div class="c-avatar"><div class="c-main" id="div-comment-10918">搭建好了 能打开网页  过了一会就打不开了 是怎么回事呢<div class="c-meta"><span class="c-author">我最纯良</span>2017-02-24 01:26 <a class='comment-reply-link' href='index-replytocom=10918.html#respond' onclick='return addComment.moveForm( "div-comment-10918", "10918", "respond", "1712" )' aria-label='回复给我最纯良'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10932"><div class="c-avatar"><div class="c-main" id="div-comment-10932">“过了一会就打不开了”<br />
+怎么个打不开？你只有描述清楚问题，我才能解决问题。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-24 13:45 <a class='comment-reply-link' href='index-replytocom=10932.html#respond' onclick='return addComment.moveForm( "div-comment-10932", "10932", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-11015"><div class="c-avatar"><div class="c-main" id="div-comment-11015">就是搭建好了的时候可以打开这CT网页  过了一会就打不开了     用的是樱花云搭建的<div class="c-meta"><span class="c-author">我最纯良</span>2017-02-26 23:58 <a class='comment-reply-link' href='index-replytocom=11015.html#respond' onclick='return addComment.moveForm( "div-comment-11015", "11015", "respond", "1712" )' aria-label='回复给我最纯良'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-4" id="comment-11019"><div class="c-avatar"><div class="c-main" id="div-comment-11019">根据部分 樱花Docker使用者反馈，樱花Docker会自动杀这个程序似乎，反正就是用不了。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-27 09:51 <a class='comment-reply-link' href='index-replytocom=11019.html#respond' onclick='return addComment.moveForm( "div-comment-11019", "11019", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-5" id="comment-11027"><div class="c-avatar"><div class="c-main" id="div-comment-11027">有什么便宜的服务器推荐吗  可以搭建ct  还有ssr的<div class="c-meta"><span class="c-author">我最纯良</span>2017-02-27 14:48 <a class='comment-reply-link' href='index-replytocom=11027.html#respond' onclick='return addComment.moveForm( "div-comment-11027", "11027", "respond", "1712" )' aria-label='回复给我最纯良'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-6" id="comment-11030"><div class="c-avatar"><div class="c-main" id="div-comment-11030">同一个VPS，不同地区，不同运营商，速度差别很大。<br />
+所以我不做VPS推荐，自己慢慢试。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-27 15:13 <a class='comment-reply-link' href='index-replytocom=11030.html#respond' onclick='return addComment.moveForm( "div-comment-11030", "11030", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-10802"><div class="c-avatar"><div class="c-main" id="div-comment-10802">博主您好，我输入cloud torrent的版本号之后出现提示 ：
+[错误]  不支持 i686 !
+请问这是什么问题？<div class="c-meta"><span class="c-author">糖蜜酒精</span>2017-02-19 10:45 <a class='comment-reply-link' href='index-replytocom=10802.html#respond' onclick='return addComment.moveForm( "div-comment-10802", "10802", "respond", "1712" )' aria-label='回复给糖蜜酒精'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-10803"><div class="c-avatar"><div class="c-main" id="div-comment-10803">你的系统是i686的，不支持cloud torrent。<br />
+cloud torrent只支持i386,amd64构架的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-19 11:32 <a class='comment-reply-link' href='index-replytocom=10803.html#respond' onclick='return addComment.moveForm( "div-comment-10803", "10803", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10784"><div class="c-avatar"><div class="c-main" id="div-comment-10784">这个好像没有加入开机自启动，希望加入<div class="c-meta"><span class="c-author">siri</span>2017-02-18 12:03 <a class='comment-reply-link' href='index-replytocom=10784.html#respond' onclick='return addComment.moveForm( "div-comment-10784", "10784", "respond", "1712" )' aria-label='回复给siri'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10577"><div class="c-avatar"><div class="c-main" id="div-comment-10577">表哥 每次快下好的时候就0 B/s了 很多资源都这样 什么原因啊 用的vultr<div class="c-meta"><span class="c-author">33块</span>2017-02-12 13:37 <a class='comment-reply-link' href='index-replytocom=10577.html#respond' onclick='return addComment.moveForm( "div-comment-10577", "10577", "respond", "1712" )' aria-label='回复给33块'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10439"><div class="c-avatar"><div class="c-main" id="div-comment-10439">想问下如何把IP改成自己的域名 继续安装docker 来进行配置吗<div class="c-meta"><span class="c-author">AC</span>2017-02-07 11:50 <a class='comment-reply-link' href='index-replytocom=10439.html#respond' onclick='return addComment.moveForm( "div-comment-10439", "10439", "respond", "1712" )' aria-label='回复给AC'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-10410"><div class="c-avatar"><div class="c-main" id="div-comment-10410"><img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_surprised.gif" alt=":eek:" class="wp-smiley" style="height: 1em; max-height: 1em;" /> 天啊，你应该要注明，VPS流量=上行+下行，我这两天下了10g小黄片整整用了我500G流量，我的天 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_cry.gif" alt=":cry:" class="wp-smiley" style="height: 1em; max-height: 1em;" />  <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_cry.gif" alt=":cry:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author"><a href='http://0rat.com' rel='external nofollow' class='url'>bogie</a></span>2017-02-06 16:49 <a class='comment-reply-link' href='index-replytocom=10410.html#respond' onclick='return addComment.moveForm( "div-comment-10410", "10410", "respond", "1712" )' aria-label='回复给bogie'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-10412"><div class="c-avatar"><div class="c-main" id="div-comment-10412">VPS的流量计算各IDC都不一样，有的是只计算 上行流量，有的是 上行+下行流量都计算，有的是 上行和下行那个用的多 就算哪个(比如vultr)。<br />
+不过你这个上下行都计算的话，也就是20GB左右的流量啊，其余的480GB哪里来的，估计是因为BT是人人为我，我为人人的原则，所以你也给别人提供了流量，不过不应该这么多啊。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-02-06 17:01 <a class='comment-reply-link' href='index-replytocom=10412.html#respond' onclick='return addComment.moveForm( "div-comment-10412", "10412", "respond", "1712" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-10166"><div class="c-avatar"><div class="c-main" id="div-comment-10166">自启命令是多少，官方的命令貌似没有效果！<div class="c-meta"><span class="c-author"><a href='http://0rat.com' rel='external nofollow' class='url'>bogie</a></span>2017-01-28 12:25 <a class='comment-reply-link' href='index-replytocom=10166.html#respond' onclick='return addComment.moveForm( "div-comment-10166", "10166", "respond", "1712" )' aria-label='回复给bogie'>回复</a></div></div></div></li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+		<a class="prev page-numbers" href="comment-page-1/index-replytocom=10802.html#comments">«</a>
+<a class='page-numbers' href='comment-page-1/index-replytocom=10802.html#comments'>1</a>
+<span class='page-numbers current'>2</span>	</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+(function($){
+  $("img.lazy").show().lazyload({effect: "fadeIn"});
+})(jQuery);
+</script>
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>

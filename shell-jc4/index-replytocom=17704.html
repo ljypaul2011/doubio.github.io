@@ -1,0 +1,605 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<!link href='http://api.youziku.com/webfont/CSS/567f672ef629d8039c4bf336' rel='stylesheet' type='text/css' />
+<!link href='http://api.youziku.com/webfont/CSS/56e3a918f629da0ad88fbde8' rel='stylesheet' type='text/css' />
+
+<style type="text/css">@font-face {font-family: 'jin_mei_mxplzx86d456993036';src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.gif');src: url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/567f672ef629d8039c4bf336.png#jin_mei_mxplzx') format('svg');   }.css86d456993036{font-family: 'jin_mei_mxplzx86d456993036';}
+</style>
+<style type="text/css">@font-face {font-family: 'LiDeBiao-Xing320e75d0253036';src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.gif');src: url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8-.gif#iefix') format('embedded-opentype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.bmp') format('woff'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.jpg') format('truetype'),     url('../wp-content/themes/yusi1.0/img/56e3a918f629da0ad88fbde8.png#LiDeBiao-Xing3') format('svg');   }.css20e75d0253036{font-family: 'LiDeBiao-Xing320e75d0253036';}
+tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+</style>
+<link rel="stylesheet" type="text/css" href="../wp-content/themes/yusi1.0/csshake.css">
+<link id="favicon" href="../wp-content/themes/yusi1.0/img/logo.ico" rel="icon" type="img/x-icon" />
+<title>『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本 | 逗比根据地</title>
+<script>
+window._deel = {name: '逗比根据地',url: 'https://doub.io/wp-content/themes/yusi1.0', ajaxpager: 'on', commenton: 1, roll: [3,4]}
+</script>
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[2121,2178] -->
+<meta name="description"  content="无聊，没教程写，随手写个脚本算了，配合其他的 Aria2教程使用。 系统要求 CentOS 7+ / Debian 6+ / Ubuntu 14.04 + 推荐 Debian 7" />
+
+<meta name="keywords"  content="bt,shell,磁力链接,脚本" />
+
+<link rel="canonical" href="index.html" />
+<!-- /all in one seo pack -->
+<link rel='stylesheet' id='toggle-box-css'  href='../wp-content/plugins/toggle-box/toggle-box-ver=4.2.13.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='../wp-content/themes/yusi1.0/style-ver=1.0.css' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery.min-ver=1.0.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/toggle-box/js/toggle-box-ver=4.2.13.js'></script>
+<script type='text/javascript' src='../wp-content/plugins/wp-images-lazy-loading/js/jquery.lazyload.min-ver=1.9.3.js'></script>
+<link rel='prev' title='『优惠』CubeCloud 魔方云 — 新加坡 OpenVZ 512M 500GB 前十名流量翻倍 149元/半年' href='../vpszy-14/index.html' />
+<link rel='next' title='Linux 更换密码登陆方式 为使用 Key密匙安全登陆，避免被暴力破解密码' href='../linux-jc9/index.html' />
+<link rel='shortlink' href='index.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="stylesheet" href="../wp-content/plugins/wp-content-index/style.css" type="text/css" media="all" />
+<style type='text/css'>img.lazy { display: none; }
+</style>
+<meta name="keywords" content="BT, shell, 磁力链接, 脚本, Shell脚本">
+<meta name="description" content="无聊，没教程写，随手写个脚本算了，配合其他的 Aria2教程使用。 系统要求 CentOS 7+ / Debian 6+ / Ubuntu 14.04 +  推荐 Debian 7 x64，这个是我一直使用的系统，我的脚本在这个系统上面出错率最低。 注意：本脚本只是安装Aria2后端，安装后默认会启动，但是还需要前端面板配合使用，如 Aria2 Web UI 或 AriaNG，教程看这里：https://doub.io/all-one/">
+<!--[if lt IE 9]><script src="https://doub.io/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1!important}.dg.main .close-button.drag,.dg.main:hover .close-button{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;transition:opacity .1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save>ul{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height .1s ease-out;transition:height .1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid transparent}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.boolean,.dg .cr.boolean *,.dg .cr.function,.dg .cr.function *,.dg .cr.function .property-name{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco,monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px Lucida Grande,sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid hsla(0,0%,100%,.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.boolean:hover,.dg .cr.function:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}</style>
+<script type="text/javascript">try {
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AdFox_getCodeScript = function() {};
+AG_onLoad(function() { AG_each('iframe[id^="AdFox_iframe_"]', function(el) { if (el && el.parentNode) { el.parentNode.removeChild(el); } }); });
+try { Object.defineProperty(window, 'noAdsAtAll', { get: function() { return true; } }); } catch (ex) {}
+navigator.getBattery = undefined;
+(function() { window.Ya = window.Ya || {}; window.Ya.Metrika = function() { var noop = function() {}; this.addFileExtension = noop; this.extLink = noop; this.file = noop; this.hit = noop; this.notBounce = noop; this.params = noop; this.reachGoal = noop; this.replacePhones = noop; this.clickmap = noop; this.trackLinks = noop; }; })();
+var _gaq = []; var _gat = { _getTracker: function() { return { _initData: function(){}, _trackPageview: function(){}, _trackEvent: function(){}, _setAllowLinker: function() {}, _setCustomVar: function() {} } }, _createTracker: function() { return this._getTracker(); }, _anonymizeIp: function() {} };
+function urchinTracker() {};
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script>
+</head>
+<body class="single single-post postid-2187 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="../index.html">
+                        <h1>
+                                                        <span style="font-family:'jin_mei_mxplzx86d456993036';color: #fff;font-weight: normal;font-size: 54px;animation: shake-slow 300s ease-in-out infinite;"class="preview-item small shake-slow shake-constant shake-constant--hover">逗比根据地</span>
+                                                        <span style="font-family:'LiDeBiao-Xing320e75d0253036';color: #fff;font-size: 24px;animation: shake-slow 300s ease-in-out infinite;" class="preview-item small shake-slow shake-constant shake-constant--hover">– 世界那么逗，我想出去看看</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li><a href="../index.html"><i class="fa fa-flag"></i> 首页</a></li>
+<li><a target="_blank" href="../dbtj/index.html"><i class="fa fa-thumbs-up"></i> 逗比推荐</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../dbwz/index.html">碉堡网站</a></li>
+	<li><a target="_blank" href="../dbrj/index.html">逗比软件</a></li>
+	<li><a target="_blank" href="../xnzj/index.html">虚拟主机</a></li>
+	<li><a target="_blank" href="../vpszy/index.html">VPS资源</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../kxsw/index.html"><i class="fa fa-google"></i> 科学上网</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../androidkxsw/index.html">安卓合集</a></li>
+	<li><a target="_blank" href="../pckxsw/index.html">电脑合集</a></li>
+	<li><a target="_blank" href="../wlzy/index.html">网络资源</a></li>
+	<li><a target="_blank" href="../jzzy/index.html">建站资源</a></li>
+	<li><a target="_blank" href="../vpnzy/index.html">VPN资源</a></li>
+	<li class="current-post-ancestor current-menu-parent"><a target="_blank" href="../shell/index.html">Shell脚本</a></li>
+	<li><a target="_blank" href="../linux/index.html">Linux教程</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../ss-jc26/index.html"><i class="fa fa-paper-plane"></i> Shadowsocks</a>
+<ul class="sub-menu">
+	<li><a target="_blank" href="../all-one/index.html"><span style="color: #ffe200;">网站文章 合辑</span></a></li>
+	<li><a target="_blank" href="../sszhfx/index.html">免费账号 分享</a></li>
+	<li><a target="_blank" href="../ss-jc26/index.html">所有教程 合辑</a></li>
+	<li><a target="_blank" href="../ss-jc35/index.html">小白常见 问题</a></li>
+	<li><a target="_blank" href="../ss-jc39/index.html">故障排除 方法</a></li>
+	<li><a target="_blank" href="../ss-jc42/index.html">一键管理 脚本</a></li>
+	<li><a target="_blank" href="../ss-jc60/index.html">一键管理 脚本2</a></li>
+</ul>
+</li>
+<li><a target="_blank" href="../vps-tj/index.html"><i class="fa fa-tasks"></i> 便宜VPS推荐</a></li>
+<li><a target="_blank" href="https://softs.fun"><i class="fa fa-cloud"></i> 逗比云</a></li>
+<li><a target="_blank" href="../dashang/index.html"><span style="color: #ff6464;"><i class="fa fa-heart"></i></span> 捐赠打赏</a></li>
+<li><a target="_blank" href="../guestbook/index.html"><i class="fa fa-pencil-square-o"></i> 留言</a></li>
+<li style="float:right;">
+                    <div class="toggle-search" style="width: 60px;"><i class="fa fa-search"></i><a href="index-replytocom=17704.html#" style="padding: 0;">搜索</a></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='https://doub.io/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="../index.html"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='请善用搜索功能...';" onfocus="if(this.value=='请善用搜索功能...')this.value='';" value="请善用搜索功能..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 在曝光抄袭我免费SS账号的网站后，一些人就对它们进行了DD攻击，然后某站觉得是我打的，于是又怼我网站，背锅了。  <div style="float: right;margin: 0 10px;"><a target="_blank" href="../tougao/index.html"><i class="fa fa-envelope" style="color: #1abc9c;opacity: 1;"></i>投稿文章</a> | <a target="_blank" href="../guanggao/index.html"><i class="fa fa-money" style="color: #1abc9c;opacity: 1;"></i>广告投放</a> | <a target="_blank" href="https://doub.io/go/tg"><i class="fa fa-paper-plane" style="color: #1abc9c;opacity: 1;"></i>Telegram 群组</a> / <a target="_blank" href="https://doub.io/go/tg_a">公告频道</a> </div></div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+			<h1 class="article-title"><a href="index.html">『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="../shell/index.html"> Shell脚本</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="../author/toyo/index.html">Toyo</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 4个月前 (05-07)</time>
+				<!-- span class="muted"><i class="fa fa-eye"></i> 2605℃</span -->
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="index.html#comments">52评论</a></span>							</div>
+		</header>
+		<article class="article-content">
+			<div id="content-index" class="content-index" style="margin:0 0 10px 10px;float:right;"><div class="content-index-title">文章目录</div><span class="content-index-toctoggle">[<a id="content-index-togglelink" href="javascript:content_index_toggleToc()">显示</a>]</span>
+<script type="text/javascript" language="javascript">
+window.content_index_showTocToggle=false;function content_index_toggleToc(){var tts="显示";var tth="隐藏";if(window.content_index_showTocToggle){window.content_index_showTocToggle=false;document.getElementById("content-index-contents").style.display="none";document.getElementById("content-index-togglelink").innerHTML=tts}else{window.content_index_showTocToggle=true;document.getElementById("content-index-contents").style.display="block";document.getElementById("content-index-togglelink").innerHTML=tth}}
+</script>
+<ul id="content-index-contents" style="display: none;"><li class="content-index-level-1"><a href="index.html#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82" title="系统要求"><span>系统要求</span></a></li><li class="content-index-level-1"><a href="index.html#%E8%84%9A%E6%9C%AC%E7%89%88%E6%9C%AC" title="脚本版本"><span>脚本版本</span></a></li><li class="content-index-level-1"><a href="index.html#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4" title="安装步骤"><span>安装步骤</span></a></li><li class="content-index-level-1"><a href="index.html#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" title="使用说明"><span>使用说明</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C" title="其他操作"><span>其他操作</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E" title="其他说明"><span>其他说明</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BAwget:%C2%A0unknown%20host%20%E2%80%9Csofts.fun%E2%80%9D%20%E4%B9%8B%E7%B1%BB%E7%9A%84%E9%94%99%E8%AF%AF" title="提示wget: unknown host “softs.fun” 之类的错误"><span>提示wget: unknown host “softs.fun” 之类的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E6%8F%90%E7%A4%BA%20wget:%20command%20not%20found%20%E7%9A%84%E9%94%99%E8%AF%AF" title="提示 wget: command not found 的错误"><span>提示 wget: command not found 的错误</span></a></li><li class="content-index-level-2"><a href="index.html#%E5%8D%87%E7%BA%A7%E8%84%9A%E6%9C%AC" title="升级脚本"><span>升级脚本</span></a></li></ul></li><li class="content-index-level-1"><a href="index.html#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97" title="更新日志"><span>更新日志</span></a><ul class="children"><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B409%E6%9C%8805%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.4" title="2017年09月05日，版本 v1.0.4"><span>2017年09月05日，版本 v1.0.4</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B408%E6%9C%8828%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.3" title="2017年08月28日，版本 v1.0.3"><span>2017年08月28日，版本 v1.0.3</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B408%E6%9C%8824%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.2" title="2017年08月24日，版本 v1.0.2"><span>2017年08月24日，版本 v1.0.2</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B405%E6%9C%8809%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.1" title="2017年05月09日，版本 v1.0.1"><span>2017年05月09日，版本 v1.0.1</span></a></li><li class="content-index-level-2"><a href="index.html#2017%E5%B9%B405%E6%9C%8807%E6%97%A5%EF%BC%8C%E7%89%88%E6%9C%AC%20v1.0.0" title="2017年05月07日，版本 v1.0.0"><span>2017年05月07日，版本 v1.0.0</span></a></li></ul></li></ul></div>
+<div class="old-message">本文最后更新于 <a style="color: #ff6464;"><strong>2017年9月5日 11:21</strong></a> 可能会因为没有更新而失效。如已失效或需要修正，请留言！</div><p>无聊，没教程写，随手写个脚本算了，<strong>配合其他的 Aria2教程使用。</strong></p>
+<h2 id="系统要求">系统要求</h2>
+<p>CentOS 7+ / Debian 6+ / Ubuntu 14.04 +</p>
+<p>推荐 Debian 7 x64，这个是我一直使用的系统，我的脚本在这个系统上面出错率最低。</p>
+<blockquote><p><strong>注意：本脚本只是安装Aria2后端，安装后默认会启动</strong>，但是还需要前端面板配合使用，如 <strong>Aria2 Web UI 或 AriaNG</strong>，教程看这里：<a href="../all-one/index.html#BT%E3%80%81%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5%E4%B8%8B%E8%BD%BD%20%E7%9B%B8%E5%85%B3%E6%95%99%E7%A8%8B" target="_blank">https://doub.io/all-one/#BT、磁力链接下载 相关教程</a></p>
+<p><strong>注意：</strong>CentOS6 因为源没有 Aria2包，所以不支持安装Aria2，请更换 CentOS7 或其他系统（推荐Debian 7 x64）！</p></blockquote>
+<h2 id="脚本版本">脚本版本</h2>
+<p>Ver: 1.0.4</p>
+<h2 id="安装步骤">安装步骤</h2>
+<p>执行下面的代码下载并运行脚本。</p>
+<pre class="prettyprint linenums">wget -N --no-check-certificate https://softs.fun/Bash/aria2.sh &amp;&amp; chmod +x aria2.sh &amp;&amp; bash aria2.sh
+
+# 如果上面这个脚本无法下载，尝试使用备用下载：
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/aria2.sh &amp;&amp; chmod +x aria2.sh &amp;&amp; bash aria2.sh
+</pre>
+<p>运行脚本后会出现脚本操作菜单，选择并输入<code> 1 </code>就会开始安装。</p>
+<h2 id="使用说明">使用说明</h2>
+<p>进入下载脚本的目录并运行脚本：</p>
+<pre class="prettyprint linenums">./aria2.sh
+</pre>
+<p>然后选择你要执行的选项即可。</p>
+<pre class="prettyprint linenums">Aria2 一键安装管理脚本 [vx.x.x]
+-- Toyo | doub.io/shell-jc4 --
+
+0. 升级脚本
+————————————
+1. 安装 Aria2
+2. 卸载 Aria2
+————————————
+3. 启动 Aria2
+4. 停止 Aria2
+5. 重启 Aria2
+————————————
+6. 修改 配置文件
+7. 查看 日志信息
+————————————
+
+当前状态: 已安装 并 已启动
+
+请输入数字 [0-7]:
+</pre>
+<h3 id="其他操作">其他操作</h3>
+<p><strong>启动：</strong>service aria2 start</p>
+<p><strong>停止：</strong>service aria2 stop</p>
+<p><strong>重启：</strong>service aria2 restart</p>
+<p><strong>查看状态：</strong>service aria2 status</p>
+<p><strong>配置文件：</strong>/root/.aria2/aria2.conf （配置文件包含中文注释，但是一些系统可能不支持显示中文）</p>
+<p><strong>默认密匙：</strong>doub.io</p>
+<p><strong>下载目录：</strong>/usr/local/caddy/www/aria2/Download</p>
+<h2 id="其他说明">其他说明</h2>
+<blockquote><p><strong>注意：本脚本只是安装Aria2后端，安装后默认会启动</strong>，但是还需要前端面板配合使用，如 <strong>Aria2 Web UI 或 AriaNG</strong>，教程看这里：<a href="../all-one/index.html#BT%E3%80%81%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5%E4%B8%8B%E8%BD%BD%20%E7%9B%B8%E5%85%B3%E6%95%99%E7%A8%8B" target="_blank">https://doub.io/all-one/#BT、磁力链接下载 相关教程</a></p></blockquote>
+<h3 id="提示wget: unknown host “softs.fun” 之类的错误">提示wget: unknown host “softs.fun” 之类的错误</h3>
+<p>这是无法解析我的域名，多半是DNS的问题，请更换DNS为谷歌DNS(以下两行一起复制 一起执行)。</p>
+<pre class="prettyprint linenums">echo -e "nameserver 8.8.8.8
+nameserver 8.8.4.4" &gt; /etc/resolv.conf
+</pre>
+<h3 id="提示 wget: command not found 的错误">提示 wget: command not found 的错误</h3>
+<p>这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。</p>
+<pre class="prettyprint linenums"># CentOS系统:
+yum install -y wget
+
+# Debian/Ubuntu系统:
+apt-get install -y wget
+</pre>
+<h3 id="升级脚本">升级脚本</h3>
+<p>升级脚本只需要运行脚本，然后选择并输入<code> 0 </code>回车即可，会自动检测最新版本并下载，当然重新下载脚本文件也可以，会自动覆盖原文件。</p>
+<h2 id="更新日志">更新日志</h2>
+<h3 id="2017年09月05日，版本 v1.0.4">2017年09月05日，版本 v1.0.4</h3>
+<p><strong>1.优化</strong> CentOS7系统 Aria2安装步骤，提高成功率。</p>
+<h3 id="2017年08月28日，版本 v1.0.3">2017年08月28日，版本 v1.0.3</h3>
+<p><strong>1.修复</strong> 上个版本 CentOS 系统判断不准确的问题。</p>
+<h3 id="2017年08月24日，版本 v1.0.2">2017年08月24日，版本 v1.0.2</h3>
+<p><strong>1.新增</strong> CentOS 系统判断（CentOS6因为源没有Aria2包，所以不支持安装）。</p>
+<h3 id="2017年05月09日，版本 v1.0.1">2017年05月09日，版本 v1.0.1</h3>
+<p><strong>1.修复</strong> 检测安装状态的问题。</p>
+<p><strong>2.修复</strong> 安装Aria2后，检测是否安装成功的问题。</p>
+<h3 id="2017年05月07日，版本 v1.0.0">2017年05月07日，版本 v1.0.0</h3>
+<p><strong>1. 推出</strong> 正式版。</p>
+<p><pre style="border-left: solid 4px #1abc9c;"><strong>转载请超链接注明：</strong><a href="../index.html">逗比根据地</a> &raquo; <a href="index.html">『原创』BT/种子/磁力链接下载工具 —— Aria2 一键安装管理脚本</a></pre><pre><strong>责任声明：</strong>本站一切资源仅用作交流学习，请勿用作商业或违法行为！如造成任何后果，本站概不负责！</pre></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="2187" id="Addlike" class="action"><i class="fa fa-thumbs-o-up"></i>赞 (<span class="count">25</span>)</a><span class="or">or</span><a class="action dashang-single" target="_blank" href="../dashang/index.html"><i style="color: #ff6464;" class="fa fa-heart"></i>打赏</a>
+</div>
+	</article>	
+				<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="../tag/bt/index.html" rel="tag">BT</a><a href="../tag/shell/index.html" rel="tag">shell</a><a href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html" rel="tag">磁力链接</a><a href="../tag/%E8%84%9A%E6%9C%AC/index.html" rel="tag">脚本</a></div></footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="../vpszy-14/index.html" rel="prev">『优惠』CubeCloud 魔方云 — 新加坡 OpenVZ 512M 500GB 前十名流量翻倍 149元/半年</a></span>
+			<span class="article-nav-next"><a href="../linux-jc9/index.html" rel="next">Linux 更换密码登陆方式 为使用 Key密匙安全登陆，避免被暴力破解密码</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="../ss-jc60/index.html" title="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等" />	<br><span class="r_title">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../vpnzy-7/index.html" title="『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-vpn2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本" />	<br><span class="r_title">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../shell-jc5/index.html" title="『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本" />	<br><span class="r_title">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="../ss-jc56/index.html" title="『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本" target="_blank">
+<img src="../wp-content/themes/yusi1.0/timthumb.php-src=https---doub.io-wp-content-uploads-shadowsocksR-2.png&amp;h=110&amp;w=185&amp;q=90&amp;zc=1&amp;ct=1.png" alt="『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本" />	<br><span class="r_title">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="../ss-jc60/index.html">『原创』ShadowsocksR MudbJSON模式多用户一键脚本 支持流量限制等</a></li><li><i class="fa fa-minus"></i><a href="../vpnzy-7/index.html">『原创』Ocserv 搭建 Cisco AnyConnect VPN服务端 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc5/index.html">『原创』ShadowsocksR/SS账号 在线云监控 — SSRStatus 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../ss-jc56/index.html">『原创』ShadowsocksR 批量 快速验证账号可用性 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc3/index.html">『原创』多服务器 云探针、云监控 —— ServerStatus 一键管理脚本</a></li><li><i class="fa fa-minus"></i><a href="../dowsdns-jc3/index.html">『原创』快速自建DNS服务器以 科学上网+屏蔽广告 —— dowsDNS 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../shell-jc2/index.html">『原创』iptables 封禁 BT/PT/SPAM(垃圾邮件)和自定义端口/关键词 一键脚本</a></li><li><i class="fa fa-minus"></i><a href="../adbyby-jc2/index.html">『原创』Linux 广告过滤/屏蔽软件 —— ADbyby 一键安装脚本</a></li>
+</ul></div></div>		</div>
+						<div id="respond" class="no_webshot">
+		<form action="https://doub.io/wp-comments-post.php" method="post" id="commentform">
+		
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+							</div>
+			<div class="comt-author pull-left">
+			发表我的评论			</div>
+			<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+		</div>
+		
+		<div class="comt">
+			<div class="comt-box">
+				<textarea placeholder="看见这么吊的文章，还不惊为天人？赶紧写下感想膜拜一下吧！哇哇哇（如问略复杂的问题请Telegram[t.me/doubi]联系本人，评论里只适合简单的交流。）" class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+				<div class="comt-ctrl">
+					<button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+					<div class="comt-tips pull-right"><input type='hidden' name='comment_post_ID' value='2187' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='17704' />
+</div>
+					<span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+					<span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked"/>有人回复时邮件通知我</label></span>
+				</div>
+			</div>
+
+												<div class="comt-comterinfo" id="comment-author-info" >
+						<h4>Hi，您需要填写昵称和邮箱！</h4>
+						<ul>
+							<li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+							<li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+						</ul>
+					</div>
+									</div>
+
+		
+	</form>
+	</div>
+<div id="postcomments">
+	<div id="comments">
+		<i class="fa fa-comments-o"></i> <b> (52)</b>个小伙伴在吐槽
+	</div>
+	<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-17810"><div class="c-avatar"><div class="c-main" id="div-comment-17810">rm -rf /etc/init.d/aria2 卸载这有错误<div class="c-meta"><span class="c-author">小白</span>2017-08-30 09:44 <a class='comment-reply-link' href='index-replytocom=17810.html#respond' onclick='return addComment.moveForm( "div-comment-17810", "17810", "respond", "2187" )' aria-label='回复给小白'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17775"><div class="c-avatar"><div class="c-main" id="div-comment-17775">CADDY申请了https证书怎么让ARIA2也用这个证书啊<div class="c-meta"><span class="c-author">ufo86817</span>2017-08-29 20:30 <a class='comment-reply-link' href='index-replytocom=17775.html#respond' onclick='return addComment.moveForm( "div-comment-17775", "17775", "respond", "2187" )' aria-label='回复给ufo86817'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-17646"><div class="c-avatar"><div class="c-main" id="div-comment-17646">[错误] CentOS6 系统不支持安装 Aria2（源没有Aria2包），请更换 CentOS7 或其他系统安装 !
+
+cat /etc/centos-release
+CentOS Linux release 7.3.1611 (Core)<div class="c-meta"><span class="c-author"><a href='http://1' rel='external nofollow' class='url'>xawecwa</a></span>2017-08-27 10:11 <a class='comment-reply-link' href='index-replytocom=17646.html#respond' onclick='return addComment.moveForm( "div-comment-17646", "17646", "respond", "2187" )' aria-label='回复给xawecwa'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17648"><div class="c-avatar"><div class="c-main" id="div-comment-17648"><pre class="prettyprint linenums" >
+cat /etc/redhat-release |grep 6\..*|grep -i centos>/dev/null
+echo $?
+返回 1 还是 0 。
+</pre><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-27 11:34 <a class='comment-reply-link' href='index-replytocom=17648.html#respond' onclick='return addComment.moveForm( "div-comment-17648", "17648", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-17704"><div class="c-avatar"><div class="c-main" id="div-comment-17704">和这位兄弟一样的问题，阿里云国际，确定装的是centos7，lsb_release -a
+LSB Version:	:core-4.1-amd64:core-4.1-noarch
+Distributor ID:	CentOS
+Description:	CentOS Linux release 7.3.1611 (Core) 
+Release:	7.3.1611
+Codename:	Core                            ，然后用大神你说的返回的是0<div class="c-meta"><span class="c-author">Dr.</span>2017-08-28 18:40 <a class='comment-reply-link' href='index-replytocom=17704.html#respond' onclick='return addComment.moveForm( "div-comment-17704", "17704", "respond", "2187" )' aria-label='回复给Dr.'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-4" id="comment-17713"><div class="c-avatar"><div class="c-main" id="div-comment-17713">请更新脚本，v1.0.3已修复。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-28 19:48 <a class='comment-reply-link' href='index-replytocom=17713.html#respond' onclick='return addComment.moveForm( "div-comment-17713", "17713", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-17097"><div class="c-avatar"><div class="c-main" id="div-comment-17097">请输入数字 [0-7]:1
+[信息] 开始安装/配置 依赖...
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: linux.mirrors.es.net
+ * elrepo-kernel: repos.lax-noc.com
+ * extras: mirror.hmc.edu
+ * updates: repos-lax.psychz.net
+No packages marked for update
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: linux.mirrors.es.net
+ * elrepo-kernel: repos.lax-noc.com
+ * extras: mirror.hmc.edu
+ * updates: repos-lax.psychz.net
+No package aria2 available.
+Package curl-7.29.0-35.el7.centos.x86_64 already installed and latest version
+Package unzip-6.0-16.el7.x86_64 already installed and latest version
+Package 2:vim-enhanced-7.4.160-1.el7_3.1.x86_64 already installed and latest version
+Nothing to do
+[错误] Aria2 安装失败，请检查 !<div class="c-meta"><span class="c-author"><a href='http://comicmobi.com' rel='external nofollow' class='url'>278559165</a></span>2017-08-15 04:56 <a class='comment-reply-link' href='index-replytocom=17097.html#respond' onclick='return addComment.moveForm( "div-comment-17097", "17097", "respond", "2187" )' aria-label='回复给278559165'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-17111"><div class="c-avatar"><div class="c-main" id="div-comment-17111">系统要求：CentOS 7+ / Debian 6+ / Ubuntu 14.04 +，你的是 CentOS 6 吧，CentOS 6 的源里是没有 Aria2的。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-08-15 10:26 <a class='comment-reply-link' href='index-replytocom=17111.html#respond' onclick='return addComment.moveForm( "div-comment-17111", "17111", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-17165"><div class="c-avatar"><div class="c-main" id="div-comment-17165">谢谢,已更换debian7<div class="c-meta"><span class="c-author"><a href='http://comicmobi.com' rel='external nofollow' class='url'>278559165</a></span>2017-08-16 00:38 <a class='comment-reply-link' href='index-replytocom=17165.html#respond' onclick='return addComment.moveForm( "div-comment-17165", "17165", "respond", "2187" )' aria-label='回复给278559165'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-16200"><div class="c-avatar"><div class="c-main" id="div-comment-16200">安装时未用screen而到一半 ssh断开，文件不完整也提示成功安装而且也不能卸载，能给出个重新覆盖安装吗<div class="c-meta"><span class="c-author">luan</span>2017-07-31 06:53 <a class='comment-reply-link' href='index-replytocom=16200.html#respond' onclick='return addComment.moveForm( "div-comment-16200", "16200", "respond", "2187" )' aria-label='回复给luan'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-16201"><div class="c-avatar"><div class="c-main" id="div-comment-16201">那就手动卸载：
+<pre class="prettyprint linenums" >
+rm -rf /root/.aria2
+rm -rf /etc/init.d/aria2
+
+# CentOS系统：
+chkconfig --del aria2
+yum remove aria2 -y
+# Debian/Ubuntu 系统：
+update-rc.d -f aria2 remove
+apt-get remove --purge aria2 -y
+</pre><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-31 06:58 <a class='comment-reply-link' href='index-replytocom=16201.html#respond' onclick='return addComment.moveForm( "div-comment-16201", "16201", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-16036"><div class="c-avatar"><div class="c-main" id="div-comment-16036">大佬，下载任何文件都报错
+07/28 15:00:37 [[1;31mERROR[0m] CUID#10 - Download aborted. URI=http://down.80host.com/iso/CentOS-6.7-x86_64-netinstall.iso
+Exception: [AbstractCommand.cc:869] errorCode=1 Failed to establish connection, cause: Connection timed out
+
+07/28 15:00:37 [[1;32mNOTICE[0m] Download GID#0b4ba3a7c92506b0 not complete:<div class="c-meta"><span class="c-author">JJ</span>2017-07-28 15:12 <a class='comment-reply-link' href='index-replytocom=16036.html#respond' onclick='return addComment.moveForm( "div-comment-16036", "16036", "respond", "2187" )' aria-label='回复给JJ'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-16051"><div class="c-avatar"><div class="c-main" id="div-comment-16051">Connection timed out。下载文件连接超时。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-28 19:11 <a class='comment-reply-link' href='index-replytocom=16051.html#respond' onclick='return addComment.moveForm( "div-comment-16051", "16051", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-16027"><div class="c-avatar"><div class="c-main" id="div-comment-16027">搞定了，把下载下来的2个文件手动复制过去<div class="c-meta"><span class="c-author">JJ</span>2017-07-28 13:29 <a class='comment-reply-link' href='index-replytocom=16027.html#respond' onclick='return addComment.moveForm( "div-comment-16027", "16027", "respond", "2187" )' aria-label='回复给JJ'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-16019"><div class="c-avatar"><div class="c-main" id="div-comment-16019">[信息] Aria2服务 管理脚本下载完成 !
+[错误] Aria2 配置文件不存在 
+大佬是咋回事呢<div class="c-meta"><span class="c-author">JJ</span>2017-07-28 12:23 <a class='comment-reply-link' href='index-replytocom=16019.html#respond' onclick='return addComment.moveForm( "div-comment-16019", "16019", "respond", "2187" )' aria-label='回复给JJ'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-16026"><div class="c-avatar"><div class="c-main" id="div-comment-16026">查看 /root/.aria2/aria2.conf 配置文件是否存在，贴出安装时更多的步骤报错信息。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-28 12:52 <a class='comment-reply-link' href='index-replytocom=16026.html#respond' onclick='return addComment.moveForm( "div-comment-16026", "16026", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-15395"><div class="c-avatar"><div class="c-main" id="div-comment-15395">Toyo大佬，请问如何关闭rpc，因为每次登陆都要输入rpc密码真的好麻烦...<div class="c-meta"><span class="c-author">小白</span>2017-07-10 13:03 <a class='comment-reply-link' href='index-replytocom=15395.html#respond' onclick='return addComment.moveForm( "div-comment-15395", "15395", "respond", "2187" )' aria-label='回复给小白'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-15404"><div class="c-avatar"><div class="c-main" id="div-comment-15404">应该是无法取消的，因为这是验证手段，否则别人知道了你的Aria2后端IP和端口就能直接使用了。不过如果使用那些前端远程管理网页的话，浏览器一般都会记住Cookie的，我这边就是链接一次后除非Cookie到期失效或清理浏览器缓存，否则就不用每次都输入密码登陆。更换浏览器试试。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-07-11 13:36 <a class='comment-reply-link' href='index-replytocom=15404.html#respond' onclick='return addComment.moveForm( "div-comment-15404", "15404", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-13993"><div class="c-avatar"><div class="c-main" id="div-comment-13993">debian7.2表示不能自启 得添加什么<div class="c-meta"><span class="c-author">CN</span>2017-05-20 20:30 <a class='comment-reply-link' href='index-replytocom=13993.html#respond' onclick='return addComment.moveForm( "div-comment-13993", "13993", "respond", "2187" )' aria-label='回复给CN'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-2" id="comment-14038"><div class="c-avatar"><div class="c-main" id="div-comment-14038">还有如何下载回本地..<div class="c-meta"><span class="c-author">CN</span>2017-05-22 22:17 <a class='comment-reply-link' href='index-replytocom=14038.html#respond' onclick='return addComment.moveForm( "div-comment-14038", "14038", "respond", "2187" )' aria-label='回复给CN'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1" id="comment-13870"><div class="c-avatar"><div class="c-main" id="div-comment-13870">你好，我安装好了，aria2成功运行但是下载失败
+root@raspberrypi:~/.aria2# aria2c https://iiio.io/download/20170514/Android安卓跟Linux系列.zip
+05/16 21:59:01 [ERROR] IPv4 RPC: failed to bind TCP port 6800Exception: [SocketCore.cc:292] errorCode=1 绑定接口失败, 原因: 地址已在使用
+05/16 21:59:01 [ERROR] IPv6 RPC: failed to bind TCP port 6800
+Exception: [SocketCore.cc:292] errorCode=1 绑定接口失败, 原因: 地址已在使用
+05/16 21:59:01 [ERROR] 捕捉到异常
+Exception: [DownloadEngineFactory.cc:215] errorCode=1 Failed to setup RPC server.
+用netstat查看6800端口也正在监听，还有我系统设置的中文 字体为utf-8 但是aria2.conf配置文件中文仍然显示为乱码<div class="c-meta"><span class="c-author">tiger233</span>2017-05-16 22:04 <a class='comment-reply-link' href='index-replytocom=13870.html#respond' onclick='return addComment.moveForm( "div-comment-13870", "13870", "respond", "2187" )' aria-label='回复给tiger233'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-13876"><div class="c-avatar"><div class="c-main" id="div-comment-13876">你是不是已经运行了 Aria2了？脚本安装后，默认就是运行 Aria2的，请配合<a href="../wlzy-4/index.html" target="_blank" rel="nofollow"> Aria2 Web UI</a>或<a href="../wlzy-30/index.html" target="_blank" rel="nofollow">AriaNG面板</a>使用。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-17 01:08 <a class='comment-reply-link' href='index-replytocom=13876.html#respond' onclick='return addComment.moveForm( "div-comment-13876", "13876", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-13837"><div class="c-avatar"><div class="c-main" id="div-comment-13837">[ERROR] IPv4 RPC: failed to bind TCP port 6800
+Exception: [SocketCore.cc:312] errorCode=1 Failed to bind a socket, cause: Address already in use
+
+Debain8  不知道怎么解决 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">lbroot</span>2017-05-15 20:07 <a class='comment-reply-link' href='index-replytocom=13837.html#respond' onclick='return addComment.moveForm( "div-comment-13837", "13837", "respond", "2187" )' aria-label='回复给lbroot'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor odd alt depth-2" id="comment-13838"><div class="c-avatar"><div class="c-main" id="div-comment-13838"><pre class="prettyprint linenums" >
+[ERROR] IPv4 RPC: failed to bind TCP port 6800
+Exception: [SocketCore.cc:312] errorCode=1 Failed to bind a socket, cause: Address already in use
+# 谷歌机翻
+[错误] IPv4 RPC：无法绑定TCP端口6800
+异常：[SocketCore.cc:312] errorCode = 1无法绑定套接字，原因：地址已在使用中
+</pre>
+6800端口被占用导致无法绑定，从而启动失败。为什么遇到问题先不是自己查一查或翻译看一下呢？<code> netstat -lntp </code>排除端口占用程序。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-15 21:34 <a class='comment-reply-link' href='index-replytocom=13838.html#respond' onclick='return addComment.moveForm( "div-comment-13838", "13838", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-3" id="comment-13871"><div class="c-avatar"><div class="c-main" id="div-comment-13871">我的也是这种情况 但是我查询端口就是被aria2c监听的啊 为什么还无法绑定 不知道该怎么解决?我换了一个端口仍然还是这样<div class="c-meta"><span class="c-author">tiger233</span>2017-05-16 22:12 <a class='comment-reply-link' href='index-replytocom=13871.html#respond' onclick='return addComment.moveForm( "div-comment-13871", "13871", "respond", "2187" )' aria-label='回复给tiger233'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13652"><div class="c-avatar"><div class="c-main" id="div-comment-13652">怎么让它支持http协议下载？<div class="c-meta"><span class="c-author">天一</span>2017-05-11 00:31 <a class='comment-reply-link' href='index-replytocom=13652.html#respond' onclick='return addComment.moveForm( "div-comment-13652", "13652", "respond", "2187" )' aria-label='回复给天一'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13666"><div class="c-avatar"><div class="c-main" id="div-comment-13666">Aria2本身就是支持http协议下载啊，你添加http连接去下载就是了啊！<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-11 13:02 <a class='comment-reply-link' href='index-replytocom=13666.html#respond' onclick='return addComment.moveForm( "div-comment-13666", "13666", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13646"><div class="c-avatar"><div class="c-main" id="div-comment-13646">建议增加是否使用域名选项和ariang前端端口自定义（就是80改其他端口）<div class="c-meta"><span class="c-author">kurokitomoko</span>2017-05-10 20:24 <a class='comment-reply-link' href='index-replytocom=13646.html#respond' onclick='return addComment.moveForm( "div-comment-13646", "13646", "respond", "2187" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13651"><div class="c-avatar"><div class="c-main" id="div-comment-13651">这个脚本只有一个功能：安装Aria2，没有前端等功能也不会考虑，那些自己装。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-11 00:14 <a class='comment-reply-link' href='index-replytocom=13651.html#respond' onclick='return addComment.moveForm( "div-comment-13651", "13651", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13616"><div class="c-avatar"><div class="c-main" id="div-comment-13616">CentOS6的仓库里没有aria2，Repoforge源已经废弃，会安装失败- -另外aria2 1.31的依赖在CentOS6仓库里的版本太旧，Repoforge中最新版本Aria2 1.16的依赖在仓库里版本太新，总之各种问题<div class="c-meta"><span class="c-author">littlef0x</span>2017-05-09 22:18 <a class='comment-reply-link' href='index-replytocom=13616.html#respond' onclick='return addComment.moveForm( "div-comment-13616", "13616", "respond", "2187" )' aria-label='回复给littlef0x'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13617"><div class="c-avatar"><div class="c-main" id="div-comment-13617">反正我不用CentOS。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-09 22:32 <a class='comment-reply-link' href='index-replytocom=13617.html#respond' onclick='return addComment.moveForm( "div-comment-13617", "13617", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-13654"><div class="c-avatar"><div class="c-main" id="div-comment-13654">所以系统要求应该是CentOS7+呀<div class="c-meta"><span class="c-author">littlef0x</span>2017-05-11 00:48 <a class='comment-reply-link' href='index-replytocom=13654.html#respond' onclick='return addComment.moveForm( "div-comment-13654", "13654", "respond", "2187" )' aria-label='回复给littlef0x'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even depth-2" id="comment-13627"><div class="c-avatar"><div class="c-main" id="div-comment-13627">centos要更新到7才行。。。。<div class="c-meta"><span class="c-author">kurokitomoko</span>2017-05-10 10:58 <a class='comment-reply-link' href='index-replytocom=13627.html#respond' onclick='return addComment.moveForm( "div-comment-13627", "13627", "respond", "2187" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-13655"><div class="c-avatar"><div class="c-main" id="div-comment-13655">没有这个模板，目前只能用1.16.4，新版依赖太复杂了懒得一个个找包<div class="c-meta"><span class="c-author">littlef0x</span>2017-05-11 00:50 <a class='comment-reply-link' href='index-replytocom=13655.html#respond' onclick='return addComment.moveForm( "div-comment-13655", "13655", "respond", "2187" )' aria-label='回复给littlef0x'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even thread-odd thread-alt depth-1" id="comment-13604"><div class="c-avatar"><div class="c-main" id="div-comment-13604">啦啦啦，前几天看的这个aria安装太麻烦了，准备叫大佬写个一键脚本，后来又事情忘记了，这次来看，已经好了……难道和大佬心有灵犀一点通？搞基么哈哈哈哈哈<div class="c-meta"><span class="c-author">新一</span>2017-05-09 15:34 <a class='comment-reply-link' href='index-replytocom=13604.html#respond' onclick='return addComment.moveForm( "div-comment-13604", "13604", "respond", "2187" )' aria-label='回复给新一'>回复</a></div></div></div></li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13595"><div class="c-avatar"><div class="c-main" id="div-comment-13595">提示已安装 但是未开启     开启的时候又说未安装。。。<div class="c-meta"><span class="c-author">Sof</span>2017-05-09 12:42 <a class='comment-reply-link' href='index-replytocom=13595.html#respond' onclick='return addComment.moveForm( "div-comment-13595", "13595", "respond", "2187" )' aria-label='回复给Sof'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13598"><div class="c-avatar"><div class="c-main" id="div-comment-13598">这个应该是安装Aria2的时候出问题了，配置文件正常安装，但是Aria2没有安装成功，你升级脚本v1.0.1，然后卸载重装看看。<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-09 14:45 <a class='comment-reply-link' href='index-replytocom=13598.html#respond' onclick='return addComment.moveForm( "div-comment-13598", "13598", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13593"><div class="c-avatar"><div class="c-main" id="div-comment-13593">哥们，我安装成功了。怎么样下载种子呢<div class="c-meta"><span class="c-author">since2004</span>2017-05-09 11:01 <a class='comment-reply-link' href='index-replytocom=13593.html#respond' onclick='return addComment.moveForm( "div-comment-13593", "13593", "respond", "2187" )' aria-label='回复给since2004'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13602"><div class="c-avatar"><div class="c-main" id="div-comment-13602">这只是建好了后端（命令行操控），你还需要前端来控制：<a href="../all-one/index.html#BT%E3%80%81%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5%E4%B8%8B%E8%BD%BD%20%E7%9B%B8%E5%85%B3%E6%95%99%E7%A8%8B" target="_blank" rel="nofollow">https://doub.io/all-one/#BT、磁力链接下载 相关教程</a><div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-09 15:14 <a class='comment-reply-link' href='index-replytocom=13602.html#respond' onclick='return addComment.moveForm( "div-comment-13602", "13602", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13558"><div class="c-avatar"><div class="c-main" id="div-comment-13558">然而自己折腾可以开rpc-security,通过https连接 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">Zazen</span>2017-05-08 07:54 <a class='comment-reply-link' href='index-replytocom=13558.html#respond' onclick='return addComment.moveForm( "div-comment-13558", "13558", "respond", "2187" )' aria-label='回复给Zazen'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-2" id="comment-13582"><div class="c-avatar"><div class="c-main" id="div-comment-13582">首先你需要一个域名:lol:<div class="c-meta"><span class="c-author">kurokitomoko</span>2017-05-08 21:37 <a class='comment-reply-link' href='index-replytocom=13582.html#respond' onclick='return addComment.moveForm( "div-comment-13582", "13582", "respond", "2187" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-13587"><div class="c-avatar"><div class="c-main" id="div-comment-13587">这也是问题?😂😂😂<div class="c-meta"><span class="c-author">Zazen</span>2017-05-09 00:21 <a class='comment-reply-link' href='index-replytocom=13587.html#respond' onclick='return addComment.moveForm( "div-comment-13587", "13587", "respond", "2187" )' aria-label='回复给Zazen'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-4" id="comment-13590"><div class="c-avatar"><div class="c-main" id="div-comment-13590">dalao推荐个域名申请<div class="c-meta"><span class="c-author">kurokitomoko</span>2017-05-09 08:31 <a class='comment-reply-link' href='index-replytocom=13590.html#respond' onclick='return addComment.moveForm( "div-comment-13590", "13590", "respond", "2187" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-5" id="comment-16112"><div class="c-avatar"><div class="c-main" id="div-comment-16112">善用搜索，站内有免费域名申请教程<div class="c-meta"><span class="c-author">KCP</span>2017-07-30 05:48 <a class='comment-reply-link' href='index-replytocom=16112.html#respond' onclick='return addComment.moveForm( "div-comment-16112", "16112", "respond", "2187" )' aria-label='回复给KCP'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment even depth-2" id="comment-17791"><div class="c-avatar"><div class="c-main" id="div-comment-17791">请问证书是用CADDY自动申请额还是另外指定路径的，在哪里申请啊<div class="c-meta"><span class="c-author">ufo86817</span>2017-08-30 00:09 <a class='comment-reply-link' href='index-replytocom=17791.html#respond' onclick='return addComment.moveForm( "div-comment-17791", "17791", "respond", "2187" )' aria-label='回复给ufo86817'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13556"><div class="c-avatar"><div class="c-main" id="div-comment-13556">https://github.com/shadowsocks/shadowsocks-manager
+写个这个教程呗。<div class="c-meta"><span class="c-author">bupoo</span>2017-05-08 01:17 <a class='comment-reply-link' href='index-replytocom=13556.html#respond' onclick='return addComment.moveForm( "div-comment-13556", "13556", "respond", "2187" )' aria-label='回复给bupoo'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-2" id="comment-13581"><div class="c-avatar"><div class="c-main" id="div-comment-13581">估计toyo不会写的，toyo说明不碰。。。<div class="c-meta"><span class="c-author">kurokitomoko</span>2017-05-08 21:36 <a class='comment-reply-link' href='index-replytocom=13581.html#respond' onclick='return addComment.moveForm( "div-comment-13581", "13581", "respond", "2187" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-even depth-1" id="comment-13551"><div class="c-avatar"><div class="c-main" id="div-comment-13551">这个很方便，其实这东西搭建也不难，尤其debian，centos略事多些。主要很多人不好搭建是因为搭建webui的问题多，很多没建过网站。<div class="c-meta"><span class="c-author"><a href='https://www.zrj96.com' rel='external nofollow' class='url'>zrj766</a></span>2017-05-08 00:21 <a class='comment-reply-link' href='index-replytocom=13551.html#respond' onclick='return addComment.moveForm( "div-comment-13551", "13551", "respond", "2187" )' aria-label='回复给zrj766'>回复</a></div></div></div><ul class="children">
+<li class="comment byuser comment-author-toyo bypostauthor even depth-2" id="comment-13552"><div class="c-avatar"><div class="c-main" id="div-comment-13552">步骤很简单，我几乎是量产脚本，拿着以前的脚本改一改就是一个新脚本了 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <br />
+不过一键脚本始终更省力，当明白某个东西的详细安装步骤后，就没必要每次安装都手动安装浪费时间，时间就是金钱 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_neutral.gif" alt=":neutral:" class="wp-smiley" style="height: 1em; max-height: 1em;" /> （主要还是没教程写..<div class="c-meta"><span class="c-author"><a href='../index.html' rel='external nofollow' class='url'>Toyo</a></span>2017-05-08 00:31 <a class='comment-reply-link' href='index-replytocom=13552.html#respond' onclick='return addComment.moveForm( "div-comment-13552", "13552", "respond", "2187" )' aria-label='回复给Toyo'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13540"><div class="c-avatar"><div class="c-main" id="div-comment-13540">这个6666,终于不用手装了 <img data-original="https://doub.io/wp-content/themes/yusi1.0/img/smilies/icon_lol.gif" alt=":lol:" class="wp-smiley" style="height: 1em; max-height: 1em;" /><div class="c-meta"><span class="c-author">kurokitomoko</span>2017-05-07 18:51 <a class='comment-reply-link' href='index-replytocom=13540.html#respond' onclick='return addComment.moveForm( "div-comment-13540", "13540", "respond", "2187" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div><ul class="children">
+<li class="comment even depth-2" id="comment-13546"><div class="c-avatar"><div class="c-main" id="div-comment-13546">安装时没多困难，但aria2是命令行下载工具，命令行！！如果想简单点，搭建WEBUI，又要某一键脚本+初级运维知识<div class="c-meta"><span class="c-author">mrw77</span>2017-05-07 21:19 <a class='comment-reply-link' href='index-replytocom=13546.html#respond' onclick='return addComment.moveForm( "div-comment-13546", "13546", "respond", "2187" )' aria-label='回复给mrw77'>回复</a></div></div></div><ul class="children">
+<li class="comment odd alt depth-3" id="comment-13557"><div class="c-avatar"><div class="c-main" id="div-comment-13557">已经手装不知道多少次了，以前卡在拖文件问题上<div class="c-meta"><span class="c-author">kurokitomoko</span>2017-05-08 07:07 <a class='comment-reply-link' href='index-replytocom=13557.html#respond' onclick='return addComment.moveForm( "div-comment-13557", "13557", "respond", "2187" )' aria-label='回复给kurokitomoko'>回复</a></div></div></div></li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="https://doub.io/go/g-plus/" rel="external nofollow" title="Google plus" target="_blank"><i class="sinaweibo fa fa-google"></i></a><a  href="https://doub.io/go/github/" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="https://doub.io/go/twitter/" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="https://doub.io/go/facebook/" rel="external nofollow" title="Facebook" target="_blank"><i class="facebook fa fa-facebook"></i></a><a href="https://doub.io/go/tg/" rel="external nofollow" title="Telegram" target="_blank"><i class="paper-plane fa fa-paper-plane"></i></a><a href="../feed/index.rss" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_text">			<div class="textwidget"><div style="text-align:center;padding: 10px 20px 5px;">
+<a class="wid-xiaobai" style="padding-top:15px;padding-bottom:15px;background-color: #2196F3;font-size: 16px;font-weight: bold;" target="_blank" href="../all-one/index.html">逗比根据地 所有文章教程分类合辑</a>
+<a class="wid-xiaobai" style="padding-top: 7px;padding-bottom: 7px;background-color: #673AB7;" target="_blank" href="../ss-jc26/index.html">Shadowsocks 指导篇 SS教程合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #E91E63;" target="_blank" href="../sszhfx/index.html">Shadowsocks 免费公共 账号分享</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc39/index.html">Shadowsocks 无法使用 排除方法</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc35/index.html">Shadowsocks 小白 常见问题合辑</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc10/index.html">ShadowsocksR&nbsp; 客户端 小白教程</a>
+<a class="wid-xiaobai" target="_blank" href="../ss-jc41/index.html">ShadowsocksR&nbsp; 服务端 视频教程</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc42/index.html">ShadowsocksR&nbsp; 单用户 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../ss-jc60/index.html">ShadowsocksR&nbsp; 多用户 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-16/index.html">Linux 优化加速技巧 BBR 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../ruisu-jc1/index.html">Linux 优化加速技巧  锐速 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-21/index.html">Linux 优化加速 LotServer 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../wlzy-33/index.html">锐速 / LotServer 配置参数简单说明</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-2/index.html">CentOS/Debian/Ubuntu L2TP &nbsp;一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-3/index.html">CentOS/Debian/Ubuntu IKEv2 一键脚本</a>
+<a class="wid-xiaobai" target="_blank" href="../vpnzy-7/index.html">Debian/Ubuntu AnyConnect &nbsp;&nbsp;&nbsp;一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #FF5722;" target="_blank" href="../linux-jc8/index.html">「持续更新」Linux常见命令介绍 - 基础篇</a>
+<a class="wid-xiaobai wid-xiaobai-red" style="background-color: #03a9f4;" target="_blank" href="../jzzy-3/index.html">一键搭建最简单的私人网盘 FileManager</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../shell-jc2/index.html">Linux封垃圾邮件(SPAM)/BT/PT 一键脚本</a>
+<a class="wid-xiaobai wid-xiaobai-red" target="_blank" href="../wlzy-11/index.html">VPS建博客 安装WordPress 小白视频教程</a>
+<a class="wid-xiaobai" style="background-color: #555555;" target="_blank" href="../paypal-jc2/index.html">PayPal 更换汇率结算方式降低汇率手续费</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../androidkxsw/index.html">安卓科学上网合辑</a>
+<a class="wid-xiaobai" style="width: 45.5%;" target="_blank" href="../pckxsw/index.html">电脑科学上网合辑</a>
+</div></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><a target="_blank" href="https://doub.io/go/minecloud/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/minecloud-04.png" /></a>
+<a target="_blank" href="https://doub.io/go/bwg-56/"><img style="margin-bottom: 10px;" src="../wp-content/uploads/bandwagonhost-01.png" /></a>
+<a target="_blank" href="https://doub.io/go/vultr/"><img src="../wp-content/uploads/vultr-logo8.png" /></a></div>
+		</div><div class="widget widget_text">			<div class="textwidget"><style>.dashang a {
+	position: relative;
+	background-color: #ff6464;
+	color: #fff;
+	padding: 10px 15px;
+	border: 0;
+	padding-right: 50px;
+}
+.dashang a:hover {
+	background-color: #ff4545;
+}
+.dashang i {
+	background-color: #ff4545;
+	font-size: 16px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 27px;
+	padding: 12px 5px 0;
+}
+</style>
+<div class="dashang" style="text-align:center;padding: 20px 0;">
+<a target="_blank" href="../dashang/index.html">打赏大逗比<i class="fa fa-heart"></i></a>
+</div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>逗比の标签</h2></div><div class="d_tags"><a title="56个话题" href="../tag/shadowsocks/index.html">Shadowsocks (56)</a><a title="49个话题" href="../tag/%E6%95%99%E7%A8%8B/index.html">教程 (49)</a><a title="38个话题" href="../tag/kxsw/index.html">科学上网 (38)</a><a title="37个话题" href="../tag/%E8%84%9A%E6%9C%AC/index.html">脚本 (37)</a><a title="24个话题" href="../tag/shadowsocksr/index.html">ShadowsocksR (24)</a><a title="23个话题" href="../tag/vps/index.html">VPS (23)</a><a title="16个话题" href="../tag/linux/index.html">Linux (16)</a><a title="11个话题" href="../tag/vpn/index.html">VPN (11)</a><a title="11个话题" href="../tag/vpsyh/index.html">VPS优惠 (11)</a><a title="10个话题" href="../tag/vps%E8%B5%84%E6%BA%90/index.html">VPS资源 (10)</a><a title="10个话题" href="../tag/shell/index.html">shell (10)</a><a title="8个话题" href="../tag/bt/index.html">BT (8)</a><a title="7个话题" href="../tag/%E6%90%AC%E7%93%A6%E5%B7%A5/index.html">搬瓦工 (7)</a><a title="7个话题" href="../tag/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5/index.html">磁力链接 (7)</a><a title="7个话题" href="../tag/dns/index.html">DNS (7)</a><a title="7个话题" href="../tag/vps%E8%AF%84%E6%B5%8B/index.html">VPS评测 (7)</a><a title="6个话题" href="../tag/ss-panel/index.html">ss-panel (6)</a><a title="6个话题" href="../tag/%E5%9B%BD%E5%86%85%E4%B8%AD%E8%BD%AC/index.html">国内中转 (6)</a><a title="6个话题" href="../tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/index.html">反向代理 (6)</a><a title="6个话题" href="../tag/kvm/index.html">KVM (6)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情の链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="https://cccat.co" target="_blank">CCCAT</a></li>
+<li><a href="http://www.rarbt.com/" title="一个我经常是否的BT种子站，资源热度很不错" target="_blank">RARBT BT种子</a></li>
+<li><a href="https://vps.best/" title="一个简洁，中立的VPS评测网站" target="_blank">VPS.BEST</a></li>
+<li><a href="http://www.vpsps.com/" title="VPS评审|VPS评测 VPS优惠 linux教程 便宜VPS VPS推荐 VPS教程 国外VPS" target="_blank">VPS评审</a></li>
+<li><a href="https://www.zhujiboke.com/" title="一起来搞机吧！" target="_blank">主机博客</a></li>
+<li><a href="http://www.zhujiceping.com/" title="国外主机优惠码、域名优惠码、国外VPS测评、国外服务器" target="_blank">国外主机测评</a></li>
+<li><a href="http://51.ruyo.net/" title="分享也是一种快乐！" target="_blank">如有乐享</a></li>
+<li><a href="http://www.66re.cn/" title="一个神奇的影音娱乐网，电影、电视直播，视频VIP破解~" target="_blank">小康音乐电台</a></li>
+<li><a href="http://ilxdh.com/" title="做个有用的导航！" target="_blank">龙轩导航</a></li>
+
+	</ul>
+</div>
+</aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="../index.html" title="逗比根据地">逗比根据地</a> 版权所有，保留一切权利 · <a href="../dashang/index.html" target="_blank" style="color: #ff6464;">♥ 捐赠打赏</a> · <a href="http://yusi123.com/3233.html" target="_blank">欲思主题</a> © 2015-2017</a>
+        </div>
+        <div class="trackcode pull-right">
+            <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8067e5ade532c4f3711b320f1e88f213";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26499fa0b99ff63dd9867c0c43ec1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>        </div>
+    </div>
+</footer>
+
+<script type='text/javascript' src='../wp-content/themes/yusi1.0/js/jquery-ver=1.0.js'></script>
+
+<script type="text/javascript">
+var open = false;
+$(function () {
+    $("button[data-type='Widescreen']").on("click", function () {
+        if (!open) {
+            $(".sidebar").hide(); $(".content").animate({ marginRight: 0 }, 200);
+        } else {
+            $(".sidebar").show(); $(".content").animate({ marginRight: 370 }, 200);
+        }
+        open = !open;
+    })
+})
+if(document.body.scrollWidth < 768){
+    $(".hot-posts").hide();
+}
+if(window!=window.top){window.top.location.replace(window.location)}function fuckyou(){window.close();window.location="about:blank"}function ck(){console.profile();console.profileEnd();if(console.clear){console.clear()};if(typeof console.profiles=="object"){return console.profiles.length>0}}function hehe(){if((window.console&&(console.firebug||console.table&&/firebug/i.test(console.table())))||(typeof opera=='object'&&typeof opera.postError=='function'&&console.profile.length>0)){fuckyou()}if(typeof console.profiles=="object"&&console.profiles.length>0){fuckyou()}}hehe();window.onresize=function(){if((window.outerHeight-window.innerHeight)>200)fuckyou()}
+</script>
+</body>
+</html>
